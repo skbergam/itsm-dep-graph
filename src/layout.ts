@@ -1,12 +1,12 @@
 import * as dagre from '@dagrejs/dagre';
 import type { GraphData, LayoutResult, LayoutNode, LayoutEdge } from './types';
 
-const PROJECT_NODE_WIDTH = 200;
-const PROJECT_NODE_HEIGHT = 60;
-const TASK_NODE_WIDTH = 220;
-const TASK_NODE_HEIGHT = 56;
-const RANK_SEP = 80;
-const NODE_SEP = 40;
+const PROJECT_NODE_WIDTH = 240;
+const PROJECT_NODE_HEIGHT = 75;
+const TASK_NODE_WIDTH = 280;
+const TASK_NODE_HEIGHT = 70;
+const RANK_SEP = 120;
+const NODE_SEP = 60;
 
 export function computeLayout(data: GraphData): LayoutResult {
   const g = new dagre.graphlib.Graph({ compound: true });
@@ -16,7 +16,7 @@ export function computeLayout(data: GraphData): LayoutResult {
     ranksep: RANK_SEP,
     nodesep: NODE_SEP,
     edgesep: 30,
-    ranker: 'tight-tree'
+    ranker: 'network-simplex'
   });
   
   g.setDefaultEdgeLabel(() => ({}));

@@ -9,7 +9,7 @@ const STATUS_COLORS: Record<TaskStatus, string> = {
 };
 
 const PROJECT_COLOR = '#a855f7';
-const EDGE_COLOR = '#64748b';
+const EDGE_COLOR = '#94a3b8';
 const TEXT_COLOR = '#ffffff';
 const BG_COLOR = '#0f172a';
 
@@ -161,7 +161,7 @@ export class GraphRenderer {
 
   private renderEdges() {
     this.ctx.strokeStyle = EDGE_COLOR;
-    this.ctx.lineWidth = 2;
+    this.ctx.lineWidth = 3;
     this.ctx.setLineDash([]);
 
     for (const edge of this.layout.edges) {
@@ -178,10 +178,10 @@ export class GraphRenderer {
 
       if (isHighlighted) {
         this.ctx.strokeStyle = '#60a5fa';
-        this.ctx.lineWidth = 3;
+        this.ctx.lineWidth = 4;
       } else {
         this.ctx.strokeStyle = EDGE_COLOR;
-        this.ctx.lineWidth = 2;
+        this.ctx.lineWidth = 3;
       }
 
       this.ctx.beginPath();
@@ -203,7 +203,7 @@ export class GraphRenderer {
 
   private drawArrowhead(x1: number, y1: number, x2: number, y2: number, highlighted: boolean) {
     const angle = Math.atan2(y2 - y1, x2 - x1);
-    const arrowSize = 8;
+    const arrowSize = 12;
 
     this.ctx.fillStyle = highlighted ? '#60a5fa' : EDGE_COLOR;
     this.ctx.beginPath();
@@ -255,13 +255,13 @@ export class GraphRenderer {
     this.ctx.stroke();
 
     this.ctx.fillStyle = TEXT_COLOR;
-    this.ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+    this.ctx.font = '12px system-ui, -apple-system, sans-serif';
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'top';
-    this.wrapText(project.id, node.x, y + 8, node.width - 12);
+    this.ctx.fillText(project.id, node.x, y + 10);
     
-    this.ctx.font = '11px system-ui, -apple-system, sans-serif';
-    this.wrapText(project.name, node.x, y + 28, node.width - 12);
+    this.ctx.font = 'bold 14px system-ui, -apple-system, sans-serif';
+    this.wrapText(project.name, node.x, y + 28, node.width - 16);
   }
 
   private renderTaskNode(node: { x: number; y: number; width: number; height: number }, task: Task) {
@@ -269,30 +269,32 @@ export class GraphRenderer {
     const y = node.y - node.height / 2;
     const isHovered = this.hoveredNode === task.id;
     const isSelected = this.selectedNode === task.id;
+    const isBlocked = task.status === 'blocked';
 
     this.ctx.fillStyle = STATUS_COLORS[task.status];
-    if (isHovered || isSelected) {
-      this.ctx.shadowColor = `${STATUS_COLORS[task.status]}80`;
-      this.ctx.shadowBlur = 12;
+    if (isBlocked || isHovered || isSelected) {
+      this.ctx.shadowColor = isBlocked ? 'rgba(239, 68, 68, 0.6)' : `${STATUS_COLORS[task.status]}80`;
+      this.ctx.shadowBlur = isBlocked ? 16 : 12;
     }
     this.roundRect(x, y, node.width, node.height, 6);
     this.ctx.fill();
     this.ctx.shadowBlur = 0;
 
-    this.ctx.strokeStyle = isSelected ? '#ffffff' : 'rgba(255, 255, 255, 0.2)';
-    this.ctx.lineWidth = isSelected ? 2.5 : 1;
+    this.ctx.strokeStyle = isBlocked ? '#ef4444' : (isSelected ? '#ffffff' : 'rgba(255, 255, 255, 0.2)');
+    this.ctx.lineWidth = isBlocked ? 3 : (isSelected ? 2.5 : 1);
     this.roundRect(x, y, node.width, node.height, 6);
     this.ctx.stroke();
 
     this.ctx.fillStyle = TEXT_COLOR;
-    this.ctx.font = 'bold 11px system-ui, -apple-system, sans-serif';
+    this.ctx.font = 'bold 14px system-ui, -apple-system, sans-serif';
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'top';
-    this.wrapText(task.id, node.x, y + 6, node.width - 12);
+    this.wrapText(task.name, node.x, y + 10, node.width - 16);
     
-    this.ctx.font = '10px system-ui, -apple-system, sans-serif';
-    const truncated = this.truncateText(task.name, node.width - 12);
-    this.ctx.fillText(truncated, node.x, y + 24);
+    this.ctx.font = '12px system-ui, -apple-system, sans-serif';
+    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    const taskIdShort = task.id.length > 12 ? task.id.substring(0, 8) + '…' : task.id;
+    this.ctx.fillText(taskIdShort, node.x, y + node.height - 20);
   }
 
   private roundRect(x: number, y: number, width: number, height: number, radius: number) {
@@ -347,10 +349,10 @@ export class GraphRenderer {
     
     const scaleX = availableWidth / this.layout.width;
     const scaleY = availableHeight / this.layout.height;
-    this.scale = Math.min(scaleX, scaleY, 1);
+    this.scale = Math.max(0.3, Math.min(scaleX, scaleY, 1));
     
     this.offsetX = (this.canvas.width - this.layout.width * this.scale) / 2;
-    this.offsetY = (this.canvas.height - this.layout.height * this.scale) / 2 + padding;
+    this.offsetY = (this.canvas.height - this.layout.height * this.scale) / 2;
     
     this.render();
   }
@@ -362,6 +364,31 @@ export class GraphRenderer {
 
   public highlightNode(nodeId: string | null) {
     this.hoveredNode = nodeId;
+    this.render();
+  }
+
+  public selectNode(nodeId: string | null) {
+    this.selectedNode = nodeId;
+    this.render();
+    if (nodeId) {
+      this.dispatchSelectEvent(nodeId);
+    }
+  }
+
+  public getSelectedNode(): string | null {
+    return this.selectedNode;
+  }
+
+  public panToNode(nodeId: string) {
+    const node = this.layout.nodes.get(nodeId);
+    if (!node) return;
+
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+    
+    this.offsetX = centerX - node.x * this.scale;
+    this.offsetY = centerY - node.y * this.scale;
+    
     this.render();
   }
 }

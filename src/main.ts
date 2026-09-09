@@ -34,7 +34,8 @@ async function init() {
     });
 
     sidebar.setTaskSelectCallback((taskId) => {
-      console.log('Selected task:', taskId);
+      renderer.selectNode(taskId);
+      renderer.panToNode(taskId);
     });
 
     canvas.addEventListener('nodehover', ((e: CustomEvent) => {
@@ -42,7 +43,8 @@ async function init() {
     }) as EventListener);
 
     canvas.addEventListener('nodeselect', ((e: CustomEvent) => {
-      console.log('Selected node:', e.detail);
+      const nodeId = e.detail;
+      sidebar.selectTask(nodeId);
     }) as EventListener);
 
     const fitBtn = document.getElementById('fit-btn');

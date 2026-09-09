@@ -42,6 +42,16 @@ export class Sidebar {
     this.render();
   }
 
+  public selectTask(taskId: string) {
+    this.hoveredTaskId = taskId;
+    this.render();
+    
+    const taskElement = this.container.querySelector(`[data-task-id="${taskId}"]`);
+    if (taskElement) {
+      taskElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
   private render() {
     const projectGroups = new Map<string, Task[]>();
     
@@ -73,15 +83,18 @@ export class Sidebar {
         const isHovered = this.hoveredTaskId === task.id;
         const statusColor = STATUS_COLORS[task.status];
         const statusLabel = STATUS_LABELS[task.status];
+        const isBlocked = task.status === 'blocked';
         
         html += `
-          <div class="task-item ${isHovered ? 'hovered' : ''}" 
+          <div class="task-item ${isHovered ? 'hovered' : ''} ${isBlocked ? 'blocked' : ''}" 
                data-task-id="${this.escapeHtml(task.id)}">
-            <div class="task-indicator" style="background-color: ${statusColor}"></div>
+            <div class="task-indicator ${isBlocked ? 'blocked' : ''}" style="background-color: ${statusColor}"></div>
             <div class="task-content">
-              <div class="task-id">${this.escapeHtml(task.id)}</div>
-              <div class="task-name">${this.escapeHtml(task.name)}</div>
-              <div class="task-status" style="color: ${statusColor}">${statusLabel}</div>
+              <div class="task-name ${isBlocked ? 'blocked' : ''}">${this.escapeHtml(task.name)}</div>
+              <div class="task-meta">
+                <div class="task-id">${this.escapeHtml(task.id.length > 12 ? task.id.substring(0, 8) + '…' : task.id)}</div>
+                <div class="task-status" style="color: ${statusColor}">${statusLabel}</div>
+              </div>
             </div>
           </div>
         `;
