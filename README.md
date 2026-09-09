@@ -1,3 +1,8 @@
+## Live
+
+- App: https://itsm-dep-graph.vercel.app
+- Repo: https://github.com/skbergam/itsm-dep-graph
+
 # ITSM Dependency Graph Visualizer
 
 A TypeScript-based dependency graph visualizer for ITSM tasks, built with Vite, Canvas API, and dagre layout engine.
