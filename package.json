@@ -1,0 +1,20 @@
+{
+  "name": "itsm-dep-graph",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && mkdir -p dist/out && cp out/itsm-graph.json dist/out/",
+    "preview": "vite preview",
+    "prebuild": "mkdir -p public/out && cp out/itsm-graph.json public/out/"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^1.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.0"
+  }
+}

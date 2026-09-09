@@ -1,0 +1,212 @@
+{
+  "results": [
+    {
+      "Task name": "ONTO-6 \u2014 Lock SQL print step",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-5.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8102a480d8ac59925374"
+    },
+    {
+      "Task name": "ONTO-5 \u2014 TypeBox vs Zod bakeoff",
+      "Status": "Not started",
+      "Note": "Depends-on: ONTO-1 (Done). Independent of ONTO-4 \u2014 run ahead of SR; parallel with #148 hold. Unblocked now.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8107b1f6f68174cfead9"
+    },
+    {
+      "Task name": "CMDB-5 \u2014 Morgan Steward + release compile/rehearse/promote",
+      "Status": "Waiting",
+      "Note": "Depends-on: CMDB-0 (); CMDB-2. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8107be3adcc0dcf5e693"
+    },
+    {
+      "Task name": "ONTO-12 \u2014 Ontology open-questions backlog sync (merged)",
+      "Status": "Archived",
+      "Note": "Merged into Ontology backlog hygiene \u2014 triage spikes + open questions. Do not work this row.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea810b9868f616b8a0b9a3"
+    },
+    {
+      "Task name": "ONTO-2 \u2014 Merge ontology table standard into brain",
+      "Status": "Done",
+      "Note": "Depends-on: none. #148 MERGED 2026-09-09 after main typecheck green (c60445d / #161 hold lifted).",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81108022f803bb9dcc6c"
+    },
+    {
+      "Task name": "INC-2 \u2014 Incident domain model",
+      "Status": "Waiting",
+      "Note": "Depends-on: INC-0 (); INC-1. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81118436e5986e9492e3"
+    },
+    {
+      "Task name": "ONTO-11 \u2014 Porter ratification of Sep 6 runtime",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-4; ONTO-7. Human/Porter gate via Geronimo.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8123bf3cd330d0fde811"
+    },
+    {
+      "Task name": "INC-5 \u2014 Sarah operating model + deny-first offboarding",
+      "Status": "Waiting",
+      "Note": "Depends-on: INC-0 (); INC-3. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea812996e8e8288f95fe55"
+    },
+    {
+      "Task name": "CMDB-2 \u2014 Strangle hydrate \u2192 observations + revisioned heads",
+      "Status": "Waiting",
+      "Note": "Depends-on: CMDB-0 (); CMDB-1. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea812a9becfc13b1469b32"
+    },
+    {
+      "Task name": "ONTO-7 \u2014 Knowledge authorized search hardening",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-1 (Done); ONTO-4; ONTO-5. Status Waiting until all three Done.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8131ab92d0e1f431edee"
+    },
+    {
+      "Task name": "CMDB-0 \u2014 SIGN-OFF CMDB Product Design",
+      "Status": "Blocked",
+      "Note": "Hard gate: Sean (human) must approve before any CMDB-* / CMDB ontology binding work. Branch cue: cursor/cmdb-product-design-3f3f. Gated: CMDB-1..CMDB-6 + ONTO-9. Depends-on: none (human).",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8152acc7f0bcdcf5c3bc"
+    },
+    {
+      "Task name": "INC-0 \u2014 SIGN-OFF Incident Product Design",
+      "Status": "Blocked",
+      "Note": "Hard gate: Sean (human) must approve before any INC-* / Incident ontology work. Branch cue: cursor/incident-product-design-1598. Gated: INC-1..INC-6 + ONTO-8. Depends-on: none (human).",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8156b03be5dc94368e9b"
+    },
+    {
+      "Task name": "CMDB-6 \u2014 Practice Owner surface + verify-cmdb north-star suite",
+      "Status": "Waiting",
+      "Note": "Depends-on: CMDB-0 (); CMDB-2\u2013CMDB-5. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea815b88c5c01a146507c8"
+    },
+    {
+      "Task name": "INC-3 \u2014 Vertical runtime: intake \u2192 restore \u2192 validate \u2192 close/reopen",
+      "Status": "Waiting",
+      "Note": "Depends-on: INC-0 (); INC-2. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea8176bc1fd5ebb42398b9"
+    },
+    {
+      "Task name": "ONTO-9 \u2014 CMDB ontology binding decision gate",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-4; CMDB-0 SIGN-OFF CMDB Product Design (). Do not start until signoff Done. Cue: cursor/cmdb-product-design-3f3f",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea818c85d7d20be1f4c632"
+    },
+    {
+      "Task name": "INC-4 \u2014 Major Incident coordination + approved communications",
+      "Status": "Waiting",
+      "Note": "Depends-on: INC-0 (); INC-2. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81a2a109d2e585b9b1c4"
+    },
+    {
+      "Task name": "ONTO-8 \u2014 Incident ontology slice",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-4; INC-0 SIGN-OFF Incident Product Design (). Do not start until signoff Done. Cue: cursor/incident-product-design-1598",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81ac80e1d8abb3f62cb8"
+    },
+    {
+      "Task name": "CMDB-3 \u2014 Snapshots, baselines, authorized views",
+      "Status": "Waiting",
+      "Note": "Depends-on: CMDB-0 (); CMDB-2. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81c0977be12ce07ec3c7"
+    },
+    {
+      "Task name": "CMDB-4 \u2014 Findings + attestations + async peer intents",
+      "Status": "Waiting",
+      "Note": "Depends-on: CMDB-0 (); CMDB-3. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81e09b74cb296e69a422"
+    },
+    {
+      "Task name": "ONTO-4 \u2014 Service Request entities on ontology",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-1 \u2014 all Knowledge entities behind ontology (migration complete, not just first tranche). Sean 2026-09-09: do not start SR entities until Knowledge is fully on ontology.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81ed8a81d26c19868120"
+    },
+    {
+      "Task name": "ONTO-10 \u2014 Second adapter + plan-class proofs",
+      "Status": "Waiting",
+      "Note": "Depends-on: ONTO-4; ONTO-6.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81f1abefed882a12696a"
+    },
+    {
+      "Task name": "ONTO-1 \u2014 Land Knowledge ontology entity migration",
+      "Status": "In progress",
+      "Note": "In progress: finish ALL Knowledge Prisma models behind ontology. Done: KnowledgeOperatorOperation (#146). Remaining 15 listed on page. Merge-hold lifted (main green c60445d / #161) \u2014 landings allowed again.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81f6880fe041eda42d5b"
+    },
+    {
+      "Task name": "CMDB-1 \u2014 Spec-tighten: Path A vs Path B + first ServiceNow table boundary",
+      "Status": "Waiting",
+      "Note": "Depends-on: CMDB-0 (). Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81f88090e4ad31d5ded0"
+    },
+    {
+      "Task name": "INC-1 \u2014 Spec-tighten: first Payroll source + major-declaration criteria",
+      "Status": "Waiting",
+      "Note": "Depends-on: INC-0 (). Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81f9bcc2ce3090e23193"
+    },
+    {
+      "Task name": "ONTO-3 \u2014 Ontology backlog hygiene \u2014 triage spikes + open questions",
+      "Status": "Not started",
+      "Note": "Depends-on: none (Knowledge operator migration Done). Merged former #3 triage spikes + #12 open-questions sync. Can start now despite merge hold.",
+      "Bot": "Solon (EM)",
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81fcbc7dddc52d051a17"
+    },
+    {
+      "Task name": "INC-6 \u2014 Practice Owner control surface + verify-incident gates",
+      "Status": "Waiting",
+      "Note": "Depends-on: INC-0 (); INC-3\u2013INC-5. Do not start until signoff Done.",
+      "Bot": null,
+      "Project": "[\"https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c\"]",
+      "url": "https://app.notion.com/3d65dbddf0ea81fe9a9af2fbfcf77d26"
+    }
+  ]
+}

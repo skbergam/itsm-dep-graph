@@ -1,0 +1,1132 @@
+{
+  "generated_at": "2026-09-09T22:26:22.460672+00:00",
+  "projects": [
+    {
+      "id": "proj-ontology",
+      "name": "Platform - Ontology",
+      "url": "https://app.notion.com/3d65dbddf0ea819296bfef0fae3b1fe6",
+      "url_alt": "https://app.notion.com/p/3d65dbddf0ea819296bfef0fae3b1fe6",
+      "prefix": "ONTO"
+    },
+    {
+      "id": "proj-incident",
+      "name": "Resolv — Incident",
+      "url": "https://app.notion.com/3d65dbddf0ea81e08611d31d3eb04f6c",
+      "url_alt": "https://app.notion.com/p/3d65dbddf0ea81e08611d31d3eb04f6c",
+      "prefix": "INC"
+    },
+    {
+      "id": "proj-cmdb",
+      "name": "Resolv — CMDB",
+      "url": "https://app.notion.com/3d65dbddf0ea8129a739ffdc41830d81",
+      "url_alt": "https://app.notion.com/p/3d65dbddf0ea8129a739ffdc41830d81",
+      "prefix": "CMDB"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "3d65dbdd-f0ea-8102-a480-d8ac59925374",
+      "name": "ONTO-6 — Lock SQL print step",
+      "code": "ONTO-6",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-5.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea8102a480d8ac59925374",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-5"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8107-b1f6-f68174cfead9"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8107-b1f6-f68174cfead9",
+      "name": "ONTO-5 — TypeBox vs Zod bakeoff",
+      "code": "ONTO-5",
+      "status": "Not started",
+      "note": "Depends-on: ONTO-1 (Done). Independent of ONTO-4 — run ahead of SR; parallel with #148 hold. Unblocked now.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea8107b1f6f68174cfead9",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#9CA3AF",
+      "depends_tokens": [
+        "ONTO-1 (Done)",
+        "ONTO-1",
+        "ONTO-4"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+        "3d65dbdd-f0ea-81ed-8a81-d26c19868120"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8107-be3a-dcc0dcf5e693",
+      "name": "CMDB-5 — Morgan Steward + release compile/rehearse/promote",
+      "code": "CMDB-5",
+      "status": "Waiting",
+      "note": "Depends-on: CMDB-0 (); CMDB-2. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea8107be3adcc0dcf5e693",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "CMDB-0",
+        "CMDB-2"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+        "3d65dbdd-f0ea-812a-9bec-fc13b1469b32"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8110-8022-f803bb9dcc6c",
+      "name": "ONTO-2 — Merge ontology table standard into brain",
+      "code": "ONTO-2",
+      "status": "Done",
+      "note": "Depends-on: none. #148 MERGED 2026-09-09 after main typecheck green (c60445d / #161 hold lifted).",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea81108022f803bb9dcc6c",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#22C55E",
+      "depends_tokens": [],
+      "depends_on": []
+    },
+    {
+      "id": "3d65dbdd-f0ea-8111-8436-e5986e9492e3",
+      "name": "INC-2 — Incident domain model",
+      "code": "INC-2",
+      "status": "Waiting",
+      "note": "Depends-on: INC-0 (); INC-1. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81118436e5986e9492e3",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "INC-0",
+        "INC-1"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+        "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8123-bf3c-d330d0fde811",
+      "name": "ONTO-11 — Porter ratification of Sep 6 runtime",
+      "code": "ONTO-11",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-4; ONTO-7. Human/Porter gate via Geronimo.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea8123bf3cd330d0fde811",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-4",
+        "ONTO-7"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+        "3d65dbdd-f0ea-8131-ab92-d0e1f431edee"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8129-96e8-e8288f95fe55",
+      "name": "INC-5 — Sarah operating model + deny-first offboarding",
+      "code": "INC-5",
+      "status": "Waiting",
+      "note": "Depends-on: INC-0 (); INC-3. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea812996e8e8288f95fe55",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "INC-0",
+        "INC-3"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+        "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "name": "CMDB-2 — Strangle hydrate → observations + revisioned heads",
+      "code": "CMDB-2",
+      "status": "Waiting",
+      "note": "Depends-on: CMDB-0 (); CMDB-1. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea812a9becfc13b1469b32",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "CMDB-0",
+        "CMDB-1"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+        "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8131-ab92-d0e1f431edee",
+      "name": "ONTO-7 — Knowledge authorized search hardening",
+      "code": "ONTO-7",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-1 (Done); ONTO-4; ONTO-5. Status Waiting until all three Done.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea8131ab92d0e1f431edee",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-1 (Done)",
+        "ONTO-1",
+        "ONTO-4",
+        "ONTO-5"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+        "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+        "3d65dbdd-f0ea-8107-b1f6-f68174cfead9"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "name": "CMDB-0 — SIGN-OFF CMDB Product Design",
+      "code": "CMDB-0",
+      "status": "Blocked",
+      "note": "Hard gate: Sean (human) must approve before any CMDB-* / CMDB ontology binding work. Branch cue: cursor/cmdb-product-design-3f3f. Gated: CMDB-1..CMDB-6 + ONTO-9. Depends-on: none (human).",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea8152acc7f0bcdcf5c3bc",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EF4444",
+      "depends_tokens": [
+        "none (human)",
+        "CMDB-1",
+        "CMDB-6",
+        "ONTO-9"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0",
+        "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+        "3d65dbdd-f0ea-818c-85d7-d20be1f4c632"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "name": "INC-0 — SIGN-OFF Incident Product Design",
+      "code": "INC-0",
+      "status": "Blocked",
+      "note": "Hard gate: Sean (human) must approve before any INC-* / Incident ontology work. Branch cue: cursor/incident-product-design-1598. Gated: INC-1..INC-6 + ONTO-8. Depends-on: none (human).",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea8156b03be5dc94368e9b",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EF4444",
+      "depends_tokens": [
+        "none (human)",
+        "INC-1",
+        "INC-6",
+        "ONTO-8"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193",
+        "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+        "3d65dbdd-f0ea-81ac-80e1-d8abb3f62cb8"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+      "name": "CMDB-6 — Practice Owner surface + verify-cmdb north-star suite",
+      "code": "CMDB-6",
+      "status": "Waiting",
+      "note": "Depends-on: CMDB-0 (); CMDB-2–CMDB-5. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea815b88c5c01a146507c8",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "CMDB-0",
+        "CMDB-2",
+        "CMDB-5"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+        "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+        "3d65dbdd-f0ea-8107-be3a-dcc0dcf5e693"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+      "name": "INC-3 — Vertical runtime: intake → restore → validate → close/reopen",
+      "code": "INC-3",
+      "status": "Waiting",
+      "note": "Depends-on: INC-0 (); INC-2. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea8176bc1fd5ebb42398b9",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "INC-0",
+        "INC-2"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+        "3d65dbdd-f0ea-8111-8436-e5986e9492e3"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-818c-85d7-d20be1f4c632",
+      "name": "ONTO-9 — CMDB ontology binding decision gate",
+      "code": "ONTO-9",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-4; CMDB-0 SIGN-OFF CMDB Product Design (). Do not start until signoff Done. Cue: cursor/cmdb-product-design-3f3f",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea818c85d7d20be1f4c632",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-4",
+        "CMDB-0"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81a2-a109-d2e585b9b1c4",
+      "name": "INC-4 — Major Incident coordination + approved communications",
+      "code": "INC-4",
+      "status": "Waiting",
+      "note": "Depends-on: INC-0 (); INC-2. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81a2a109d2e585b9b1c4",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "INC-0",
+        "INC-2"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+        "3d65dbdd-f0ea-8111-8436-e5986e9492e3"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81ac-80e1-d8abb3f62cb8",
+      "name": "ONTO-8 — Incident ontology slice",
+      "code": "ONTO-8",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-4; INC-0 SIGN-OFF Incident Product Design (). Do not start until signoff Done. Cue: cursor/incident-product-design-1598",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea81ac80e1d8abb3f62cb8",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-4",
+        "INC-0"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81c0-977b-e12ce07ec3c7",
+      "name": "CMDB-3 — Snapshots, baselines, authorized views",
+      "code": "CMDB-3",
+      "status": "Waiting",
+      "note": "Depends-on: CMDB-0 (); CMDB-2. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81c0977be12ce07ec3c7",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "CMDB-0",
+        "CMDB-2"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+        "3d65dbdd-f0ea-812a-9bec-fc13b1469b32"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81e0-9b74-cb296e69a422",
+      "name": "CMDB-4 — Findings + attestations + async peer intents",
+      "code": "CMDB-4",
+      "status": "Waiting",
+      "note": "Depends-on: CMDB-0 (); CMDB-3. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81e09b74cb296e69a422",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "CMDB-0",
+        "CMDB-3"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+        "3d65dbdd-f0ea-81c0-977b-e12ce07ec3c7"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "name": "ONTO-4 — Service Request entities on ontology",
+      "code": "ONTO-4",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-1 — all Knowledge entities behind ontology (migration complete, not just first tranche). Sean 2026-09-09: do not start SR entities until Knowledge is fully on ontology.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea81ed8a81d26c19868120",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-1 — all Knowledge entities behind ontology (migration complete",
+        "not just first tranche)",
+        "ONTO-1"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81f6-880f-e041eda42d5b"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81f1-abef-ed882a12696a",
+      "name": "ONTO-10 — Second adapter + plan-class proofs",
+      "code": "ONTO-10",
+      "status": "Waiting",
+      "note": "Depends-on: ONTO-4; ONTO-6.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea81f1abefed882a12696a",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "ONTO-4",
+        "ONTO-6"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+        "3d65dbdd-f0ea-8102-a480-d8ac59925374"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+      "name": "ONTO-1 — Land Knowledge ontology entity migration",
+      "code": "ONTO-1",
+      "status": "In progress",
+      "note": "In progress: finish ALL Knowledge Prisma models behind ontology. Done: KnowledgeOperatorOperation (#146). Remaining 15 listed on page. Merge-hold lifted (main green c60445d / #161) — landings allowed again.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea81f6880fe041eda42d5b",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#3B82F6",
+      "depends_tokens": [],
+      "depends_on": []
+    },
+    {
+      "id": "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0",
+      "name": "CMDB-1 — Spec-tighten: Path A vs Path B + first ServiceNow table boundary",
+      "code": "CMDB-1",
+      "status": "Waiting",
+      "note": "Depends-on: CMDB-0 (). Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81f88090e4ad31d5ded0",
+      "project_ids": [
+        "proj-cmdb"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "CMDB-0"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193",
+      "name": "INC-1 — Spec-tighten: first Payroll source + major-declaration criteria",
+      "code": "INC-1",
+      "status": "Waiting",
+      "note": "Depends-on: INC-0 (). Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81f9bcc2ce3090e23193",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "INC-0"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b"
+      ]
+    },
+    {
+      "id": "3d65dbdd-f0ea-81fc-bc7d-ddc52d051a17",
+      "name": "ONTO-3 — Ontology backlog hygiene — triage spikes + open questions",
+      "code": "ONTO-3",
+      "status": "Not started",
+      "note": "Depends-on: none (Knowledge operator migration Done). Merged former #3 triage spikes + #12 open-questions sync. Can start now despite merge hold.",
+      "bot": "Solon (EM)",
+      "url": "https://app.notion.com/3d65dbddf0ea81fcbc7dddc52d051a17",
+      "project_ids": [
+        "proj-ontology"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#9CA3AF",
+      "depends_tokens": [
+        "none (Knowledge operator migration Done)"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+      "name": "INC-6 — Practice Owner control surface + verify-incident gates",
+      "code": "INC-6",
+      "status": "Waiting",
+      "note": "Depends-on: INC-0 (); INC-3–INC-5. Do not start until signoff Done.",
+      "bot": null,
+      "url": "https://app.notion.com/3d65dbddf0ea81fe9a9af2fbfcf77d26",
+      "project_ids": [
+        "proj-incident"
+      ],
+      "icon": "📋",
+      "body": null,
+      "color": "#EAB308",
+      "depends_tokens": [
+        "INC-0",
+        "INC-3",
+        "INC-5"
+      ],
+      "depends_on": [
+        "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+        "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+        "3d65dbdd-f0ea-8129-96e8-e8288f95fe55"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "3d65dbdd-f0ea-8107-b1f6-f68174cfead9",
+      "to": "3d65dbdd-f0ea-8102-a480-d8ac59925374",
+      "kind": "depends-on",
+      "token": "ONTO-5",
+      "via": "code:ONTO-5"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+      "to": "3d65dbdd-f0ea-8107-b1f6-f68174cfead9",
+      "kind": "depends-on",
+      "token": "ONTO-1 (Done)",
+      "via": "code:ONTO-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "to": "3d65dbdd-f0ea-8107-b1f6-f68174cfead9",
+      "kind": "depends-on",
+      "token": "ONTO-4",
+      "via": "code:ONTO-4"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-8107-be3a-dcc0dcf5e693",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "to": "3d65dbdd-f0ea-8107-be3a-dcc0dcf5e693",
+      "kind": "depends-on",
+      "token": "CMDB-2",
+      "via": "code:CMDB-2"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-8111-8436-e5986e9492e3",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193",
+      "to": "3d65dbdd-f0ea-8111-8436-e5986e9492e3",
+      "kind": "depends-on",
+      "token": "INC-1",
+      "via": "code:INC-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "to": "3d65dbdd-f0ea-8123-bf3c-d330d0fde811",
+      "kind": "depends-on",
+      "token": "ONTO-4",
+      "via": "code:ONTO-4"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8131-ab92-d0e1f431edee",
+      "to": "3d65dbdd-f0ea-8123-bf3c-d330d0fde811",
+      "kind": "depends-on",
+      "token": "ONTO-7",
+      "via": "code:ONTO-7"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-8129-96e8-e8288f95fe55",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+      "to": "3d65dbdd-f0ea-8129-96e8-e8288f95fe55",
+      "kind": "depends-on",
+      "token": "INC-3",
+      "via": "code:INC-3"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0",
+      "to": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "kind": "depends-on",
+      "token": "CMDB-1",
+      "via": "code:CMDB-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+      "to": "3d65dbdd-f0ea-8131-ab92-d0e1f431edee",
+      "kind": "depends-on",
+      "token": "ONTO-1 (Done)",
+      "via": "code:ONTO-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "to": "3d65dbdd-f0ea-8131-ab92-d0e1f431edee",
+      "kind": "depends-on",
+      "token": "ONTO-4",
+      "via": "code:ONTO-4"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8107-b1f6-f68174cfead9",
+      "to": "3d65dbdd-f0ea-8131-ab92-d0e1f431edee",
+      "kind": "depends-on",
+      "token": "ONTO-5",
+      "via": "code:ONTO-5"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0",
+      "to": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "kind": "depends-on",
+      "token": "CMDB-1",
+      "via": "code:CMDB-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+      "to": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "kind": "depends-on",
+      "token": "CMDB-6",
+      "via": "code:CMDB-6"
+    },
+    {
+      "from": "3d65dbdd-f0ea-818c-85d7-d20be1f4c632",
+      "to": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "kind": "depends-on",
+      "token": "ONTO-9",
+      "via": "code:ONTO-9"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193",
+      "to": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "kind": "depends-on",
+      "token": "INC-1",
+      "via": "code:INC-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+      "to": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "kind": "depends-on",
+      "token": "INC-6",
+      "via": "code:INC-6"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ac-80e1-d8abb3f62cb8",
+      "to": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "kind": "depends-on",
+      "token": "ONTO-8",
+      "via": "code:ONTO-8"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "to": "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+      "kind": "depends-on",
+      "token": "CMDB-2",
+      "via": "code:CMDB-2"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8107-be3a-dcc0dcf5e693",
+      "to": "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+      "kind": "depends-on",
+      "token": "CMDB-5",
+      "via": "code:CMDB-5"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8111-8436-e5986e9492e3",
+      "to": "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+      "kind": "depends-on",
+      "token": "INC-2",
+      "via": "code:INC-2"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "to": "3d65dbdd-f0ea-818c-85d7-d20be1f4c632",
+      "kind": "depends-on",
+      "token": "ONTO-4",
+      "via": "code:ONTO-4"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-818c-85d7-d20be1f4c632",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-81a2-a109-d2e585b9b1c4",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8111-8436-e5986e9492e3",
+      "to": "3d65dbdd-f0ea-81a2-a109-d2e585b9b1c4",
+      "kind": "depends-on",
+      "token": "INC-2",
+      "via": "code:INC-2"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "to": "3d65dbdd-f0ea-81ac-80e1-d8abb3f62cb8",
+      "kind": "depends-on",
+      "token": "ONTO-4",
+      "via": "code:ONTO-4"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-81ac-80e1-d8abb3f62cb8",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-81c0-977b-e12ce07ec3c7",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "to": "3d65dbdd-f0ea-81c0-977b-e12ce07ec3c7",
+      "kind": "depends-on",
+      "token": "CMDB-2",
+      "via": "code:CMDB-2"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-81e0-9b74-cb296e69a422",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81c0-977b-e12ce07ec3c7",
+      "to": "3d65dbdd-f0ea-81e0-9b74-cb296e69a422",
+      "kind": "depends-on",
+      "token": "CMDB-3",
+      "via": "code:CMDB-3"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+      "to": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "kind": "depends-on",
+      "token": "ONTO-1 — all Knowledge entities behind ontology (migration complete",
+      "via": "code:ONTO-1"
+    },
+    {
+      "from": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "to": "3d65dbdd-f0ea-81f1-abef-ed882a12696a",
+      "kind": "depends-on",
+      "token": "ONTO-4",
+      "via": "code:ONTO-4"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8102-a480-d8ac59925374",
+      "to": "3d65dbdd-f0ea-81f1-abef-ed882a12696a",
+      "kind": "depends-on",
+      "token": "ONTO-6",
+      "via": "code:ONTO-6"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "to": "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0",
+      "kind": "depends-on",
+      "token": "CMDB-0",
+      "via": "code:CMDB-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "to": "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+      "kind": "depends-on",
+      "token": "INC-0",
+      "via": "code:INC-0"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+      "to": "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+      "kind": "depends-on",
+      "token": "INC-3",
+      "via": "code:INC-3"
+    },
+    {
+      "from": "3d65dbdd-f0ea-8129-96e8-e8288f95fe55",
+      "to": "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+      "kind": "depends-on",
+      "token": "INC-5",
+      "via": "code:INC-5"
+    }
+  ],
+  "membership": [
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-8102-a480-d8ac59925374",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-8107-b1f6-f68174cfead9",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-8107-be3a-dcc0dcf5e693",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-8110-8022-f803bb9dcc6c",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-8111-8436-e5986e9492e3",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-8123-bf3c-d330d0fde811",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-8129-96e8-e8288f95fe55",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-812a-9bec-fc13b1469b32",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-8131-ab92-d0e1f431edee",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-815b-88c5-c01a146507c8",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-8176-bc1f-d5ebb42398b9",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-818c-85d7-d20be1f4c632",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-81a2-a109-d2e585b9b1c4",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-81ac-80e1-d8abb3f62cb8",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-81c0-977b-e12ce07ec3c7",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-81e0-9b74-cb296e69a422",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-81f1-abef-ed882a12696a",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-cmdb",
+      "to": "3d65dbdd-f0ea-81f8-8090-e4ad31d5ded0",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-81f9-bcc2-ce3090e23193",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-ontology",
+      "to": "3d65dbdd-f0ea-81fc-bc7d-ddc52d051a17",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    },
+    {
+      "from": "proj-incident",
+      "to": "3d65dbdd-f0ea-81fe-9a9a-f2fbfcf77d26",
+      "kind": "in-project",
+      "token": "",
+      "via": "relation"
+    }
+  ],
+  "parse_issues": [
+    {
+      "task": "CMDB-0 — SIGN-OFF CMDB Product Design",
+      "task_id": "3d65dbdd-f0ea-8152-acc7-f0bcdcf5c3bc",
+      "token": "none (human)",
+      "reason": "unresolved:none (human)"
+    },
+    {
+      "task": "INC-0 — SIGN-OFF Incident Product Design",
+      "task_id": "3d65dbdd-f0ea-8156-b03b-e5dc94368e9b",
+      "token": "none (human)",
+      "reason": "unresolved:none (human)"
+    },
+    {
+      "task": "ONTO-4 — Service Request entities on ontology",
+      "task_id": "3d65dbdd-f0ea-81ed-8a81-d26c19868120",
+      "token": "not just first tranche)",
+      "reason": "unresolved:not just first tranche)"
+    },
+    {
+      "task": "ONTO-3 — Ontology backlog hygiene — triage spikes + open questions",
+      "task_id": "3d65dbdd-f0ea-81fc-bc7d-ddc52d051a17",
+      "token": "none (Knowledge operator migration Done)",
+      "reason": "unresolved:none (Knowledge operator migration Done)"
+    }
+  ],
+  "pulse": {
+    "Waiting": 19,
+    "Blocked": 2,
+    "In progress": 1,
+    "Not started": 2,
+    "Done": 1,
+    "Archived": 0,
+    "other": 0,
+    "active": 24,
+    "total": 25
+  },
+  "meta": {
+    "tasks_ds": "collection://86797734-14d1-44d7-8d94-7b41fcacc2ca",
+    "projects_ds": "collection://332d25cf-9469-4db7-aa47-dbe5e83854c2",
+    "channel": "b632b520-95b5-4ddc-9632-9b187dfcfb9c",
+    "raw": "/workspace/itsm-dep-graph/out/raw-notion.json"
+  }
+}
