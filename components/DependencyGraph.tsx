@@ -189,7 +189,7 @@ function DependencyGraphInner() {
     if (!loading && nodes.length > 0 && !initialFitDone) {
       setTimeout(() => {
         reactFlowInstance.fitView({
-          padding: 0.15,
+          padding: 0.4,
           duration: 0,
           minZoom: 0.5,
           maxZoom: 2,
@@ -226,7 +226,7 @@ function DependencyGraphInner() {
       
       if (projectTaskNodes.length > 0) {
         reactFlowInstance.fitView({
-          padding: 0.15,
+          padding: 0.4,
           duration: 800,
           nodes: projectTaskNodes,
           minZoom: 0.5,
@@ -256,7 +256,7 @@ function DependencyGraphInner() {
 
   const handleFitAll = useCallback(() => {
     reactFlowInstance.fitView({
-      padding: 0.15,
+      padding: 0.35,
       duration: 800,
       minZoom: 0.5,
       maxZoom: 2,
