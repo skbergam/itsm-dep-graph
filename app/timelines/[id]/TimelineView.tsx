@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import type { TaskTimeline } from "@/types/timeline";
 import { humanizeDuration, formatTimestamp } from "@/lib/timeline-utils";
@@ -14,6 +14,8 @@ export default function TimelineView() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'spans' | 'timeline'>('timeline');
+  const [highlightedRowIndex, setHighlightedRowIndex] = useState<number | null>(null);
+  const waterFallContainerRef = useRef<HTMLDivElement>(null);
   
   // Guard against missing/invalid timeline data
   const safeTimeline = timeline && {
@@ -150,9 +152,81 @@ export default function TimelineView() {
   };
 
   // Calculate timeline scale
-  const timelineStart = new Date(safeTimeline.spans.find(s => s.kind === 'wall')?.start || safeTimeline.as_of).getTime();
-  const timelineEnd = new Date(safeTimeline.spans.find(s => s.kind === 'wall')?.end || safeTimeline.as_of).getTime();
+  const wallSpan = safeTimeline.spans.find(s => s.kind === 'wall');
+  const timelineStart = new Date(wallSpan?.start || safeTimeline.as_of).getTime();
+  const timelineEnd = new Date(wallSpan?.end || safeTimeline.as_of).getTime();
   const timelineRange = timelineEnd - timelineStart;
+  const isRunning = safeTimeline.task.running;
+
+  // Generate adaptive time axis ticks
+  const generateTimeAxisTicks = useCallback(() => {
+    const durationSeconds = totalWall;
+    let tickInterval: number; // in seconds
+    let formatTick: (ms: number) => string;
+
+    if (durationSeconds < 60 * 5) {
+      // < 5 minutes: show every 30 seconds
+      tickInterval = 30;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        return `${date.getSeconds()}s`;
+      };
+    } else if (durationSeconds < 60 * 60) {
+      // < 1 hour: show every 5 minutes
+      tickInterval = 5 * 60;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        return `${date.getMinutes()}m`;
+      };
+    } else if (durationSeconds < 60 * 60 * 24) {
+      // < 1 day: show every hour
+      tickInterval = 60 * 60;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        return `${date.getHours()}:00`;
+      };
+    } else {
+      // >= 1 day: show every 6 hours
+      tickInterval = 6 * 60 * 60;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        const hours = date.getHours();
+        const day = date.getDate();
+        return hours === 0 ? `Day ${day}` : `${hours}:00`;
+      };
+    }
+
+    const ticks: Array<{ position: number; label: string; ms: number }> = [];
+    
+    // Always include start
+    ticks.push({
+      position: 0,
+      label: formatTimestamp(wallSpan?.start || safeTimeline.as_of),
+      ms: timelineStart
+    });
+
+    // Generate intermediate ticks
+    const tickCount = Math.floor(durationSeconds / tickInterval);
+    for (let i = 1; i <= tickCount; i++) {
+      const tickMs = timelineStart + (i * tickInterval * 1000);
+      if (tickMs < timelineEnd) {
+        ticks.push({
+          position: ((tickMs - timelineStart) / timelineRange) * 100,
+          label: formatTick(tickMs),
+          ms: tickMs
+        });
+      }
+    }
+
+    // Always include end (or NOW if running)
+    ticks.push({
+      position: 100,
+      label: isRunning ? 'NOW' : formatTimestamp(wallSpan?.end || safeTimeline.as_of),
+      ms: timelineEnd
+    });
+
+    return ticks;
+  }, [totalWall, timelineStart, timelineEnd, timelineRange, isRunning, wallSpan, safeTimeline.as_of]);
 
   return (
     <div className="bg-gray-50 p-8">
@@ -365,17 +439,51 @@ export default function TimelineView() {
 
           {viewMode === 'timeline' ? (
             <div className="space-y-6">
-              {/* Timeline axis header */}
-              <div className="border-b border-gray-200 pb-2">
-                <div className="flex justify-between text-xs text-gray-500">
-                  <span>{formatTimestamp(safeTimeline.spans.find(s => s.kind === 'wall')?.start || safeTimeline.as_of)}</span>
-                  <span>Wall: {humanizeDuration(totalWall)}</span>
-                  <span>{formatTimestamp(safeTimeline.spans.find(s => s.kind === 'wall')?.end || safeTimeline.as_of)}</span>
+              {/* Timeline axis header with adaptive ticks */}
+              <div className="border-b border-gray-200 pb-2 relative">
+                <div className="relative h-12">
+                  {generateTimeAxisTicks().map((tick, idx) => (
+                    <div
+                      key={idx}
+                      className="absolute flex flex-col items-center"
+                      style={{ left: `${tick.position}%`, transform: 'translateX(-50%)' }}
+                    >
+                      <div className="w-px h-2 bg-gray-400 mb-1" />
+                      <span className={`text-xs whitespace-nowrap ${
+                        isRunning && tick.position === 100 
+                          ? 'font-bold text-green-600' 
+                          : 'text-gray-500'
+                      }`}>
+                        {tick.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-center text-xs text-gray-600 font-medium mt-1">
+                  Wall: {humanizeDuration(totalWall)}
                 </div>
               </div>
 
               {/* WATERFALL: Rows for events and spans */}
-              <div className="space-y-1">
+              <div className="space-y-1 relative" ref={waterFallContainerRef}>
+                {/* Vertical grid lines */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {generateTimeAxisTicks().map((tick, idx) => (
+                    <div
+                      key={`grid-${idx}`}
+                      className="absolute top-0 bottom-0 w-px bg-gray-200"
+                      style={{ left: `${tick.position}%` }}
+                    />
+                  ))}
+                  {/* NOW marker line for running timelines */}
+                  {isRunning && (
+                    <div
+                      className="absolute top-0 bottom-0 w-0.5 bg-green-500 opacity-50"
+                      style={{ left: '100%' }}
+                    />
+                  )}
+                </div>
+
                 {(() => {
                   // Combine events and spans into unified timeline items
                   type TimelineItem = 
@@ -388,45 +496,85 @@ export default function TimelineView() {
                     'ci.ended',
                     'ci_started',
                     'ci_completed',
-                    // Add other span-represented event pairs here if needed
                   ]);
+
+                  // Collect zero-second CI spans for note
+                  const zeroSecondCISpans = safeTimeline.spans.filter(s => s.kind === 'ci' && s.seconds === 0);
                   
                   const items: TimelineItem[] = [
                     ...safeTimeline.events
                       .filter(e => 
-                        e.type !== 'agent.slash_command' && // Skip noise events
-                        !spanEventTypes.has(e.type) // Skip events represented as spans
+                        e.type !== 'agent.slash_command' && 
+                        !spanEventTypes.has(e.type)
                       )
                       .map(e => ({ type: 'event' as const, t: new Date(e.t).getTime(), data: e })),
                     ...safeTimeline.spans
-                      .filter(s => s.kind !== 'wall' && s.seconds > 0)
+                      .filter(s => s.kind !== 'wall' && s.seconds > 0) // Exclude zero-second spans from waterfall
                       .map(s => ({ type: 'span' as const, t: new Date(s.start).getTime(), data: s }))
                   ];
                   
                   items.sort((a, b) => a.t - b.t);
-                  
-                  return items.map((item, idx) => {
+
+                  const WaterfallRow = ({ item, idx }: { item: TimelineItem; idx: number }) => {
+                    const rowRef = useRef<HTMLDivElement>(null);
+
+                    useEffect(() => {
+                      const element = rowRef.current;
+                      if (!element) return;
+
+                      const observer = new IntersectionObserver(
+                        (entries) => {
+                          entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                              setHighlightedRowIndex(idx);
+                            }
+                          });
+                        },
+                        {
+                          root: waterFallContainerRef.current,
+                          threshold: 0.5,
+                        }
+                      );
+
+                      observer.observe(element);
+                      return () => observer.disconnect();
+                    }, [idx]);
+
+                    const isHighlighted = highlightedRowIndex === idx;
+
                     if (item.type === 'event') {
                       const event = item.data;
                       const left = ((item.t - timelineStart) / timelineRange) * 100;
                       
                       return (
-                        <div key={`evt-${idx}`} className="relative h-6 flex items-center">
+                        <div 
+                          key={`evt-${idx}`} 
+                          ref={rowRef}
+                          className={`relative h-6 flex items-center transition-colors ${
+                            isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                          }`}
+                        >
                           {/* Dot at time position */}
                           <div 
-                            className="absolute w-2 h-2 bg-blue-500 rounded-full hover:ring-2 hover:ring-blue-300 transition-all cursor-pointer group"
+                            className="absolute w-2 h-2 bg-blue-500 rounded-full hover:ring-2 hover:ring-blue-300 transition-all cursor-pointer group z-10"
                             style={{ left: `${Math.max(0, Math.min(100, left))}%` }}
                             title={`${event.type} at ${formatTimestamp(event.t)}`}
                           >
                             {/* Tooltip on hover */}
-                            <div className="absolute left-0 top-6 z-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                            <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
                               {event.type}: {event.summary}
                             </div>
                           </div>
-                          {/* Label */}
-                          <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
-                            {event.type}
-                          </span>
+                          {/* Label - show full detail when highlighted */}
+                          {isHighlighted ? (
+                            <span className="ml-2 text-xs font-medium text-gray-900 z-10 px-2 py-1 bg-white rounded shadow-sm">
+                              {event.type}: {event.summary}
+                            </span>
+                          ) : (
+                            <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
+                              {event.type}
+                            </span>
+                          )}
                         </div>
                       );
                     } else {
@@ -440,9 +588,15 @@ export default function TimelineView() {
                       const colorClass = spanKindColors[span.kind] || 'bg-gray-400';
                       
                       return (
-                        <div key={`span-${idx}`} className="relative h-6">
+                        <div 
+                          key={`span-${idx}`} 
+                          ref={rowRef}
+                          className={`relative h-6 transition-colors ${
+                            isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                          }`}
+                        >
                           <div
-                            className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group`}
+                            className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group z-10`}
                             style={{
                               left: `${Math.max(0, left)}%`,
                               width: `${Math.min(100 - left, width)}%`,
@@ -456,10 +610,33 @@ export default function TimelineView() {
                               <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
                             )}
                           </div>
+                          {/* Show full detail overlay when highlighted */}
+                          {isHighlighted && (
+                            <div className="absolute left-2 top-0 h-full flex items-center z-20">
+                              <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+                                {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       );
                     }
-                  });
+                  };
+                  
+                  return (
+                    <>
+                      {items.map((item, idx) => (
+                        <WaterfallRow key={`row-${idx}`} item={item} idx={idx} />
+                      ))}
+                      
+                      {/* Note about zero-second CI spans */}
+                      {zeroSecondCISpans.length > 0 && (
+                        <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                          <strong>Note:</strong> {zeroSecondCISpans.length} CI span{zeroSecondCISpans.length > 1 ? 's' : ''} with zero duration omitted from waterfall (start === end).
+                        </div>
+                      )}
+                    </>
+                  );
                 })()}
               </div>
 
