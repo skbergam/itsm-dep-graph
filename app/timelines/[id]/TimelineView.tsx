@@ -84,6 +84,25 @@ function SpanGroupRow({
   if (isExpanded) {
     return (
       <>
+        {/* Collapse header row */}
+        <div
+          ref={rowRef}
+          className={`relative h-6 transition-colors cursor-pointer ${
+            isHighlighted ? 'border-l-2 border-blue-500' : ''
+          }`}
+          style={{ backgroundColor: isHovered ? hoverTint : 'transparent' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => setIsExpanded(false)}
+        >
+          <div className="absolute left-2 top-0 h-full flex items-center z-20 pointer-events-none">
+            <span className="text-xs font-medium text-gray-500 bg-white px-2 py-1 rounded shadow-sm">
+              {group.spans.length}× {spanKindLabels[group.kind]} (click to collapse)
+            </span>
+          </div>
+        </div>
+        
+        {/* Individual span rows */}
         {group.spans.map((span, idx) => (
           <WaterfallRow
             key={`span-${group.startIdx}-${idx}`}
@@ -112,7 +131,7 @@ function SpanGroupRow({
       style={{ backgroundColor: isHovered ? hoverTint : 'transparent' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setIsExpanded(true)}
+      onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Render all spans in the group as bars */}
       {group.spans.map((span, idx) => {
@@ -963,6 +982,17 @@ export default function TimelineView() {
                         end: totalWall, 
                         kinds: Array.from(activeKinds).sort() 
                       });
+                    }
+                    
+                    // Debug: log segments (remove after fix)
+                    if (segments.length === 0) {
+                      console.warn('Wall strip: No segments generated!', { 
+                        totalWall, 
+                        eventsCount: events.length,
+                        spansCount: safeTimeline.spans.filter(s => s.kind !== 'wall' && s.seconds > 0).length 
+                      });
+                    } else {
+                      console.log('Wall strip segments:', segments.slice(0, 5), `(${segments.length} total)`);
                     }
                     
                     // Render segments
