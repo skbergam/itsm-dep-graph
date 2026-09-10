@@ -163,13 +163,16 @@ function DependencyGraphInner() {
           return edge;
         }
 
-        const sourceTask = graphData.tasks.find((t) => t.id === edge.source);
-        const targetTask = graphData.tasks.find((t) => t.id === edge.target);
+        const sourceNode = nodes.find((n) => n.id === edge.source);
+        const targetNode = nodes.find((n) => n.id === edge.target);
         
-        const sourceProjectId = sourceTask?.project_ids[0];
-        const targetProjectId = targetTask?.project_ids[0];
+        const sourceProjectId = sourceNode?.data.projectId;
+        const targetProjectId = targetNode?.data.projectId;
         
         const isOtherProject = sourceProjectId !== selectedProjectId && targetProjectId !== selectedProjectId;
+
+        const sourceTask = graphData.tasks.find((t) => t.id === edge.source);
+        const targetTask = graphData.tasks.find((t) => t.id === edge.target);
         const isBlockedTarget = targetTask?.status === "Blocked";
         const isBlockedSource = sourceTask?.status === "Blocked";
 
@@ -183,7 +186,7 @@ function DependencyGraphInner() {
         };
       })
     );
-  }, [selectedProjectId, graphData, setNodes, setEdges]);
+  }, [selectedProjectId, nodes, graphData, setNodes, setEdges]);
 
   useEffect(() => {
     if (!loading && nodes.length > 0 && !initialFitDone) {
