@@ -701,30 +701,33 @@ export default function TimelineView() {
                     const segments: Array<{ start: number; end: number; kinds: string[] }> = [];
                     const activeKinds = new Set<string>();
                     let segmentStart = 0;
-                    let prevKinds: string[] = [];
                     
                     for (const event of events) {
-                      const currentTime = event.time;
-                      const currentKinds = Array.from(activeKinds).sort();
-                      const kindsChanged = currentKinds.join(',') !== prevKinds.join(',');
-                      
-                      if (kindsChanged && segmentStart < currentTime) {
-                        segments.push({ start: segmentStart, end: currentTime, kinds: prevKinds });
-                        segmentStart = currentTime;
+                      // Before applying event: if time advanced, push segment with current coverage
+                      if (event.time > segmentStart) {
+                        segments.push({ 
+                          start: segmentStart, 
+                          end: event.time, 
+                          kinds: Array.from(activeKinds).sort() 
+                        });
+                        segmentStart = event.time;
                       }
                       
+                      // Apply event to active coverage
                       if (event.isStart) {
                         activeKinds.add(event.kind);
                       } else {
                         activeKinds.delete(event.kind);
                       }
-                      
-                      prevKinds = Array.from(activeKinds).sort();
                     }
                     
-                    // Final segment
+                    // Final segment from last event time to end of wall
                     if (segmentStart < totalWall) {
-                      segments.push({ start: segmentStart, end: totalWall, kinds: Array.from(activeKinds).sort() });
+                      segments.push({ 
+                        start: segmentStart, 
+                        end: totalWall, 
+                        kinds: Array.from(activeKinds).sort() 
+                      });
                     }
                     
                     // Render segments
