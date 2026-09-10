@@ -44,7 +44,7 @@ const eventTypeColors: Record<string, string> = {
   'default': '#6366f1',
 };
 
-function getEventColor(eventType: string, event?: { summary: string; meta: Record<string, unknown> }): string {
+function getEventColor(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
   // Handle PR events with state-specific colors
   if (eventType === 'pr.draft_changed' && event) {
     const to = event.meta?.to as string;
@@ -67,7 +67,36 @@ function getEventColor(eventType: string, event?: { summary: string; meta: Recor
   return eventTypeColors[eventType] || eventTypeColors.default;
 }
 
-function getFriendlyEventTypeName(eventType: string, event?: { summary: string; meta: Record<string, unknown> }): string {
+// Span kind color and label mappings
+const spanKindColors: Record<string, string> = {
+  wall: 'bg-gray-400',
+  waiting_human: 'bg-yellow-400',
+  idle: 'bg-blue-400',
+  stuck: 'bg-red-500',
+  ci: 'bg-purple-400',
+  agent: 'bg-cyan-400',
+};
+
+const spanKindLabels: Record<string, string> = {
+  wall: 'Wall Time',
+  waiting_human: 'Waiting Human',
+  idle: 'Idle',
+  stuck: 'Stuck',
+  ci: 'CI',
+  agent: 'Agent',
+};
+
+function getSpanKindLabel(kind: string): string {
+  if (spanKindLabels[kind]) {
+    return spanKindLabels[kind];
+  }
+  // Title-case the kind with underscores converted to spaces
+  return kind
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function getFriendlyEventTypeName(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
   // Extract PR number from event if available
   const getPRNumber = (): string | null => {
     if (!event) return null;
@@ -902,34 +931,7 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
     );
   }
 
-  const spanKindColors: Record<string, string> = {
-    wall: 'bg-gray-400',
-    waiting_human: 'bg-yellow-400',
-    idle: 'bg-blue-400',
-    stuck: 'bg-red-500',
-    ci: 'bg-purple-400',
-    agent: 'bg-cyan-400',
-  };
 
-  const spanKindLabels: Record<string, string> = {
-    wall: 'Wall Time',
-    waiting_human: 'Waiting Human',
-    idle: 'Idle',
-    stuck: 'Stuck',
-    ci: 'CI',
-    agent: 'Agent',
-  };
-  
-  // Fallback function for unknown span kinds
-  const getSpanKindLabel = (kind: string): string => {
-    if (spanKindLabels[kind]) {
-      return spanKindLabels[kind];
-    }
-    // Title-case the kind with underscores converted to spaces
-    return kind
-      .replace(/_/g, ' ')
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-  };
 
   // Calculate pie chart data (exclude wall)
   const pieData = [
