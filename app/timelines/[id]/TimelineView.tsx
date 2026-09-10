@@ -364,8 +364,8 @@ export default function TimelineView() {
           </div>
 
           {viewMode === 'timeline' ? (
-            <div className="space-y-4">
-              {/* Timeline axis */}
+            <div className="space-y-6">
+              {/* Timeline axis header */}
               <div className="border-b border-gray-200 pb-2">
                 <div className="flex justify-between text-xs text-gray-500">
                   <span>{formatTimestamp(safeTimeline.spans.find(s => s.kind === 'wall')?.start || safeTimeline.as_of)}</span>
@@ -374,45 +374,238 @@ export default function TimelineView() {
                 </div>
               </div>
 
-              {/* To-scale timeline bars */}
-              <div className="space-y-2">
-                {['waiting_human', 'idle', 'stuck', 'ci'].map(kind => {
-                  const kindSpans = safeTimeline.spans.filter(s => s.kind === kind);
-                  if (kindSpans.length === 0) return null;
+              {/* WATERFALL: Rows for events and spans */}
+              <div className="space-y-1">
+                {(() => {
+                  // Combine events and spans into unified timeline items
+                  type TimelineItem = 
+                    | { type: 'event'; t: number; data: typeof safeTimeline.events[0] }
+                    | { type: 'span'; t: number; data: typeof safeTimeline.spans[0] };
                   
-                  return (
-                    <div key={kind} className="space-y-1">
-                      <div className="flex items-center gap-2 text-xs font-medium text-gray-700">
-                        <span className={`${spanKindColors[kind]} w-3 h-3 rounded`} />
-                        {spanKindLabels[kind]}
-                      </div>
-                      <div className="relative h-8 bg-gray-50 rounded border border-gray-200">
-                        {kindSpans.map((span, idx) => {
-                          const spanStart = new Date(span.start).getTime();
-                          const spanEnd = new Date(span.end).getTime();
-                          const left = ((spanStart - timelineStart) / timelineRange) * 100;
-                          const width = ((spanEnd - spanStart) / timelineRange) * 100;
-                          
-                          return (
-                            <div
-                              key={idx}
-                              className={`absolute top-1 bottom-1 ${spanKindColors[kind]} rounded opacity-90 hover:opacity-100 transition-opacity group cursor-pointer`}
-                              style={{
-                                left: `${Math.max(0, left)}%`,
-                                width: `${Math.min(100 - left, width)}%`,
-                              }}
-                              title={`${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${formatTimestamp(span.end)})`}
-                            >
-                              <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                                {span.seconds > 60 && humanizeDuration(span.seconds)}
-                              </div>
+                  const items: TimelineItem[] = [
+                    ...safeTimeline.events
+                      .filter(e => e.type !== 'agent.slash_command') // Skip noise events
+                      .map(e => ({ type: 'event' as const, t: new Date(e.t).getTime(), data: e })),
+                    ...safeTimeline.spans
+                      .filter(s => s.kind !== 'wall' && s.seconds > 0)
+                      .map(s => ({ type: 'span' as const, t: new Date(s.start).getTime(), data: s }))
+                  ];
+                  
+                  items.sort((a, b) => a.t - b.t);
+                  
+                  return items.map((item, idx) => {
+                    if (item.type === 'event') {
+                      const event = item.data;
+                      const left = ((item.t - timelineStart) / timelineRange) * 100;
+                      
+                      return (
+                        <div key={`evt-${idx}`} className="relative h-6 flex items-center">
+                          {/* Dot at time position */}
+                          <div 
+                            className="absolute w-2 h-2 bg-blue-500 rounded-full hover:ring-2 hover:ring-blue-300 transition-all cursor-pointer group"
+                            style={{ left: `${Math.max(0, Math.min(100, left))}%` }}
+                            title={`${event.type} at ${formatTimestamp(event.t)}`}
+                          >
+                            {/* Tooltip on hover */}
+                            <div className="absolute left-0 top-6 z-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                              {event.type}: {event.summary}
                             </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                })}
+                          </div>
+                          {/* Label */}
+                          <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
+                            {event.type}
+                          </span>
+                        </div>
+                      );
+                    } else {
+                      const span = item.data;
+                      const spanStart = new Date(span.start).getTime();
+                      const spanEnd = span.end ? new Date(span.end).getTime() : timelineEnd;
+                      const left = ((spanStart - timelineStart) / timelineRange) * 100;
+                      const width = ((spanEnd - spanStart) / timelineRange) * 100;
+                      const isOpen = !span.end;
+                      
+                      const colorClass = spanKindColors[span.kind] || 'bg-gray-400';
+                      
+                      return (
+                        <div key={`span-${idx}`} className="relative h-6">
+                          <div
+                            className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group`}
+                            style={{
+                              left: `${Math.max(0, left)}%`,
+                              width: `${Math.min(100 - left, width)}%`,
+                            }}
+                            title={`${spanKindLabels[span.kind]}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
+                          >
+                            <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity px-1">
+                              {span.seconds > 60 && humanizeDuration(span.seconds)}
+                            </div>
+                            {isOpen && (
+                              <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    }
+                  });
+                })()}
+              </div>
+
+              {/* BOTTOM WALL-ACCOUNTING ROW */}
+              <div className="pt-4 border-t border-gray-300">
+                <div className="text-xs font-medium text-gray-700 mb-2">Wall Time Coverage</div>
+                <svg width="100%" height="32" className="border border-gray-300 rounded">
+                  {(() => {
+                    // Build second-by-second coverage map
+                    const coverage: { [second: number]: Set<string> } = {};
+                    
+                    for (let s = 0; s < totalWall; s++) {
+                      coverage[s] = new Set();
+                    }
+                    
+                    // Fill coverage from spans (excluding wall)
+                    safeTimeline.spans
+                      .filter(span => span.kind !== 'wall' && span.seconds > 0)
+                      .forEach(span => {
+                        const spanStart = Math.floor((new Date(span.start).getTime() - timelineStart) / 1000);
+                        const spanEnd = span.end 
+                          ? Math.floor((new Date(span.end).getTime() - timelineStart) / 1000)
+                          : totalWall;
+                        
+                        for (let s = Math.max(0, spanStart); s < Math.min(totalWall, spanEnd); s++) {
+                          coverage[s].add(span.kind);
+                        }
+                      });
+                    
+                    // Build segments with consistent kind sets
+                    const segments: Array<{ start: number; end: number; kinds: string[] }> = [];
+                    let currentKinds: string[] = [];
+                    let segmentStart = 0;
+                    
+                    for (let s = 0; s < totalWall; s++) {
+                      const kinds = Array.from(coverage[s]).sort();
+                      const kindsKey = kinds.join(',');
+                      const currentKey = currentKinds.join(',');
+                      
+                      if (kindsKey !== currentKey) {
+                        if (s > segmentStart) {
+                          segments.push({ start: segmentStart, end: s, kinds: currentKinds });
+                        }
+                        currentKinds = kinds;
+                        segmentStart = s;
+                      }
+                    }
+                    
+                    // Final segment
+                    if (totalWall > segmentStart) {
+                      segments.push({ start: segmentStart, end: totalWall, kinds: currentKinds });
+                    }
+                    
+                    // Render segments
+                    return segments.map((seg, idx) => {
+                      const x = (seg.start / totalWall) * 100;
+                      const width = ((seg.end - seg.start) / totalWall) * 100;
+                      
+                      if (seg.kinds.length === 0) {
+                        // Unknown/gray
+                        return (
+                          <rect
+                            key={idx}
+                            x={`${x}%`}
+                            width={`${width}%`}
+                            y="0"
+                            height="32"
+                            fill="#9ca3af"
+                          />
+                        );
+                      } else if (seg.kinds.length === 1) {
+                        // Single kind - solid color
+                        const kind = seg.kinds[0];
+                        const colorMap: Record<string, string> = {
+                          waiting_human: '#facc15',
+                          idle: '#60a5fa',
+                          stuck: '#ef4444',
+                          ci: '#a855f7',
+                        };
+                        const color = colorMap[kind] || '#9ca3af';
+                        
+                        return (
+                          <rect
+                            key={idx}
+                            x={`${x}%`}
+                            width={`${width}%`}
+                            y="0"
+                            height="32"
+                            fill={color}
+                            opacity="0.9"
+                          />
+                        );
+                      } else {
+                        // Multiple kinds - checkered pattern
+                        const colorMap: Record<string, string> = {
+                          waiting_human: '#facc15',
+                          idle: '#60a5fa',
+                          stuck: '#ef4444',
+                          ci: '#a855f7',
+                        };
+                        
+                        const colors = seg.kinds.map(k => colorMap[k] || '#9ca3af');
+                        const patternId = `pattern-${idx}-${seg.kinds.join('-')}`;
+                        
+                        return (
+                          <g key={idx}>
+                            <defs>
+                              <pattern
+                                id={patternId}
+                                x="0"
+                                y="0"
+                                width="8"
+                                height="8"
+                                patternUnits="userSpaceOnUse"
+                              >
+                                <rect width="8" height="8" fill={colors[0]} />
+                                <path
+                                  d="M 0 0 L 8 8 M -2 6 L 2 10 M 6 -2 L 10 2"
+                                  stroke={colors[1] || colors[0]}
+                                  strokeWidth="2"
+                                />
+                              </pattern>
+                            </defs>
+                            <rect
+                              x={`${x}%`}
+                              width={`${width}%`}
+                              y="0"
+                              height="32"
+                              fill={`url(#${patternId})`}
+                            />
+                          </g>
+                        );
+                      }
+                    });
+                  })()}
+                </svg>
+                <div className="flex gap-4 mt-2 text-xs text-gray-600">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-yellow-400 rounded" />
+                    <span>Waiting Human</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-blue-400 rounded" />
+                    <span>Idle</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-red-500 rounded" />
+                    <span>Stuck</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-purple-400 rounded" />
+                    <span>CI</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-gray-400 rounded" />
+                    <span>Unknown</span>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
