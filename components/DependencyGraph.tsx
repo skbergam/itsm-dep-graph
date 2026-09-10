@@ -18,7 +18,6 @@ import "@xyflow/react/dist/style.css";
 import dagre from "dagre";
 import type { GraphData, Task, Project } from "@/types/graph";
 import TaskNode from "./TaskNode";
-import ProjectNode from "./ProjectNode";
 import Sidebar from "./Sidebar";
 
 const STATUS_COLORS = {
@@ -31,13 +30,12 @@ const STATUS_COLORS = {
 
 const nodeTypes = {
   task: TaskNode,
-  project: ProjectNode,
 };
 
 function getLayoutedElements(
   graphData: GraphData
 ): { nodes: Node[]; edges: Edge[] } {
-  const dagreGraph = new dagre.graphlib.Graph({ compound: true });
+  const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
   dagreGraph.setGraph({
@@ -47,37 +45,11 @@ function getLayoutedElements(
     edgesep: 20,
   });
 
-  const projectMap = new Map<string, Project>();
-  graphData.projects.forEach((p) => projectMap.set(p.id, p));
-
-  const tasksByProject = new Map<string, Task[]>();
-  graphData.tasks.forEach((task) => {
-    const projectId = task.project_ids[0] || "unknown";
-    if (!tasksByProject.has(projectId)) {
-      tasksByProject.set(projectId, []);
-    }
-    tasksByProject.get(projectId)!.push(task);
-  });
-
-  graphData.projects.forEach((project) => {
-    dagreGraph.setNode(project.id, {
-      width: 300,
-      height: 120,
-      type: "project",
-    });
-  });
-
   graphData.tasks.forEach((task) => {
     dagreGraph.setNode(task.id, {
       width: 320,
       height: 110,
-      type: "task",
     });
-
-    const projectId = task.project_ids[0];
-    if (projectId) {
-      dagreGraph.setParent(task.id, projectId);
-    }
   });
 
   graphData.edges.forEach((edge) => {
@@ -87,66 +59,22 @@ function getLayoutedElements(
   dagre.layout(dagreGraph);
 
   const nodes: Node[] = [];
-  const projectChildBounds = new Map<string, { minY: number; maxY: number }>();
 
   graphData.tasks.forEach((task) => {
     const nodeData = dagreGraph.node(task.id);
-    const projectId = task.project_ids[0];
-    const projectNode = projectId ? dagreGraph.node(projectId) : null;
 
-    if (nodeData && projectNode) {
-      const relativeY = nodeData.y - projectNode.y;
-      const taskHeight = nodeData.height;
-      const taskTop = relativeY - taskHeight / 2;
-      const taskBottom = relativeY + taskHeight / 2;
-
-      if (!projectChildBounds.has(projectId)) {
-        projectChildBounds.set(projectId, { minY: taskTop, maxY: taskBottom });
-      } else {
-        const bounds = projectChildBounds.get(projectId)!;
-        bounds.minY = Math.min(bounds.minY, taskTop);
-        bounds.maxY = Math.max(bounds.maxY, taskBottom);
-      }
-    }
-  });
-
-  graphData.projects.forEach((project) => {
-    const nodeData = dagreGraph.node(project.id);
     if (nodeData) {
-      const bounds = projectChildBounds.get(project.id);
-      const projectHeight = bounds 
-        ? Math.max(60, bounds.maxY - bounds.minY + 16)
-        : 60;
-
-      nodes.push({
-        id: project.id,
-        type: "project",
-        position: { x: nodeData.x - nodeData.width / 2, y: nodeData.y - projectHeight / 2 },
-        data: { project },
-        style: {
-          width: nodeData.width,
-          height: projectHeight,
-        },
-      });
-    }
-  });
-
-  graphData.tasks.forEach((task) => {
-    const nodeData = dagreGraph.node(task.id);
-    const projectId = task.project_ids[0];
-    const projectNode = projectId ? dagreGraph.node(projectId) : null;
-
-    if (nodeData && projectNode) {
-      const relativeX = nodeData.x - projectNode.x;
-      const relativeY = nodeData.y - projectNode.y;
-
       nodes.push({
         id: task.id,
         type: "task",
-        position: { x: relativeX, y: relativeY },
-        parentId: projectId,
-        extent: "parent",
-        data: { task },
+        position: { 
+          x: nodeData.x - nodeData.width / 2, 
+          y: nodeData.y - nodeData.height / 2 
+        },
+        data: { 
+          task,
+          projectId: task.project_ids[0],
+        },
         style: {
           width: nodeData.width,
           height: nodeData.height,
@@ -213,6 +141,22 @@ function DependencyGraphInner() {
   useEffect(() => {
     if (!graphData) return;
 
+    setNodes((nds) =>
+      nds.map((node) => {
+        if (!selectedProjectId) {
+          return node;
+        }
+
+        const nodeProjectId = node.data.projectId;
+        const isOtherProject = nodeProjectId !== selectedProjectId;
+
+        return {
+          ...node,
+          hidden: isOtherProject,
+        };
+      })
+    );
+
     setEdges((eds) =>
       eds.map((edge) => {
         if (!selectedProjectId) {
@@ -222,13 +166,10 @@ function DependencyGraphInner() {
         const sourceNode = nodes.find((n) => n.id === edge.source);
         const targetNode = nodes.find((n) => n.id === edge.target);
         
-        const sourceProjectId = sourceNode?.parentId || sourceNode?.id;
-        const targetProjectId = targetNode?.parentId || targetNode?.id;
+        const sourceProjectId = sourceNode?.data.projectId;
+        const targetProjectId = targetNode?.data.projectId;
         
-        const isCrossProject = sourceProjectId !== targetProjectId;
-        const shouldDim = isCrossProject && 
-          sourceProjectId !== selectedProjectId && 
-          targetProjectId !== selectedProjectId;
+        const isOtherProject = sourceProjectId !== selectedProjectId && targetProjectId !== selectedProjectId;
 
         const sourceTask = graphData.tasks.find((t) => t.id === edge.source);
         const targetTask = graphData.tasks.find((t) => t.id === edge.target);
@@ -237,28 +178,25 @@ function DependencyGraphInner() {
 
         return {
           ...edge,
+          hidden: isOtherProject,
           style: {
             ...edge.style,
-            opacity: shouldDim ? 0.08 : (isBlockedTarget || isBlockedSource ? 0.9 : 0.9),
+            opacity: isBlockedTarget || isBlockedSource ? 0.9 : 0.9,
           },
         };
       })
     );
-  }, [selectedProjectId, nodes, graphData, setEdges]);
+  }, [selectedProjectId, nodes, graphData, setNodes, setEdges]);
 
   useEffect(() => {
     if (!loading && nodes.length > 0 && !initialFitDone) {
       setTimeout(() => {
-        const firstProject = nodes.find((n) => n.type === "project");
-        if (firstProject) {
-          reactFlowInstance.fitView({
-            padding: 0.3,
-            duration: 0,
-            nodes: [firstProject],
-            minZoom: 0.5,
-            maxZoom: 2,
-          });
-        }
+        reactFlowInstance.fitView({
+          padding: 0.3,
+          duration: 0,
+          minZoom: 0.5,
+          maxZoom: 2,
+        });
         setInitialFitDone(true);
       }, 50);
     }
@@ -270,8 +208,8 @@ function DependencyGraphInner() {
     let projectId: string | null = null;
     if (nodeId) {
       const node = nodes.find((n) => n.id === nodeId);
-      if (node) {
-        projectId = node.type === "project" ? node.id : node.parentId || null;
+      if (node && node.data.projectId) {
+        projectId = node.data.projectId as string;
       }
     }
     setSelectedProjectId(projectId);
@@ -286,24 +224,17 @@ function DependencyGraphInner() {
       }))
     );
 
-    if (nodeId) {
-      const node = nodes.find((n) => n.id === nodeId);
-      if (node) {
-        const targetProjectId = node.type === "project" ? node.id : node.parentId;
-        
-        if (targetProjectId) {
-          const childTaskNodes = nodes.filter((n) => n.parentId === targetProjectId);
-          
-          if (childTaskNodes.length > 0) {
-            reactFlowInstance.fitView({
-              padding: 0.3,
-              duration: 800,
-              nodes: childTaskNodes,
-              minZoom: 0.5,
-              maxZoom: 2,
-            });
-          }
-        }
+    if (nodeId && projectId) {
+      const projectTaskNodes = nodes.filter((n) => n.data.projectId === projectId);
+      
+      if (projectTaskNodes.length > 0) {
+        reactFlowInstance.fitView({
+          padding: 0.3,
+          duration: 800,
+          nodes: projectTaskNodes,
+          minZoom: 0.5,
+          maxZoom: 2,
+        });
       }
     }
   }, [setNodes, nodes, reactFlowInstance]);
@@ -322,7 +253,6 @@ function DependencyGraphInner() {
   }, [setNodes]);
 
   const miniMapNodeColor = useCallback((node: Node) => {
-    if (node.type === "project") return "#A855F7";
     const task = node.data.task as Task | undefined;
     return task ? STATUS_COLORS[task.status] : "#9CA3AF";
   }, []);

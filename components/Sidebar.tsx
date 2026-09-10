@@ -89,13 +89,12 @@ export default function Sidebar({
             <div key={project.id} className="space-y-2">
               <div
                 className={`cursor-pointer rounded-lg p-2 border transition-all ${
-                  hoveredNodeId === project.id
-                    ? "border-purple-400 bg-purple-900/40 shadow-md shadow-purple-400/20"
-                    : "border-purple-500/30 bg-purple-900/10 hover:bg-purple-900/30"
+                  "border-purple-500/30 bg-purple-900/10 hover:bg-purple-900/30"
                 }`}
-                onClick={() => onNodeSelect(project.id)}
-                onMouseEnter={() => onNodeHover(project.id)}
-                onMouseLeave={() => onNodeHover(null)}
+                onClick={() => {
+                  const firstTask = sortedTasks[0];
+                  if (firstTask) onNodeSelect(firstTask.id);
+                }}
               >
                 <div className="text-xs font-semibold text-purple-300 uppercase tracking-wide">
                   {project.prefix || project.id}
