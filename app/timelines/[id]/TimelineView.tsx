@@ -48,7 +48,7 @@ export default function TimelineView() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-8">
+      <div className="bg-gray-50 p-8">
         <div className="max-w-6xl mx-auto">
           <p className="text-gray-600">Loading timeline...</p>
         </div>
@@ -58,7 +58,7 @@ export default function TimelineView() {
 
   if (error || !safeTimeline) {
     return (
-      <div className="min-h-screen bg-gray-50 p-8">
+      <div className="bg-gray-50 p-8">
         <div className="max-w-6xl mx-auto">
           <div className="mb-4">
             <button
@@ -96,7 +96,7 @@ export default function TimelineView() {
   const totalWall = safeTimeline.totals.wall_seconds;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto">
         {/* Navigation */}
         <div className="mb-6">
