@@ -32,7 +32,11 @@ const eventTypeColors: Record<string, string> = {
   'pr.created': '#f59e0b',
   'pr.updated': '#f97316',
   'pr.merged': '#22c55e',
+  'pr.closed': '#ef4444',
+  'pr.set_to_draft': '#ec4899',
+  'pr.ready_for_review': '#8b5cf6',
   'pr.draft_changed': '#ec4899',
+  'pr.status_changed': '#f59e0b',
   'ci.started': '#a855f7',
   'ci.ended': '#7c3aed',
   'agent.started': '#06b6d4',
@@ -40,23 +44,88 @@ const eventTypeColors: Record<string, string> = {
   'default': '#6366f1',
 };
 
-function getEventColor(eventType: string): string {
+function getEventColor(eventType: string, event?: { summary: string; meta: Record<string, unknown> }): string {
+  // Handle PR events with state-specific colors
+  if (eventType === 'pr.draft_changed' && event) {
+    const to = event.meta?.to as string;
+    if (to === 'draft') {
+      return eventTypeColors['pr.set_to_draft'];
+    } else if (to === 'ready_for_review' || to === 'ready') {
+      return eventTypeColors['pr.ready_for_review'];
+    }
+  }
+  
+  if (eventType === 'pr.status_changed' && event) {
+    const to = event.meta?.to as string;
+    if (to === 'merged') {
+      return eventTypeColors['pr.merged'];
+    } else if (to === 'closed') {
+      return eventTypeColors['pr.closed'];
+    }
+  }
+  
   return eventTypeColors[eventType] || eventTypeColors.default;
 }
 
-function getFriendlyEventTypeName(eventType: string): string {
+function getFriendlyEventTypeName(eventType: string, event?: { summary: string; meta: Record<string, unknown> }): string {
+  // Extract PR number from event if available
+  const getPRNumber = (): string | null => {
+    if (!event) return null;
+    
+    // Try meta.number first
+    if (event.meta?.number) {
+      return `#${event.meta.number}`;
+    }
+    
+    // Try to extract from summary (e.g., "PR #178 opened")
+    const match = event.summary?.match(/#(\d+)/);
+    if (match) {
+      return `#${match[1]}`;
+    }
+    
+    return null;
+  };
+  
+  // Handle PR events with specific states and numbers
+  if (eventType.startsWith('pr.')) {
+    const prNumber = getPRNumber() || '#???';
+    
+    if (eventType === 'pr.created') {
+      return `PR ${prNumber} Created`;
+    }
+    
+    if (eventType === 'pr.draft_changed') {
+      const to = event?.meta?.to as string;
+      if (to === 'draft') {
+        return `PR ${prNumber} Set to Draft`;
+      } else if (to === 'ready_for_review' || to === 'ready') {
+        return `PR ${prNumber} Ready for Review`;
+      }
+      return `PR ${prNumber} Draft Status Changed`;
+    }
+    
+    if (eventType === 'pr.status_changed') {
+      const to = event?.meta?.to as string;
+      if (to === 'merged') {
+        return `PR ${prNumber} Merged`;
+      } else if (to === 'closed') {
+        return `PR ${prNumber} Closed`;
+      } else if (to === 'open') {
+        return `PR ${prNumber} Reopened`;
+      }
+      return `PR ${prNumber} Status Changed`;
+    }
+    
+    if (eventType === 'pr.updated') {
+      return `PR ${prNumber} Updated`;
+    }
+  }
+  
   const friendlyNames: Record<string, string> = {
     // Git events
     'git.commit': 'Commit',
     'git.push': 'Push',
     'git.branch': 'Branch',
-    
-    // PR events
-    'pr.created': 'PR Created',
-    'pr.updated': 'PR Updated',
-    'pr.merged': 'PR Merged',
-    'pr.draft_changed': 'PR Draft Status',
-    'pr.status_changed': 'PR Status Changed',
     
     // CI events
     'ci.started': 'CI Started',
@@ -159,8 +228,8 @@ function EventGroupRow({
   }, [group.startIdx, waterFallContainerRef, setHighlightedRowIndex]);
 
   const isHighlighted = highlightedRowIndex === group.startIdx;
-  const eventColor = getEventColor(group.eventType);
-  const friendlyTypeName = getFriendlyEventTypeName(group.eventType);
+  const eventColor = getEventColor(group.eventType, group.events[0]?.data);
+  const friendlyTypeName = getFriendlyEventTypeName(group.eventType, group.events[0]?.data);
   
   if (isExpanded) {
     return (
@@ -502,8 +571,8 @@ function WaterfallRow({
   if (item.type === 'event') {
     const event = item.data;
     const left = ((item.t - timelineStart) / timelineRange) * 100;
-    const eventColor = getEventColor(event.type);
-    const friendlyTypeName = getFriendlyEventTypeName(event.type);
+    const eventColor = getEventColor(event.type, event);
+    const friendlyTypeName = getFriendlyEventTypeName(event.type, event);
     
     return (
       <div 
@@ -1353,7 +1422,7 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
                     .map((event, idx) => {
                       const eventTime = (new Date(event.t).getTime() - timelineStart) / 1000;
                       const x = (eventTime / totalWall) * 1000;
-                      const eventColor = getEventColor(event.type);
+                      const eventColor = getEventColor(event.type, event);
                       
                       return (
                         <circle
