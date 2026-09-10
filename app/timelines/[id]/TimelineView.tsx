@@ -698,30 +698,38 @@ export default function TimelineView() {
                     });
                     
                     // Sweep through events to build segments
+                    // Key insight: segments represent time intervals with a specific set of active kinds
+                    // We create a new segment whenever the set of active kinds changes
                     const segments: Array<{ start: number; end: number; kinds: string[] }> = [];
                     const activeKinds = new Set<string>();
                     let segmentStart = 0;
                     
                     for (const event of events) {
-                      // Before applying event: if time advanced, push segment with current coverage
-                      if (event.time > segmentStart) {
-                        segments.push({ 
-                          start: segmentStart, 
-                          end: event.time, 
-                          kinds: Array.from(activeKinds).sort() 
-                        });
-                        segmentStart = event.time;
-                      }
+                      const currentKinds = Array.from(activeKinds).sort();
                       
-                      // Apply event to active coverage
+                      // Apply event to update active coverage
                       if (event.isStart) {
                         activeKinds.add(event.kind);
                       } else {
                         activeKinds.delete(event.kind);
                       }
+                      
+                      const newKinds = Array.from(activeKinds).sort();
+                      
+                      // If coverage changed, close the previous segment and start a new one
+                      if (currentKinds.join(',') !== newKinds.join(',')) {
+                        if (event.time > segmentStart) {
+                          segments.push({ 
+                            start: segmentStart, 
+                            end: event.time, 
+                            kinds: currentKinds 
+                          });
+                        }
+                        segmentStart = event.time;
+                      }
                     }
                     
-                    // Final segment from last event time to end of wall
+                    // Final segment from last change to end of wall
                     if (segmentStart < totalWall) {
                       segments.push({ 
                         start: segmentStart, 
