@@ -13,6 +13,19 @@ export default function TimelineView() {
   const [timeline, setTimeline] = useState<TaskTimeline | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  
+  // Guard against missing/invalid timeline data
+  const safeTimeline = timeline && {
+    ...timeline,
+    links: {
+      eng_prs: Array.isArray(timeline.links?.eng_prs) ? timeline.links.eng_prs : [],
+      prs: Array.isArray(timeline.links?.prs) ? timeline.links.prs : [],
+      agents: Array.isArray(timeline.links?.agents) ? timeline.links.agents : [],
+    },
+    events: Array.isArray(timeline.events) ? timeline.events : [],
+    spans: Array.isArray(timeline.spans) ? timeline.spans : [],
+    omissions: Array.isArray(timeline.omissions) ? timeline.omissions : [],
+  };
 
   useEffect(() => {
     async function loadTimeline() {
@@ -43,7 +56,7 @@ export default function TimelineView() {
     );
   }
 
-  if (error || !timeline) {
+  if (error || !safeTimeline) {
     return (
       <div className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-6xl mx-auto">
@@ -80,7 +93,7 @@ export default function TimelineView() {
     ci: 'CI',
   };
 
-  const totalWall = timeline.totals.wall_seconds;
+  const totalWall = safeTimeline.totals.wall_seconds;
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -100,15 +113,15 @@ export default function TimelineView() {
           <div className="flex items-start justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                {timeline.task.title}
+                {safeTimeline.task.title}
               </h1>
               <div className="flex items-center gap-4 text-sm text-gray-600">
                 <span className="inline-flex items-center gap-1.5">
-                  <span className={`inline-block w-2 h-2 rounded-full ${timeline.task.running ? 'bg-green-500' : 'bg-gray-400'}`} />
-                  {timeline.task.status}
+                  <span className={`inline-block w-2 h-2 rounded-full ${safeTimeline.task.running ? 'bg-green-500' : 'bg-gray-400'}`} />
+                  {safeTimeline.task.status}
                 </span>
                 <a
-                  href={timeline.task.notion_url}
+                  href={safeTimeline.task.notion_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800"
@@ -118,50 +131,90 @@ export default function TimelineView() {
               </div>
             </div>
             <div className="text-right text-sm text-gray-500">
-              <div>Generated: {formatTimestamp(timeline.generated_at)}</div>
-              <div>As of: {formatTimestamp(timeline.as_of)}</div>
+              <div>Generated: {formatTimestamp(safeTimeline.generated_at)}</div>
+              <div>As of: {formatTimestamp(safeTimeline.as_of)}</div>
             </div>
           </div>
 
           {/* Links */}
-          {(timeline.links.eng_prs.length > 0 || timeline.links.agents.length > 0) && (
+          {(safeTimeline.links.eng_prs.length > 0 || safeTimeline.links.prs.length > 0 || safeTimeline.links.agents.length > 0) && (
             <div className="border-t border-gray-200 pt-4 mt-4">
               <div className="grid grid-cols-2 gap-4 text-sm">
-                {timeline.links.eng_prs.length > 0 && (
+                {safeTimeline.links.eng_prs.length > 0 && (
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Pull Requests</h3>
+                    <h3 className="font-medium text-gray-700 mb-2">Engineering PRs</h3>
                     <ul className="space-y-1">
-                      {timeline.links.eng_prs.map((pr, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={pr}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 break-all"
-                          >
-                            {pr.split('/').slice(-2).join('/')}
-                          </a>
-                        </li>
-                      ))}
+                      {safeTimeline.links.eng_prs.map((pr, idx) => {
+                        const url = typeof pr === 'string' ? pr : (pr.url || pr.href || '');
+                        const label = typeof pr === 'string' 
+                          ? pr.split('/').slice(-2).join('/')
+                          : (pr.title || url.split('/').slice(-2).join('/') || `PR ${idx + 1}`);
+                        
+                        return url ? (
+                          <li key={idx}>
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 break-all"
+                            >
+                              {label}
+                            </a>
+                          </li>
+                        ) : null;
+                      })}
                     </ul>
                   </div>
                 )}
-                {timeline.links.agents.length > 0 && (
+                {safeTimeline.links.prs.length > 0 && (
+                  <div>
+                    <h3 className="font-medium text-gray-700 mb-2">Pull Requests</h3>
+                    <ul className="space-y-1">
+                      {safeTimeline.links.prs.map((pr, idx) => {
+                        const url = typeof pr === 'string' ? pr : (pr.url || pr.href || '');
+                        const label = typeof pr === 'string'
+                          ? pr.split('/').slice(-2).join('/')
+                          : (pr.title || `#${pr.number}` || url.split('/').slice(-2).join('/') || `PR ${idx + 1}`);
+                        
+                        return url ? (
+                          <li key={idx}>
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 break-all"
+                            >
+                              {label}
+                            </a>
+                          </li>
+                        ) : null;
+                      })}
+                    </ul>
+                  </div>
+                )}
+                {safeTimeline.links.agents.length > 0 && (
                   <div>
                     <h3 className="font-medium text-gray-700 mb-2">Agents</h3>
                     <ul className="space-y-1">
-                      {timeline.links.agents.map((agent, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={agent}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 break-all"
-                          >
-                            {agent.split('/').pop()}
-                          </a>
-                        </li>
-                      ))}
+                      {safeTimeline.links.agents.map((agent, idx) => {
+                        const url = typeof agent === 'string' ? agent : (agent.url || agent.href || '');
+                        const label = typeof agent === 'string'
+                          ? agent.split('/').pop()
+                          : (agent.title || agent.id || url.split('/').pop() || `Agent ${idx + 1}`);
+                        
+                        return url ? (
+                          <li key={idx}>
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 break-all"
+                            >
+                              {label}
+                            </a>
+                          </li>
+                        ) : null;
+                      })}
                     </ul>
                   </div>
                 )}
@@ -174,7 +227,7 @@ export default function TimelineView() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Time Totals</h2>
           <div className="grid grid-cols-5 gap-4">
-            {Object.entries(timeline.totals).map(([key, seconds]) => {
+            {Object.entries(safeTimeline.totals).map(([key, seconds]) => {
               const label = spanKindLabels[key.replace('_seconds', '')] || key;
               const color = spanKindColors[key.replace('_seconds', '')] || 'bg-gray-400';
               const percentage = totalWall > 0 ? ((seconds / totalWall) * 100).toFixed(1) : '0';
@@ -197,7 +250,7 @@ export default function TimelineView() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Spans by Kind</h2>
           <div className="space-y-3">
-            {timeline.spans.map((span, idx) => (
+            {safeTimeline.spans.map((span, idx) => (
               <div key={idx} className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
@@ -222,7 +275,7 @@ export default function TimelineView() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Event Timeline</h2>
           <div className="space-y-2">
-            {timeline.events.map((event) => (
+            {safeTimeline.events.map((event) => (
               <div key={event.id} className="border-l-4 border-blue-500 pl-4 py-2">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
@@ -254,11 +307,11 @@ export default function TimelineView() {
         </div>
 
         {/* Omissions */}
-        {timeline.omissions.length > 0 && (
+        {safeTimeline.omissions.length > 0 && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mt-6">
             <h2 className="text-lg font-semibold text-yellow-900 mb-4">Omissions</h2>
             <ul className="space-y-2">
-              {timeline.omissions.map((omission, idx) => (
+              {safeTimeline.omissions.map((omission, idx) => (
                 <li key={idx} className="text-sm">
                   <span className="font-medium text-yellow-900">{omission.wanted}:</span>{' '}
                   <span className="text-yellow-800">{omission.reason}</span>

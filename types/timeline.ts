@@ -30,10 +30,20 @@ export interface TaskTimelineTask {
   running: boolean;
 }
 
+// Link can be a simple string URL or a rich object with metadata
+export type TimelineLink = string | {
+  url?: string;
+  href?: string;
+  title?: string;
+  id?: string;
+  number?: number;
+  [key: string]: unknown;
+};
+
 export interface TaskTimelineLinks {
-  eng_prs: string[];
-  prs: string[];
-  agents: string[];
+  eng_prs: TimelineLink[];
+  prs: TimelineLink[];
+  agents: TimelineLink[];
 }
 
 export interface TaskTimelineOmission {
