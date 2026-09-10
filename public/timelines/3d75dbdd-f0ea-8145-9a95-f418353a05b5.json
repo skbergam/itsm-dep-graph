@@ -14,40 +14,13 @@
   },
   "links": {
     "eng_prs": [
-      {
-        "url": "https://app.notion.com/p/3d75dbddf0ea81999660fd9989d85249",
-        "title": "ONTO-13-ENG \u2014 Enforce named-ops write call-path",
-        "stage": "Done",
-        "owner": "Solon",
-        "prs_field": "[#178](https://github.com/elementum-fde/products/pull/178) merged",
-        "cloud_agent": "https://cursor.com/agents/bc-75ee96b5-582d-467e-9ab3-b39d2051523a",
-        "last_commit": "2026-09-10T05:08:00.000Z",
-        "page_last_edited_at": "2026-09-10T13:45:37.367Z"
-      }
+      "https://app.notion.com/p/3d75dbddf0ea81999660fd9989d85249"
     ],
     "prs": [
-      {
-        "repo": "elementum-fde/products",
-        "number": 178,
-        "url": "https://github.com/elementum-fde/products/pull/178",
-        "title": "feat(ontology): enforce ADR-0001 named-operations write call-path",
-        "created_at": "2026-09-10T04:06:29Z",
-        "merged_at": "2026-09-10T13:44:26Z",
-        "closed_at": "2026-09-10T13:44:26Z",
-        "head": "cursor/adr-0001-enforce-named-ops-call-path-523a",
-        "base": "main",
-        "head_sha": "401b494c0071068badbff34570b9a493771a776c"
-      }
+      "https://github.com/elementum-fde/products/pull/178"
     ],
     "agents": [
-      {
-        "id": "bc-75ee96b5-582d-467e-9ab3-b39d2051523a",
-        "url": "https://cursor.com/agents/bc-75ee96b5-582d-467e-9ab3-b39d2051523a",
-        "status": "finished",
-        "branch": "cursor/adr-0001-enforce-named-ops-call-path-523a",
-        "pr": "https://github.com/elementum-fde/products/pull/178",
-        "transcript": "/workspace/cloud-agent-transcripts/bc-75ee96b5-582d-467e-9ab3-b39d2051523a.jsonl"
-      }
+      "https://cursor.com/agents/bc-75ee96b5-582d-467e-9ab3-b39d2051523a"
     ],
     "parent_adr": "https://app.notion.com/p/3d75dbddf0ea818fa1daf90ca8068a79"
   },
