@@ -32,6 +32,7 @@ const eventTypeColors: Record<string, string> = {
   'pr.created': '#f59e0b',
   'pr.updated': '#f97316',
   'pr.merged': '#22c55e',
+  'pr.draft_changed': '#ec4899',
   'ci.started': '#a855f7',
   'ci.ended': '#7c3aed',
   'agent.started': '#06b6d4',
@@ -41,6 +42,24 @@ const eventTypeColors: Record<string, string> = {
 
 function getEventColor(eventType: string): string {
   return eventTypeColors[eventType] || eventTypeColors.default;
+}
+
+function getFriendlyEventTypeName(eventType: string): string {
+  const friendlyNames: Record<string, string> = {
+    'git.commit': 'Commit',
+    'git.push': 'Push',
+    'git.branch': 'Branch',
+    'pr.created': 'PR Created',
+    'pr.updated': 'PR Updated',
+    'pr.merged': 'PR Merged',
+    'pr.draft_changed': 'PR Draft Status',
+    'ci.started': 'CI Started',
+    'ci.ended': 'CI Ended',
+    'agent.started': 'Agent Started',
+    'agent.ended': 'Agent Ended',
+  };
+  
+  return friendlyNames[eventType] || eventType;
 }
 
 // Event group row component
@@ -65,6 +84,7 @@ function EventGroupRow({
 }: EventGroupRowProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [chevronHovered, setChevronHovered] = useState(false);
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -91,32 +111,11 @@ function EventGroupRow({
 
   const isHighlighted = highlightedRowIndex === group.startIdx;
   const eventColor = getEventColor(group.eventType);
+  const friendlyTypeName = getFriendlyEventTypeName(group.eventType);
   
   if (isExpanded) {
     return (
       <>
-        <div
-          ref={rowRef}
-          className={`relative h-6 transition-colors cursor-pointer ${
-            isHighlighted ? 'border-l-2 border-blue-500' : ''
-          }`}
-          style={{ backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.05)' : 'transparent' }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => setIsExpanded(false)}
-        >
-          <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-20 pointer-events-none">
-            <span className="text-xs font-medium text-gray-700 truncate">
-              {group.events.length}× {group.eventType}
-            </span>
-          </div>
-          <div className="absolute left-48 right-2 top-0 h-full flex items-center justify-end z-20 pointer-events-none">
-            <span className="text-xs text-gray-500 bg-white px-1 rounded">
-              (click to collapse)
-            </span>
-          </div>
-        </div>
-        
         {group.events.map((event, idx) => (
           <WaterfallRow
             key={`event-${group.startIdx}-${idx}`}
@@ -130,6 +129,9 @@ function EventGroupRow({
             highlightedRowIndex={highlightedRowIndex}
             setHighlightedRowIndex={setHighlightedRowIndex}
             waterFallContainerRef={waterFallContainerRef}
+            showChevron={idx === 0}
+            onChevronClick={idx === 0 ? () => setIsExpanded(false) : undefined}
+            isChevronExpanded={true}
           />
         ))}
       </>
@@ -139,18 +141,43 @@ function EventGroupRow({
   return (
     <div
       ref={rowRef}
-      className={`relative h-6 transition-colors cursor-pointer ${
+      className={`relative h-6 transition-colors ${
         isHighlighted ? 'border-l-2 border-blue-500' : ''
       }`}
       style={{ backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.05)' : 'transparent' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setIsExpanded(!isExpanded)}
     >
-      <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+      <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
         <span className="text-xs text-gray-600 truncate">
-          {group.events.length}× {group.eventType}
+          {friendlyTypeName}
         </span>
+      </div>
+      
+      <div 
+        className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsExpanded(true);
+        }}
+        onMouseEnter={() => setChevronHovered(true)}
+        onMouseLeave={() => setChevronHovered(false)}
+      >
+        <svg 
+          width="12" 
+          height="12" 
+          viewBox="0 0 12 12" 
+          fill="none" 
+          className="transition-transform"
+        >
+          <path 
+            d="M4 3 L7 6 L4 9" 
+            stroke={chevronHovered ? '#3b82f6' : '#9ca3af'} 
+            strokeWidth="1.5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
       
       {group.events.map((event, idx) => {
@@ -172,7 +199,7 @@ function EventGroupRow({
       {isHovered && (
         <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
           <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-            {group.events.length}× {group.eventType} (click to expand)
+            {group.events.length}× events
           </span>
         </div>
       )}
@@ -212,6 +239,7 @@ function SpanGroupRow({
 }: SpanGroupRowProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [chevronHovered, setChevronHovered] = useState(false);
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -253,28 +281,6 @@ function SpanGroupRow({
   if (isExpanded) {
     return (
       <>
-        <div
-          ref={rowRef}
-          className={`relative h-6 transition-colors cursor-pointer ${
-            isHighlighted ? 'border-l-2 border-blue-500' : ''
-          }`}
-          style={{ backgroundColor: isHovered ? hoverTint : 'transparent' }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => setIsExpanded(false)}
-        >
-          <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-20 pointer-events-none">
-            <span className="text-xs font-medium text-gray-700 truncate">
-              {group.spans.length}× {spanKindLabels[group.kind]}
-            </span>
-          </div>
-          <div className="absolute left-48 right-2 top-0 h-full flex items-center justify-end z-20 pointer-events-none">
-            <span className="text-xs text-gray-500 bg-white px-1 rounded">
-              (click to collapse)
-            </span>
-          </div>
-        </div>
-        
         {group.spans.map((span, idx) => (
           <WaterfallRow
             key={`span-${group.startIdx}-${idx}`}
@@ -289,6 +295,9 @@ function SpanGroupRow({
             setHighlightedRowIndex={setHighlightedRowIndex}
             waterFallContainerRef={waterFallContainerRef}
             groupColorClass={colorClass}
+            showChevron={idx === 0}
+            onChevronClick={idx === 0 ? () => setIsExpanded(false) : undefined}
+            isChevronExpanded={true}
           />
         ))}
       </>
@@ -298,18 +307,43 @@ function SpanGroupRow({
   return (
     <div
       ref={rowRef}
-      className={`relative h-6 transition-colors cursor-pointer ${
+      className={`relative h-6 transition-colors ${
         isHighlighted ? 'border-l-2 border-blue-500' : ''
       }`}
       style={{ backgroundColor: isHovered ? hoverTint : 'transparent' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setIsExpanded(!isExpanded)}
     >
-      <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+      <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
         <span className="text-xs text-gray-600 truncate">
-          {group.spans.length}× {spanKindLabels[group.kind]}
+          {spanKindLabels[group.kind]}
         </span>
+      </div>
+      
+      <div 
+        className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsExpanded(true);
+        }}
+        onMouseEnter={() => setChevronHovered(true)}
+        onMouseLeave={() => setChevronHovered(false)}
+      >
+        <svg 
+          width="12" 
+          height="12" 
+          viewBox="0 0 12 12" 
+          fill="none" 
+          className="transition-transform"
+        >
+          <path 
+            d="M4 3 L7 6 L4 9" 
+            stroke={chevronHovered ? '#3b82f6' : '#9ca3af'} 
+            strokeWidth="1.5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
       
       {group.spans.map((span, idx) => {
@@ -338,7 +372,7 @@ function SpanGroupRow({
       {isHovered && (
         <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
           <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-            {group.spans.length}× {spanKindLabels[group.kind]}: {humanizeDuration(totalSeconds)} total
+            {group.spans.length}× spans: {humanizeDuration(totalSeconds)} total
           </span>
         </div>
       )}
@@ -365,6 +399,9 @@ interface WaterfallRowProps {
   setHighlightedRowIndex: (idx: number | null) => void;
   waterFallContainerRef: React.RefObject<HTMLDivElement | null>;
   groupColorClass?: string;
+  showChevron?: boolean;
+  onChevronClick?: () => void;
+  isChevronExpanded?: boolean;
 }
 
 function WaterfallRow({ 
@@ -378,10 +415,14 @@ function WaterfallRow({
   highlightedRowIndex,
   setHighlightedRowIndex,
   waterFallContainerRef,
-  groupColorClass
+  groupColorClass,
+  showChevron = false,
+  onChevronClick,
+  isChevronExpanded = false
 }: WaterfallRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [chevronHovered, setChevronHovered] = useState(false);
 
   useEffect(() => {
     const element = rowRef.current;
@@ -411,6 +452,7 @@ function WaterfallRow({
     const event = item.data;
     const left = ((item.t - timelineStart) / timelineRange) * 100;
     const eventColor = getEventColor(event.type);
+    const friendlyTypeName = getFriendlyEventTypeName(event.type);
     
     return (
       <div 
@@ -422,11 +464,40 @@ function WaterfallRow({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+        <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
           <span className="text-xs text-gray-600 truncate">
-            {event.type}
+            {friendlyTypeName}
           </span>
         </div>
+        
+        {showChevron && onChevronClick && (
+          <div 
+            className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              onChevronClick();
+            }}
+            onMouseEnter={() => setChevronHovered(true)}
+            onMouseLeave={() => setChevronHovered(false)}
+          >
+            <svg 
+              width="12" 
+              height="12" 
+              viewBox="0 0 12 12" 
+              fill="none" 
+              className="transition-transform"
+              style={{ transform: isChevronExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
+            >
+              <path 
+                d="M4 3 L7 6 L4 9" 
+                stroke={chevronHovered ? '#3b82f6' : '#9ca3af'} 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        )}
         
         <div 
           className="absolute w-2 h-2 rounded-full hover:ring-2 hover:ring-opacity-50 transition-all cursor-pointer group z-10"
@@ -437,17 +508,17 @@ function WaterfallRow({
             top: '50%',
             transform: 'translateY(-50%)'
           }}
-          title={`${event.type} at ${formatTimestamp(event.t)}`}
+          title={`${friendlyTypeName} at ${formatTimestamp(event.t)}`}
         >
           <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-            {event.type}: {event.summary}
+            {event.summary}
           </div>
         </div>
         
         {(isHighlighted || isHovered) && (
           <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-              {event.type}: {event.summary} @ {formatTimestamp(event.t)}
+              {event.summary} @ {formatTimestamp(event.t)}
               {event.source && ` (${event.source})`}
             </span>
           </div>
@@ -484,11 +555,40 @@ function WaterfallRow({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+        <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
           <span className="text-xs text-gray-600 truncate">
             {spanKindLabels[span.kind] || span.kind}
           </span>
         </div>
+        
+        {showChevron && onChevronClick && (
+          <div 
+            className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              onChevronClick();
+            }}
+            onMouseEnter={() => setChevronHovered(true)}
+            onMouseLeave={() => setChevronHovered(false)}
+          >
+            <svg 
+              width="12" 
+              height="12" 
+              viewBox="0 0 12 12" 
+              fill="none" 
+              className="transition-transform"
+              style={{ transform: isChevronExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
+            >
+              <path 
+                d="M4 3 L7 6 L4 9" 
+                stroke={chevronHovered ? '#3b82f6' : '#9ca3af'} 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        )}
         
         <div
           className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group z-10`}
@@ -509,7 +609,7 @@ function WaterfallRow({
         {(isHighlighted || isHovered) && (
           <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-              {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)} ({formatTimestamp(span.start)} → {span.end ? formatTimestamp(span.end) : 'ongoing'})
+              {humanizeDuration(span.seconds)} ({formatTimestamp(span.start)} → {span.end ? formatTimestamp(span.end) : 'ongoing'})
             </span>
           </div>
         )}
@@ -1150,7 +1250,7 @@ export default function TimelineView() {
 
               {/* WATERFALL: Rows for events and spans */}
               <div className="relative overflow-hidden">
-                <div className="space-y-1 relative" style={{ marginLeft: '200px' }} ref={waterFallContainerRef}>
+                <div className="space-y-1 relative" style={{ marginLeft: '192px' }} ref={waterFallContainerRef}>
                   {/* Vertical grid lines */}
                   <div className="absolute inset-0 pointer-events-none">
                     {generateTimeAxisTicks().map((tick, idx) => (
