@@ -46,20 +46,69 @@ function getEventColor(eventType: string): string {
 
 function getFriendlyEventTypeName(eventType: string): string {
   const friendlyNames: Record<string, string> = {
+    // Git events
     'git.commit': 'Commit',
     'git.push': 'Push',
     'git.branch': 'Branch',
+    
+    // PR events
     'pr.created': 'PR Created',
     'pr.updated': 'PR Updated',
     'pr.merged': 'PR Merged',
     'pr.draft_changed': 'PR Draft Status',
+    'pr.status_changed': 'PR Status Changed',
+    
+    // CI events
     'ci.started': 'CI Started',
     'ci.ended': 'CI Ended',
+    
+    // Agent events
     'agent.started': 'Agent Started',
     'agent.ended': 'Agent Ended',
+    'agent.slash_command': 'Agent Command',
+    
+    // Subagent events
+    'subagent.started': 'Subagent Started',
+    'subagent.ended': 'Subagent Ended',
+    
+    // Task events
+    'task.created': 'Task Created',
+    'task.status_changed': 'Task Status Changed',
+    'task.bot_changed': 'Task Bot Changed',
+    
+    // Human interaction events
+    'human.approval_requested': 'Approval Requested',
+    'human.approval_received': 'Approval Received',
+    
+    // Board events
+    'board.stage_changed': 'Board Stage Changed',
+    
+    // Deployment events
+    'deploy.completed': 'Deploy Completed',
+    'deploy.started': 'Deploy Started',
+    
+    // Todo events
+    'todo.created': 'Todo Created',
+    'todo.completed': 'Todo Completed',
+    'todo.updated': 'Todo Updated',
+    
+    // Note events
+    'note': 'Note',
+    'note.created': 'Note Created',
+    'note.updated': 'Note Updated',
   };
   
-  return friendlyNames[eventType] || eventType;
+  // If we have a friendly name, use it
+  if (friendlyNames[eventType]) {
+    return friendlyNames[eventType];
+  }
+  
+  // Fallback: title-case the last segment after the dot
+  // e.g., "foo.bar_baz" → "Bar Baz"
+  const lastSegment = eventType.split('.').pop() || eventType;
+  return lastSegment
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 // Event group row component
@@ -148,14 +197,15 @@ function EventGroupRow({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
+      <div className="absolute top-0 h-full flex items-center px-2 z-10" style={{ left: '-192px', width: '168px' }}>
         <span className="text-xs text-gray-600 truncate">
           {friendlyTypeName}
         </span>
       </div>
       
       <div 
-        className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+        className="absolute w-6 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+        style={{ left: '-24px' }}
         onClick={(e) => {
           e.stopPropagation();
           setIsExpanded(true);
@@ -197,7 +247,7 @@ function EventGroupRow({
       })}
       
       {isHovered && (
-        <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
+        <div className="absolute left-0 top-0 h-full flex items-center z-20 pointer-events-none ml-2">
           <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
             {group.events.length}× events
           </span>
@@ -314,14 +364,15 @@ function SpanGroupRow({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
+      <div className="absolute top-0 h-full flex items-center px-2 z-10" style={{ left: '-192px', width: '168px' }}>
         <span className="text-xs text-gray-600 truncate">
-          {spanKindLabels[group.kind]}
+          {getSpanKindLabel(group.kind)}
         </span>
       </div>
       
       <div 
-        className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+        className="absolute w-6 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+        style={{ left: '-24px' }}
         onClick={(e) => {
           e.stopPropagation();
           setIsExpanded(true);
@@ -370,7 +421,7 @@ function SpanGroupRow({
       })}
       
       {isHovered && (
-        <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
+        <div className="absolute left-0 top-0 h-full flex items-center z-20 pointer-events-none ml-2">
           <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
             {group.spans.length}× spans: {humanizeDuration(totalSeconds)} total
           </span>
@@ -464,7 +515,7 @@ function WaterfallRow({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
+        <div className="absolute top-0 h-full flex items-center px-2 z-10" style={{ left: '-192px', width: '168px' }}>
           <span className="text-xs text-gray-600 truncate">
             {friendlyTypeName}
           </span>
@@ -472,7 +523,8 @@ function WaterfallRow({
         
         {showChevron && onChevronClick && (
           <div 
-            className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+            className="absolute w-6 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+            style={{ left: '-24px' }}
             onClick={(e) => {
               e.stopPropagation();
               onChevronClick();
@@ -516,7 +568,7 @@ function WaterfallRow({
         </div>
         
         {(isHighlighted || isHovered) && (
-          <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
+          <div className="absolute left-0 top-0 h-full flex items-center z-20 pointer-events-none ml-2">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
               {event.summary} @ {formatTimestamp(event.t)}
               {event.source && ` (${event.source})`}
@@ -555,15 +607,16 @@ function WaterfallRow({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute left-0 w-40 top-0 h-full flex items-center px-2 z-10">
+        <div className="absolute top-0 h-full flex items-center px-2 z-10" style={{ left: '-192px', width: '168px' }}>
           <span className="text-xs text-gray-600 truncate">
-            {spanKindLabels[span.kind] || span.kind}
+            {getSpanKindLabel(span.kind)}
           </span>
         </div>
         
         {showChevron && onChevronClick && (
           <div 
-            className="absolute left-40 w-8 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+            className="absolute w-6 top-0 h-full flex items-center justify-center z-20 cursor-pointer"
+            style={{ left: '-24px' }}
             onClick={(e) => {
               e.stopPropagation();
               onChevronClick();
@@ -596,7 +649,7 @@ function WaterfallRow({
             left: `${Math.max(0, left)}%`,
             width: `${Math.min(100 - left, width)}%`,
           }}
-          title={`${spanKindLabels[span.kind]}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
+          title={`${getSpanKindLabel(span.kind)}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
         >
           <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity px-1">
             {span.seconds > 60 && humanizeDuration(span.seconds)}
@@ -607,7 +660,7 @@ function WaterfallRow({
         </div>
         
         {(isHighlighted || isHovered) && (
-          <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
+          <div className="absolute left-0 top-0 h-full flex items-center z-20 pointer-events-none ml-2">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
               {humanizeDuration(span.seconds)} ({formatTimestamp(span.start)} → {span.end ? formatTimestamp(span.end) : 'ongoing'})
             </span>
@@ -796,6 +849,17 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
     stuck: 'Stuck',
     ci: 'CI',
     agent: 'Agent',
+  };
+  
+  // Fallback function for unknown span kinds
+  const getSpanKindLabel = (kind: string): string => {
+    if (spanKindLabels[kind]) {
+      return spanKindLabels[kind];
+    }
+    // Title-case the kind with underscores converted to spaces
+    return kind
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, (char) => char.toUpperCase());
   };
 
   // Calculate pie chart data (exclude wall)
@@ -1114,23 +1178,49 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
               {/* Wall time strip - continuous visible colored strip */}
               <div className="border-t border-gray-300 pt-2">
                 <div className="text-xs font-medium text-gray-700 mb-2">Wall: {humanizeDuration(totalWall)}</div>
-                <svg width="100%" height="20" className="border border-gray-300 rounded" viewBox="0 0 1000 20" preserveAspectRatio="none">
-                  {(() => {
-                    // Build coverage segments using interval merge algorithm
-                    type Event = { time: number; kind: string; isStart: boolean };
-                    const events: Event[] = [];
-                    
-                    // Collect all span start/end events
-                    safeTimeline.spans
-                      .filter(span => span.kind !== 'wall' && span.seconds > 0)
-                      .forEach(span => {
+                <div className="relative" style={{ marginLeft: '192px' }}>
+                  <svg width="100%" height="20" className="border border-gray-300 rounded" viewBox="0 0 1000 20" preserveAspectRatio="none">
+                    {(() => {
+                      // Build coverage segments using interval merge algorithm
+                      type Event = { time: number; kind: string; isStart: boolean };
+                      const events: Event[] = [];
+                      
+                      // Correlate agent.started/agent.ended into agent spans for wall strip
+                      const agentStartEvents = safeTimeline.events.filter(e => e.type === 'agent.started');
+                      const agentEndEvents = safeTimeline.events.filter(e => e.type === 'agent.ended');
+                      const agentSpans: Array<{ start: string; end: string | null }> = [];
+                      
+                      for (const startEvent of agentStartEvents) {
+                        const startTime = new Date(startEvent.t).getTime();
+                        const endEvent = agentEndEvents.find(e => new Date(e.t).getTime() > startTime);
+                        agentSpans.push({
+                          start: startEvent.t,
+                          end: endEvent ? endEvent.t : null
+                        });
+                      }
+                      
+                      // Collect all span start/end events (including agent spans)
+                      safeTimeline.spans
+                        .filter(span => span.kind !== 'wall' && span.seconds > 0)
+                        .forEach(span => {
+                          const spanStart = (new Date(span.start).getTime() - timelineStart) / 1000;
+                          const spanEnd = span.end 
+                            ? (new Date(span.end).getTime() - timelineStart) / 1000
+                            : totalWall;
+                          
+                          events.push({ time: Math.max(0, spanStart), kind: span.kind, isStart: true });
+                          events.push({ time: Math.min(totalWall, spanEnd), kind: span.kind, isStart: false });
+                        });
+                      
+                      // Add agent spans
+                      agentSpans.forEach(span => {
                         const spanStart = (new Date(span.start).getTime() - timelineStart) / 1000;
                         const spanEnd = span.end 
                           ? (new Date(span.end).getTime() - timelineStart) / 1000
                           : totalWall;
                         
-                        events.push({ time: Math.max(0, spanStart), kind: span.kind, isStart: true });
-                        events.push({ time: Math.min(totalWall, spanEnd), kind: span.kind, isStart: false });
+                        events.push({ time: Math.max(0, spanStart), kind: 'agent', isStart: true });
+                        events.push({ time: Math.min(totalWall, spanEnd), kind: 'agent', isStart: false });
                       });
                     
                     // Sort events by time (start before end at same time)
@@ -1198,6 +1288,7 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
                           idle: '#60a5fa',
                           stuck: '#ef4444',
                           ci: '#a855f7',
+                          agent: '#22d3ee',
                         };
                         const color = colorMap[kind] || '#9ca3af';
                         
@@ -1218,6 +1309,7 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
                           idle: '#60a5fa',
                           stuck: '#ef4444',
                           ci: '#a855f7',
+                          agent: '#22d3ee',
                         };
                         
                         const colors = seg.kinds.map(k => colorMap[k] || '#9ca3af');
@@ -1254,7 +1346,30 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
                       }
                     });
                   })()}
+                  
+                  {/* Event blips on wall bar */}
+                  {safeTimeline.events
+                    .filter(e => e.type !== 'agent.started' && e.type !== 'agent.ended' && e.type !== 'ci.started' && e.type !== 'ci.ended')
+                    .map((event, idx) => {
+                      const eventTime = (new Date(event.t).getTime() - timelineStart) / 1000;
+                      const x = (eventTime / totalWall) * 1000;
+                      const eventColor = getEventColor(event.type);
+                      
+                      return (
+                        <circle
+                          key={`event-${idx}`}
+                          cx={x}
+                          cy="10"
+                          r="3"
+                          fill={eventColor}
+                          stroke="white"
+                          strokeWidth="1"
+                          opacity="0.9"
+                        />
+                      );
+                    })}
                 </svg>
+                </div>
                 <div className="flex gap-4 mt-2 text-xs text-gray-600">
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-yellow-400 rounded" />
@@ -1271,6 +1386,10 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-purple-400 rounded" />
                     <span>CI</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 bg-cyan-400 rounded" />
+                    <span>Agent</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-gray-400 rounded" />
