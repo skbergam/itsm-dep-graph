@@ -163,6 +163,7 @@ function DependencyGraphInner() {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const reactFlowInstance = useReactFlow();
 
@@ -206,6 +207,19 @@ function DependencyGraphInner() {
     }
   }, [setNodes, nodes, reactFlowInstance]);
 
+  const handleNodeHover = useCallback((nodeId: string | null) => {
+    setHoveredNodeId(nodeId);
+    setNodes((nds) =>
+      nds.map((node) => ({
+        ...node,
+        data: {
+          ...node.data,
+          hovered: node.id === nodeId,
+        },
+      }))
+    );
+  }, [setNodes]);
+
   const miniMapNodeColor = useCallback((node: Node) => {
     if (node.type === "project") return "#A855F7";
     const task = node.data.task as Task | undefined;
@@ -233,7 +247,9 @@ function DependencyGraphInner() {
       <Sidebar
         graphData={graphData}
         selectedNodeId={selectedNodeId}
+        hoveredNodeId={hoveredNodeId}
         onNodeSelect={handleNodeSelect}
+        onNodeHover={handleNodeHover}
       />
       <div className="flex-1">
         <ReactFlow
@@ -248,6 +264,8 @@ function DependencyGraphInner() {
           maxZoom={2}
           defaultViewport={{ x: 0, y: 0, zoom: 1.0 }}
           onNodeClick={(_, node) => handleNodeSelect(node.id)}
+          onNodeMouseEnter={(_, node) => handleNodeHover(node.id)}
+          onNodeMouseLeave={() => handleNodeHover(null)}
         >
           <Background color="#334155" gap={16} />
           <Controls showInteractive={false} />

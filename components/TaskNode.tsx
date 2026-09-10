@@ -15,6 +15,7 @@ const STATUS_COLORS = {
 function TaskNode({ data }: NodeProps) {
   const task = data.task as Task;
   const selected = data.selected as boolean | undefined;
+  const hovered = data.hovered as boolean | undefined;
   const isBlocked = task.status === "Blocked";
   const backgroundColor = STATUS_COLORS[task.status];
 
@@ -25,6 +26,8 @@ function TaskNode({ data }: NodeProps) {
           ? "border-red-500 shadow-lg shadow-red-500/40"
           : selected
           ? "border-white shadow-lg"
+          : hovered
+          ? "border-blue-400 shadow-md shadow-blue-400/30"
           : "border-slate-600"
       }`}
       style={{

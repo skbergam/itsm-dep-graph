@@ -22,9 +22,9 @@ Modern hierarchical dependency graph visualizer for ITSM tasks, built with **Nex
   - 🟣 **Projects** (purple)
 - **Clear Dependency Edges**: Arrows show direction, animated for blocked tasks
 
-## Running Locally
+## Running Locally  // pragma: allowlist secret
 
-Install dependencies and start the dev server: // pragma: allowlist secret
+Install dependencies and start the server:
 
 ```bash
 npm install && npm start

@@ -14,13 +14,17 @@ const STATUS_COLORS = {
 interface SidebarProps {
   graphData: GraphData;
   selectedNodeId: string | null;
+  hoveredNodeId: string | null;
   onNodeSelect: (nodeId: string | null) => void;
+  onNodeHover: (nodeId: string | null) => void;
 }
 
 export default function Sidebar({
   graphData,
   selectedNodeId,
+  hoveredNodeId,
   onNodeSelect,
+  onNodeHover,
 }: SidebarProps) {
   const tasksByProject = useMemo(() => {
     const map = new Map<string, Task[]>();
@@ -86,6 +90,8 @@ export default function Sidebar({
               <div
                 className="cursor-pointer hover:bg-purple-900/30 rounded-lg p-2 border border-purple-500/30 bg-purple-900/10 transition-colors"
                 onClick={() => onNodeSelect(project.id)}
+                onMouseEnter={() => onNodeHover(project.id)}
+                onMouseLeave={() => onNodeHover(null)}
               >
                 <div className="text-xs font-semibold text-purple-300 uppercase tracking-wide">
                   {project.prefix || project.id}
@@ -99,6 +105,7 @@ export default function Sidebar({
                 {sortedTasks.map((task) => {
                   const isBlocked = task.status === "Blocked";
                   const isSelected = selectedNodeId === task.id;
+                  const isHovered = hoveredNodeId === task.id;
                   const backgroundColor = STATUS_COLORS[task.status];
 
                   return (
@@ -109,9 +116,13 @@ export default function Sidebar({
                           ? "border-red-500 bg-red-500/15 shadow-md shadow-red-500/20"
                           : isSelected
                           ? "border-white bg-slate-700/50"
+                          : isHovered
+                          ? "border-blue-400 bg-slate-700/60"
                           : "border-transparent bg-slate-700/30 hover:bg-slate-700/50"
                       }`}
                       onClick={() => onNodeSelect(task.id)}
+                      onMouseEnter={() => onNodeHover(task.id)}
+                      onMouseLeave={() => onNodeHover(null)}
                     >
                       <div className="flex items-start gap-2">
                         <div
