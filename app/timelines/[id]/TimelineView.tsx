@@ -618,7 +618,12 @@ function WaterfallRow({
   }
 }
 
-export default function TimelineView() {
+interface TimelineViewProps {
+  isArchive?: boolean;
+  archiveTimestamp?: string;
+}
+
+export default function TimelineView({ isArchive = false, archiveTimestamp }: TimelineViewProps = {}) {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
@@ -719,7 +724,16 @@ export default function TimelineView() {
   useEffect(() => {
     async function loadTimeline() {
       try {
-        const response = await fetch(`/timelines/${id}.json`);
+        let url: string;
+        if (isArchive && archiveTimestamp) {
+          // Load archived version
+          url = `/timelines/${id}/archive/${archiveTimestamp}.json`;
+        } else {
+          // Load current version
+          url = `/timelines/${id}.json`;
+        }
+        
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Failed to load timeline: ${response.statusText}`);
         }
@@ -733,7 +747,7 @@ export default function TimelineView() {
     }
 
     loadTimeline();
-  }, [id]);
+  }, [id, isArchive, archiveTimestamp]);
 
   if (loading) {
     return (
@@ -751,10 +765,10 @@ export default function TimelineView() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-4">
             <button
-              onClick={() => router.push('/')}
+              onClick={() => router.push('/timelines')}
               className="text-blue-600 hover:text-blue-800 text-sm"
             >
-              ← Back to Home
+              ← Back to Timelines
             </button>
           </div>
           <div className="bg-red-50 border border-red-200 rounded-lg p-6">
@@ -841,17 +855,34 @@ export default function TimelineView() {
     <div className="bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto">
         {/* Navigation */}
-        <div className="mb-6">
+        <div className="mb-6 flex gap-4">
           <button
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/timelines')}
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
           >
-            ← Back to Home
+            ← Back to Timelines
           </button>
+          {isArchive && (
+            <button
+              onClick={() => router.push(`/timelines/${id}`)}
+              className="text-purple-600 hover:text-purple-800 text-sm font-medium"
+            >
+              View Current Version →
+            </button>
+          )}
         </div>
 
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          {isArchive && (
+            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2 text-sm text-amber-800">
+              <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+              </svg>
+              <span className="font-medium">Archived Timeline</span>
+              <span className="text-amber-700">— Generated: {formatTimestamp(safeTimeline.generated_at)}</span>
+            </div>
+          )}
           <div className="flex items-start justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">

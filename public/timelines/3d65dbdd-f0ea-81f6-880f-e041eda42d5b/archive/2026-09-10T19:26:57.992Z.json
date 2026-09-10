@@ -1,0 +1,2448 @@
+{
+  "schema": "task-timeline/v1",
+  "generated_at": "2026-09-10T19:26:57.992Z",
+  "as_of": "2026-09-10T19:26:57.992Z",
+  "task": {
+    "notion_id": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
+    "notion_url": "https://app.notion.com/p/3d65dbddf0ea81f6880fe041eda42d5b",
+    "title": "ONTO-1 \u2014 Land Knowledge ontology entity migration",
+    "status": "In progress",
+    "bot": "Solon (EM)",
+    "running": true,
+    "page_last_edited_at": "2026-09-10T19:15:51.664Z",
+    "note": "ExplicitLink #177, Relation #190, Node #194 (a6b5123) merged. Next: KnowledgeDraftProposal boarding."
+  },
+  "links": {
+    "eng_prs": [
+      "https://app.notion.com/p/3d75dbddf0ea819292aaf26fff181914",
+      "https://app.notion.com/p/3d75dbddf0ea81fb857cd928dc5217d1",
+      "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
+      "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e"
+    ],
+    "prs": [
+      "https://github.com/elementum-fde/products/pull/146",
+      "https://github.com/elementum-fde/products/pull/177",
+      "https://github.com/elementum-fde/products/pull/190",
+      "https://github.com/elementum-fde/products/pull/194"
+    ],
+    "agents": [
+      "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+      "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+      "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
+      "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+      "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61"
+    ]
+  },
+  "events": [
+    {
+      "id": "e001",
+      "type": "git.commit",
+      "t": "2026-09-09T15:07:46Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146/commits/1de731fe58fd9119b15d6a9b4c9c7fc3073239a2",
+      "summary": "PR #146 commit 1de731fe58fd: Migrate Knowledge operator operations to ontology",
+      "meta": {
+        "pr": 146,
+        "sha": "1de731fe58fd9119b15d6a9b4c9c7fc3073239a2",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e002",
+      "type": "pr.created",
+      "t": "2026-09-09T15:08:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146",
+      "summary": "PR #146 opened: Migrate Knowledge operator operations to ontology",
+      "meta": {
+        "number": 146,
+        "head": "cursor/more-knowledge-entities-07b2",
+        "draft_at_create": "likely (ready_for_review observed later)"
+      }
+    },
+    {
+      "id": "e003",
+      "type": "git.commit",
+      "t": "2026-09-09T15:49:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146/commits/b9b85c0b66a27cc695d83f6b78dc99b500a0a2d6",
+      "summary": "PR #146 commit b9b85c0b66a2: Harden operator ontology lifecycle and isolation",
+      "meta": {
+        "pr": 146,
+        "sha": "b9b85c0b66a27cc695d83f6b78dc99b500a0a2d6",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e004",
+      "type": "git.commit",
+      "t": "2026-09-09T16:00:15Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146/commits/c1a054e155ae187c6b9e689e29b6bb1867671763",
+      "summary": "PR #146 commit c1a054e155ae: Verify operator receipts in live ontology explorer",
+      "meta": {
+        "pr": 146,
+        "sha": "c1a054e155ae187c6b9e689e29b6bb1867671763",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e005",
+      "type": "git.commit",
+      "t": "2026-09-09T16:01:46Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146/commits/33955306ff73071e2e11cfabc07da0ee73aaa8e7",
+      "summary": "PR #146 commit 33955306ff73: Fix explorer verifier header assertion",
+      "meta": {
+        "pr": 146,
+        "sha": "33955306ff73071e2e11cfabc07da0ee73aaa8e7",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e006",
+      "type": "git.commit",
+      "t": "2026-09-09T16:15:35Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146/commits/0db8469251f6f4cb1811aed3af2e8c937381f251",
+      "summary": "PR #146 commit 0db8469251f6: Record final operator ontology verification",
+      "meta": {
+        "pr": 146,
+        "sha": "0db8469251f6f4cb1811aed3af2e8c937381f251",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e007",
+      "type": "ci.started",
+      "t": "2026-09-09T16:15:46Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34375598122",
+      "summary": "PR #146 CI started (preview-plane final check-runs (head 0db8469251f6))",
+      "meta": {
+        "pr": 146,
+        "run_id": 34375598122,
+        "conclusion_expected": "success"
+      }
+    },
+    {
+      "id": "e008",
+      "type": "ci.ended",
+      "t": "2026-09-09T16:18:52Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34375598122",
+      "summary": "PR #146 CI ended (success)",
+      "meta": {
+        "pr": 146,
+        "run_id": 34375598122,
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e009",
+      "type": "pr.draft_changed",
+      "t": "2026-09-09T19:29:38Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146",
+      "summary": "PR #146 marked ready for review",
+      "meta": {
+        "number": 146,
+        "to": "ready"
+      }
+    },
+    {
+      "id": "e010",
+      "type": "pr.status_changed",
+      "t": "2026-09-09T19:29:41Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/146",
+      "summary": "PR #146 merged",
+      "meta": {
+        "number": 146,
+        "state": "merged",
+        "merge_commit_known": true
+      }
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T01:51:59.254Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789005119254"
+      },
+      "id": "e011"
+    },
+    {
+      "id": "e012",
+      "type": "agent.started",
+      "t": "2026-09-10T01:51:59.254Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+      "summary": "Cloud agent started/active: ONTO-1: remaining Knowledge ontology entities",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "url": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "pr": 177,
+        "proof": "first transcript tool started_at_ms"
+      }
+    },
+    {
+      "id": "e013",
+      "type": "git.commit",
+      "t": "2026-09-10T02:08:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/da74cf51354c7f47d1e52c959b3c34b9c1c7a6d1",
+      "summary": "PR #177 commit da74cf51354c: feat(ontology): migrate KnowledgeSourcePassage to ontology",
+      "meta": {
+        "pr": 177,
+        "sha": "da74cf51354c7f47d1e52c959b3c34b9c1c7a6d1",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e014",
+      "type": "git.commit",
+      "t": "2026-09-10T02:16:46Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/41ba1d0a033ce04a379d4fe3178d56e5091ea865",
+      "summary": "PR #177 commit 41ba1d0a033c: feat(ontology): migrate KnowledgeDraftProposalDecision",
+      "meta": {
+        "pr": 177,
+        "sha": "41ba1d0a033ce04a379d4fe3178d56e5091ea865",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e015",
+      "type": "git.commit",
+      "t": "2026-09-10T02:35:08Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/27479510c6a80b3fb79f457b47b85f3fbf060b31",
+      "summary": "PR #177 commit 27479510c6a8: feat(knowledge): migrate KnowledgeArticleExplicitLink to ontology",
+      "meta": {
+        "pr": 177,
+        "sha": "27479510c6a80b3fb79f457b47b85f3fbf060b31",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e016",
+      "type": "git.commit",
+      "t": "2026-09-10T02:43:25Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/0fcac15eee6500f58964f69ac58880fc3caeef64",
+      "summary": "PR #177 commit 0fcac15eee65: feat(knowledge): add KnowledgeArticleRelation ontology infrastructure",
+      "meta": {
+        "pr": 177,
+        "sha": "0fcac15eee6500f58964f69ac58880fc3caeef64",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e017",
+      "type": "git.commit",
+      "t": "2026-09-10T02:51:58Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/cfe72bdf5e573a588e5bfad379e365bac52c6034",
+      "summary": "PR #177 commit cfe72bdf5e57: Complete KnowledgeArticleRelation web caller migration (0/0 bypasses)",
+      "meta": {
+        "pr": 177,
+        "sha": "cfe72bdf5e573a588e5bfad379e365bac52c6034",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e018",
+      "type": "git.commit",
+      "t": "2026-09-10T02:56:10Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/2659b43d37cf7ce2b3e3d51c7584c462485373fa",
+      "summary": "PR #177 commit 2659b43d37cf: Add KnowledgeOrganizationConnector ontology entity and operations",
+      "meta": {
+        "pr": 177,
+        "sha": "2659b43d37cf7ce2b3e3d51c7584c462485373fa",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e019",
+      "type": "git.commit",
+      "t": "2026-09-10T03:02:20Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/40833e68121203c7d738c5faa14f6516c6da7efd",
+      "summary": "PR #177 commit 40833e681212: Add KnowledgeOrganizationConnector compiler and runtime",
+      "meta": {
+        "pr": 177,
+        "sha": "40833e68121203c7d738c5faa14f6516c6da7efd",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e020",
+      "type": "git.commit",
+      "t": "2026-09-10T03:03:39Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/9ec580784a0b10e109faa0511f69e0e203b62343",
+      "summary": "PR #177 commit 9ec580784a0b: Add KnowledgeOrganizationConnector web helpers",
+      "meta": {
+        "pr": 177,
+        "sha": "9ec580784a0b10e109faa0511f69e0e203b62343",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e021",
+      "type": "git.commit",
+      "t": "2026-09-10T03:07:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/a2df3b74dd1bd80227e3734d2bc51fd991632fa8",
+      "summary": "PR #177 commit a2df3b74dd1b: Complete KnowledgeOrganizationConnector web migration (0/0 bypasses)",
+      "meta": {
+        "pr": 177,
+        "sha": "a2df3b74dd1bd80227e3734d2bc51fd991632fa8",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e022",
+      "type": "git.commit",
+      "t": "2026-09-10T03:12:39Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/dc42ecced48bfa7325d3c7037f6d9780cac7734b",
+      "summary": "PR #177 commit dc42ecced48b: fix(knowledge): handle ontology instant strings in draft-proposals",
+      "meta": {
+        "pr": 177,
+        "sha": "dc42ecced48bfa7325d3c7037f6d9780cac7734b",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e023",
+      "type": "pr.created",
+      "t": "2026-09-10T03:13:12Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177",
+      "summary": "PR #177 opened: feat(ontology): migrate KnowledgeArticleExplicitLink",
+      "meta": {
+        "number": 177,
+        "head": "cursor/onto-1-remaining-knowledge-models-5187",
+        "draft_at_create": "likely (ready_for_review observed later)"
+      }
+    },
+    {
+      "id": "e024",
+      "type": "git.commit",
+      "t": "2026-09-10T03:23:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/972b42c9e43e972b80b1aa121fd222c3accc4a6f",
+      "summary": "PR #177 commit 972b42c9e43e: Migrate KnowledgeArticleNode to ontology (0/0 bypasses)",
+      "meta": {
+        "pr": 177,
+        "sha": "972b42c9e43e972b80b1aa121fd222c3accc4a6f",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e025",
+      "type": "git.commit",
+      "t": "2026-09-10T03:30:55Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/ee9b105ec60ccac6e6f52687b13597a694e9c043",
+      "summary": "PR #177 commit ee9b105ec60c: Migrate KnowledgeDraftProposal to ontology (10 delegate bypasses, 0 SQL)",
+      "meta": {
+        "pr": 177,
+        "sha": "ee9b105ec60ccac6e6f52687b13597a694e9c043",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T03:31:48.843Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#reply",
+      "summary": "Slash command(s) on reply: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "reply",
+        "t_proof": "next_tool_started_at_ms=1789011108843"
+      },
+      "id": "e026"
+    },
+    {
+      "id": "e027",
+      "type": "git.commit",
+      "t": "2026-09-10T03:38:10Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/761d69f8c2b4e1f6c997b04e4db88a4cee7c0a44",
+      "summary": "PR #177 commit 761d69f8c2b4: Complete KnowledgeDraftProposal migration to 0/0 bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "761d69f8c2b4e1f6c997b04e4db88a4cee7c0a44",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e028",
+      "type": "git.commit",
+      "t": "2026-09-10T03:53:18Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5a42b12ea2a680de7ae47bc9b2ad070eeac534f2",
+      "summary": "PR #177 commit 5a42b12ea2a6: WIP: KnowledgeImportRunEvent migration (3 of 12 bypasses migrated)",
+      "meta": {
+        "pr": 177,
+        "sha": "5a42b12ea2a680de7ae47bc9b2ad070eeac534f2",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e029",
+      "type": "git.commit",
+      "t": "2026-09-10T03:56:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/4878e350bf9f42580b2ec7dc9aaa5ba7209f1c71",
+      "summary": "PR #177 commit 4878e350bf9f: Complete KnowledgeImportRunEvent migration to 0/0 bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "4878e350bf9f42580b2ec7dc9aaa5ba7209f1c71",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e030",
+      "type": "git.commit",
+      "t": "2026-09-10T04:05:56Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/7cdbc1b0a3515d8ee4e2ef4294208625c6cdd45f",
+      "summary": "PR #177 commit 7cdbc1b0a351: WIP: KnowledgeImportStep - infrastructure complete, 2 of 16 bypasses migrated",
+      "meta": {
+        "pr": 177,
+        "sha": "7cdbc1b0a3515d8ee4e2ef4294208625c6cdd45f",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e031",
+      "type": "git.commit",
+      "t": "2026-09-10T04:18:04Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/d019a6119ff20059ff1c6214842ad3116e80fec7",
+      "summary": "PR #177 commit d019a6119ff2: Add findById operation to KnowledgeImportStep ontology",
+      "meta": {
+        "pr": 177,
+        "sha": "d019a6119ff20059ff1c6214842ad3116e80fec7",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e032",
+      "type": "git.commit",
+      "t": "2026-09-10T04:22:51Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/ae9b6207f916515622be9c1760756266920b0760",
+      "summary": "PR #177 commit ae9b6207f916: Migrate 4 simple KnowledgeImportStep bypasses (733, 1034, 1504, 1104)",
+      "meta": {
+        "pr": 177,
+        "sha": "ae9b6207f916515622be9c1760756266920b0760",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T04:24:47.015Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#reply",
+      "summary": "Slash command(s) on reply: /poteto-mode",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "commands": [
+          "/poteto-mode"
+        ],
+        "phase": "reply",
+        "t_proof": "next_tool_started_at_ms=1789014287015"
+      },
+      "id": "e033"
+    },
+    {
+      "id": "e034",
+      "type": "git.commit",
+      "t": "2026-09-10T04:26:05Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/46d6ac7fbf17cb60c9bb6ca5998523e1965f3342",
+      "summary": "PR #177 commit 46d6ac7fbf17: Migrate 2 more KnowledgeImportStep bypasses (admin existence check and pagination)",
+      "meta": {
+        "pr": 177,
+        "sha": "46d6ac7fbf17cb60c9bb6ca5998523e1965f3342",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e035",
+      "type": "git.commit",
+      "t": "2026-09-10T04:30:02Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/b97394cca967398e45505da199b0fef7a2075632",
+      "summary": "PR #177 commit b97394cca967: Complete KnowledgeImportStep migration to 0/0 bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "b97394cca967398e45505da199b0fef7a2075632",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e036",
+      "type": "git.commit",
+      "t": "2026-09-10T04:38:27Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/ced3703162ac87abcfe79b9ca25a76d076b3e16f",
+      "summary": "PR #177 commit ced3703162ac: Add KnowledgeSourceVersion 5-layer ontology infrastructure",
+      "meta": {
+        "pr": 177,
+        "sha": "ced3703162ac87abcfe79b9ca25a76d076b3e16f",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e037",
+      "type": "git.commit",
+      "t": "2026-09-10T04:40:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5815d1024bfdfb325e8174feaeb05cdd350eb688",
+      "summary": "PR #177 commit 5815d1024bfd: Migrate 3 KnowledgeSourceVersion bypasses (scheduled-import.ts)",
+      "meta": {
+        "pr": 177,
+        "sha": "5815d1024bfdfb325e8174feaeb05cdd350eb688",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e038",
+      "type": "git.commit",
+      "t": "2026-09-10T04:48:50Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/100373566ca0e8244072e8e39ae5604485275d88",
+      "summary": "PR #177 commit 100373566ca0: Migrate 6 more KnowledgeSourceVersion bypasses + add update operation",
+      "meta": {
+        "pr": 177,
+        "sha": "100373566ca0e8244072e8e39ae5604485275d88",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e039",
+      "type": "git.commit",
+      "t": "2026-09-10T04:55:20Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5eb21d227c9112957c7d818640cb2e136715823d",
+      "summary": "PR #177 commit 5eb21d227c91: feat(ontology): Add KnowledgeIntakeDocument 5-layer infrastructure",
+      "meta": {
+        "pr": 177,
+        "sha": "5eb21d227c9112957c7d818640cb2e136715823d",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e040",
+      "type": "git.commit",
+      "t": "2026-09-10T05:02:35Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/88cedbe48290d6cc8412a15a9c2c7e3839c79ecf",
+      "summary": "PR #177 commit 88cedbe48290: feat(ontology): Migrate 9 KnowledgeIntakeDocument bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "88cedbe48290d6cc8412a15a9c2c7e3839c79ecf",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e041",
+      "type": "git.commit",
+      "t": "2026-09-10T05:09:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/fd29acbf44c9587841164b2d46ec893605ee2a50",
+      "summary": "PR #177 commit fd29acbf44c9: feat(ontology): Add count/findMany operations, complete SourceVersion delegates",
+      "meta": {
+        "pr": 177,
+        "sha": "fd29acbf44c9587841164b2d46ec893605ee2a50",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e042",
+      "type": "git.commit",
+      "t": "2026-09-10T05:14:33Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/ad89b2e65d2825f8efc86da6f84fff0b2ed2c56f",
+      "summary": "PR #177 commit ad89b2e65d28: feat(ontology): Complete SourceVersion and IntakeDocument to 0/0",
+      "meta": {
+        "pr": 177,
+        "sha": "ad89b2e65d2825f8efc86da6f84fff0b2ed2c56f",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e043",
+      "type": "git.commit",
+      "t": "2026-09-10T05:20:03Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/bc0f0f33ea22cc067513a3caab772007ae24fbed",
+      "summary": "PR #177 commit bc0f0f33ea22: feat(ontology): Add KnowledgeImportRunFile 5-layer infrastructure",
+      "meta": {
+        "pr": 177,
+        "sha": "bc0f0f33ea22cc067513a3caab772007ae24fbed",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e044",
+      "type": "git.commit",
+      "t": "2026-09-10T05:49:36Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5a8c5eac07b389f2626f07606162b1bb90829baa",
+      "summary": "PR #177 commit 5a8c5eac07b3: fix(ontology): restore CI green - complete KnowledgeImportRunFile planner",
+      "meta": {
+        "pr": 177,
+        "sha": "5a8c5eac07b389f2626f07606162b1bb90829baa",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e045",
+      "type": "git.commit",
+      "t": "2026-09-10T05:59:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/83f6508c5feed0b75900b13a23bf28d3fc524a3e",
+      "summary": "PR #177 commit 83f6508c5fee: feat(ontology): complete KnowledgeImportRunFile migration (Model 12)",
+      "meta": {
+        "pr": 177,
+        "sha": "83f6508c5feed0b75900b13a23bf28d3fc524a3e",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e046",
+      "type": "git.commit",
+      "t": "2026-09-10T06:05:06Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e846ed150b10119f188d33bfa5b8e97f7ce6fed1",
+      "summary": "PR #177 commit e846ed150b10: feat(ontology): add KnowledgeImportRun infrastructure (Model 13)",
+      "meta": {
+        "pr": 177,
+        "sha": "e846ed150b10119f188d33bfa5b8e97f7ce6fed1",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e047",
+      "type": "git.commit",
+      "t": "2026-09-10T06:10:37Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/27626d93e65f5fb384dbd769e7eb9d66470b2e54",
+      "summary": "PR #177 commit 27626d93e65f: feat(ontology): migrate KnowledgeImportRun callers (partial - 6 of 35)",
+      "meta": {
+        "pr": 177,
+        "sha": "27626d93e65f5fb384dbd769e7eb9d66470b2e54",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e048",
+      "type": "git.commit",
+      "t": "2026-09-10T06:15:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/7f272d497c903ec3f334e3d19e52ba782f664848",
+      "summary": "PR #177 commit 7f272d497c90: docs(ontology): add comprehensive ONTO-1 completion guides",
+      "meta": {
+        "pr": 177,
+        "sha": "7f272d497c903ec3f334e3d19e52ba782f664848",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e049",
+      "type": "git.commit",
+      "t": "2026-09-10T06:34:33Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5355c72f282809b4b5b498c96aecef9470b6ad65",
+      "summary": "PR #177 commit 5355c72f2828: fix(ontology): complete KnowledgeImportRun registration and fix CI failures",
+      "meta": {
+        "pr": 177,
+        "sha": "5355c72f282809b4b5b498c96aecef9470b6ad65",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e050",
+      "type": "git.commit",
+      "t": "2026-09-10T06:51:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/55cf70c5641d4c92bdcaa43150a08ab950c1fcb4",
+      "summary": "PR #177 commit 55cf70c5641d: feat(ontology): complete Group 1 Knowledge models (5 models at 0/0)",
+      "meta": {
+        "pr": 177,
+        "sha": "55cf70c5641d4c92bdcaa43150a08ab950c1fcb4",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e051",
+      "type": "git.commit",
+      "t": "2026-09-10T06:52:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/2f8eeefea5e699452cecb0cef29301437a454766",
+      "summary": "PR #177 commit 2f8eeefea5e6: docs: add ONTO-1 progress report",
+      "meta": {
+        "pr": 177,
+        "sha": "2f8eeefea5e699452cecb0cef29301437a454766",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e052",
+      "type": "git.commit",
+      "t": "2026-09-10T07:02:51Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/d3935d84031d1772debe648b690c09b8f54857fb",
+      "summary": "PR #177 commit d3935d84031d: fix(ontology): add KnowledgeImportRun compiler and runtime",
+      "meta": {
+        "pr": 177,
+        "sha": "d3935d84031d1772debe648b690c09b8f54857fb",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e053",
+      "type": "git.commit",
+      "t": "2026-09-10T07:03:41Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/df4a705338e70df5d0ba9fe592020e149e0e41f4",
+      "summary": "PR #177 commit df4a705338e7: fix(ontology): export missing Row types",
+      "meta": {
+        "pr": 177,
+        "sha": "df4a705338e70df5d0ba9fe592020e149e0e41f4",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e054",
+      "type": "git.commit",
+      "t": "2026-09-10T07:05:16Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/46a2d8040ba1776b40073bd8e9d19f211da09971",
+      "summary": "PR #177 commit 46a2d8040ba1: fix(web): fix knowledge-imports typecheck errors - use enrichedRun.connection and fix timestamps",
+      "meta": {
+        "pr": 177,
+        "sha": "46a2d8040ba1776b40073bd8e9d19f211da09971",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e055",
+      "type": "git.commit",
+      "t": "2026-09-10T07:07:51Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e977a3e2c6f606d55486bbfed06729ace77d68f8",
+      "summary": "PR #177 commit e977a3e2c6f6: fix(web): fix remaining typecheck errors - connectionId, timestamps, Row exports",
+      "meta": {
+        "pr": 177,
+        "sha": "e977a3e2c6f606d55486bbfed06729ace77d68f8",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e056",
+      "type": "git.commit",
+      "t": "2026-09-10T07:22:50Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/2f6f9d4f1d3c226bb4a7d4d5afed1ce8c4e0f49c",
+      "summary": "PR #177 commit 2f6f9d4f1d3c: Complete KnowledgeImportRun migration to zero bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "2f6f9d4f1d3c226bb4a7d4d5afed1ce8c4e0f49c",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e057",
+      "type": "git.commit",
+      "t": "2026-09-10T07:26:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/1b29c1408206822f360c523c41cafc20a3f85bf1",
+      "summary": "PR #177 commit 1b29c1408206: Layer 1: Add KnowledgeImportConnection entity to ontology",
+      "meta": {
+        "pr": 177,
+        "sha": "1b29c1408206822f360c523c41cafc20a3f85bf1",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e058",
+      "type": "git.commit",
+      "t": "2026-09-10T07:26:33Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/f7c17cd51c879ac2408adeda75cd034ccff2dbae",
+      "summary": "PR #177 commit f7c17cd51c87: Layer 2: Add KnowledgeImportConnection planner binding",
+      "meta": {
+        "pr": 177,
+        "sha": "f7c17cd51c879ac2408adeda75cd034ccff2dbae",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e059",
+      "type": "git.commit",
+      "t": "2026-09-10T07:27:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/84662fe403f1e33e0c7b3aabac0e680ae013b01d",
+      "summary": "PR #177 commit 84662fe403f1: Layer 3: Create KnowledgeImportConnection postgres compiler",
+      "meta": {
+        "pr": 177,
+        "sha": "84662fe403f1e33e0c7b3aabac0e680ae013b01d",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e060",
+      "type": "git.commit",
+      "t": "2026-09-10T07:29:04Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/0c9f32289f9360e970b8b808db3ab2e85402045b",
+      "summary": "PR #177 commit 0c9f32289f93: Layer 4: Create KnowledgeImportConnection runtime",
+      "meta": {
+        "pr": 177,
+        "sha": "0c9f32289f9360e970b8b808db3ab2e85402045b",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e061",
+      "type": "git.commit",
+      "t": "2026-09-10T07:29:22Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/b18dcd9a8ae7e54c4e22d060e010b34ef84f37bd",
+      "summary": "PR #177 commit b18dcd9a8ae7: Add KnowledgeImportConnection browse config",
+      "meta": {
+        "pr": 177,
+        "sha": "b18dcd9a8ae7e54c4e22d060e010b34ef84f37bd",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e062",
+      "type": "git.commit",
+      "t": "2026-09-10T07:33:25Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/a562d307423a6be45719271555b33febbe7cd605",
+      "summary": "PR #177 commit a562d307423a: Layer 5 (partial): Start replacing KnowledgeImportConnection bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "a562d307423a6be45719271555b33febbe7cd605",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e063",
+      "type": "git.commit",
+      "t": "2026-09-10T07:34:10Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/dc24cae1e9178ff12ff4819fc05fa9d45b70a12c",
+      "summary": "PR #177 commit dc24cae1e917: Continue replacing KnowledgeImportConnection bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "dc24cae1e9178ff12ff4819fc05fa9d45b70a12c",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e064",
+      "type": "git.commit",
+      "t": "2026-09-10T07:36:10Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/39fd31d98dfb68edac455d9309a8ac02c18e341d",
+      "summary": "PR #177 commit 39fd31d98dfb: Continue replacing KnowledgeImportConnection bypasses (batch 2)",
+      "meta": {
+        "pr": 177,
+        "sha": "39fd31d98dfb68edac455d9309a8ac02c18e341d",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e065",
+      "type": "git.commit",
+      "t": "2026-09-10T07:39:37Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e0d5d82a52309d0774850aa3f6d91abb7ecd9083",
+      "summary": "PR #177 commit e0d5d82a5230: Complete KnowledgeImportConnection bypass replacements (batch 3)",
+      "meta": {
+        "pr": 177,
+        "sha": "e0d5d82a52309d0774850aa3f6d91abb7ecd9083",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e066",
+      "type": "git.commit",
+      "t": "2026-09-10T07:40:30Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/be7e76c7663b748a3c203d92f83722c6e8991385",
+      "summary": "PR #177 commit be7e76c7663b: Add KnowledgeImportConnection migration status document",
+      "meta": {
+        "pr": 177,
+        "sha": "be7e76c7663b748a3c203d92f83722c6e8991385",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e067",
+      "type": "git.commit",
+      "t": "2026-09-10T07:41:24Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/7144d3fe97b5e40c4840bce089c4ff282f632f7a",
+      "summary": "PR #177 commit 7144d3fe97b5: Export KnowledgeImportConnection from ontology package",
+      "meta": {
+        "pr": 177,
+        "sha": "7144d3fe97b5e40c4840bce089c4ff282f632f7a",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e068",
+      "type": "git.commit",
+      "t": "2026-09-10T07:44:15Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/57ef82f92f5e5b6b5bf9e98de4f46c3e73738098",
+      "summary": "PR #177 commit 57ef82f92f5e: Fix TypeScript errors in scheduled-import.ts",
+      "meta": {
+        "pr": 177,
+        "sha": "57ef82f92f5e5b6b5bf9e98de4f46c3e73738098",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e069",
+      "type": "git.commit",
+      "t": "2026-09-10T07:57:56Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/c02371f5b60dd75f082b1e2aa483fea3d4f02b52",
+      "summary": "PR #177 commit c02371f5b60d: Replace KnowledgeImportConnection bypasses with ontology operations",
+      "meta": {
+        "pr": 177,
+        "sha": "c02371f5b60dd75f082b1e2aa483fea3d4f02b52",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e070",
+      "type": "git.commit",
+      "t": "2026-09-10T08:17:10Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5f2782a53feeab7469996b33b85fd4d12a5399d2",
+      "summary": "PR #177 commit 5f2782a53fee: Refactor KnowledgeImportConnection to zero bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "5f2782a53feeab7469996b33b85fd4d12a5399d2",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e071",
+      "type": "git.commit",
+      "t": "2026-09-10T08:23:19Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/392982cc1cf36c259ee8eed9e03a253c63afe299",
+      "summary": "PR #177 commit 392982cc1cf3: Add KnowledgeDraft ontology operations infrastructure",
+      "meta": {
+        "pr": 177,
+        "sha": "392982cc1cf36c259ee8eed9e03a253c63afe299",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e072",
+      "type": "git.commit",
+      "t": "2026-09-10T08:24:54Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/2a3872b3894ca6da6bff8ca1f2ae084e72780c1e",
+      "summary": "PR #177 commit 2a3872b3894c: Add findFirst operation to KnowledgeDraft ontology",
+      "meta": {
+        "pr": 177,
+        "sha": "2a3872b3894ca6da6bff8ca1f2ae084e72780c1e",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e073",
+      "type": "git.commit",
+      "t": "2026-09-10T08:27:11Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/a003d0f421393896f13cd9571bda38a62f751780",
+      "summary": "PR #177 commit a003d0f42139: Migrate 2 KnowledgeDraft bypasses to ontology operations",
+      "meta": {
+        "pr": 177,
+        "sha": "a003d0f421393896f13cd9571bda38a62f751780",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e074",
+      "type": "git.commit",
+      "t": "2026-09-10T08:29:17Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/10cbff1f19445fe9c4cfaaee3fec5344e8880583",
+      "summary": "PR #177 commit 10cbff1f1944: Fix KnowledgeDraft ontology exports and update status",
+      "meta": {
+        "pr": 177,
+        "sha": "10cbff1f19445fe9c4cfaaee3fec5344e8880583",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e075",
+      "type": "git.commit",
+      "t": "2026-09-10T08:30:25Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/8160148d3ba8fe3718ce996ed5501e9b2853e256",
+      "summary": "PR #177 commit 8160148d3ba8: Add comprehensive ONTO-1 final report",
+      "meta": {
+        "pr": 177,
+        "sha": "8160148d3ba8fe3718ce996ed5501e9b2853e256",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e076",
+      "type": "git.commit",
+      "t": "2026-09-10T08:42:14Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/959ed867ee05297fbffa84aec502d6c4d755a609",
+      "summary": "PR #177 commit 959ed867ee05: Fix KnowledgeImportRun and KnowledgeIntakeDocument ontology boundary violations",
+      "meta": {
+        "pr": 177,
+        "sha": "959ed867ee05297fbffa84aec502d6c4d755a609",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e077",
+      "type": "git.commit",
+      "t": "2026-09-10T08:47:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/fc22af034ecdad23af532c329bf0082d6d6775cb",
+      "summary": "PR #177 commit fc22af034ecd: Add findById operation to KnowledgeOrganizationConnector",
+      "meta": {
+        "pr": 177,
+        "sha": "fc22af034ecdad23af532c329bf0082d6d6775cb",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e078",
+      "type": "git.commit",
+      "t": "2026-09-10T08:56:28Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/6616dcc92f770706bb26026d59bd297412cddecc",
+      "summary": "PR #177 commit 6616dcc92f77: Fix approval boundary violations for KnowledgeDraft",
+      "meta": {
+        "pr": 177,
+        "sha": "6616dcc92f770706bb26026d59bd297412cddecc",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e079",
+      "type": "git.commit",
+      "t": "2026-09-10T08:57:05Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e50e9b30227628529dcff88f42e9800e0adc7428",
+      "summary": "PR #177 commit e50e9b302276: Replace Prisma type references in drafts.ts with ontology types",
+      "meta": {
+        "pr": 177,
+        "sha": "e50e9b30227628529dcff88f42e9800e0adc7428",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e080",
+      "type": "git.commit",
+      "t": "2026-09-10T09:04:38Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/aaf73c2bda0d1bb6120f70ad5675f84e1bc8ff1c",
+      "summary": "PR #177 commit aaf73c2bda0d: refactor(ontology): migrate 7 KnowledgeDraft bypasses (type refs + simple delegates)",
+      "meta": {
+        "pr": 177,
+        "sha": "aaf73c2bda0d1bb6120f70ad5675f84e1bc8ff1c",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e081",
+      "type": "git.commit",
+      "t": "2026-09-10T09:06:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/69804d7b2db14200193c172f9b59ea1ea1413194",
+      "summary": "PR #177 commit 69804d7b2db1: refactor(ontology): migrate 2 more simple KnowledgeDraft delegate calls",
+      "meta": {
+        "pr": 177,
+        "sha": "69804d7b2db14200193c172f9b59ea1ea1413194",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e082",
+      "type": "git.commit",
+      "t": "2026-09-10T09:07:43Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/d5efb17cf1a321f5de57f55f48a8c81196470bcb",
+      "summary": "PR #177 commit d5efb17cf1a3: refactor(ontology): fix 3 Prisma type bypasses in article-links and draft-proposals",
+      "meta": {
+        "pr": 177,
+        "sha": "d5efb17cf1a321f5de57f55f48a8c81196470bcb",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e083",
+      "type": "git.commit",
+      "t": "2026-09-10T09:09:22Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/9f40fd2ccba807094efebe81ca0bbccc42981cd3",
+      "summary": "PR #177 commit 9f40fd2ccba8: fix(ontology): correct findById scope parameter in ontology calls",
+      "meta": {
+        "pr": 177,
+        "sha": "9f40fd2ccba807094efebe81ca0bbccc42981cd3",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e084",
+      "type": "git.commit",
+      "t": "2026-09-10T09:15:11Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/6d0c4356e4176c7223fbdf1c62861c1aedcc5319",
+      "summary": "PR #177 commit 6d0c4356e417: refactor(ontology): Fix 2 KnowledgeDraft bypasses in publication and kira-source-evidence",
+      "meta": {
+        "pr": 177,
+        "sha": "6d0c4356e4176c7223fbdf1c62861c1aedcc5319",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e085",
+      "type": "git.commit",
+      "t": "2026-09-10T09:16:38Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/18cf6e00d3c3d7153a4910b96fd30189aa9fd298",
+      "summary": "PR #177 commit 18cf6e00d3c3: refactor(ontology): Fix 2 more KnowledgeDraft bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "18cf6e00d3c3d7153a4910b96fd30189aa9fd298",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e086",
+      "type": "git.commit",
+      "t": "2026-09-10T09:18:17Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/6db91f494ecfc039ba977a6162bab56b9d05ff67",
+      "summary": "PR #177 commit 6db91f494ecf: refactor(ontology): Fix 4 KnowledgeDraft bypasses in runtime.ts",
+      "meta": {
+        "pr": 177,
+        "sha": "6db91f494ecfc039ba977a6162bab56b9d05ff67",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e087",
+      "type": "git.commit",
+      "t": "2026-09-10T09:19:27Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/4aa6064d92b7d4732e065b3e22fb2946c884480f",
+      "summary": "PR #177 commit 4aa6064d92b7: refactor(ontology): Remove 2 FOR UPDATE locks (article-locks, approval-review)",
+      "meta": {
+        "pr": 177,
+        "sha": "4aa6064d92b7d4732e065b3e22fb2946c884480f",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e088",
+      "type": "git.commit",
+      "t": "2026-09-10T09:32:13Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/f708ced0c101714f52440fae05ac3c0c88209fcf",
+      "summary": "PR #177 commit f708ced0c101: refactor(ontology): Eliminate 26 KnowledgeDraft bypasses (39\u219213)",
+      "meta": {
+        "pr": 177,
+        "sha": "f708ced0c101714f52440fae05ac3c0c88209fcf",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e089",
+      "type": "git.commit",
+      "t": "2026-09-10T09:35:02Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/f430496a96f7dc21aadf29b48b5722ec7978fcc7",
+      "summary": "PR #177 commit f430496a96f7: refactor(ontology): Eliminate all 30 delegate bypasses for KnowledgeDraft (39\u21927)",
+      "meta": {
+        "pr": 177,
+        "sha": "f430496a96f7dc21aadf29b48b5722ec7978fcc7",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e090",
+      "type": "git.commit",
+      "t": "2026-09-10T09:37:55Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/188259dd3909c06371f6c7416bc2952be1beff57",
+      "summary": "PR #177 commit 188259dd3909: refactor(ontology): Replace tenantCurrentHeadSql with findHeads ontology operation",
+      "meta": {
+        "pr": 177,
+        "sha": "188259dd3909c06371f6c7416bc2952be1beff57",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e091",
+      "type": "git.commit",
+      "t": "2026-09-10T09:48:52Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/6e80333a3cfdc033753506d95341bdc8b6c06405",
+      "summary": "PR #177 commit 6e80333a3cfd: Add findLibraryHeads operation to eliminate all KnowledgeDraft SQL bypasses",
+      "meta": {
+        "pr": 177,
+        "sha": "6e80333a3cfdc033753506d95341bdc8b6c06405",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e092",
+      "type": "git.commit",
+      "t": "2026-09-10T09:57:18Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e74fefd620de0243eec3f8c1549834aef0c23a01",
+      "summary": "PR #177 commit e74fefd620de: Fix typecheck errors (WIP: 31 remaining type errors in staged queries)",
+      "meta": {
+        "pr": 177,
+        "sha": "e74fefd620de0243eec3f8c1549834aef0c23a01",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e093",
+      "type": "git.commit",
+      "t": "2026-09-10T10:07:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/238d96e0883db88fb647ea01e2802ce023ee1918",
+      "summary": "PR #177 commit 238d96e0883d: Fix nullable document fields in staged query code",
+      "meta": {
+        "pr": 177,
+        "sha": "238d96e0883db88fb647ea01e2802ce023ee1918",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e094",
+      "type": "git.commit",
+      "t": "2026-09-10T10:18:29Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/5bf72a6d24ef39b11f236c31d6068d7d5e4e9d43",
+      "summary": "PR #177 commit 5bf72a6d24ef: WIP: Fix ontology type mismatches in drafts.ts",
+      "meta": {
+        "pr": 177,
+        "sha": "5bf72a6d24ef39b11f236c31d6068d7d5e4e9d43",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e095",
+      "type": "git.commit",
+      "t": "2026-09-10T10:20:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/cb06db4ba67dd0cfc58612ad4b13ed3651877c56",
+      "summary": "PR #177 commit cb06db4ba67d: fix: Remove scope from findById requests",
+      "meta": {
+        "pr": 177,
+        "sha": "cb06db4ba67dd0cfc58612ad4b13ed3651877c56",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e096",
+      "type": "git.commit",
+      "t": "2026-09-10T10:21:36Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/813ca279acdb53350245e3ceeed6923d6ebb9094",
+      "summary": "PR #177 commit 813ca279acdb: WIP: Partial enrichment fixes for DocumentRow construction",
+      "meta": {
+        "pr": 177,
+        "sha": "813ca279acdb53350245e3ceeed6923d6ebb9094",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e097",
+      "type": "git.commit",
+      "t": "2026-09-10T10:28:01Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/bc9a072cc8f51e487603d7d152f823b8e1da53f4",
+      "summary": "PR #177 commit bc9a072cc8f5: Add missing fields to KnowledgeDraft ontology",
+      "meta": {
+        "pr": 177,
+        "sha": "bc9a072cc8f51e487603d7d152f823b8e1da53f4",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e098",
+      "type": "git.commit",
+      "t": "2026-09-10T10:36:21Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/baf8047cdf46fb2b9d54bee14b6c8494a5b277f9",
+      "summary": "PR #177 commit baf8047cdf46: fix: correct ontology operation parameters in approvals (12 errors fixed)",
+      "meta": {
+        "pr": 177,
+        "sha": "baf8047cdf46fb2b9d54bee14b6c8494a5b277f9",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e099",
+      "type": "git.commit",
+      "t": "2026-09-10T10:38:02Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/9c498a7bbab30f9afd4882ca680c64d240d484c1",
+      "summary": "PR #177 commit 9c498a7bbab3: fix: resolve null checks and missing fields in knowledge-imports (8 errors fixed)",
+      "meta": {
+        "pr": 177,
+        "sha": "9c498a7bbab30f9afd4882ca680c64d240d484c1",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e100",
+      "type": "git.commit",
+      "t": "2026-09-10T10:39:38Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/0edeb34aa93c2ba074094c2ae963212c5d35f7e0",
+      "summary": "PR #177 commit 0edeb34aa93c: fix: remove scope parameter from findById operations (24 errors fixed)",
+      "meta": {
+        "pr": 177,
+        "sha": "0edeb34aa93c2ba074094c2ae963212c5d35f7e0",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e101",
+      "type": "git.commit",
+      "t": "2026-09-10T10:41:18Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/97481ae030f4b0afa0ea07e5b18e99ce20f4a74c",
+      "summary": "PR #177 commit 97481ae030f4: fix: add userId to scope and convert FieldValue dates (17 errors fixed)",
+      "meta": {
+        "pr": 177,
+        "sha": "97481ae030f4b0afa0ea07e5b18e99ce20f4a74c",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e102",
+      "type": "git.commit",
+      "t": "2026-09-10T10:42:29Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/0a82a2ee7f328841b3660e7b54c8aabb2850b7b5",
+      "summary": "PR #177 commit 0a82a2ee7f32: fix: remove more scope parameters from findById (2 errors fixed)",
+      "meta": {
+        "pr": 177,
+        "sha": "0a82a2ee7f328841b3660e7b54c8aabb2850b7b5",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e103",
+      "type": "git.commit",
+      "t": "2026-09-10T10:54:25Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/1f97b730d15c5ec4d9a4b0b022d59aa3a4985b73",
+      "summary": "PR #177 commit 1f97b730d15c: WIP: Fix typecheck errors in relationships.ts and partial draft-proposals.ts",
+      "meta": {
+        "pr": 177,
+        "sha": "1f97b730d15c5ec4d9a4b0b022d59aa3a4985b73",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e104",
+      "type": "git.commit",
+      "t": "2026-09-10T10:56:54Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/52ee75b66d3870abcc821b274631200eddd3cde9",
+      "summary": "PR #177 commit 52ee75b66d38: Progress on draft-proposals.ts typecheck fixes",
+      "meta": {
+        "pr": 177,
+        "sha": "52ee75b66d3870abcc821b274631200eddd3cde9",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e105",
+      "type": "git.commit",
+      "t": "2026-09-10T11:04:46Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e4fbc1ae71ffe996d7e7c3aab27a5e60a326b591",
+      "summary": "PR #177 commit e4fbc1ae71ff: Complete scheduled-import.ts typecheck fixes",
+      "meta": {
+        "pr": 177,
+        "sha": "e4fbc1ae71ffe996d7e7c3aab27a5e60a326b591",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e106",
+      "type": "git.commit",
+      "t": "2026-09-10T11:06:08Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/4c1b6bff3b1973a9caa0b9d5a1619c49a727d5ed",
+      "summary": "PR #177 commit 4c1b6bff3b19: Document ONTO-1 progress: 0/0 bypasses \u2705, 60% error reduction",
+      "meta": {
+        "pr": 177,
+        "sha": "4c1b6bff3b1973a9caa0b9d5a1619c49a727d5ed",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e107",
+      "type": "git.commit",
+      "t": "2026-09-10T11:20:06Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/b6e78b1a4c42145f1c757a6920de68e2121c0970",
+      "summary": "PR #177 commit b6e78b1a4c42: Fix final 38 typecheck errors to complete ONTO-1",
+      "meta": {
+        "pr": 177,
+        "sha": "b6e78b1a4c42145f1c757a6920de68e2121c0970",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e108",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T11:22:25Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177",
+      "summary": "PR #177 marked ready for review",
+      "meta": {
+        "number": 177,
+        "to": "ready"
+      }
+    },
+    {
+      "id": "e109",
+      "type": "agent.ended",
+      "t": "2026-09-10T11:22:39.397Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1: remaining Knowledge ontology entities",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "url": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "pr": 177,
+        "proof": "last transcript tool started_at_ms (aligns with PR #177 ready_for_review 11:22:25Z)",
+        "agent_status": "finished"
+      }
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T11:24:51.916Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789039491916"
+      },
+      "id": "e110"
+    },
+    {
+      "id": "e111",
+      "type": "agent.started",
+      "t": "2026-09-10T11:24:51.916Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+      "summary": "Cloud agent started/active: ONTO-1: fix planner placements / restore CI",
+      "meta": {
+        "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "url": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "pr": 177,
+        "proof": "first transcript tool started_at_ms"
+      }
+    },
+    {
+      "id": "e112",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T11:25:14Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177",
+      "summary": "PR #177 converted to draft",
+      "meta": {
+        "number": 177,
+        "to": "draft"
+      }
+    },
+    {
+      "id": "e113",
+      "type": "git.commit",
+      "t": "2026-09-10T11:34:16Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/4c47ddac0f84ab9bd675ca83d7378222b16ecf96",
+      "summary": "PR #177 commit 4c47ddac0f84: Fix KnowledgeDraft and KnowledgeImportConnection placement type errors",
+      "meta": {
+        "pr": 177,
+        "sha": "4c47ddac0f84ab9bd675ca83d7378222b16ecf96",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e114",
+      "type": "git.commit",
+      "t": "2026-09-10T11:47:08Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/ea7720fbf547a015e094f37cc2d25929e70dfc89",
+      "summary": "PR #177 commit ea7720fbf547: Fix all ESLint no-explicit-any errors in web knowledge files",
+      "meta": {
+        "pr": 177,
+        "sha": "ea7720fbf547a015e094f37cc2d25929e70dfc89",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e115",
+      "type": "git.commit",
+      "t": "2026-09-10T11:53:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/00f7226342be2e6bd50bd8b158dbb569a04af27e",
+      "summary": "PR #177 commit 00f7226342be: Remove WorkOS branding from ontology field descriptions",
+      "meta": {
+        "pr": 177,
+        "sha": "00f7226342be2e6bd50bd8b158dbb569a04af27e",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e116",
+      "type": "git.commit",
+      "t": "2026-09-10T11:58:32Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/9aebd1bf295543b29525348f02b93ca3282d872a",
+      "summary": "PR #177 commit 9aebd1bf2955: Fix ontology-memory prove: Add required fields to KnowledgeDraft fixtures",
+      "meta": {
+        "pr": 177,
+        "sha": "9aebd1bf295543b29525348f02b93ca3282d872a",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e117",
+      "type": "git.commit",
+      "t": "2026-09-10T11:59:41Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/8dc3d6951e7080799b988262f262d280e5aa6e38",
+      "summary": "PR #177 commit 8dc3d6951e70: Fix KnowledgeSourcePassage scope route: inherit from KnowledgeSourceVersion",
+      "meta": {
+        "pr": 177,
+        "sha": "8dc3d6951e7080799b988262f262d280e5aa6e38",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e118",
+      "type": "git.commit",
+      "t": "2026-09-10T12:23:22Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/bcfdb6a6498c2bc66aae4df18dacdf81a7c80339",
+      "summary": "PR #177 commit bcfdb6a6498c: Add postgres bindings for all new Knowledge entities",
+      "meta": {
+        "pr": 177,
+        "sha": "bcfdb6a6498c2bc66aae4df18dacdf81a7c80339",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e119",
+      "type": "git.commit",
+      "t": "2026-09-10T12:27:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/2b3366c10583c3555ae9a8d22637894cbc7a924f",
+      "summary": "PR #177 commit 2b3366c10583: Sync runtime knowledgeDraftBindingSpec() with test binding spec",
+      "meta": {
+        "pr": 177,
+        "sha": "2b3366c10583c3555ae9a8d22637894cbc7a924f",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e120",
+      "type": "git.commit",
+      "t": "2026-09-10T12:42:43Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/53666566bbe920f60cefc6f9eada69e1e09ecc06",
+      "summary": "PR #177 commit 53666566bbe9: Remove TS6133 unused imports, start DTO types for web typecheck",
+      "meta": {
+        "pr": 177,
+        "sha": "53666566bbe920f60cefc6f9eada69e1e09ecc06",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e121",
+      "type": "git.commit",
+      "t": "2026-09-10T12:45:08Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/c0b357641e9344d3b4d966cc5afff2903bbfc691",
+      "summary": "PR #177 commit c0b357641e93: Fix null assignment and relationAttempt type errors",
+      "meta": {
+        "pr": 177,
+        "sha": "c0b357641e9344d3b4d966cc5afff2903bbfc691",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e122",
+      "type": "git.commit",
+      "t": "2026-09-10T12:47:59Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/73a5ca7179c4d2c07ce29b6464f82544afa528f6",
+      "summary": "PR #177 commit 73a5ca7179c4: Complete DTO types for web typecheck - all pass",
+      "meta": {
+        "pr": 177,
+        "sha": "73a5ca7179c4d2c07ce29b6464f82544afa528f6",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e123",
+      "type": "git.commit",
+      "t": "2026-09-10T12:57:39Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/514175eabb23bf20d1f8f9c0adc814c455e873b5",
+      "summary": "PR #177 commit 514175eabb23: Fix TS6133 unused params and imports in postgres/runtime",
+      "meta": {
+        "pr": 177,
+        "sha": "514175eabb23bf20d1f8f9c0adc814c455e873b5",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e124",
+      "type": "git.commit",
+      "t": "2026-09-10T13:01:51Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/acf0d6dcb95b0669f0bb2ca8293a2e5a237821d9",
+      "summary": "PR #177 commit acf0d6dcb95b: Remove invented KnowledgeDraft columns - align with actual PG schema",
+      "meta": {
+        "pr": 177,
+        "sha": "acf0d6dcb95b0669f0bb2ca8293a2e5a237821d9",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e125",
+      "type": "git.commit",
+      "t": "2026-09-10T13:06:05Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/c204a085c971369c2bc0e61e0b3b4d9b57441459",
+      "summary": "PR #177 commit c204a085c971: Fix TS6133 unused authorization params - prefix with underscore",
+      "meta": {
+        "pr": 177,
+        "sha": "c204a085c971369c2bc0e61e0b3b4d9b57441459",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e126",
+      "type": "git.commit",
+      "t": "2026-09-10T13:07:57Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/efda19fe61ff118d6d253c440be011fea00c94ef",
+      "summary": "PR #177 commit efda19fe61ff: Add tenant columns back to test binding spec",
+      "meta": {
+        "pr": 177,
+        "sha": "efda19fe61ff118d6d253c440be011fea00c94ef",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e127",
+      "type": "git.commit",
+      "t": "2026-09-10T13:08:03Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/9bf220deea87ced89ee8d568f18c2f19de5d5482",
+      "summary": "PR #177 commit 9bf220deea87: Revert 'Remove invented KnowledgeDraft columns - align with actual PG schema'",
+      "meta": {
+        "pr": 177,
+        "sha": "9bf220deea87ced89ee8d568f18c2f19de5d5482",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e128",
+      "type": "git.commit",
+      "t": "2026-09-10T13:09:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/3650767968bbb167a879cd3eb49fd2cf6e5ae97d",
+      "summary": "PR #177 commit 3650767968bb: Fix unused imports and add null assertions for KnowledgePublication",
+      "meta": {
+        "pr": 177,
+        "sha": "3650767968bbb167a879cd3eb49fd2cf6e5ae97d",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e129",
+      "type": "git.commit",
+      "t": "2026-09-10T13:15:01Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/fc7de5b42d2af99da2c79a6a28b2718e81fbae4a",
+      "summary": "PR #177 commit fc7de5b42d2a: Fix all postgres prove TS6133 errors",
+      "meta": {
+        "pr": 177,
+        "sha": "fc7de5b42d2af99da2c79a6a28b2718e81fbae4a",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T13:20:55.638Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a#reply",
+      "summary": "Slash command(s) on reply: /poteto-mode",
+      "meta": {
+        "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "commands": [
+          "/poteto-mode"
+        ],
+        "phase": "reply",
+        "t_proof": "next_tool_started_at_ms=1789046455638"
+      },
+      "id": "e130"
+    },
+    {
+      "id": "e131",
+      "type": "git.commit",
+      "t": "2026-09-10T14:24:59Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/85afe46a9af4133560efcafba6ab6378eff2f873",
+      "summary": "PR #177 commit 85afe46a9af4: refactor(ontology): carve PR to explicit-link slice",
+      "meta": {
+        "pr": 177,
+        "sha": "85afe46a9af4133560efcafba6ab6378eff2f873",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e132",
+      "type": "git.commit",
+      "t": "2026-09-10T14:31:21Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/1237d1fb43466c0a026b3170a83da45ab264bb0b",
+      "summary": "PR #177 commit 1237d1fb4346: fix(ontology): return explicit links from target row",
+      "meta": {
+        "pr": 177,
+        "sha": "1237d1fb43466c0a026b3170a83da45ab264bb0b",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e133",
+      "type": "ci.started",
+      "t": "2026-09-10T14:31:32Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34489624774",
+      "summary": "PR #177 CI started (preview-plane final check-runs (head 1237d1fb4346))",
+      "meta": {
+        "pr": 177,
+        "run_id": 34489624774,
+        "conclusion_expected": "success"
+      }
+    },
+    {
+      "id": "e134",
+      "type": "ci.ended",
+      "t": "2026-09-10T14:34:48Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34489624774",
+      "summary": "PR #177 CI ended (success)",
+      "meta": {
+        "pr": 177,
+        "run_id": 34489624774,
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e135",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T14:35:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177",
+      "summary": "PR #177 marked ready for review",
+      "meta": {
+        "number": 177,
+        "to": "ready"
+      }
+    },
+    {
+      "id": "e136",
+      "type": "agent.ended",
+      "t": "2026-09-10T14:36:34.499Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1: fix planner placements / restore CI",
+      "meta": {
+        "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "url": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "pr": 177,
+        "proof": "last transcript tool completed_at_ms before merge notifications",
+        "agent_status": "finished"
+      }
+    },
+    {
+      "id": "e137",
+      "type": "pr.status_changed",
+      "t": "2026-09-10T14:52:21Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/177",
+      "summary": "PR #177 merged",
+      "meta": {
+        "number": 177,
+        "state": "merged",
+        "merge_commit_known": true
+      }
+    },
+    {
+      "id": "e138",
+      "type": "board.stage_changed",
+      "t": "2026-09-10T14:52:35.825Z",
+      "source": "notion_eng_prs",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea819292aaf26fff181914",
+      "summary": "Eng PRs ExplicitLink row observed Stage=Done (page_last_edited_at; coincides with #177 merge)",
+      "meta": {
+        "eng_prs_id": "3d75dbdd-f0ea-8192-92aa-f26fff181914",
+        "stage": "Done",
+        "prs_field": "#177 merged",
+        "proof": "page_last_edited_at with Stage Done"
+      }
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-10T14:54:40Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6374505136/statuses",
+      "summary": "Products Production deploy ready for merge SHA 7a83801e (PR #177)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 177,
+        "sha": "7a83801ea303209856297cfe99e3f7081f9365d0",
+        "environment": "Production",
+        "deployment_id": 6374505136,
+        "state": "success",
+        "target_url": "https://itsm-88kipkrzj-z124-d5f14b61.vercel.app"
+      },
+      "id": "e139"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T15:00:02.114Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-4d1d7968-4207-4015-9524-a30222fa056a#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789052402114"
+      },
+      "id": "e140"
+    },
+    {
+      "id": "e141",
+      "type": "agent.started",
+      "t": "2026-09-10T15:00:02.114Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+      "summary": "Cloud agent started/active: ONTO-1: KnowledgeArticleRelation ontology slice",
+      "meta": {
+        "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "url": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "pr": 190,
+        "proof": "first transcript tool started_at_ms"
+      }
+    },
+    {
+      "id": "e142",
+      "type": "git.commit",
+      "t": "2026-09-10T17:05:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/286584ab48f8fc6b8d1b513bdebb526fc17619d1",
+      "summary": "PR #190 commit 286584ab48f8: feat(ontology): migrate KnowledgeArticleRelation",
+      "meta": {
+        "pr": 190,
+        "sha": "286584ab48f8fc6b8d1b513bdebb526fc17619d1",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e143",
+      "type": "pr.created",
+      "t": "2026-09-10T17:05:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190",
+      "summary": "PR #190 opened: feat(ontology): migrate KnowledgeArticleRelation",
+      "meta": {
+        "number": 190,
+        "head": "cursor/knowledge-relation-ontology-056a",
+        "draft_at_create": "likely (ready_for_review observed later)"
+      }
+    },
+    {
+      "id": "e144",
+      "type": "git.commit",
+      "t": "2026-09-10T17:07:20Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/07d5ee1b3b55ba7379ec94d177719dfa06f14ed1",
+      "summary": "PR #190 commit 07d5ee1b3b55: Merge remote-tracking branch 'origin/main' into cursor/knowledge-relation-ontology-056a",
+      "meta": {
+        "pr": 190,
+        "sha": "07d5ee1b3b55ba7379ec94d177719dfa06f14ed1",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e145",
+      "type": "git.commit",
+      "t": "2026-09-10T17:25:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/9795c8f8df6c908be6fa58fd8a8b9b9cfbcc73ec",
+      "summary": "PR #190 commit 9795c8f8df6c: test(knowledge): observe relation ontology races",
+      "meta": {
+        "pr": 190,
+        "sha": "9795c8f8df6c908be6fa58fd8a8b9b9cfbcc73ec",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e146",
+      "type": "git.commit",
+      "t": "2026-09-10T18:02:37Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/27f1a9c1837e6b4af9fc4d9468aa007789ed047a",
+      "summary": "PR #190 commit 27f1a9c1837e: fix(ontology): preserve serialization failure causes",
+      "meta": {
+        "pr": 190,
+        "sha": "27f1a9c1837e6b4af9fc4d9468aa007789ed047a",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e147",
+      "type": "git.commit",
+      "t": "2026-09-10T18:02:37Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/b4bca278663e3e2871f259876f158a01e4f4f870",
+      "summary": "PR #190 commit b4bca278663e: fix(ontology): preserve relation UTC timestamps",
+      "meta": {
+        "pr": 190,
+        "sha": "b4bca278663e3e2871f259876f158a01e4f4f870",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e148",
+      "type": "git.commit",
+      "t": "2026-09-10T18:03:36Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/fc7b3f08734a934dc7683a1b6231fa7db0845dca",
+      "summary": "PR #190 commit fc7b3f08734a: test(knowledge): fail fast on missed relation reads",
+      "meta": {
+        "pr": 190,
+        "sha": "fc7b3f08734a934dc7683a1b6231fa7db0845dca",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e149",
+      "type": "ci.started",
+      "t": "2026-09-10T18:03:58Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34511999760",
+      "summary": "PR #190 CI started (preview-plane final check-runs (head fc7b3f08734a))",
+      "meta": {
+        "pr": 190,
+        "run_id": 34511999760,
+        "conclusion_expected": "success"
+      }
+    },
+    {
+      "id": "e150",
+      "type": "ci.ended",
+      "t": "2026-09-10T18:07:33Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34511999760",
+      "summary": "PR #190 CI ended (success)",
+      "meta": {
+        "pr": 190,
+        "run_id": 34511999760,
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e151",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T18:08:27Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190",
+      "summary": "PR #190 marked ready for review",
+      "meta": {
+        "number": 190,
+        "to": "ready"
+      }
+    },
+    {
+      "id": "e152",
+      "type": "agent.ended",
+      "t": "2026-09-10T18:30:32.918Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1: KnowledgeArticleRelation ontology slice",
+      "meta": {
+        "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "url": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "pr": 190,
+        "proof": "last transcript tool completed_at_ms (PR #190 merged 18:34:07Z)",
+        "agent_status": "finished"
+      }
+    },
+    {
+      "id": "e153",
+      "type": "pr.status_changed",
+      "t": "2026-09-10T18:34:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/190",
+      "summary": "PR #190 merged",
+      "meta": {
+        "number": 190,
+        "state": "merged",
+        "merge_commit_known": true
+      }
+    },
+    {
+      "id": "e154",
+      "type": "board.stage_changed",
+      "t": "2026-09-10T18:34:49.287Z",
+      "source": "notion_eng_prs",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81fb857cd928dc5217d1",
+      "summary": "Eng PRs Relation row observed Stage=Done (page_last_edited_at; coincides with #190 merge)",
+      "meta": {
+        "eng_prs_id": "3d75dbdd-f0ea-81fb-857c-d928dc5217d1",
+        "stage": "Done",
+        "prs_field": "#190 merged",
+        "proof": "page_last_edited_at with Stage Done"
+      }
+    },
+    {
+      "id": "e155",
+      "type": "board.stage_changed",
+      "t": "2026-09-10T18:35:04.902Z",
+      "source": "notion_eng_prs",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
+      "summary": "Eng PRs ArticleNode row observed Stage=Working + agent bc-3c4b856f\u2026 bound",
+      "meta": {
+        "eng_prs_id": "3d75dbdd-f0ea-81c0-bd98-c0369d35dff3",
+        "stage": "Working",
+        "prs_field": "(pending)",
+        "cloud_agent": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "proof": "page_last_edited_at with Stage Working"
+      }
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T18:35:11.277Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789065311277"
+      },
+      "id": "e156"
+    },
+    {
+      "id": "e157",
+      "type": "agent.started",
+      "t": "2026-09-10T18:35:11.277Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+      "summary": "Cloud agent started/active: ONTO-1: KnowledgeArticleNode ontology slice",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "url": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "pr": null,
+        "proof": "first transcript tool started_at_ms (still running as_of)"
+      }
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-10T18:36:26Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6378580898/statuses",
+      "summary": "Products Production deploy ready for merge SHA 903a260c (PR #190)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 190,
+        "sha": "903a260c2e30a43d7b8bf2337e139811be9566c3",
+        "environment": "Production",
+        "deployment_id": 6378580898,
+        "state": "success",
+        "target_url": "https://itsm-1ecyfme7c-z124-d5f14b61.vercel.app"
+      },
+      "id": "e158"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-10T19:08:27Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "summary": "PR #194 commit 1bbf3d0a227e: feat(ontology): migrate KnowledgeArticleNode",
+      "meta": {
+        "pr": 194,
+        "sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac"
+      },
+      "id": "e159"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-10T19:08:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194",
+      "summary": "PR #194 opened: feat(ontology): migrate KnowledgeArticleNode",
+      "meta": {
+        "pr": 194,
+        "draft": true,
+        "head": "cursor/knowledge-article-node-ontology-98d2"
+      },
+      "id": "e160"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-10T19:08:48Z",
+      "source": "github_check_runs",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "summary": "PR #194 CI started (final head check-runs)",
+      "meta": {
+        "pr": 194,
+        "head_sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac"
+      },
+      "id": "e161"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-10T19:12:34.538Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2#completed_at_ms=1789067554538",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1 KnowledgeArticleNode",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "status": "finished",
+        "evidence": "max completed_at_ms in transcript"
+      },
+      "id": "e162"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-10T19:12:57Z",
+      "source": "github_check_runs",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "summary": "PR #194 CI ended (success)",
+      "meta": {
+        "pr": 194,
+        "conclusion": "success",
+        "check_runs": 45
+      },
+      "id": "e163"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T19:14:50Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194",
+      "summary": "PR #194 marked ready for review",
+      "meta": {
+        "pr": 194,
+        "draft": false
+      },
+      "id": "e164"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-10T19:15:29Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194",
+      "summary": "PR #194 merged",
+      "meta": {
+        "pr": 194,
+        "state": "MERGED",
+        "merge_sha": "a6b5123f1cec415d61e9c1c626c254d53dcd9448"
+      },
+      "id": "e165"
+    },
+    {
+      "type": "board.stage_changed",
+      "t": "2026-09-10T19:15:49.581Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
+      "summary": "Eng PRs ArticleNode row observed Stage=Done (#194 merged)",
+      "meta": {
+        "stage": "Done",
+        "prs": "#194 merged",
+        "page_last_edited_at": "2026-09-10T19:15:49.581Z"
+      },
+      "id": "e166"
+    },
+    {
+      "type": "board.stage_changed",
+      "t": "2026-09-10T19:15:59.310Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e",
+      "summary": "Eng PRs DraftProposal row observed Stage=Working + agent bc-392c0fbe\u2026 bound",
+      "meta": {
+        "stage": "Working",
+        "agent": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+        "page_last_edited_at": "2026-09-10T19:15:59.310Z"
+      },
+      "id": "e167"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-10T19:16:04.641Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-392c0fbe-005e-4925-b749-14caaabe7e61#started_at_ms=1789067764641",
+      "summary": "Cloud agent started/active: ONTO-1 KnowledgeDraftProposal ontology slice",
+      "meta": {
+        "agent_id": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+        "status": "running",
+        "evidence": "min started_at_ms in transcript"
+      },
+      "id": "e168"
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-10T19:17:49Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6379301420/statuses",
+      "summary": "Products Production deploy ready for merge SHA a6b5123f (PR #194)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 194,
+        "sha": "a6b5123f1cec415d61e9c1c626c254d53dcd9448",
+        "environment": "Production",
+        "deployment_id": 6379301420,
+        "state": "success",
+        "target_url": "https://itsm-38a4vbufu-z124-d5f14b61.vercel.app"
+      },
+      "id": "e169"
+    }
+  ],
+  "spans": [
+    {
+      "id": "span-wall",
+      "kind": "wall",
+      "start": "2026-09-09T15:07:46Z",
+      "end": "2026-09-10T19:26:57.992Z",
+      "seconds": 101951,
+      "meta": {
+        "start_proof": "first git.commit on PR #146 (task.created unproven)",
+        "end_proof": "as_of (still running)"
+      }
+    },
+    {
+      "id": "span-idle-1",
+      "kind": "idle",
+      "start": "2026-09-09T19:29:41Z",
+      "end": "2026-09-10T01:51:59.254Z",
+      "seconds": 22938,
+      "meta": {
+        "reason": "after PR #146 merge until bc-998fc92a first tool",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-2",
+      "kind": "idle",
+      "start": "2026-09-10T11:22:39.397Z",
+      "end": "2026-09-10T11:24:51.916Z",
+      "seconds": 132,
+      "meta": {
+        "reason": "after bc-998fc92a\u2026 until bc-6caaa2d8\u2026",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-3",
+      "kind": "idle",
+      "start": "2026-09-10T14:36:34.499Z",
+      "end": "2026-09-10T15:00:02.114Z",
+      "seconds": 1407,
+      "meta": {
+        "reason": "after bc-6caaa2d8\u2026 until bc-4d1d7968\u2026",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-4",
+      "kind": "idle",
+      "start": "2026-09-10T18:30:32.918Z",
+      "end": "2026-09-10T18:35:11.277Z",
+      "seconds": 278,
+      "meta": {
+        "reason": "after bc-4d1d7968\u2026 until bc-3c4b856f\u2026",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-5",
+      "kind": "idle",
+      "start": "2026-09-10T19:12:34.538Z",
+      "end": "2026-09-10T19:16:04.641Z",
+      "seconds": 210,
+      "meta": {
+        "reason": "after bc-3c4b856f\u2026 until bc-392c0fbe\u2026",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-ci-pr146",
+      "kind": "ci",
+      "start": "2026-09-09T16:15:46Z",
+      "end": "2026-09-09T16:18:52Z",
+      "seconds": 186,
+      "meta": {
+        "pr": 146,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
+    },
+    {
+      "id": "span-ci-pr177",
+      "kind": "ci",
+      "start": "2026-09-10T14:31:32Z",
+      "end": "2026-09-10T14:34:48Z",
+      "seconds": 196,
+      "meta": {
+        "pr": 177,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
+    },
+    {
+      "id": "span-ci-pr190",
+      "kind": "ci",
+      "start": "2026-09-10T18:03:58Z",
+      "end": "2026-09-10T18:07:33Z",
+      "seconds": 215,
+      "meta": {
+        "pr": 190,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
+    },
+    {
+      "id": "span-ci-pr194",
+      "kind": "ci",
+      "start": "2026-09-10T19:08:48Z",
+      "end": "2026-09-10T19:12:57Z",
+      "seconds": 249,
+      "meta": {
+        "pr": 194,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
+    }
+  ],
+  "totals": {
+    "wall_seconds": 101951,
+    "waiting_human_seconds": 0,
+    "idle_seconds": 24965,
+    "stuck_seconds": 0,
+    "ci_seconds": 846
+  },
+  "omissions": [
+    {
+      "wanted": "task.created",
+      "reason": "Notion created_time not exposed by fetch; query_data_sources plan-gated"
+    },
+    {
+      "wanted": "task.status_changed / task.bot_changed",
+      "reason": "No proven property-history timestamps for Status/Bot transitions (current: In progress / Solon (EM))"
+    },
+    {
+      "wanted": "agent.* for PR #146",
+      "reason": "No cloud-agent transcript with started_at_ms recovered for KnowledgeOperatorOperation slice"
+    },
+    {
+      "wanted": "deploy.completed for PR #146",
+      "reason": "Vercel deployment_status for merge SHA a5446a73 was failure (2026-09-09T19:30:48Z); only success\u2192ready emits deploy.completed"
+    },
+    {
+      "wanted": "agent.slash_command for bc-392c0fbe launch",
+      "reason": "Launch prompt mentions pstack/poteto quality but no explicit /poteto-mode or /pstack slash invocation"
+    },
+    {
+      "wanted": "todo.*",
+      "reason": "Cursor todos not recoverable as timed events from transcripts"
+    },
+    {
+      "wanted": "ci.* intermediate runs",
+      "reason": "Only final successful check-run windows per PR included"
+    },
+    {
+      "wanted": "human.approval_* / waiting_human",
+      "reason": "No explicit merge-ask / approval widget timestamps; ready_for_review\u2260proven approval_requested"
+    },
+    {
+      "wanted": "subagent.*",
+      "reason": "No recoverable Cursor subagent start/end pairs with proven t (system_notification subagent tasks lack paired ended events with stable ids)"
+    },
+    {
+      "wanted": "page comments",
+      "reason": "notion-get-comments not re-queried; prior gather returned none"
+    },
+    {
+      "wanted": "Note dated stamps",
+      "reason": "Task Note is undated property text only; omitted as note event"
+    }
+  ]
+}
