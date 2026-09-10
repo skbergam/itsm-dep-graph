@@ -44,7 +44,7 @@ const eventTypeColors: Record<string, string> = {
   'default': '#6366f1',
 };
 
-function getEventColor(eventType: string, event?: { summary: string; meta: Record<string, unknown> }): string {
+function getEventColor(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
   // Handle PR events with state-specific colors
   if (eventType === 'pr.draft_changed' && event) {
     const to = event.meta?.to as string;
@@ -67,7 +67,7 @@ function getEventColor(eventType: string, event?: { summary: string; meta: Recor
   return eventTypeColors[eventType] || eventTypeColors.default;
 }
 
-function getFriendlyEventTypeName(eventType: string, event?: { summary: string; meta: Record<string, unknown> }): string {
+function getFriendlyEventTypeName(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
   // Extract PR number from event if available
   const getPRNumber = (): string | null => {
     if (!event) return null;
