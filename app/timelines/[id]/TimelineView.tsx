@@ -435,7 +435,7 @@ function SpanGroupRow({
     >
       <div className="absolute top-0 h-full flex items-center px-2 z-10" style={{ left: '-192px', width: '168px' }}>
         <span className="text-xs text-gray-600 truncate">
-          {getSpanKindLabel(group.kind)}
+          {spanKindLabels[group.kind] || group.kind}
         </span>
       </div>
       
@@ -678,7 +678,7 @@ function WaterfallRow({
       >
         <div className="absolute top-0 h-full flex items-center px-2 z-10" style={{ left: '-192px', width: '168px' }}>
           <span className="text-xs text-gray-600 truncate">
-            {getSpanKindLabel(span.kind)}
+            {spanKindLabels[span.kind] || span.kind}
           </span>
         </div>
         
@@ -718,7 +718,7 @@ function WaterfallRow({
             left: `${Math.max(0, left)}%`,
             width: `${Math.min(100 - left, width)}%`,
           }}
-          title={`${getSpanKindLabel(span.kind)}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
+          title={`${spanKindLabels[span.kind] || span.kind}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
         >
           <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity px-1">
             {span.seconds > 60 && humanizeDuration(span.seconds)}
