@@ -1,7 +1,7 @@
 {
   "schema": "task-timeline/v1",
-  "generated_at": "2026-09-10T19:26:57.992Z",
-  "as_of": "2026-09-10T19:26:57.992Z",
+  "generated_at": "2026-09-10T23:20:51.720Z",
+  "as_of": "2026-09-10T23:20:51.720Z",
   "task": {
     "notion_id": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
     "notion_url": "https://app.notion.com/p/3d65dbddf0ea81f6880fe041eda42d5b",
@@ -9,28 +9,35 @@
     "status": "In progress",
     "bot": "Solon (EM)",
     "running": true,
-    "page_last_edited_at": "2026-09-10T19:15:51.664Z",
-    "note": "ExplicitLink #177, Relation #190, Node #194 (a6b5123) merged. Next: KnowledgeDraftProposal boarding."
+    "page_last_edited_at": "2026-09-10T20:47:23.238Z",
+    "note": "Merged ExplicitLink #177, Relation #190, Node #194, DraftProposal #196 (812416d). Next: DraftProposalDecision boarding. Then Import stack batch."
   },
   "links": {
     "eng_prs": [
       "https://app.notion.com/p/3d75dbddf0ea819292aaf26fff181914",
       "https://app.notion.com/p/3d75dbddf0ea81fb857cd928dc5217d1",
       "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
-      "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e"
+      "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e",
+      "https://app.notion.com/p/3d75dbddf0ea81fd9b2ed4c2e32d811b",
+      "https://app.notion.com/p/3d75dbddf0ea8170a687ee52eb5ce0c9"
     ],
     "prs": [
       "https://github.com/elementum-fde/products/pull/146",
       "https://github.com/elementum-fde/products/pull/177",
       "https://github.com/elementum-fde/products/pull/190",
-      "https://github.com/elementum-fde/products/pull/194"
+      "https://github.com/elementum-fde/products/pull/194",
+      "https://github.com/elementum-fde/products/pull/196",
+      "https://github.com/elementum-fde/products/pull/197",
+      "https://github.com/elementum-fde/products/pull/201"
     ],
     "agents": [
       "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
       "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
       "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
-      "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61"
+      "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+      "https://cursor.com/agents/bc-d3682cbd-9789-4b7b-b078-65d7b5d1fa5c",
+      "https://cursor.com/agents/bc-e0d21cf7-afd4-4308-ada7-1d1b1777e40d"
     ]
   },
   "events": [
@@ -56,8 +63,7 @@
       "summary": "PR #146 opened: Migrate Knowledge operator operations to ontology",
       "meta": {
         "number": 146,
-        "head": "cursor/more-knowledge-entities-07b2",
-        "draft_at_create": "likely (ready_for_review observed later)"
+        "head": "cursor/more-knowledge-entities-07b2"
       }
     },
     {
@@ -117,11 +123,12 @@
       "type": "ci.started",
       "t": "2026-09-09T16:15:46Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34375598122",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34375598122/job/102548554305",
       "summary": "PR #146 CI started (preview-plane final check-runs (head 0db8469251f6))",
       "meta": {
         "pr": 146,
         "run_id": 34375598122,
+        "head_sha": "0db8469251f6f4cb1811aed3af2e8c937381f251",
         "conclusion_expected": "success"
       }
     },
@@ -130,12 +137,13 @@
       "type": "ci.ended",
       "t": "2026-09-09T16:18:52Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34375598122",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34375598122/job/102548554305",
       "summary": "PR #146 CI ended (success)",
       "meta": {
         "pr": 146,
         "run_id": 34375598122,
-        "conclusion": "success"
+        "conclusion": "success",
+        "check_runs": 45
       }
     },
     {
@@ -159,39 +167,36 @@
       "summary": "PR #146 merged",
       "meta": {
         "number": 146,
-        "state": "merged",
-        "merge_commit_known": true
+        "to": "merged",
+        "merge_sha": "a5446a73de3b119b9b7ca814ff3e7ec8d0edc0c4"
       }
     },
     {
+      "id": "e011",
       "type": "agent.slash_command",
       "t": "2026-09-10T01:51:59.254Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#user_line=0",
+      "source_ref": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
       "meta": {
         "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "phase": "launch",
         "commands": [
           "/poteto-mode",
           "/pstack"
-        ],
-        "phase": "launch",
-        "t_proof": "first_tool_started_at_ms=1789005119254"
-      },
-      "id": "e011"
+        ]
+      }
     },
     {
       "id": "e012",
       "type": "agent.started",
       "t": "2026-09-10T01:51:59.254Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+      "source_ref": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "summary": "Cloud agent started/active: ONTO-1: remaining Knowledge ontology entities",
       "meta": {
         "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
-        "url": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
-        "pr": 177,
-        "proof": "first transcript tool started_at_ms"
+        "t_source": "first_tool_started_at_ms"
       }
     },
     {
@@ -333,8 +338,7 @@
       "summary": "PR #177 opened: feat(ontology): migrate KnowledgeArticleExplicitLink",
       "meta": {
         "number": 177,
-        "head": "cursor/onto-1-remaining-knowledge-models-5187",
-        "draft_at_create": "likely (ready_for_review observed later)"
+        "head": "cursor/onto-1-remaining-knowledge-models-5187"
       }
     },
     {
@@ -364,21 +368,20 @@
       }
     },
     {
+      "id": "e026",
       "type": "agent.slash_command",
       "t": "2026-09-10T03:31:48.843Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#reply",
+      "source_ref": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "summary": "Slash command(s) on reply: /poteto-mode, /pstack",
       "meta": {
         "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "phase": "reply",
         "commands": [
           "/poteto-mode",
           "/pstack"
-        ],
-        "phase": "reply",
-        "t_proof": "next_tool_started_at_ms=1789011108843"
-      },
-      "id": "e026"
+        ]
+      }
     },
     {
       "id": "e027",
@@ -459,20 +462,19 @@
       }
     },
     {
+      "id": "e033",
       "type": "agent.slash_command",
       "t": "2026-09-10T04:24:47.015Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#reply",
+      "source_ref": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "summary": "Slash command(s) on reply: /poteto-mode",
       "meta": {
         "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "phase": "reply",
         "commands": [
           "/poteto-mode"
-        ],
-        "phase": "reply",
-        "t_proof": "next_tool_started_at_ms=1789014287015"
-      },
-      "id": "e033"
+        ]
+      }
     },
     {
       "id": "e034",
@@ -480,7 +482,7 @@
       "t": "2026-09-10T04:26:05Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/46d6ac7fbf17cb60c9bb6ca5998523e1965f3342",
-      "summary": "PR #177 commit 46d6ac7fbf17: Migrate 2 more KnowledgeImportStep bypasses (admin existence check and pagination)",
+      "summary": "PR #177 commit 46d6ac7fbf17: Migrate 2 more KnowledgeImportStep bypasses (admin existence check and paginatio",
       "meta": {
         "pr": 177,
         "sha": "46d6ac7fbf17cb60c9bb6ca5998523e1965f3342",
@@ -740,7 +742,7 @@
       "t": "2026-09-10T07:05:16Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/46a2d8040ba1776b40073bd8e9d19f211da09971",
-      "summary": "PR #177 commit 46a2d8040ba1: fix(web): fix knowledge-imports typecheck errors - use enrichedRun.connection and fix timestamps",
+      "summary": "PR #177 commit 46a2d8040ba1: fix(web): fix knowledge-imports typecheck errors - use enrichedRun.connection an",
       "meta": {
         "pr": 177,
         "sha": "46a2d8040ba1776b40073bd8e9d19f211da09971",
@@ -750,7 +752,7 @@
     {
       "id": "e055",
       "type": "git.commit",
-      "t": "2026-09-10T07:07:51Z",
+      "t": "2026-09-10T07:08:26Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e977a3e2c6f606d55486bbfed06729ace77d68f8",
       "summary": "PR #177 commit e977a3e2c6f6: fix(web): fix remaining typecheck errors - connectionId, timestamps, Row exports",
@@ -1049,7 +1051,7 @@
     {
       "id": "e078",
       "type": "git.commit",
-      "t": "2026-09-10T08:56:28Z",
+      "t": "2026-09-10T08:58:26Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/6616dcc92f770706bb26026d59bd297412cddecc",
       "summary": "PR #177 commit 6616dcc92f77: Fix approval boundary violations for KnowledgeDraft",
@@ -1062,7 +1064,7 @@
     {
       "id": "e079",
       "type": "git.commit",
-      "t": "2026-09-10T08:57:05Z",
+      "t": "2026-09-10T08:58:26Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/e50e9b30227628529dcff88f42e9800e0adc7428",
       "summary": "PR #177 commit e50e9b302276: Replace Prisma type references in drafts.ts with ontology types",
@@ -1078,7 +1080,7 @@
       "t": "2026-09-10T09:04:38Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/aaf73c2bda0d1bb6120f70ad5675f84e1bc8ff1c",
-      "summary": "PR #177 commit aaf73c2bda0d: refactor(ontology): migrate 7 KnowledgeDraft bypasses (type refs + simple delegates)",
+      "summary": "PR #177 commit aaf73c2bda0d: refactor(ontology): migrate 7 KnowledgeDraft bypasses (type refs + simple delega",
       "meta": {
         "pr": 177,
         "sha": "aaf73c2bda0d1bb6120f70ad5675f84e1bc8ff1c",
@@ -1104,7 +1106,7 @@
       "t": "2026-09-10T09:07:43Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/d5efb17cf1a321f5de57f55f48a8c81196470bcb",
-      "summary": "PR #177 commit d5efb17cf1a3: refactor(ontology): fix 3 Prisma type bypasses in article-links and draft-proposals",
+      "summary": "PR #177 commit d5efb17cf1a3: refactor(ontology): fix 3 Prisma type bypasses in article-links and draft-propos",
       "meta": {
         "pr": 177,
         "sha": "d5efb17cf1a321f5de57f55f48a8c81196470bcb",
@@ -1130,7 +1132,7 @@
       "t": "2026-09-10T09:15:11Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/6d0c4356e4176c7223fbdf1c62861c1aedcc5319",
-      "summary": "PR #177 commit 6d0c4356e417: refactor(ontology): Fix 2 KnowledgeDraft bypasses in publication and kira-source-evidence",
+      "summary": "PR #177 commit 6d0c4356e417: refactor(ontology): Fix 2 KnowledgeDraft bypasses in publication and kira-source",
       "meta": {
         "pr": 177,
         "sha": "6d0c4356e4176c7223fbdf1c62861c1aedcc5319",
@@ -1208,7 +1210,7 @@
       "t": "2026-09-10T09:37:55Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/188259dd3909c06371f6c7416bc2952be1beff57",
-      "summary": "PR #177 commit 188259dd3909: refactor(ontology): Replace tenantCurrentHeadSql with findHeads ontology operation",
+      "summary": "PR #177 commit 188259dd3909: refactor(ontology): Replace tenantCurrentHeadSql with findHeads ontology operati",
       "meta": {
         "pr": 177,
         "sha": "188259dd3909c06371f6c7416bc2952be1beff57",
@@ -1325,7 +1327,7 @@
       "t": "2026-09-10T10:38:02Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177/commits/9c498a7bbab30f9afd4882ca680c64d240d484c1",
-      "summary": "PR #177 commit 9c498a7bbab3: fix: resolve null checks and missing fields in knowledge-imports (8 errors fixed)",
+      "summary": "PR #177 commit 9c498a7bbab3: fix: resolve null checks and missing fields in knowledge-imports (8 errors fixed",
       "meta": {
         "pr": 177,
         "sha": "9c498a7bbab30f9afd4882ca680c64d240d484c1",
@@ -1451,47 +1453,42 @@
     {
       "id": "e109",
       "type": "agent.ended",
-      "t": "2026-09-10T11:22:39.397Z",
+      "t": "2026-09-10T11:22:39.402Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+      "source_ref": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "summary": "Cloud agent last tool activity (finished): ONTO-1: remaining Knowledge ontology entities",
       "meta": {
         "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
-        "url": "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
-        "pr": 177,
-        "proof": "last transcript tool started_at_ms (aligns with PR #177 ready_for_review 11:22:25Z)",
-        "agent_status": "finished"
+        "t_source": "last_tool_completed_at_ms",
+        "status": "finished"
       }
     },
     {
+      "id": "e110",
       "type": "agent.slash_command",
       "t": "2026-09-10T11:24:51.916Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a#user_line=0",
+      "source_ref": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
       "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
       "meta": {
         "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "phase": "launch",
         "commands": [
           "/poteto-mode",
           "/pstack"
-        ],
-        "phase": "launch",
-        "t_proof": "first_tool_started_at_ms=1789039491916"
-      },
-      "id": "e110"
+        ]
+      }
     },
     {
       "id": "e111",
       "type": "agent.started",
       "t": "2026-09-10T11:24:51.916Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+      "source_ref": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
       "summary": "Cloud agent started/active: ONTO-1: fix planner placements / restore CI",
       "meta": {
         "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
-        "url": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
-        "pr": 177,
-        "proof": "first transcript tool started_at_ms"
+        "t_source": "first_tool_started_at_ms"
       }
     },
     {
@@ -1728,20 +1725,19 @@
       }
     },
     {
+      "id": "e130",
       "type": "agent.slash_command",
       "t": "2026-09-10T13:20:55.638Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a#reply",
+      "source_ref": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
       "summary": "Slash command(s) on reply: /poteto-mode",
       "meta": {
         "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "phase": "reply",
         "commands": [
           "/poteto-mode"
-        ],
-        "phase": "reply",
-        "t_proof": "next_tool_started_at_ms=1789046455638"
-      },
-      "id": "e130"
+        ]
+      }
     },
     {
       "id": "e131",
@@ -1774,11 +1770,12 @@
       "type": "ci.started",
       "t": "2026-09-10T14:31:32Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34489624774",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34489624774/job/102913850975",
       "summary": "PR #177 CI started (preview-plane final check-runs (head 1237d1fb4346))",
       "meta": {
         "pr": 177,
         "run_id": 34489624774,
+        "head_sha": "1237d1fb43466c0a026b3170a83da45ab264bb0b",
         "conclusion_expected": "success"
       }
     },
@@ -1787,12 +1784,13 @@
       "type": "ci.ended",
       "t": "2026-09-10T14:34:48Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34489624774",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34489624774/job/102913850975",
       "summary": "PR #177 CI ended (success)",
       "meta": {
         "pr": 177,
         "run_id": 34489624774,
-        "conclusion": "success"
+        "conclusion": "success",
+        "check_runs": 45
       }
     },
     {
@@ -1810,16 +1808,14 @@
     {
       "id": "e136",
       "type": "agent.ended",
-      "t": "2026-09-10T14:36:34.499Z",
+      "t": "2026-09-10T14:36:36.511Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+      "source_ref": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
       "summary": "Cloud agent last tool activity (finished): ONTO-1: fix planner placements / restore CI",
       "meta": {
         "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
-        "url": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
-        "pr": 177,
-        "proof": "last transcript tool completed_at_ms before merge notifications",
-        "agent_status": "finished"
+        "t_source": "last_tool_completed_at_ms",
+        "status": "finished"
       }
     },
     {
@@ -1831,70 +1827,64 @@
       "summary": "PR #177 merged",
       "meta": {
         "number": 177,
-        "state": "merged",
-        "merge_commit_known": true
+        "to": "merged",
+        "merge_sha": "7a83801ea303209856297cfe99e3f7081f9365d0"
       }
     },
     {
       "id": "e138",
       "type": "board.stage_changed",
       "t": "2026-09-10T14:52:35.825Z",
-      "source": "notion_eng_prs",
+      "source": "notion",
       "source_ref": "https://app.notion.com/p/3d75dbddf0ea819292aaf26fff181914",
-      "summary": "Eng PRs ExplicitLink row observed Stage=Done (page_last_edited_at; coincides with #177 merge)",
+      "summary": "Eng PRs ExplicitLink row observed Stage=Done (#177 merged)",
       "meta": {
-        "eng_prs_id": "3d75dbdd-f0ea-8192-92aa-f26fff181914",
         "stage": "Done",
         "prs_field": "#177 merged",
-        "proof": "page_last_edited_at with Stage Done"
+        "cloud_agent": "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "proof": "page_last_edited_at"
       }
     },
     {
+      "id": "e139",
       "type": "deploy.completed",
       "t": "2026-09-10T14:54:40Z",
-      "source": "github_deployment_status",
-      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6374505136/statuses",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6374505136",
       "summary": "Products Production deploy ready for merge SHA 7a83801e (PR #177)",
       "meta": {
-        "repo": "elementum-fde/products",
         "pr": 177,
         "sha": "7a83801ea303209856297cfe99e3f7081f9365d0",
         "environment": "Production",
-        "deployment_id": 6374505136,
-        "state": "success",
-        "target_url": "https://itsm-88kipkrzj-z124-d5f14b61.vercel.app"
-      },
-      "id": "e139"
+        "environment_url": "https://itsm-88kipkrzj-z124-d5f14b61.vercel.app"
+      }
     },
     {
+      "id": "e140",
       "type": "agent.slash_command",
       "t": "2026-09-10T15:00:02.114Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-4d1d7968-4207-4015-9524-a30222fa056a#user_line=0",
+      "source_ref": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
       "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
       "meta": {
         "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "phase": "launch",
         "commands": [
           "/poteto-mode",
           "/pstack"
-        ],
-        "phase": "launch",
-        "t_proof": "first_tool_started_at_ms=1789052402114"
-      },
-      "id": "e140"
+        ]
+      }
     },
     {
       "id": "e141",
       "type": "agent.started",
       "t": "2026-09-10T15:00:02.114Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+      "source_ref": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
       "summary": "Cloud agent started/active: ONTO-1: KnowledgeArticleRelation ontology slice",
       "meta": {
         "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
-        "url": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
-        "pr": 190,
-        "proof": "first transcript tool started_at_ms"
+        "t_source": "first_tool_started_at_ms"
       }
     },
     {
@@ -1919,8 +1909,7 @@
       "summary": "PR #190 opened: feat(ontology): migrate KnowledgeArticleRelation",
       "meta": {
         "number": 190,
-        "head": "cursor/knowledge-relation-ontology-056a",
-        "draft_at_create": "likely (ready_for_review observed later)"
+        "head": "cursor/knowledge-relation-ontology-056a"
       }
     },
     {
@@ -1929,7 +1918,7 @@
       "t": "2026-09-10T17:07:20Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/190/commits/07d5ee1b3b55ba7379ec94d177719dfa06f14ed1",
-      "summary": "PR #190 commit 07d5ee1b3b55: Merge remote-tracking branch 'origin/main' into cursor/knowledge-relation-ontology-056a",
+      "summary": "PR #190 commit 07d5ee1b3b55: Merge remote-tracking branch 'origin/main' into cursor/knowledge-relation-ontolo",
       "meta": {
         "pr": 190,
         "sha": "07d5ee1b3b55ba7379ec94d177719dfa06f14ed1",
@@ -1993,11 +1982,12 @@
       "type": "ci.started",
       "t": "2026-09-10T18:03:58Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34511999760",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34511999760/job/102989419554",
       "summary": "PR #190 CI started (preview-plane final check-runs (head fc7b3f08734a))",
       "meta": {
         "pr": 190,
         "run_id": 34511999760,
+        "head_sha": "fc7b3f08734a934dc7683a1b6231fa7db0845dca",
         "conclusion_expected": "success"
       }
     },
@@ -2006,12 +1996,13 @@
       "type": "ci.ended",
       "t": "2026-09-10T18:07:33Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34511999760",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34511999760/job/102989419554",
       "summary": "PR #190 CI ended (success)",
       "meta": {
         "pr": 190,
         "run_id": 34511999760,
-        "conclusion": "success"
+        "conclusion": "success",
+        "check_runs": 45
       }
     },
     {
@@ -2029,16 +2020,14 @@
     {
       "id": "e152",
       "type": "agent.ended",
-      "t": "2026-09-10T18:30:32.918Z",
+      "t": "2026-09-10T18:30:33.073Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+      "source_ref": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
       "summary": "Cloud agent last tool activity (finished): ONTO-1: KnowledgeArticleRelation ontology slice",
       "meta": {
         "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
-        "url": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
-        "pr": 190,
-        "proof": "last transcript tool completed_at_ms (PR #190 merged 18:34:07Z)",
-        "agent_status": "finished"
+        "t_source": "last_tool_completed_at_ms",
+        "status": "finished"
       }
     },
     {
@@ -2050,176 +2039,146 @@
       "summary": "PR #190 merged",
       "meta": {
         "number": 190,
-        "state": "merged",
-        "merge_commit_known": true
+        "to": "merged",
+        "merge_sha": "903a260c2e30a43d7b8bf2337e139811be9566c3"
       }
     },
     {
       "id": "e154",
       "type": "board.stage_changed",
       "t": "2026-09-10T18:34:49.287Z",
-      "source": "notion_eng_prs",
+      "source": "notion",
       "source_ref": "https://app.notion.com/p/3d75dbddf0ea81fb857cd928dc5217d1",
-      "summary": "Eng PRs Relation row observed Stage=Done (page_last_edited_at; coincides with #190 merge)",
+      "summary": "Eng PRs Relation row observed Stage=Done (#190 merged)",
       "meta": {
-        "eng_prs_id": "3d75dbdd-f0ea-81fb-857c-d928dc5217d1",
         "stage": "Done",
         "prs_field": "#190 merged",
-        "proof": "page_last_edited_at with Stage Done"
+        "cloud_agent": "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "proof": "page_last_edited_at"
       }
     },
     {
       "id": "e155",
-      "type": "board.stage_changed",
-      "t": "2026-09-10T18:35:04.902Z",
-      "source": "notion_eng_prs",
-      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
-      "summary": "Eng PRs ArticleNode row observed Stage=Working + agent bc-3c4b856f\u2026 bound",
-      "meta": {
-        "eng_prs_id": "3d75dbdd-f0ea-81c0-bd98-c0369d35dff3",
-        "stage": "Working",
-        "prs_field": "(pending)",
-        "cloud_agent": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
-        "proof": "page_last_edited_at with Stage Working"
-      }
-    },
-    {
       "type": "agent.slash_command",
       "t": "2026-09-10T18:35:11.277Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2#user_line=0",
+      "source_ref": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
       "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
       "meta": {
         "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "phase": "launch",
         "commands": [
           "/poteto-mode",
           "/pstack"
-        ],
-        "phase": "launch",
-        "t_proof": "first_tool_started_at_ms=1789065311277"
-      },
-      "id": "e156"
-    },
-    {
-      "id": "e157",
-      "type": "agent.started",
-      "t": "2026-09-10T18:35:11.277Z",
-      "source": "cloud_agent_transcript",
-      "source_ref": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
-      "summary": "Cloud agent started/active: ONTO-1: KnowledgeArticleNode ontology slice",
-      "meta": {
-        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
-        "url": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
-        "pr": null,
-        "proof": "first transcript tool started_at_ms (still running as_of)"
+        ]
       }
     },
     {
+      "id": "e156",
+      "type": "agent.started",
+      "t": "2026-09-10T18:35:11.277Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+      "summary": "Cloud agent started/active: ONTO-1: KnowledgeArticleNode ontology slice",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "t_source": "first_tool_started_at_ms"
+      }
+    },
+    {
+      "id": "e157",
       "type": "deploy.completed",
       "t": "2026-09-10T18:36:26Z",
-      "source": "github_deployment_status",
-      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6378580898/statuses",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6378580898",
       "summary": "Products Production deploy ready for merge SHA 903a260c (PR #190)",
       "meta": {
-        "repo": "elementum-fde/products",
         "pr": 190,
         "sha": "903a260c2e30a43d7b8bf2337e139811be9566c3",
         "environment": "Production",
-        "deployment_id": 6378580898,
-        "state": "success",
-        "target_url": "https://itsm-1ecyfme7c-z124-d5f14b61.vercel.app"
-      },
-      "id": "e158"
+        "environment_url": "https://itsm-1ecyfme7c-z124-d5f14b61.vercel.app"
+      }
     },
     {
+      "id": "e158",
       "type": "git.commit",
       "t": "2026-09-10T19:08:27Z",
       "source": "github",
-      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194/commits/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
       "summary": "PR #194 commit 1bbf3d0a227e: feat(ontology): migrate KnowledgeArticleNode",
       "meta": {
         "pr": 194,
-        "sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac"
-      },
-      "id": "e159"
+        "sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+        "author": "cursoragent"
+      }
     },
     {
+      "id": "e159",
       "type": "pr.created",
       "t": "2026-09-10T19:08:42Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/194",
       "summary": "PR #194 opened: feat(ontology): migrate KnowledgeArticleNode",
       "meta": {
-        "pr": 194,
-        "draft": true,
+        "number": 194,
         "head": "cursor/knowledge-article-node-ontology-98d2"
-      },
-      "id": "e160"
+      }
     },
     {
+      "id": "e160",
       "type": "ci.started",
       "t": "2026-09-10T19:08:48Z",
-      "source": "github_check_runs",
-      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
-      "summary": "PR #194 CI started (final head check-runs)",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34518637834/job/103011672450",
+      "summary": "PR #194 CI started (preview-plane final check-runs (head 1bbf3d0a227e))",
       "meta": {
         "pr": 194,
-        "head_sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac"
-      },
-      "id": "e161"
+        "run_id": 34518637834,
+        "head_sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+        "conclusion_expected": "success"
+      }
     },
     {
-      "type": "agent.ended",
-      "t": "2026-09-10T19:12:34.538Z",
-      "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2#completed_at_ms=1789067554538",
-      "summary": "Cloud agent last tool activity (finished): ONTO-1 KnowledgeArticleNode",
-      "meta": {
-        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
-        "status": "finished",
-        "evidence": "max completed_at_ms in transcript"
-      },
-      "id": "e162"
-    },
-    {
+      "id": "e161",
       "type": "ci.ended",
       "t": "2026-09-10T19:12:57Z",
-      "source": "github_check_runs",
-      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34518637834/job/103011672450",
       "summary": "PR #194 CI ended (success)",
       "meta": {
         "pr": 194,
+        "run_id": 34518637834,
         "conclusion": "success",
         "check_runs": 45
-      },
-      "id": "e163"
+      }
     },
     {
+      "id": "e162",
       "type": "pr.draft_changed",
       "t": "2026-09-10T19:14:50Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/194",
       "summary": "PR #194 marked ready for review",
       "meta": {
-        "pr": 194,
-        "draft": false
-      },
-      "id": "e164"
+        "number": 194,
+        "to": "ready"
+      }
     },
     {
+      "id": "e163",
       "type": "pr.status_changed",
       "t": "2026-09-10T19:15:29Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/194",
       "summary": "PR #194 merged",
       "meta": {
-        "pr": 194,
-        "state": "MERGED",
+        "number": 194,
+        "to": "merged",
         "merge_sha": "a6b5123f1cec415d61e9c1c626c254d53dcd9448"
-      },
-      "id": "e165"
+      }
     },
     {
+      "id": "e164",
       "type": "board.stage_changed",
       "t": "2026-09-10T19:15:49.581Z",
       "source": "notion",
@@ -2227,53 +2186,432 @@
       "summary": "Eng PRs ArticleNode row observed Stage=Done (#194 merged)",
       "meta": {
         "stage": "Done",
-        "prs": "#194 merged",
-        "page_last_edited_at": "2026-09-10T19:15:49.581Z"
-      },
-      "id": "e166"
+        "prs_field": "#194 merged",
+        "cloud_agent": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "proof": "page_last_edited_at"
+      }
     },
     {
-      "type": "board.stage_changed",
-      "t": "2026-09-10T19:15:59.310Z",
-      "source": "notion",
-      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e",
-      "summary": "Eng PRs DraftProposal row observed Stage=Working + agent bc-392c0fbe\u2026 bound",
-      "meta": {
-        "stage": "Working",
-        "agent": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
-        "page_last_edited_at": "2026-09-10T19:15:59.310Z"
-      },
-      "id": "e167"
-    },
-    {
+      "id": "e165",
       "type": "agent.started",
       "t": "2026-09-10T19:16:04.641Z",
       "source": "cloud_agent_transcript",
-      "source_ref": "cursor://agent/bc-392c0fbe-005e-4925-b749-14caaabe7e61#started_at_ms=1789067764641",
+      "source_ref": "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61",
       "summary": "Cloud agent started/active: ONTO-1 KnowledgeDraftProposal ontology slice",
       "meta": {
         "agent_id": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
-        "status": "running",
-        "evidence": "min started_at_ms in transcript"
-      },
-      "id": "e168"
+        "t_source": "first_tool_started_at_ms"
+      }
     },
     {
+      "id": "e166",
       "type": "deploy.completed",
       "t": "2026-09-10T19:17:49Z",
-      "source": "github_deployment_status",
-      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6379301420/statuses",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6379301420",
       "summary": "Products Production deploy ready for merge SHA a6b5123f (PR #194)",
       "meta": {
-        "repo": "elementum-fde/products",
         "pr": 194,
         "sha": "a6b5123f1cec415d61e9c1c626c254d53dcd9448",
         "environment": "Production",
-        "deployment_id": 6379301420,
-        "state": "success",
-        "target_url": "https://itsm-38a4vbufu-z124-d5f14b61.vercel.app"
-      },
-      "id": "e169"
+        "environment_url": "https://itsm-38a4vbufu-z124-d5f14b61.vercel.app"
+      }
+    },
+    {
+      "id": "e167",
+      "type": "agent.ended",
+      "t": "2026-09-10T19:36:41.461Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1: KnowledgeArticleNode ontology slice",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "t_source": "last_tool_completed_at_ms",
+        "status": "finished"
+      }
+    },
+    {
+      "id": "e168",
+      "type": "git.commit",
+      "t": "2026-09-10T20:08:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196/commits/d4f464d688b4158f6f8c94bc1290e819d6dfaeba",
+      "summary": "PR #196 commit d4f464d688b4: feat(ontology): migrate KnowledgeDraftProposal",
+      "meta": {
+        "pr": 196,
+        "sha": "d4f464d688b4158f6f8c94bc1290e819d6dfaeba",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e169",
+      "type": "pr.created",
+      "t": "2026-09-10T20:08:59Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196",
+      "summary": "PR #196 opened: feat(ontology): migrate KnowledgeDraftProposal",
+      "meta": {
+        "number": 196,
+        "head": "cursor/migrate-knowledge-draft-proposal-7e61"
+      }
+    },
+    {
+      "id": "e170",
+      "type": "git.commit",
+      "t": "2026-09-10T20:10:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196/commits/51b0fbcda6e3a91304ed103145995955be1165b9",
+      "summary": "PR #196 commit 51b0fbcda6e3: test(ontology): accept canonical proposal instants",
+      "meta": {
+        "pr": 196,
+        "sha": "51b0fbcda6e3a91304ed103145995955be1165b9",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e171",
+      "type": "git.commit",
+      "t": "2026-09-10T20:11:32Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196/commits/aefa44928554d975a2d3b92bc260708c6c0a53fa",
+      "summary": "PR #196 commit aefa44928554: chore: drop draft-proposal workaround sermons",
+      "meta": {
+        "pr": 196,
+        "sha": "aefa44928554d975a2d3b92bc260708c6c0a53fa",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e172",
+      "type": "git.commit",
+      "t": "2026-09-10T20:35:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196/commits/71c2e813a7458b342931b12653e9b192af2a36b9",
+      "summary": "PR #196 commit 71c2e813a745: fix(ontology): preserve proposal read contracts",
+      "meta": {
+        "pr": 196,
+        "sha": "71c2e813a7458b342931b12653e9b192af2a36b9",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e173",
+      "type": "ci.started",
+      "t": "2026-09-10T20:35:57Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34527333530/job/103040436274",
+      "summary": "PR #196 CI started (preview-plane final check-runs (head 71c2e813a745))",
+      "meta": {
+        "pr": 196,
+        "run_id": 34527333530,
+        "head_sha": "71c2e813a7458b342931b12653e9b192af2a36b9",
+        "conclusion_expected": "success"
+      }
+    },
+    {
+      "id": "e174",
+      "type": "ci.ended",
+      "t": "2026-09-10T20:39:25Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34527333530/job/103040436274",
+      "summary": "PR #196 CI ended (success)",
+      "meta": {
+        "pr": 196,
+        "run_id": 34527333530,
+        "conclusion": "success",
+        "check_runs": 45
+      }
+    },
+    {
+      "id": "e175",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T20:44:33Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196",
+      "summary": "PR #196 marked ready for review",
+      "meta": {
+        "number": 196,
+        "to": "ready"
+      }
+    },
+    {
+      "id": "e176",
+      "type": "agent.ended",
+      "t": "2026-09-10T20:44:45.363Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1 KnowledgeDraftProposal ontology slice",
+      "meta": {
+        "agent_id": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+        "t_source": "last_tool_completed_at_ms",
+        "status": "finished"
+      }
+    },
+    {
+      "id": "e177",
+      "type": "pr.status_changed",
+      "t": "2026-09-10T20:47:09Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/196",
+      "summary": "PR #196 merged",
+      "meta": {
+        "number": 196,
+        "to": "merged",
+        "merge_sha": "812416d607df331e3bffbf8918491ecb1e273ea0"
+      }
+    },
+    {
+      "id": "e178",
+      "type": "board.stage_changed",
+      "t": "2026-09-10T20:47:22.906Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e",
+      "summary": "Eng PRs DraftProposal row observed Stage=Done (#196 merged)",
+      "meta": {
+        "stage": "Done",
+        "prs_field": "#196 merged",
+        "cloud_agent": "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+        "proof": "page_last_edited_at"
+      }
+    },
+    {
+      "id": "e179",
+      "type": "agent.started",
+      "t": "2026-09-10T20:47:36.821Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-d3682cbd-9789-4b7b-b078-65d7b5d1fa5c",
+      "summary": "Cloud agent started/active: ONTO-1 KnowledgeDraftProposalDecision ontology slice",
+      "meta": {
+        "agent_id": "bc-d3682cbd-9789-4b7b-b078-65d7b5d1fa5c",
+        "t_source": "first_tool_started_at_ms"
+      }
+    },
+    {
+      "id": "e180",
+      "type": "deploy.completed",
+      "t": "2026-09-10T20:49:28Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6380859646",
+      "summary": "Products Production deploy ready for merge SHA 812416d6 (PR #196)",
+      "meta": {
+        "pr": 196,
+        "sha": "812416d607df331e3bffbf8918491ecb1e273ea0",
+        "environment": "Production",
+        "environment_url": "https://itsm-gq0vlnjbc-z124-d5f14b61.vercel.app"
+      }
+    },
+    {
+      "id": "e181",
+      "type": "git.commit",
+      "t": "2026-09-10T21:25:51Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/197/commits/3bcc2594b067353e133cf3edfce1faf30597b03a",
+      "summary": "PR #197 commit 3bcc2594b067: feat(ontology): migrate KnowledgeDraftProposalDecision",
+      "meta": {
+        "pr": 197,
+        "sha": "3bcc2594b067353e133cf3edfce1faf30597b03a",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e182",
+      "type": "pr.created",
+      "t": "2026-09-10T21:26:05Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/197",
+      "summary": "PR #197 opened: feat(ontology): migrate KnowledgeDraftProposalDecision",
+      "meta": {
+        "number": 197,
+        "head": "cursor/migrate-proposal-decision-fa5c"
+      }
+    },
+    {
+      "id": "e183",
+      "type": "git.commit",
+      "t": "2026-09-10T21:46:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/197/commits/5ce310ead5c96896af044abe226c051012f753eb",
+      "summary": "PR #197 commit 5ce310ead5c9: Merge remote-tracking branch 'origin/main' into cursor/migrate-proposal-decision",
+      "meta": {
+        "pr": 197,
+        "sha": "5ce310ead5c96896af044abe226c051012f753eb",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e184",
+      "type": "ci.started",
+      "t": "2026-09-10T21:46:16Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34533971231/job/103062037594",
+      "summary": "PR #197 CI started (preview-plane final check-runs (head 5ce310ead5c9))",
+      "meta": {
+        "pr": 197,
+        "run_id": 34533971231,
+        "head_sha": "5ce310ead5c96896af044abe226c051012f753eb",
+        "conclusion_expected": "success"
+      }
+    },
+    {
+      "id": "e185",
+      "type": "ci.ended",
+      "t": "2026-09-10T21:49:36Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34533971231/job/103062037594",
+      "summary": "PR #197 CI ended (success)",
+      "meta": {
+        "pr": 197,
+        "run_id": 34533971231,
+        "conclusion": "success",
+        "check_runs": 46
+      }
+    },
+    {
+      "id": "e186",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T21:50:05Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/197",
+      "summary": "PR #197 marked ready for review",
+      "meta": {
+        "number": 197,
+        "to": "ready"
+      }
+    },
+    {
+      "id": "e187",
+      "type": "agent.ended",
+      "t": "2026-09-10T21:50:24.828Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-d3682cbd-9789-4b7b-b078-65d7b5d1fa5c",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1 KnowledgeDraftProposalDecision ontology slice",
+      "meta": {
+        "agent_id": "bc-d3682cbd-9789-4b7b-b078-65d7b5d1fa5c",
+        "t_source": "last_tool_completed_at_ms",
+        "status": "finished"
+      }
+    },
+    {
+      "id": "e188",
+      "type": "pr.status_changed",
+      "t": "2026-09-10T21:52:11Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/197",
+      "summary": "PR #197 merged",
+      "meta": {
+        "number": 197,
+        "to": "merged",
+        "merge_sha": "66876286d92926303834c342295d8f34a119e115"
+      }
+    },
+    {
+      "id": "e189",
+      "type": "board.stage_changed",
+      "t": "2026-09-10T21:52:44.977Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81fd9b2ed4c2e32d811b",
+      "summary": "Eng PRs DraftProposalDecision row observed Stage=Done (#197)",
+      "meta": {
+        "stage": "Done",
+        "prs_field": "#197",
+        "cloud_agent": "https://cursor.com/agents/bc-d3682cbd-9789-4b7b-b078-65d7b5d1fa5c",
+        "proof": "page_last_edited_at"
+      }
+    },
+    {
+      "id": "e190",
+      "type": "board.stage_changed",
+      "t": "2026-09-10T21:53:58.527Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea8170a687ee52eb5ce0c9",
+      "summary": "Eng PRs Import stack row observed Stage=Working + agent bc-e0d21cf7-\u2026 bound",
+      "meta": {
+        "stage": "Working",
+        "prs_field": "(pending)",
+        "cloud_agent": "https://cursor.com/agents/bc-e0d21cf7-afd4-4308-ada7-1d1b1777e40d",
+        "proof": "page_last_edited_at"
+      }
+    },
+    {
+      "id": "e191",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T21:54:02.909Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-e0d21cf7-afd4-4308-ada7-1d1b1777e40d",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-e0d21cf7-afd4-4308-ada7-1d1b1777e40d",
+        "phase": "launch",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ]
+      }
+    },
+    {
+      "id": "e192",
+      "type": "agent.started",
+      "t": "2026-09-10T21:54:02.909Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "https://cursor.com/agents/bc-e0d21cf7-afd4-4308-ada7-1d1b1777e40d",
+      "summary": "Cloud agent started/active: ONTO-1 Knowledge Import stack ontology slice",
+      "meta": {
+        "agent_id": "bc-e0d21cf7-afd4-4308-ada7-1d1b1777e40d",
+        "t_source": "first_tool_started_at_ms"
+      }
+    },
+    {
+      "id": "e193",
+      "type": "deploy.completed",
+      "t": "2026-09-10T21:54:34Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6381907061",
+      "summary": "Products Production deploy ready for merge SHA 66876286 (PR #197)",
+      "meta": {
+        "pr": 197,
+        "sha": "66876286d92926303834c342295d8f34a119e115",
+        "environment": "Production",
+        "environment_url": "https://itsm-oklol2l6l-z124-d5f14b61.vercel.app"
+      }
+    },
+    {
+      "id": "e194",
+      "type": "git.commit",
+      "t": "2026-09-10T23:01:16Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/201/commits/b6912082d82752fffaecefa98d567777bd0cbe4a",
+      "summary": "PR #201 commit b6912082d827: feat(ontology): migrate KnowledgeImportConnection",
+      "meta": {
+        "pr": 201,
+        "sha": "b6912082d82752fffaecefa98d567777bd0cbe4a",
+        "author": "cursoragent"
+      }
+    },
+    {
+      "id": "e195",
+      "type": "pr.created",
+      "t": "2026-09-10T23:01:27Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/201",
+      "summary": "PR #201 opened: feat(ontology): migrate Knowledge import persistence",
+      "meta": {
+        "number": 201,
+        "head": "cursor/onto-1-import-ontology-e40d",
+        "draft_at_create": true
+      }
+    },
+    {
+      "id": "e196",
+      "type": "git.commit",
+      "t": "2026-09-10T23:01:55Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/201/commits/c704a07eb7b9e8e2571e1b285355759437a743ba",
+      "summary": "PR #201 commit c704a07eb7b9: docs(ontology): record Connection verification",
+      "meta": {
+        "pr": 201,
+        "sha": "c704a07eb7b9e8e2571e1b285355759437a743ba",
+        "author": "cursoragent"
+      }
     }
   ],
   "spans": [
@@ -2281,8 +2619,8 @@
       "id": "span-wall",
       "kind": "wall",
       "start": "2026-09-09T15:07:46Z",
-      "end": "2026-09-10T19:26:57.992Z",
-      "seconds": 101951,
+      "end": "2026-09-10T23:20:51.720Z",
+      "seconds": 115985,
       "meta": {
         "start_proof": "first git.commit on PR #146 (task.created unproven)",
         "end_proof": "as_of (still running)"
@@ -2302,44 +2640,55 @@
     {
       "id": "span-idle-2",
       "kind": "idle",
-      "start": "2026-09-10T11:22:39.397Z",
+      "start": "2026-09-10T11:22:39.402Z",
       "end": "2026-09-10T11:24:51.916Z",
       "seconds": 132,
       "meta": {
-        "reason": "after bc-998fc92a\u2026 until bc-6caaa2d8\u2026",
+        "reason": "after bc-998fc92a-\u2026 until next agent.started",
         "status_assumed": "In progress"
       }
     },
     {
       "id": "span-idle-3",
       "kind": "idle",
-      "start": "2026-09-10T14:36:34.499Z",
+      "start": "2026-09-10T14:36:36.511Z",
       "end": "2026-09-10T15:00:02.114Z",
-      "seconds": 1407,
+      "seconds": 1405,
       "meta": {
-        "reason": "after bc-6caaa2d8\u2026 until bc-4d1d7968\u2026",
+        "reason": "after bc-6caaa2d8-\u2026 until next agent.started",
         "status_assumed": "In progress"
       }
     },
     {
       "id": "span-idle-4",
       "kind": "idle",
-      "start": "2026-09-10T18:30:32.918Z",
+      "start": "2026-09-10T18:30:33.073Z",
       "end": "2026-09-10T18:35:11.277Z",
       "seconds": 278,
       "meta": {
-        "reason": "after bc-4d1d7968\u2026 until bc-3c4b856f\u2026",
+        "reason": "after bc-4d1d7968-\u2026 until next agent.started",
         "status_assumed": "In progress"
       }
     },
     {
       "id": "span-idle-5",
       "kind": "idle",
-      "start": "2026-09-10T19:12:34.538Z",
-      "end": "2026-09-10T19:16:04.641Z",
-      "seconds": 210,
+      "start": "2026-09-10T20:44:45.363Z",
+      "end": "2026-09-10T20:47:36.821Z",
+      "seconds": 171,
       "meta": {
-        "reason": "after bc-3c4b856f\u2026 until bc-392c0fbe\u2026",
+        "reason": "after bc-392c0fbe-\u2026 until next agent.started",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-6",
+      "kind": "idle",
+      "start": "2026-09-10T21:50:24.828Z",
+      "end": "2026-09-10T21:54:02.909Z",
+      "seconds": 218,
+      "meta": {
+        "reason": "after bc-d3682cbd-\u2026 until next agent.started",
         "status_assumed": "In progress"
       }
     },
@@ -2390,14 +2739,38 @@
         "conclusion": "success",
         "note": "final head check-run window only"
       }
+    },
+    {
+      "id": "span-ci-pr196",
+      "kind": "ci",
+      "start": "2026-09-10T20:35:57Z",
+      "end": "2026-09-10T20:39:25Z",
+      "seconds": 208,
+      "meta": {
+        "pr": 196,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
+    },
+    {
+      "id": "span-ci-pr197",
+      "kind": "ci",
+      "start": "2026-09-10T21:46:16Z",
+      "end": "2026-09-10T21:49:36Z",
+      "seconds": 200,
+      "meta": {
+        "pr": 197,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
     }
   ],
   "totals": {
-    "wall_seconds": 101951,
+    "wall_seconds": 115985,
     "waiting_human_seconds": 0,
-    "idle_seconds": 24965,
+    "idle_seconds": 25142,
     "stuck_seconds": 0,
-    "ci_seconds": 846
+    "ci_seconds": 1254
   },
   "omissions": [
     {
@@ -2417,16 +2790,16 @@
       "reason": "Vercel deployment_status for merge SHA a5446a73 was failure (2026-09-09T19:30:48Z); only success\u2192ready emits deploy.completed"
     },
     {
-      "wanted": "agent.slash_command for bc-392c0fbe launch",
-      "reason": "Launch prompt mentions pstack/poteto quality but no explicit /poteto-mode or /pstack slash invocation"
+      "wanted": "agent.slash_command for bc-392c0fbe / bc-d3682cbd launch",
+      "reason": "Launch prompts mention poteto/pstack quality or patterns but no explicit Use poteto-mode / pstack slash invocation"
     },
     {
       "wanted": "todo.*",
       "reason": "Cursor todos not recoverable as timed events from transcripts"
     },
     {
-      "wanted": "ci.* intermediate runs",
-      "reason": "Only final successful check-run windows per PR included"
+      "wanted": "ci.* intermediate runs / PR #201 CI",
+      "reason": "Only final successful check-run windows per merged PR included; PR #201 tip not all-green"
     },
     {
       "wanted": "human.approval_* / waiting_human",
@@ -2434,15 +2807,19 @@
     },
     {
       "wanted": "subagent.*",
-      "reason": "No recoverable Cursor subagent start/end pairs with proven t (system_notification subagent tasks lack paired ended events with stable ids)"
+      "reason": "system_notification subagent tasks lack paired ended events with stable ids usable as timed spans"
     },
     {
       "wanted": "page comments",
-      "reason": "notion-get-comments not re-queried; prior gather returned none"
+      "reason": "notion-get-comments returned no discussions"
     },
     {
       "wanted": "Note dated stamps",
       "reason": "Task Note is undated property text only; omitted as note event"
+    },
+    {
+      "wanted": "board.stage Working intermediate transitions",
+      "reason": "Only current Stage + page_last_edited_at re-proven on fetch; historical Working observations not re-fetched while rows were Working"
     }
   ]
 }
