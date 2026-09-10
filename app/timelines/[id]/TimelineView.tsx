@@ -17,6 +17,175 @@ type SpanGroup = {
   startIdx: number;
 };
 
+type EventGroup = {
+  type: 'event-group';
+  eventType: string;
+  events: Array<{ type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string } }>;
+  startIdx: number;
+};
+
+// Event type color mapping
+const eventTypeColors: Record<string, string> = {
+  'git.commit': '#10b981',
+  'git.push': '#3b82f6',
+  'git.branch': '#8b5cf6',
+  'pr.created': '#f59e0b',
+  'pr.updated': '#f97316',
+  'pr.merged': '#22c55e',
+  'ci.started': '#a855f7',
+  'ci.ended': '#7c3aed',
+  'agent.started': '#06b6d4',
+  'agent.ended': '#0891b2',
+  'default': '#6366f1',
+};
+
+function getEventColor(eventType: string): string {
+  return eventTypeColors[eventType] || eventTypeColors.default;
+}
+
+// Event group row component
+interface EventGroupRowProps {
+  group: EventGroup;
+  timelineStart: number;
+  timelineEnd: number;
+  timelineRange: number;
+  highlightedRowIndex: number | null;
+  setHighlightedRowIndex: (idx: number | null) => void;
+  waterFallContainerRef: React.RefObject<HTMLDivElement | null>;
+}
+
+function EventGroupRow({
+  group,
+  timelineStart,
+  timelineEnd,
+  timelineRange,
+  highlightedRowIndex,
+  setHighlightedRowIndex,
+  waterFallContainerRef
+}: EventGroupRowProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = rowRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHighlightedRowIndex(group.startIdx);
+          }
+        });
+      },
+      {
+        root: waterFallContainerRef.current,
+        threshold: 0.5,
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [group.startIdx, waterFallContainerRef, setHighlightedRowIndex]);
+
+  const isHighlighted = highlightedRowIndex === group.startIdx;
+  const eventColor = getEventColor(group.eventType);
+  
+  if (isExpanded) {
+    return (
+      <>
+        <div
+          ref={rowRef}
+          className={`relative h-6 transition-colors cursor-pointer ${
+            isHighlighted ? 'border-l-2 border-blue-500' : ''
+          }`}
+          style={{ backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.05)' : 'transparent' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => setIsExpanded(false)}
+        >
+          <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-20 pointer-events-none">
+            <span className="text-xs font-medium text-gray-700 truncate">
+              {group.events.length}× {group.eventType}
+            </span>
+          </div>
+          <div className="absolute left-48 right-2 top-0 h-full flex items-center justify-end z-20 pointer-events-none">
+            <span className="text-xs text-gray-500 bg-white px-1 rounded">
+              (click to collapse)
+            </span>
+          </div>
+        </div>
+        
+        {group.events.map((event, idx) => (
+          <WaterfallRow
+            key={`event-${group.startIdx}-${idx}`}
+            item={event}
+            idx={group.startIdx + idx}
+            timelineStart={timelineStart}
+            timelineEnd={timelineEnd}
+            timelineRange={timelineRange}
+            spanKindColors={{}}
+            spanKindLabels={{}}
+            highlightedRowIndex={highlightedRowIndex}
+            setHighlightedRowIndex={setHighlightedRowIndex}
+            waterFallContainerRef={waterFallContainerRef}
+          />
+        ))}
+      </>
+    );
+  }
+
+  return (
+    <div
+      ref={rowRef}
+      className={`relative h-6 transition-colors cursor-pointer ${
+        isHighlighted ? 'border-l-2 border-blue-500' : ''
+      }`}
+      style={{ backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.05)' : 'transparent' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+        <span className="text-xs text-gray-600 truncate">
+          {group.events.length}× {group.eventType}
+        </span>
+      </div>
+      
+      {group.events.map((event, idx) => {
+        const left = ((event.t - timelineStart) / timelineRange) * 100;
+        return (
+          <div
+            key={idx}
+            className="absolute w-2 h-2 rounded-full z-10"
+            style={{
+              left: `calc(${Math.max(0, Math.min(100, left))}%)`,
+              backgroundColor: eventColor,
+              top: '50%',
+              transform: 'translateY(-50%)'
+            }}
+          />
+        );
+      })}
+      
+      {isHovered && (
+        <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
+          <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+            {group.events.length}× {group.eventType} (click to expand)
+          </span>
+        </div>
+      )}
+      
+      <div className="absolute right-2 top-0 h-full flex items-center z-20 pointer-events-none">
+        <span className="text-xs text-gray-500 bg-white px-1 rounded">
+          {group.events.length}×
+        </span>
+      </div>
+    </div>
+  );
+}
+
 // Collapsible span group component
 interface SpanGroupRowProps {
   group: SpanGroup;
@@ -71,20 +240,19 @@ function SpanGroupRow({
   const colorClass = spanKindColors[group.kind] || 'bg-gray-400';
   const totalSeconds = group.spans.reduce((sum, span) => sum + span.data.seconds, 0);
   
-  // Extract base color for hover tint (remove 'bg-' prefix and opacity)
   const baseColorMap: Record<string, string> = {
     'bg-yellow-400': 'rgba(250, 204, 21, 0.1)',
     'bg-blue-400': 'rgba(96, 165, 250, 0.1)',
     'bg-red-500': 'rgba(239, 68, 68, 0.1)',
     'bg-purple-400': 'rgba(168, 85, 247, 0.1)',
     'bg-gray-400': 'rgba(156, 163, 175, 0.1)',
+    'bg-cyan-400': 'rgba(34, 211, 238, 0.1)',
   };
   const hoverTint = baseColorMap[colorClass] || 'rgba(156, 163, 175, 0.1)';
 
   if (isExpanded) {
     return (
       <>
-        {/* Collapse header row */}
         <div
           ref={rowRef}
           className={`relative h-6 transition-colors cursor-pointer ${
@@ -95,14 +263,18 @@ function SpanGroupRow({
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => setIsExpanded(false)}
         >
-          <div className="absolute left-2 top-0 h-full flex items-center z-20 pointer-events-none">
-            <span className="text-xs font-medium text-gray-500 bg-white px-2 py-1 rounded shadow-sm">
-              {group.spans.length}× {spanKindLabels[group.kind]} (click to collapse)
+          <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-20 pointer-events-none">
+            <span className="text-xs font-medium text-gray-700 truncate">
+              {group.spans.length}× {spanKindLabels[group.kind]}
+            </span>
+          </div>
+          <div className="absolute left-48 right-2 top-0 h-full flex items-center justify-end z-20 pointer-events-none">
+            <span className="text-xs text-gray-500 bg-white px-1 rounded">
+              (click to collapse)
             </span>
           </div>
         </div>
         
-        {/* Individual span rows */}
         {group.spans.map((span, idx) => (
           <WaterfallRow
             key={`span-${group.startIdx}-${idx}`}
@@ -116,6 +288,7 @@ function SpanGroupRow({
             highlightedRowIndex={highlightedRowIndex}
             setHighlightedRowIndex={setHighlightedRowIndex}
             waterFallContainerRef={waterFallContainerRef}
+            groupColorClass={colorClass}
           />
         ))}
       </>
@@ -133,7 +306,12 @@ function SpanGroupRow({
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => setIsExpanded(!isExpanded)}
     >
-      {/* Render all spans in the group as bars */}
+      <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+        <span className="text-xs text-gray-600 truncate">
+          {group.spans.length}× {spanKindLabels[group.kind]}
+        </span>
+      </div>
+      
       {group.spans.map((span, idx) => {
         const spanStart = new Date(span.data.start).getTime();
         const spanEnd = span.data.end ? new Date(span.data.end).getTime() : timelineEnd;
@@ -157,16 +335,14 @@ function SpanGroupRow({
         );
       })}
       
-      {/* Hover info overlay */}
       {isHovered && (
-        <div className="absolute left-2 top-0 h-full flex items-center z-20 pointer-events-none">
+        <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
           <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
             {group.spans.length}× {spanKindLabels[group.kind]}: {humanizeDuration(totalSeconds)} total
           </span>
         </div>
       )}
       
-      {/* Collapse indicator */}
       <div className="absolute right-2 top-0 h-full flex items-center z-20 pointer-events-none">
         <span className="text-xs text-gray-500 bg-white px-1 rounded">
           {group.spans.length}×
@@ -188,6 +364,7 @@ interface WaterfallRowProps {
   highlightedRowIndex: number | null;
   setHighlightedRowIndex: (idx: number | null) => void;
   waterFallContainerRef: React.RefObject<HTMLDivElement | null>;
+  groupColorClass?: string;
 }
 
 function WaterfallRow({ 
@@ -200,7 +377,8 @@ function WaterfallRow({
   spanKindLabels,
   highlightedRowIndex,
   setHighlightedRowIndex,
-  waterFallContainerRef 
+  waterFallContainerRef,
+  groupColorClass
 }: WaterfallRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -232,6 +410,7 @@ function WaterfallRow({
   if (item.type === 'event') {
     const event = item.data;
     const left = ((item.t - timelineStart) / timelineRange) * 100;
+    const eventColor = getEventColor(event.type);
     
     return (
       <div 
@@ -243,27 +422,35 @@ function WaterfallRow({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Dot at time position */}
+        <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+          <span className="text-xs text-gray-600 truncate">
+            {event.type}
+          </span>
+        </div>
+        
         <div 
-          className="absolute w-2 h-2 bg-blue-500 rounded-full hover:ring-2 hover:ring-blue-300 transition-all cursor-pointer group z-10"
-          style={{ left: `${Math.max(0, Math.min(100, left))}%` }}
+          className="absolute w-2 h-2 rounded-full hover:ring-2 hover:ring-opacity-50 transition-all cursor-pointer group z-10"
+          style={{ 
+            left: `${Math.max(0, Math.min(100, left))}%`,
+            backgroundColor: eventColor,
+            boxShadow: `0 0 0 2px ${eventColor}40`,
+            top: '50%',
+            transform: 'translateY(-50%)'
+          }}
           title={`${event.type} at ${formatTimestamp(event.t)}`}
         >
-          {/* Tooltip on hover */}
           <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
             {event.type}: {event.summary}
           </div>
         </div>
-        {/* Label - show full detail when highlighted or hovered */}
-        {(isHighlighted || isHovered) ? (
-          <span className="ml-2 text-xs font-medium text-gray-900 z-10 px-2 py-1 bg-white rounded shadow-sm">
-            {event.type}: {event.summary} @ {formatTimestamp(event.t)}
-            {event.source && ` (${event.source})`}
-          </span>
-        ) : (
-          <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
-            {event.type}
-          </span>
+        
+        {(isHighlighted || isHovered) && (
+          <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
+            <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+              {event.type}: {event.summary} @ {formatTimestamp(event.t)}
+              {event.source && ` (${event.source})`}
+            </span>
+          </div>
         )}
       </div>
     );
@@ -275,15 +462,15 @@ function WaterfallRow({
     const width = ((spanEnd - spanStart) / timelineRange) * 100;
     const isOpen = !span.end;
     
-    const colorClass = spanKindColors[span.kind] || 'bg-gray-400';
+    const colorClass = groupColorClass || spanKindColors[span.kind] || 'bg-gray-400';
     
-    // Extract base color for hover tint
     const baseColorMap: Record<string, string> = {
       'bg-yellow-400': 'rgba(250, 204, 21, 0.1)',
       'bg-blue-400': 'rgba(96, 165, 250, 0.1)',
       'bg-red-500': 'rgba(239, 68, 68, 0.1)',
       'bg-purple-400': 'rgba(168, 85, 247, 0.1)',
       'bg-gray-400': 'rgba(156, 163, 175, 0.1)',
+      'bg-cyan-400': 'rgba(34, 211, 238, 0.1)',
     };
     const hoverTint = baseColorMap[colorClass] || 'rgba(156, 163, 175, 0.1)';
     
@@ -297,6 +484,12 @@ function WaterfallRow({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        <div className="absolute left-0 w-48 top-0 h-full flex items-center px-2 z-10">
+          <span className="text-xs text-gray-600 truncate">
+            {spanKindLabels[span.kind] || span.kind}
+          </span>
+        </div>
+        
         <div
           className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group z-10`}
           style={{
@@ -312,9 +505,9 @@ function WaterfallRow({
             <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
           )}
         </div>
-        {/* Show full detail overlay when highlighted or hovered */}
+        
         {(isHighlighted || isHovered) && (
-          <div className="absolute left-2 top-0 h-full flex items-center z-20 pointer-events-none">
+          <div className="absolute left-48 top-0 h-full flex items-center z-20 pointer-events-none">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
               {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)} ({formatTimestamp(span.start)} → {span.end ? formatTimestamp(span.end) : 'ongoing'})
             </span>
@@ -333,7 +526,7 @@ export default function TimelineView() {
   const [timeline, setTimeline] = useState<TaskTimeline | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<'spans' | 'timeline'>('timeline');
+  const [viewMode, setViewMode] = useState<'spans' | 'timeline' | 'events'>('timeline');
   const [highlightedRowIndex, setHighlightedRowIndex] = useState<number | null>(null);
   const waterFallContainerRef = useRef<HTMLDivElement>(null);
   
@@ -479,6 +672,7 @@ export default function TimelineView() {
     idle: 'bg-blue-400',
     stuck: 'bg-red-500',
     ci: 'bg-purple-400',
+    agent: 'bg-cyan-400',
   };
 
   const spanKindLabels: Record<string, string> = {
@@ -487,6 +681,7 @@ export default function TimelineView() {
     idle: 'Idle',
     stuck: 'Stuck',
     ci: 'CI',
+    agent: 'Agent',
   };
 
   // Calculate pie chart data (exclude wall)
@@ -725,7 +920,7 @@ export default function TimelineView() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">
-              {viewMode === 'spans' ? 'Spans by Kind' : 'Timeline View'}
+              {viewMode === 'spans' ? 'Spans by Kind' : viewMode === 'events' ? 'Event Timeline' : 'Timeline View'}
             </h2>
             <div className="flex gap-2 bg-gray-100 rounded-lg p-1">
               <button
@@ -747,6 +942,16 @@ export default function TimelineView() {
                 }`}
               >
                 Spans by Kind
+              </button>
+              <button
+                onClick={() => setViewMode('events')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  viewMode === 'events'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Event Timeline
               </button>
             </div>
           </div>
@@ -773,154 +978,14 @@ export default function TimelineView() {
                     </div>
                   ))}
                 </div>
-                <div className="text-center text-xs text-gray-600 font-medium mt-1">
-                  Wall: {humanizeDuration(totalWall)}
-                </div>
               </div>
 
-              {/* WATERFALL: Rows for events and spans */}
-              <div className="space-y-1 relative" ref={waterFallContainerRef}>
-                {/* Vertical grid lines */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {generateTimeAxisTicks().map((tick, idx) => (
-                    <div
-                      key={`grid-${idx}`}
-                      className="absolute top-0 bottom-0 w-px bg-gray-200"
-                      style={{ left: `${tick.position}%` }}
-                    />
-                  ))}
-                  {/* NOW marker line for running timelines */}
-                  {isRunning && (
-                    <div
-                      className="absolute top-0 bottom-0 w-0.5 bg-green-500 opacity-50"
-                      style={{ left: '100%' }}
-                    />
-                  )}
-                </div>
-
-                {(() => {
-                  // Event types that are represented as spans and should not appear as point events
-                  const spanEventTypes = new Set([
-                    'ci.started',
-                    'ci.ended',
-                    'ci_started',
-                    'ci_completed',
-                  ]);
-
-                  // Collect zero-second CI spans for note
-                  const zeroSecondCISpans = safeTimeline.spans.filter(s => s.kind === 'ci' && s.seconds === 0);
-                  
-                  const items: TimelineItem[] = [
-                    ...safeTimeline.events
-                      .filter(e => 
-                        e.type !== 'agent.slash_command' && 
-                        !spanEventTypes.has(e.type)
-                      )
-                      .map(e => ({ type: 'event' as const, t: new Date(e.t).getTime(), data: e })),
-                    ...safeTimeline.spans
-                      .filter(s => s.kind !== 'wall' && s.seconds > 0) // Exclude zero-second spans from waterfall
-                      .map(s => ({ type: 'span' as const, t: new Date(s.start).getTime(), data: s }))
-                  ];
-                  
-                  items.sort((a, b) => a.t - b.t);
-                  
-                  // Group consecutive spans of the same kind
-                  const groupedItems: Array<TimelineItem | SpanGroup> = [];
-                  let i = 0;
-                  
-                  while (i < items.length) {
-                    const item = items[i];
-                    
-                    if (item.type === 'event') {
-                      groupedItems.push(item);
-                      i++;
-                    } else {
-                      // Look ahead for consecutive spans of the same kind
-                      const spanKind = item.data.kind;
-                      const consecutiveSpans: Array<typeof item> = [item];
-                      let j = i + 1;
-                      
-                      while (j < items.length) {
-                        const nextItem = items[j];
-                        if (nextItem.type === 'span' && nextItem.data.kind === spanKind) {
-                          consecutiveSpans.push(nextItem);
-                          j++;
-                        } else {
-                          break;
-                        }
-                      }
-                      
-                      if (consecutiveSpans.length > 1) {
-                        // Create a collapsed group
-                        groupedItems.push({
-                          type: 'span-group',
-                          kind: spanKind,
-                          spans: consecutiveSpans as Array<{ type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } }>,
-                          startIdx: groupedItems.length,
-                        });
-                      } else {
-                        // Single span, don't group
-                        groupedItems.push(item);
-                      }
-                      
-                      i = j;
-                    }
-                  }
-                  
-                  return (
-                    <>
-                      {groupedItems.map((item, idx) => {
-                        if ('type' in item && item.type === 'span-group') {
-                          return (
-                            <SpanGroupRow
-                              key={`group-${idx}`}
-                              group={item}
-                              timelineStart={timelineStart}
-                              timelineEnd={timelineEnd}
-                              timelineRange={timelineRange}
-                              spanKindColors={spanKindColors}
-                              spanKindLabels={spanKindLabels}
-                              highlightedRowIndex={highlightedRowIndex}
-                              setHighlightedRowIndex={setHighlightedRowIndex}
-                              waterFallContainerRef={waterFallContainerRef}
-                            />
-                          );
-                        } else {
-                          return (
-                            <WaterfallRow 
-                              key={`row-${idx}`} 
-                              item={item as TimelineItem}
-                              idx={idx}
-                              timelineStart={timelineStart}
-                              timelineEnd={timelineEnd}
-                              timelineRange={timelineRange}
-                              spanKindColors={spanKindColors}
-                              spanKindLabels={spanKindLabels}
-                              highlightedRowIndex={highlightedRowIndex}
-                              setHighlightedRowIndex={setHighlightedRowIndex}
-                              waterFallContainerRef={waterFallContainerRef}
-                            />
-                          );
-                        }
-                      })}
-                      
-                      {/* Note about zero-second CI spans */}
-                      {zeroSecondCISpans.length > 0 && (
-                        <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
-                          <strong>Note:</strong> {zeroSecondCISpans.length} CI span{zeroSecondCISpans.length > 1 ? 's' : ''} with zero duration omitted from waterfall (start === end).
-                        </div>
-                      )}
-                    </>
-                  );
-                })()}
-              </div>
-
-              {/* BOTTOM WALL-ACCOUNTING ROW */}
-              <div className="pt-4 border-t border-gray-300">
-                <div className="text-xs font-medium text-gray-700 mb-2">Wall Time Coverage</div>
-                <svg width="100%" height="32" className="border border-gray-300 rounded">
+              {/* Wall time strip - continuous visible colored strip */}
+              <div className="border-t border-gray-300 pt-2">
+                <div className="text-xs font-medium text-gray-700 mb-2">Wall: {humanizeDuration(totalWall)}</div>
+                <svg width="100%" height="20" className="border border-gray-300 rounded" viewBox="0 0 1000 20" preserveAspectRatio="none">
                   {(() => {
-                    // Build coverage segments using interval merge algorithm (avoids per-second allocation)
+                    // Build coverage segments using interval merge algorithm
                     type Event = { time: number; kind: string; isStart: boolean };
                     const events: Event[] = [];
                     
@@ -944,8 +1009,6 @@ export default function TimelineView() {
                     });
                     
                     // Sweep through events to build segments
-                    // Key insight: segments represent time intervals with a specific set of active kinds
-                    // We create a new segment whenever the set of active kinds changes
                     const segments: Array<{ start: number; end: number; kinds: string[] }> = [];
                     const activeKinds = new Set<string>();
                     let segmentStart = 0;
@@ -953,7 +1016,6 @@ export default function TimelineView() {
                     for (const event of events) {
                       const currentKinds = Array.from(activeKinds).sort();
                       
-                      // Apply event to update active coverage
                       if (event.isStart) {
                         activeKinds.add(event.kind);
                       } else {
@@ -962,7 +1024,6 @@ export default function TimelineView() {
                       
                       const newKinds = Array.from(activeKinds).sort();
                       
-                      // If coverage changed, close the previous segment and start a new one
                       if (currentKinds.join(',') !== newKinds.join(',')) {
                         if (event.time > segmentStart) {
                           segments.push({ 
@@ -975,7 +1036,6 @@ export default function TimelineView() {
                       }
                     }
                     
-                    // Final segment from last change to end of wall
                     if (segmentStart < totalWall) {
                       segments.push({ 
                         start: segmentStart, 
@@ -986,23 +1046,21 @@ export default function TimelineView() {
                     
                     // Render segments
                     return segments.map((seg, idx) => {
-                      const x = (seg.start / totalWall) * 100;
-                      const width = ((seg.end - seg.start) / totalWall) * 100;
+                      const x = (seg.start / totalWall) * 1000;
+                      const width = ((seg.end - seg.start) / totalWall) * 1000;
                       
                       if (seg.kinds.length === 0) {
-                        // Unknown/gray
                         return (
                           <rect
                             key={idx}
-                            x={`${x}%`}
-                            width={`${width}%`}
+                            x={x}
+                            width={width}
                             y="0"
-                            height="32"
+                            height="20"
                             fill="#9ca3af"
                           />
                         );
                       } else if (seg.kinds.length === 1) {
-                        // Single kind - solid color
                         const kind = seg.kinds[0];
                         const colorMap: Record<string, string> = {
                           waiting_human: '#facc15',
@@ -1015,16 +1073,15 @@ export default function TimelineView() {
                         return (
                           <rect
                             key={idx}
-                            x={`${x}%`}
-                            width={`${width}%`}
+                            x={x}
+                            width={width}
                             y="0"
-                            height="32"
+                            height="20"
                             fill={color}
                             opacity="0.9"
                           />
                         );
                       } else {
-                        // Multiple kinds - checkered pattern
                         const colorMap: Record<string, string> = {
                           waiting_human: '#facc15',
                           idle: '#60a5fa',
@@ -1055,10 +1112,10 @@ export default function TimelineView() {
                               </pattern>
                             </defs>
                             <rect
-                              x={`${x}%`}
-                              width={`${width}%`}
+                              x={x}
+                              width={width}
                               y="0"
-                              height="32"
+                              height="20"
                               fill={`url(#${patternId})`}
                             />
                           </g>
@@ -1090,6 +1147,233 @@ export default function TimelineView() {
                   </div>
                 </div>
               </div>
+
+              {/* WATERFALL: Rows for events and spans */}
+              <div className="relative overflow-hidden">
+                <div className="space-y-1 relative" style={{ marginLeft: '200px' }} ref={waterFallContainerRef}>
+                  {/* Vertical grid lines */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {generateTimeAxisTicks().map((tick, idx) => (
+                      <div
+                        key={`grid-${idx}`}
+                        className="absolute top-0 bottom-0 w-px bg-gray-200"
+                        style={{ left: `${tick.position}%` }}
+                      />
+                    ))}
+                    {isRunning && (
+                      <div
+                        className="absolute top-0 bottom-0 w-0.5 bg-green-500 opacity-50"
+                        style={{ left: '100%' }}
+                      />
+                    )}
+                  </div>
+
+                  {(() => {
+                    // Event types that are represented as spans and should not appear as point events
+                    const spanEventTypes = new Set([
+                      'ci.started',
+                      'ci.ended',
+                      'ci_started',
+                      'ci_completed',
+                    ]);
+
+                    // Correlate agent.started/agent.ended into agent spans
+                    const agentStartEvents = safeTimeline.events.filter(e => e.type === 'agent.started');
+                    const agentEndEvents = safeTimeline.events.filter(e => e.type === 'agent.ended');
+                    const agentSpans: Array<{ kind: string; start: string; end: string | null; seconds: number }> = [];
+                    
+                    for (const startEvent of agentStartEvents) {
+                      spanEventTypes.add('agent.started');
+                      const startTime = new Date(startEvent.t).getTime();
+                      const endEvent = agentEndEvents.find(e => new Date(e.t).getTime() > startTime);
+                      const endTime = endEvent ? new Date(endEvent.t).getTime() : timelineEnd;
+                      const seconds = (endTime - startTime) / 1000;
+                      
+                      agentSpans.push({
+                        kind: 'agent',
+                        start: startEvent.t,
+                        end: endEvent ? endEvent.t : null,
+                        seconds
+                      });
+                      
+                      if (endEvent) {
+                        spanEventTypes.add('agent.ended');
+                      }
+                    }
+
+                    // Collect zero-second CI spans for note
+                    const zeroSecondCISpans = safeTimeline.spans.filter(s => s.kind === 'ci' && s.seconds === 0);
+                    
+                    const items: TimelineItem[] = [
+                      ...safeTimeline.events
+                        .filter(e => 
+                          e.type !== 'agent.slash_command' && 
+                          !spanEventTypes.has(e.type)
+                        )
+                        .map(e => ({ type: 'event' as const, t: new Date(e.t).getTime(), data: e })),
+                      ...safeTimeline.spans
+                        .filter(s => s.kind !== 'wall' && s.seconds > 0)
+                        .map(s => ({ type: 'span' as const, t: new Date(s.start).getTime(), data: s })),
+                      ...agentSpans.map(s => ({ type: 'span' as const, t: new Date(s.start).getTime(), data: s }))
+                    ];
+                    
+                    items.sort((a, b) => a.t - b.t);
+                    
+                    // Group consecutive items of the same kind (spans) or type (events)
+                    const groupedItems: Array<TimelineItem | SpanGroup | EventGroup> = [];
+                    let i = 0;
+                    
+                    while (i < items.length) {
+                      const item = items[i];
+                      
+                      if (item.type === 'event') {
+                        const eventType = item.data.type;
+                        const consecutiveEvents: Array<typeof item> = [item];
+                        let j = i + 1;
+                        
+                        while (j < items.length) {
+                          const nextItem = items[j];
+                          if (nextItem.type === 'event' && nextItem.data.type === eventType) {
+                            consecutiveEvents.push(nextItem);
+                            j++;
+                          } else {
+                            break;
+                          }
+                        }
+                        
+                        if (consecutiveEvents.length > 1) {
+                          groupedItems.push({
+                            type: 'event-group',
+                            eventType,
+                            events: consecutiveEvents as Array<{ type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string } }>,
+                            startIdx: groupedItems.length,
+                          });
+                        } else {
+                          groupedItems.push(item);
+                        }
+                        
+                        i = j;
+                      } else {
+                        const spanKind = item.data.kind;
+                        const consecutiveSpans: Array<typeof item> = [item];
+                        let j = i + 1;
+                        
+                        while (j < items.length) {
+                          const nextItem = items[j];
+                          if (nextItem.type === 'span' && nextItem.data.kind === spanKind) {
+                            consecutiveSpans.push(nextItem);
+                            j++;
+                          } else {
+                            break;
+                          }
+                        }
+                        
+                        if (consecutiveSpans.length > 1) {
+                          groupedItems.push({
+                            type: 'span-group',
+                            kind: spanKind,
+                            spans: consecutiveSpans as Array<{ type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } }>,
+                            startIdx: groupedItems.length,
+                          });
+                        } else {
+                          groupedItems.push(item);
+                        }
+                        
+                        i = j;
+                      }
+                    }
+                    
+                    return (
+                      <>
+                        {groupedItems.map((item, idx) => {
+                          if ('type' in item && item.type === 'span-group') {
+                            return (
+                              <SpanGroupRow
+                                key={`group-${idx}`}
+                                group={item}
+                                timelineStart={timelineStart}
+                                timelineEnd={timelineEnd}
+                                timelineRange={timelineRange}
+                                spanKindColors={spanKindColors}
+                                spanKindLabels={spanKindLabels}
+                                highlightedRowIndex={highlightedRowIndex}
+                                setHighlightedRowIndex={setHighlightedRowIndex}
+                                waterFallContainerRef={waterFallContainerRef}
+                              />
+                            );
+                          } else if ('type' in item && item.type === 'event-group') {
+                            return (
+                              <EventGroupRow
+                                key={`event-group-${idx}`}
+                                group={item}
+                                timelineStart={timelineStart}
+                                timelineEnd={timelineEnd}
+                                timelineRange={timelineRange}
+                                highlightedRowIndex={highlightedRowIndex}
+                                setHighlightedRowIndex={setHighlightedRowIndex}
+                                waterFallContainerRef={waterFallContainerRef}
+                              />
+                            );
+                          } else {
+                            return (
+                              <WaterfallRow 
+                                key={`row-${idx}`} 
+                                item={item as TimelineItem}
+                                idx={idx}
+                                timelineStart={timelineStart}
+                                timelineEnd={timelineEnd}
+                                timelineRange={timelineRange}
+                                spanKindColors={spanKindColors}
+                                spanKindLabels={spanKindLabels}
+                                highlightedRowIndex={highlightedRowIndex}
+                                setHighlightedRowIndex={setHighlightedRowIndex}
+                                waterFallContainerRef={waterFallContainerRef}
+                              />
+                            );
+                          }
+                        })}
+                        
+                        {zeroSecondCISpans.length > 0 && (
+                          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                            <strong>Note:</strong> {zeroSecondCISpans.length} CI span{zeroSecondCISpans.length > 1 ? 's' : ''} with zero duration omitted from waterfall (start === end).
+                          </div>
+                        )}
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            </div>
+          ) : viewMode === 'events' ? (
+            <div className="space-y-2">
+              {safeTimeline.events.map((event) => (
+                <div key={event.id} className="border-l-4 border-blue-500 pl-4 py-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded text-gray-700">
+                          {event.type}
+                        </span>
+                        <span className="text-xs text-gray-500">{event.source}</span>
+                      </div>
+                      <p className="text-sm text-gray-900 mb-1">{event.summary}</p>
+                      {event.source_ref && (
+                        <a
+                          href={event.source_ref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-600 hover:text-blue-800 break-all"
+                        >
+                          {event.source_ref}
+                        </a>
+                      )}
+                    </div>
+                    <div className="text-xs text-gray-500 whitespace-nowrap">
+                      {formatTimestamp(event.t)}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : (
             <div className="space-y-3">
@@ -1113,41 +1397,6 @@ export default function TimelineView() {
               ))}
             </div>
           )}
-        </div>
-
-        {/* Events */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Event Timeline</h2>
-          <div className="space-y-2">
-            {safeTimeline.events.map((event) => (
-              <div key={event.id} className="border-l-4 border-blue-500 pl-4 py-2">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded text-gray-700">
-                        {event.type}
-                      </span>
-                      <span className="text-xs text-gray-500">{event.source}</span>
-                    </div>
-                    <p className="text-sm text-gray-900 mb-1">{event.summary}</p>
-                    {event.source_ref && (
-                      <a
-                        href={event.source_ref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-blue-600 hover:text-blue-800 break-all"
-                      >
-                        {event.source_ref}
-                      </a>
-                    )}
-                  </div>
-                  <div className="text-xs text-gray-500 whitespace-nowrap">
-                    {formatTimestamp(event.t)}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Omissions */}
