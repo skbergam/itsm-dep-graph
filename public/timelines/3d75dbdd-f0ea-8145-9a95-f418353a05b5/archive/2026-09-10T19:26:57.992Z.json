@@ -1,0 +1,2748 @@
+{
+  "schema": "task-timeline/v1",
+  "generated_at": "2026-09-10T19:26:57.992Z",
+  "as_of": "2026-09-10T19:26:57.992Z",
+  "task": {
+    "notion_url": "https://app.notion.com/p/3d75dbddf0ea81459a95f418353a05b5",
+    "notion_id": "3d75dbdd-f0ea-8145-9a95-f418353a05b5",
+    "title": "ONTO-13-ENG \u2014 Enforce named-ops write call-path",
+    "status": "Done",
+    "running": false,
+    "bot": "Solon (EM)",
+    "page_last_edited_at": "2026-09-10T19:15:39.353Z",
+    "note": "Merged via #178 \u2014 ADR-0001 named-ops write call-path"
+  },
+  "links": {
+    "eng_prs": [
+      "https://app.notion.com/p/3d75dbddf0ea81999660fd9989d85249"
+    ],
+    "prs": [
+      "https://github.com/elementum-fde/products/pull/178"
+    ],
+    "agents": [
+      "https://cursor.com/agents/bc-75ee96b5-582d-467e-9ab3-b39d2051523a"
+    ]
+  },
+  "events": [
+    {
+      "id": "e001",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T03:58:51.945Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-75ee96b5-582d-467e-9ab3-b39d2051523a#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-75ee96b5-582d-467e-9ab3-b39d2051523a",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789012731945"
+      }
+    },
+    {
+      "id": "e002",
+      "type": "agent.started",
+      "t": "2026-09-10T03:58:51.945Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-75ee96b5-582d-467e-9ab3-b39d2051523a#started_at_ms=1789012731945",
+      "summary": "Cloud agent bc-75ee96b5 first tool call (ONTO-13-ENG)",
+      "meta": {
+        "agent_id": "bc-75ee96b5-582d-467e-9ab3-b39d2051523a",
+        "evidence": "min started_at_ms in transcript tool_calls"
+      }
+    },
+    {
+      "id": "e003",
+      "type": "git.commit",
+      "t": "2026-09-10T04:05:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/4d7bf8d8aeabf1be3c8a90cd368c9f49a093ed85",
+      "summary": "feat(ontology): enforce ADR-0001 named-operations write call-path",
+      "meta": {
+        "sha": "4d7bf8d8aeabf1be3c8a90cd368c9f49a093ed85",
+        "authoredDate": "2026-09-10T04:05:23Z",
+        "committedDate": "2026-09-10T04:05:23Z"
+      }
+    },
+    {
+      "id": "e004",
+      "type": "git.commit",
+      "t": "2026-09-10T04:05:54Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1539ae873f2807751e47e67004d022c0b89f720a",
+      "summary": "test(ontology): add ADR-0001 enforcement runtime proof",
+      "meta": {
+        "sha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "authoredDate": "2026-09-10T04:05:54Z",
+        "committedDate": "2026-09-10T04:05:54Z"
+      }
+    },
+    {
+      "id": "e005",
+      "type": "pr.created",
+      "t": "2026-09-10T04:06:29Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/178",
+      "summary": "PR #178 opened (draft; later ReadyForReviewEvent)",
+      "meta": {
+        "number": 178,
+        "head": "cursor/adr-0001-enforce-named-ops-call-path-523a",
+        "base": "main",
+        "author": "skbergam",
+        "draft_at_create_inferred": true
+      }
+    },
+    {
+      "id": "e006",
+      "type": "ci.started",
+      "t": "2026-09-10T04:06:33Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435878360",
+      "summary": "workflow Approval engine started (cancelled)",
+      "meta": {
+        "run_id": 34435878360,
+        "name": "Approval engine",
+        "headSha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "conclusion": "cancelled"
+      }
+    },
+    {
+      "id": "e007",
+      "type": "ci.started",
+      "t": "2026-09-10T04:06:33Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435878277",
+      "summary": "workflow preview-plane started (cancelled)",
+      "meta": {
+        "run_id": 34435878277,
+        "name": "preview-plane",
+        "headSha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "conclusion": "cancelled"
+      }
+    },
+    {
+      "id": "e008",
+      "type": "git.commit",
+      "t": "2026-09-10T04:07:12Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+      "summary": "test(ontology): remove flawed runtime write check",
+      "meta": {
+        "sha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "authoredDate": "2026-09-10T04:07:12Z",
+        "committedDate": "2026-09-10T04:07:12Z"
+      }
+    },
+    {
+      "id": "e009",
+      "type": "ci.started",
+      "t": "2026-09-10T04:07:23Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435933615",
+      "summary": "workflow Approval engine started (failure)",
+      "meta": {
+        "run_id": 34435933615,
+        "name": "Approval engine",
+        "headSha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e010",
+      "type": "ci.started",
+      "t": "2026-09-10T04:07:23Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435933555",
+      "summary": "workflow preview-plane started (failure)",
+      "meta": {
+        "run_id": 34435933555,
+        "name": "preview-plane",
+        "headSha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e011",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:07:28Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435878360",
+      "summary": "workflow Approval engine concluded cancelled",
+      "meta": {
+        "run_id": 34435878360,
+        "name": "Approval engine",
+        "headSha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "conclusion": "cancelled"
+      }
+    },
+    {
+      "id": "e012",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:07:39Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435878277",
+      "summary": "workflow preview-plane concluded cancelled",
+      "meta": {
+        "run_id": 34435878277,
+        "name": "preview-plane",
+        "headSha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "conclusion": "cancelled"
+      }
+    },
+    {
+      "id": "e013",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:08:20Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435933615",
+      "summary": "workflow Approval engine concluded failure",
+      "meta": {
+        "run_id": 34435933615,
+        "name": "Approval engine",
+        "headSha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e014",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:08:45Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34435933555",
+      "summary": "workflow preview-plane concluded failure",
+      "meta": {
+        "run_id": 34435933555,
+        "name": "preview-plane",
+        "headSha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e015",
+      "type": "git.commit",
+      "t": "2026-09-10T04:26:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/8adcd484d2be335d6d6daa92722de5d57842374c",
+      "summary": "fix(ontology-memory): use OntologyInternal for write access",
+      "meta": {
+        "sha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "authoredDate": "2026-09-10T04:26:44Z",
+        "committedDate": "2026-09-10T04:26:44Z"
+      }
+    },
+    {
+      "id": "e016",
+      "type": "ci.started",
+      "t": "2026-09-10T04:26:56Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437219121",
+      "summary": "workflow preview-plane started (failure)",
+      "meta": {
+        "run_id": 34437219121,
+        "name": "preview-plane",
+        "headSha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e017",
+      "type": "ci.started",
+      "t": "2026-09-10T04:26:56Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437219079",
+      "summary": "workflow Approval engine started (success)",
+      "meta": {
+        "run_id": 34437219079,
+        "name": "Approval engine",
+        "headSha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e018",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:28:59Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437219079",
+      "summary": "workflow Approval engine concluded success",
+      "meta": {
+        "run_id": 34437219079,
+        "name": "Approval engine",
+        "headSha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e019",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:30:31Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437219121",
+      "summary": "workflow preview-plane concluded failure",
+      "meta": {
+        "run_id": 34437219121,
+        "name": "preview-plane",
+        "headSha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e020",
+      "type": "git.commit",
+      "t": "2026-09-10T04:32:21Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/2a9c572570bc56f3efc9521d438c065d2397f338",
+      "summary": "fix(ontology-memory): createKnowledgeDraftMemory returns OntologyInternalFactory",
+      "meta": {
+        "sha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "authoredDate": "2026-09-10T04:32:21Z",
+        "committedDate": "2026-09-10T04:32:21Z"
+      }
+    },
+    {
+      "id": "e021",
+      "type": "ci.started",
+      "t": "2026-09-10T04:32:27Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437574858",
+      "summary": "workflow Approval engine started (success)",
+      "meta": {
+        "run_id": 34437574858,
+        "name": "Approval engine",
+        "headSha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e022",
+      "type": "ci.started",
+      "t": "2026-09-10T04:32:27Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437574812",
+      "summary": "workflow preview-plane started (failure)",
+      "meta": {
+        "run_id": 34437574812,
+        "name": "preview-plane",
+        "headSha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e023",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:34:30Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437574858",
+      "summary": "workflow Approval engine concluded success",
+      "meta": {
+        "run_id": 34437574858,
+        "name": "Approval engine",
+        "headSha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e024",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:37:09Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34437574812",
+      "summary": "workflow preview-plane concluded failure",
+      "meta": {
+        "run_id": 34437574812,
+        "name": "preview-plane",
+        "headSha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e025",
+      "type": "git.commit",
+      "t": "2026-09-10T04:44:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/e453f2722ced59c13c631b87bfd3ef124402a522",
+      "summary": "fix(ontology): restore import walls by exporting OntologyInternal from main",
+      "meta": {
+        "sha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "authoredDate": "2026-09-10T04:44:42Z",
+        "committedDate": "2026-09-10T04:44:42Z"
+      }
+    },
+    {
+      "id": "e026",
+      "type": "ci.started",
+      "t": "2026-09-10T04:49:57Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34438696115",
+      "summary": "workflow preview-plane started (failure)",
+      "meta": {
+        "run_id": 34438696115,
+        "name": "preview-plane",
+        "headSha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e027",
+      "type": "ci.started",
+      "t": "2026-09-10T04:49:57Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34438696083",
+      "summary": "workflow Approval engine started (success)",
+      "meta": {
+        "run_id": 34438696083,
+        "name": "Approval engine",
+        "headSha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e028",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:52:03Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34438696083",
+      "summary": "workflow Approval engine concluded success",
+      "meta": {
+        "run_id": 34438696083,
+        "name": "Approval engine",
+        "headSha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e029",
+      "type": "ci.ended",
+      "t": "2026-09-10T04:53:28Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34438696115",
+      "summary": "workflow preview-plane concluded failure",
+      "meta": {
+        "run_id": 34438696115,
+        "name": "preview-plane",
+        "headSha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "conclusion": "failure"
+      }
+    },
+    {
+      "id": "e030",
+      "type": "git.commit",
+      "t": "2026-09-10T05:08:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/401b494c0071068badbff34570b9a493771a776c",
+      "summary": "fix(ontology): remove unused Ontology import from factory files",
+      "meta": {
+        "sha": "401b494c0071068badbff34570b9a493771a776c",
+        "authoredDate": "2026-09-10T05:08:47Z",
+        "committedDate": "2026-09-10T05:08:47Z"
+      }
+    },
+    {
+      "id": "e031",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:01Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390",
+      "summary": "workflow preview-plane started (success)",
+      "meta": {
+        "run_id": 34439916390,
+        "name": "preview-plane",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e032",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:01Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916217",
+      "summary": "workflow Approval engine started (success)",
+      "meta": {
+        "run_id": 34439916217,
+        "name": "Approval engine",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e033",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:03Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606943",
+      "summary": "check audit (build) started",
+      "meta": {
+        "check_run_id": 102752606943,
+        "name": "audit (build)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e034",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606786",
+      "summary": "check Durable marketing leads and deployment migrations started",
+      "meta": {
+        "check_run_id": 102752606786,
+        "name": "Durable marketing leads and deployment migrations",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e035",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607046",
+      "summary": "check Knowledge documents and durable imports started",
+      "meta": {
+        "check_run_id": 102752607046,
+        "name": "Knowledge documents and durable imports",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e036",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606999",
+      "summary": "check audit (test) started",
+      "meta": {
+        "check_run_id": 102752606999,
+        "name": "audit (test)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e037",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606922",
+      "summary": "check guard started",
+      "meta": {
+        "check_run_id": 102752606922,
+        "name": "guard",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e038",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606908",
+      "summary": "check ontology (build) started",
+      "meta": {
+        "check_run_id": 102752606908,
+        "name": "ontology (build)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e039",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606903",
+      "summary": "check ontology (prove) started",
+      "meta": {
+        "check_run_id": 102752606903,
+        "name": "ontology (prove)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e040",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607015",
+      "summary": "check ontology-memory (build) started",
+      "meta": {
+        "check_run_id": 102752607015,
+        "name": "ontology-memory (build)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e041",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606906",
+      "summary": "check ontology-memory (prove) started",
+      "meta": {
+        "check_run_id": 102752606906,
+        "name": "ontology-memory (prove)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e042",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606876",
+      "summary": "check planner (build) started",
+      "meta": {
+        "check_run_id": 102752606876,
+        "name": "planner (build)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e043",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606964",
+      "summary": "check planner (prove) started",
+      "meta": {
+        "check_run_id": 102752606964,
+        "name": "planner (prove)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e044",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606960",
+      "summary": "check postgres (build) started",
+      "meta": {
+        "check_run_id": 102752606960,
+        "name": "postgres (build)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e045",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606953",
+      "summary": "check postgres (prove) started",
+      "meta": {
+        "check_run_id": 102752606953,
+        "name": "postgres (prove)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e046",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607023",
+      "summary": "check runtime (prove) started",
+      "meta": {
+        "check_run_id": 102752607023,
+        "name": "runtime (prove)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e047",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606996",
+      "summary": "check runtime (prove:pg) started",
+      "meta": {
+        "check_run_id": 102752606996,
+        "name": "runtime (prove:pg)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e048",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916217/job/102752605912",
+      "summary": "check transaction-and-provider-contracts started",
+      "meta": {
+        "check_run_id": 102752605912,
+        "name": "transaction-and-provider-contracts",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e049",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607066",
+      "summary": "check web (lint) started",
+      "meta": {
+        "check_run_id": 102752607066,
+        "name": "web (lint)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e050",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607072",
+      "summary": "check web (typecheck) started",
+      "meta": {
+        "check_run_id": 102752607072,
+        "name": "web (typecheck)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e051",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607119",
+      "summary": "check web (verify:admin-access) started",
+      "meta": {
+        "check_run_id": 102752607119,
+        "name": "web (verify:admin-access)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e052",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607094",
+      "summary": "check web (verify:conversation-chat) started",
+      "meta": {
+        "check_run_id": 102752607094,
+        "name": "web (verify:conversation-chat)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e053",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607115",
+      "summary": "check web (verify:email-domain) started",
+      "meta": {
+        "check_run_id": 102752607115,
+        "name": "web (verify:email-domain)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e054",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607124",
+      "summary": "check web (verify:experience-gate) started",
+      "meta": {
+        "check_run_id": 102752607124,
+        "name": "web (verify:experience-gate)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e055",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607098",
+      "summary": "check web (verify:knowledge-agent) started",
+      "meta": {
+        "check_run_id": 102752607098,
+        "name": "web (verify:knowledge-agent)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e056",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607248",
+      "summary": "check web (verify:knowledge-model) started",
+      "meta": {
+        "check_run_id": 102752607248,
+        "name": "web (verify:knowledge-model)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e057",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607114",
+      "summary": "check web (verify:knowledge-relationships) started",
+      "meta": {
+        "check_run_id": 102752607114,
+        "name": "web (verify:knowledge-relationships)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e058",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607217",
+      "summary": "check web (verify:knowledge-work) started",
+      "meta": {
+        "check_run_id": 102752607217,
+        "name": "web (verify:knowledge-work)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e059",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607055",
+      "summary": "check web (verify:ontology-explorer-model) started",
+      "meta": {
+        "check_run_id": 102752607055,
+        "name": "web (verify:ontology-explorer-model)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e060",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607075",
+      "summary": "check web (verify:organization-branding-model) started",
+      "meta": {
+        "check_run_id": 102752607075,
+        "name": "web (verify:organization-branding-model)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e061",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607161",
+      "summary": "check web (verify:organization-hosts) started",
+      "meta": {
+        "check_run_id": 102752607161,
+        "name": "web (verify:organization-hosts)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e062",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607073",
+      "summary": "check web (verify:plane-access) started",
+      "meta": {
+        "check_run_id": 102752607073,
+        "name": "web (verify:plane-access)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e063",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607095",
+      "summary": "check web (verify:planes) started",
+      "meta": {
+        "check_run_id": 102752607095,
+        "name": "web (verify:planes)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e064",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607110",
+      "summary": "check web (verify:sso-boundaries) started",
+      "meta": {
+        "check_run_id": 102752607110,
+        "name": "web (verify:sso-boundaries)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e065",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:05Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607680",
+      "summary": "check web (verify:experience-model) started",
+      "meta": {
+        "check_run_id": 102752607680,
+        "name": "web (verify:experience-model)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e066",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:05Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607146",
+      "summary": "check web (verify:image-storage) started",
+      "meta": {
+        "check_run_id": 102752607146,
+        "name": "web (verify:image-storage)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e067",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:09Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606922",
+      "summary": "check guard success",
+      "meta": {
+        "check_run_id": 102752606922,
+        "name": "guard",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e068",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:09Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607139",
+      "summary": "check web (verify:realtime) started",
+      "meta": {
+        "check_run_id": 102752607139,
+        "name": "web (verify:realtime)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e069",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:14Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/runs/102752647022",
+      "summary": "check Vercel Preview Comments success",
+      "meta": {
+        "check_run_id": 102752647022,
+        "name": "Vercel Preview Comments",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e070",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:14Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/runs/102752647022",
+      "summary": "check Vercel Preview Comments started",
+      "meta": {
+        "check_run_id": 102752647022,
+        "name": "Vercel Preview Comments",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e071",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:16Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606943",
+      "summary": "check audit (build) success",
+      "meta": {
+        "check_run_id": 102752606943,
+        "name": "audit (build)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e072",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:16Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606999",
+      "summary": "check audit (test) success",
+      "meta": {
+        "check_run_id": 102752606999,
+        "name": "audit (test)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e073",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:19Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606876",
+      "summary": "check planner (build) success",
+      "meta": {
+        "check_run_id": 102752606876,
+        "name": "planner (build)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e074",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:19Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752656791",
+      "summary": "check audit started",
+      "meta": {
+        "check_run_id": 102752656791,
+        "name": "audit",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e075",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:20Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606908",
+      "summary": "check ontology (build) success",
+      "meta": {
+        "check_run_id": 102752606908,
+        "name": "ontology (build)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e076",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:21Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606964",
+      "summary": "check planner (prove) success",
+      "meta": {
+        "check_run_id": 102752606964,
+        "name": "planner (prove)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e077",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:22Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606903",
+      "summary": "check ontology (prove) success",
+      "meta": {
+        "check_run_id": 102752606903,
+        "name": "ontology (prove)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e078",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:22Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607015",
+      "summary": "check ontology-memory (build) success",
+      "meta": {
+        "check_run_id": 102752607015,
+        "name": "ontology-memory (build)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e079",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:23Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752656791",
+      "summary": "check audit success",
+      "meta": {
+        "check_run_id": 102752656791,
+        "name": "audit",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e080",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:24Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752671222",
+      "summary": "check planner started",
+      "meta": {
+        "check_run_id": 102752671222,
+        "name": "planner",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e081",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:25Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752674462",
+      "summary": "check ontology started",
+      "meta": {
+        "check_run_id": 102752674462,
+        "name": "ontology",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e082",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:27Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606906",
+      "summary": "check ontology-memory (prove) success",
+      "meta": {
+        "check_run_id": 102752606906,
+        "name": "ontology-memory (prove)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e083",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:28Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752671222",
+      "summary": "check planner success",
+      "meta": {
+        "check_run_id": 102752671222,
+        "name": "planner",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e084",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:29Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606960",
+      "summary": "check postgres (build) success",
+      "meta": {
+        "check_run_id": 102752606960,
+        "name": "postgres (build)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e085",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:29Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752674462",
+      "summary": "check ontology success",
+      "meta": {
+        "check_run_id": 102752674462,
+        "name": "ontology",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e086",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:30Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607023",
+      "summary": "check runtime (prove) success",
+      "meta": {
+        "check_run_id": 102752607023,
+        "name": "runtime (prove)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e087",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:30Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752691510",
+      "summary": "check ontology-memory started",
+      "meta": {
+        "check_run_id": 102752691510,
+        "name": "ontology-memory",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e088",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:33Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752691510",
+      "summary": "check ontology-memory success",
+      "meta": {
+        "check_run_id": 102752691510,
+        "name": "ontology-memory",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e089",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:35Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606953",
+      "summary": "check postgres (prove) success",
+      "meta": {
+        "check_run_id": 102752606953,
+        "name": "postgres (prove)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e090",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:37Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752714644",
+      "summary": "check postgres started",
+      "meta": {
+        "check_run_id": 102752714644,
+        "name": "postgres",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e091",
+      "type": "ci.started",
+      "t": "2026-09-10T05:09:40Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607092",
+      "summary": "check runtime (build) started",
+      "meta": {
+        "check_run_id": 102752607092,
+        "name": "runtime (build)",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e092",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:42Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752714644",
+      "summary": "check postgres success",
+      "meta": {
+        "check_run_id": 102752714644,
+        "name": "postgres",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e093",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:50Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607124",
+      "summary": "check web (verify:experience-gate) success",
+      "meta": {
+        "check_run_id": 102752607124,
+        "name": "web (verify:experience-gate)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e094",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:53Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606996",
+      "summary": "check runtime (prove:pg) success",
+      "meta": {
+        "check_run_id": 102752606996,
+        "name": "runtime (prove:pg)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e095",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:55Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607119",
+      "summary": "check web (verify:admin-access) success",
+      "meta": {
+        "check_run_id": 102752607119,
+        "name": "web (verify:admin-access)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e096",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:09:58Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607161",
+      "summary": "check web (verify:organization-hosts) success",
+      "meta": {
+        "check_run_id": 102752607161,
+        "name": "web (verify:organization-hosts)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e097",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:02Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607094",
+      "summary": "check web (verify:conversation-chat) success",
+      "meta": {
+        "check_run_id": 102752607094,
+        "name": "web (verify:conversation-chat)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e098",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:02Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607248",
+      "summary": "check web (verify:knowledge-model) success",
+      "meta": {
+        "check_run_id": 102752607248,
+        "name": "web (verify:knowledge-model)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e099",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:02Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607073",
+      "summary": "check web (verify:plane-access) success",
+      "meta": {
+        "check_run_id": 102752607073,
+        "name": "web (verify:plane-access)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e100",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:03Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607110",
+      "summary": "check web (verify:sso-boundaries) success",
+      "meta": {
+        "check_run_id": 102752607110,
+        "name": "web (verify:sso-boundaries)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e101",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:04Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607115",
+      "summary": "check web (verify:email-domain) success",
+      "meta": {
+        "check_run_id": 102752607115,
+        "name": "web (verify:email-domain)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e102",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:05Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607095",
+      "summary": "check web (verify:planes) success",
+      "meta": {
+        "check_run_id": 102752607095,
+        "name": "web (verify:planes)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e103",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:05Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607092",
+      "summary": "check runtime (build) success",
+      "meta": {
+        "check_run_id": 102752607092,
+        "name": "runtime (build)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e104",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:06Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607146",
+      "summary": "check web (verify:image-storage) success",
+      "meta": {
+        "check_run_id": 102752607146,
+        "name": "web (verify:image-storage)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e105",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:07Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607055",
+      "summary": "check web (verify:ontology-explorer-model) success",
+      "meta": {
+        "check_run_id": 102752607055,
+        "name": "web (verify:ontology-explorer-model)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e106",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:07Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607075",
+      "summary": "check web (verify:organization-branding-model) success",
+      "meta": {
+        "check_run_id": 102752607075,
+        "name": "web (verify:organization-branding-model)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e107",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:08Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607098",
+      "summary": "check web (verify:knowledge-agent) success",
+      "meta": {
+        "check_run_id": 102752607098,
+        "name": "web (verify:knowledge-agent)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e108",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:08Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607114",
+      "summary": "check web (verify:knowledge-relationships) success",
+      "meta": {
+        "check_run_id": 102752607114,
+        "name": "web (verify:knowledge-relationships)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e109",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:08Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607217",
+      "summary": "check web (verify:knowledge-work) success",
+      "meta": {
+        "check_run_id": 102752607217,
+        "name": "web (verify:knowledge-work)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e110",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:08Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607680",
+      "summary": "check web (verify:experience-model) success",
+      "meta": {
+        "check_run_id": 102752607680,
+        "name": "web (verify:experience-model)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e111",
+      "type": "ci.started",
+      "t": "2026-09-10T05:10:08Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752815709",
+      "summary": "check runtime started",
+      "meta": {
+        "check_run_id": 102752815709,
+        "name": "runtime",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e112",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:12Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607139",
+      "summary": "check web (verify:realtime) success",
+      "meta": {
+        "check_run_id": 102752607139,
+        "name": "web (verify:realtime)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e113",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:12Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752815709",
+      "summary": "check runtime success",
+      "meta": {
+        "check_run_id": 102752815709,
+        "name": "runtime",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e114",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:19Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607066",
+      "summary": "check web (lint) success",
+      "meta": {
+        "check_run_id": 102752607066,
+        "name": "web (lint)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e115",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:25Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606786",
+      "summary": "check Durable marketing leads and deployment migrations success",
+      "meta": {
+        "check_run_id": 102752606786,
+        "name": "Durable marketing leads and deployment migrations",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e116",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:10:38Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607072",
+      "summary": "check web (typecheck) success",
+      "meta": {
+        "check_run_id": 102752607072,
+        "name": "web (typecheck)",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e117",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:11:09Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916217/job/102752605912",
+      "summary": "check transaction-and-provider-contracts success",
+      "meta": {
+        "check_run_id": 102752605912,
+        "name": "transaction-and-provider-contracts",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e118",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:11:10Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916217",
+      "summary": "workflow Approval engine concluded success",
+      "meta": {
+        "run_id": 34439916217,
+        "name": "Approval engine",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e119",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:12:05Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607046",
+      "summary": "check Knowledge documents and durable imports success",
+      "meta": {
+        "check_run_id": 102752607046,
+        "name": "Knowledge documents and durable imports",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e120",
+      "type": "ci.started",
+      "t": "2026-09-10T05:12:07Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102753204409",
+      "summary": "check verify started",
+      "meta": {
+        "check_run_id": 102753204409,
+        "name": "verify",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e121",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:12:11Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102753204409",
+      "summary": "check verify success",
+      "meta": {
+        "check_run_id": 102753204409,
+        "name": "verify",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e122",
+      "type": "ci.started",
+      "t": "2026-09-10T05:12:13Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102753224223",
+      "summary": "check stack started",
+      "meta": {
+        "check_run_id": 102753224223,
+        "name": "stack",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e123",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:12:16Z",
+      "source": "github_check_run",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102753224223",
+      "summary": "check stack success",
+      "meta": {
+        "check_run_id": 102753224223,
+        "name": "stack",
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      }
+    },
+    {
+      "id": "e124",
+      "type": "ci.ended",
+      "t": "2026-09-10T05:12:17Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34439916390",
+      "summary": "workflow preview-plane concluded success",
+      "meta": {
+        "run_id": 34439916390,
+        "name": "preview-plane",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c",
+        "conclusion": "success"
+      }
+    },
+    {
+      "id": "e125",
+      "type": "human.approval_requested",
+      "t": "2026-09-10T05:22:11Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/178#event-ready_for_review",
+      "summary": "Ready for review \u2014 human merge/sign-off requested",
+      "meta": {
+        "actor": "cursor",
+        "channel": "github_pr"
+      }
+    },
+    {
+      "id": "e126",
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T05:22:11Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/178#event-ready_for_review",
+      "summary": "PR #178 marked ready for review",
+      "meta": {
+        "from": "draft",
+        "to": "ready_for_review",
+        "actor": "cursor"
+      }
+    },
+    {
+      "id": "e127",
+      "type": "agent.ended",
+      "t": "2026-09-10T05:22:17.958Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-75ee96b5-582d-467e-9ab3-b39d2051523a#completed_at_ms=1789017737958",
+      "summary": "Cloud agent bc-75ee96b5 last tool completion; agent finished",
+      "meta": {
+        "agent_id": "bc-75ee96b5-582d-467e-9ab3-b39d2051523a",
+        "evidence": "max completed_at_ms in transcript",
+        "status": "finished"
+      }
+    },
+    {
+      "id": "e128",
+      "type": "human.approval_received",
+      "t": "2026-09-10T13:44:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/178#event-merged",
+      "summary": "skbergam merged PR #178",
+      "meta": {
+        "actor": "skbergam",
+        "channel": "github_pr_merge"
+      }
+    },
+    {
+      "id": "e129",
+      "type": "pr.status_changed",
+      "t": "2026-09-10T13:44:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/178",
+      "summary": "PR #178 merged",
+      "meta": {
+        "from": "open",
+        "to": "merged",
+        "merged_by": "skbergam",
+        "merged_at": "2026-09-10T13:44:26Z"
+      }
+    },
+    {
+      "id": "e130",
+      "type": "pr.status_changed",
+      "t": "2026-09-10T13:44:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/issues/178/events",
+      "summary": "PR #178 closed (via merge)",
+      "meta": {
+        "from": "open",
+        "to": "closed",
+        "actor": "skbergam"
+      }
+    },
+    {
+      "id": "e131",
+      "type": "deploy.completed",
+      "t": "2026-09-10T13:46:16Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6373113662/statuses",
+      "summary": "Products Production deploy ready for merge SHA bf432e18 (PR #178)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 178,
+        "sha": "bf432e1843a02b8ab7891f684640df1cd889c6d2",
+        "environment": "Production",
+        "deployment_id": 6373113662,
+        "state": "success",
+        "vercel_status_created_at": "2026-09-10T13:46:16Z",
+        "target_url": "https://itsm-m7e44515c-z124-d5f14b61.vercel.app",
+        "github_status_context": "Vercel"
+      }
+    }
+  ],
+  "spans": [
+    {
+      "kind": "wall",
+      "start": "2026-09-10T03:58:51.945Z",
+      "end": "2026-09-10T13:44:26Z",
+      "seconds": 35134,
+      "from_event": "agent.started",
+      "to_event": "pr.status_changed:merged",
+      "source_refs": [
+        "cursor://agent/bc-75ee96b5-582d-467e-9ab3-b39d2051523a#started_at_ms",
+        "https://github.com/elementum-fde/products/pull/178"
+      ]
+    },
+    {
+      "kind": "waiting_human",
+      "start": "2026-09-10T05:22:11Z",
+      "end": "2026-09-10T13:44:26Z",
+      "seconds": 30135,
+      "from_event": "human.approval_requested",
+      "to_event": "human.approval_received",
+      "source_refs": [
+        "github:ready_for_review@2026-09-10T05:22:11Z",
+        "github:merged@2026-09-10T13:44:26Z"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:12:13Z",
+      "end": "2026-09-10T05:12:16Z",
+      "seconds": 3,
+      "meta": {
+        "name": "stack",
+        "check_run_id": 102753224223,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102753224223"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:12:07Z",
+      "end": "2026-09-10T05:12:11Z",
+      "seconds": 4,
+      "meta": {
+        "name": "verify",
+        "check_run_id": 102753204409,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102753204409"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:10:08Z",
+      "end": "2026-09-10T05:10:12Z",
+      "seconds": 4,
+      "meta": {
+        "name": "runtime",
+        "check_run_id": 102752815709,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752815709"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:37Z",
+      "end": "2026-09-10T05:09:42Z",
+      "seconds": 5,
+      "meta": {
+        "name": "postgres",
+        "check_run_id": 102752714644,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752714644"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:30Z",
+      "end": "2026-09-10T05:09:33Z",
+      "seconds": 3,
+      "meta": {
+        "name": "ontology-memory",
+        "check_run_id": 102752691510,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752691510"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:25Z",
+      "end": "2026-09-10T05:09:29Z",
+      "seconds": 4,
+      "meta": {
+        "name": "ontology",
+        "check_run_id": 102752674462,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752674462"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:24Z",
+      "end": "2026-09-10T05:09:28Z",
+      "seconds": 4,
+      "meta": {
+        "name": "planner",
+        "check_run_id": 102752671222,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752671222"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:19Z",
+      "end": "2026-09-10T05:09:23Z",
+      "seconds": 4,
+      "meta": {
+        "name": "audit",
+        "check_run_id": 102752656791,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752656791"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:14Z",
+      "end": "2026-09-10T05:09:14Z",
+      "seconds": 0,
+      "meta": {
+        "name": "Vercel Preview Comments",
+        "check_run_id": 102752647022,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/runs/102752647022"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:05Z",
+      "end": "2026-09-10T05:10:08Z",
+      "seconds": 63,
+      "meta": {
+        "name": "web (verify:experience-model)",
+        "check_run_id": 102752607680,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607680"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:02Z",
+      "seconds": 58,
+      "meta": {
+        "name": "web (verify:knowledge-model)",
+        "check_run_id": 102752607248,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607248"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:08Z",
+      "seconds": 64,
+      "meta": {
+        "name": "web (verify:knowledge-work)",
+        "check_run_id": 102752607217,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607217"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:58Z",
+      "seconds": 54,
+      "meta": {
+        "name": "web (verify:organization-hosts)",
+        "check_run_id": 102752607161,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607161"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:05Z",
+      "end": "2026-09-10T05:10:06Z",
+      "seconds": 61,
+      "meta": {
+        "name": "web (verify:image-storage)",
+        "check_run_id": 102752607146,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607146"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:09Z",
+      "end": "2026-09-10T05:10:12Z",
+      "seconds": 63,
+      "meta": {
+        "name": "web (verify:realtime)",
+        "check_run_id": 102752607139,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607139"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:50Z",
+      "seconds": 46,
+      "meta": {
+        "name": "web (verify:experience-gate)",
+        "check_run_id": 102752607124,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607124"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:55Z",
+      "seconds": 51,
+      "meta": {
+        "name": "web (verify:admin-access)",
+        "check_run_id": 102752607119,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607119"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:04Z",
+      "seconds": 60,
+      "meta": {
+        "name": "web (verify:email-domain)",
+        "check_run_id": 102752607115,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607115"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:08Z",
+      "seconds": 64,
+      "meta": {
+        "name": "web (verify:knowledge-relationships)",
+        "check_run_id": 102752607114,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607114"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:03Z",
+      "seconds": 59,
+      "meta": {
+        "name": "web (verify:sso-boundaries)",
+        "check_run_id": 102752607110,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607110"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:08Z",
+      "seconds": 64,
+      "meta": {
+        "name": "web (verify:knowledge-agent)",
+        "check_run_id": 102752607098,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607098"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:05Z",
+      "seconds": 61,
+      "meta": {
+        "name": "web (verify:planes)",
+        "check_run_id": 102752607095,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607095"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:02Z",
+      "seconds": 58,
+      "meta": {
+        "name": "web (verify:conversation-chat)",
+        "check_run_id": 102752607094,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607094"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:40Z",
+      "end": "2026-09-10T05:10:05Z",
+      "seconds": 25,
+      "meta": {
+        "name": "runtime (build)",
+        "check_run_id": 102752607092,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607092"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:07Z",
+      "seconds": 63,
+      "meta": {
+        "name": "web (verify:organization-branding-model)",
+        "check_run_id": 102752607075,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607075"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:02Z",
+      "seconds": 58,
+      "meta": {
+        "name": "web (verify:plane-access)",
+        "check_run_id": 102752607073,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607073"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:38Z",
+      "seconds": 94,
+      "meta": {
+        "name": "web (typecheck)",
+        "check_run_id": 102752607072,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607072"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:19Z",
+      "seconds": 75,
+      "meta": {
+        "name": "web (lint)",
+        "check_run_id": 102752607066,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607066"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:07Z",
+      "seconds": 63,
+      "meta": {
+        "name": "web (verify:ontology-explorer-model)",
+        "check_run_id": 102752607055,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607055"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:12:05Z",
+      "seconds": 181,
+      "meta": {
+        "name": "Knowledge documents and durable imports",
+        "check_run_id": 102752607046,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607046"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:30Z",
+      "seconds": 26,
+      "meta": {
+        "name": "runtime (prove)",
+        "check_run_id": 102752607023,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607023"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:22Z",
+      "seconds": 18,
+      "meta": {
+        "name": "ontology-memory (build)",
+        "check_run_id": 102752607015,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752607015"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:16Z",
+      "seconds": 12,
+      "meta": {
+        "name": "audit (test)",
+        "check_run_id": 102752606999,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606999"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:53Z",
+      "seconds": 49,
+      "meta": {
+        "name": "runtime (prove:pg)",
+        "check_run_id": 102752606996,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606996"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:21Z",
+      "seconds": 17,
+      "meta": {
+        "name": "planner (prove)",
+        "check_run_id": 102752606964,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606964"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:29Z",
+      "seconds": 25,
+      "meta": {
+        "name": "postgres (build)",
+        "check_run_id": 102752606960,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606960"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:35Z",
+      "seconds": 31,
+      "meta": {
+        "name": "postgres (prove)",
+        "check_run_id": 102752606953,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606953"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:03Z",
+      "end": "2026-09-10T05:09:16Z",
+      "seconds": 13,
+      "meta": {
+        "name": "audit (build)",
+        "check_run_id": 102752606943,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606943"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:09Z",
+      "seconds": 5,
+      "meta": {
+        "name": "guard",
+        "check_run_id": 102752606922,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606922"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:20Z",
+      "seconds": 16,
+      "meta": {
+        "name": "ontology (build)",
+        "check_run_id": 102752606908,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606908"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:27Z",
+      "seconds": 23,
+      "meta": {
+        "name": "ontology-memory (prove)",
+        "check_run_id": 102752606906,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606906"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:22Z",
+      "seconds": 18,
+      "meta": {
+        "name": "ontology (prove)",
+        "check_run_id": 102752606903,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606903"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:09:19Z",
+      "seconds": 15,
+      "meta": {
+        "name": "planner (build)",
+        "check_run_id": 102752606876,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606876"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:10:25Z",
+      "seconds": 81,
+      "meta": {
+        "name": "Durable marketing leads and deployment migrations",
+        "check_run_id": 102752606786,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390/job/102752606786"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:04Z",
+      "end": "2026-09-10T05:11:09Z",
+      "seconds": 125,
+      "meta": {
+        "name": "transaction-and-provider-contracts",
+        "check_run_id": 102752605912,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916217/job/102752605912"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:01Z",
+      "end": "2026-09-10T05:12:17Z",
+      "seconds": 196,
+      "meta": {
+        "name": "preview-plane",
+        "run_id": 34439916390,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916390"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T05:09:01Z",
+      "end": "2026-09-10T05:11:10Z",
+      "seconds": 129,
+      "meta": {
+        "name": "Approval engine",
+        "run_id": 34439916217,
+        "conclusion": "success",
+        "headSha": "401b494c0071068badbff34570b9a493771a776c",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34439916217"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:49:57Z",
+      "end": "2026-09-10T04:53:28Z",
+      "seconds": 211,
+      "meta": {
+        "name": "preview-plane",
+        "run_id": 34438696115,
+        "conclusion": "failure",
+        "headSha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34438696115"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:49:57Z",
+      "end": "2026-09-10T04:52:03Z",
+      "seconds": 126,
+      "meta": {
+        "name": "Approval engine",
+        "run_id": 34438696083,
+        "conclusion": "success",
+        "headSha": "e453f2722ced59c13c631b87bfd3ef124402a522",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34438696083"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:32:27Z",
+      "end": "2026-09-10T04:34:30Z",
+      "seconds": 123,
+      "meta": {
+        "name": "Approval engine",
+        "run_id": 34437574858,
+        "conclusion": "success",
+        "headSha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34437574858"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:32:27Z",
+      "end": "2026-09-10T04:37:09Z",
+      "seconds": 282,
+      "meta": {
+        "name": "preview-plane",
+        "run_id": 34437574812,
+        "conclusion": "failure",
+        "headSha": "2a9c572570bc56f3efc9521d438c065d2397f338",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34437574812"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:26:56Z",
+      "end": "2026-09-10T04:30:31Z",
+      "seconds": 215,
+      "meta": {
+        "name": "preview-plane",
+        "run_id": 34437219121,
+        "conclusion": "failure",
+        "headSha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34437219121"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:26:56Z",
+      "end": "2026-09-10T04:28:59Z",
+      "seconds": 123,
+      "meta": {
+        "name": "Approval engine",
+        "run_id": 34437219079,
+        "conclusion": "success",
+        "headSha": "8adcd484d2be335d6d6daa92722de5d57842374c",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34437219079"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:07:23Z",
+      "end": "2026-09-10T04:08:20Z",
+      "seconds": 57,
+      "meta": {
+        "name": "Approval engine",
+        "run_id": 34435933615,
+        "conclusion": "failure",
+        "headSha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34435933615"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:07:23Z",
+      "end": "2026-09-10T04:08:45Z",
+      "seconds": 82,
+      "meta": {
+        "name": "preview-plane",
+        "run_id": 34435933555,
+        "conclusion": "failure",
+        "headSha": "4b1d73a4ad33e32aa0db9c12288f30ae4d54fd00",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34435933555"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:06:33Z",
+      "end": "2026-09-10T04:07:28Z",
+      "seconds": 55,
+      "meta": {
+        "name": "Approval engine",
+        "run_id": 34435878360,
+        "conclusion": "cancelled",
+        "headSha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34435878360"
+      ]
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T04:06:33Z",
+      "end": "2026-09-10T04:07:39Z",
+      "seconds": 66,
+      "meta": {
+        "name": "preview-plane",
+        "run_id": 34435878277,
+        "conclusion": "cancelled",
+        "headSha": "1539ae873f2807751e47e67004d022c0b89f720a",
+        "grain": "workflow_run"
+      },
+      "source_refs": [
+        "https://github.com/elementum-fde/products/actions/runs/34435878277"
+      ]
+    }
+  ],
+  "totals": {
+    "wall_seconds": 35134,
+    "waiting_human_seconds": 30135,
+    "idle_seconds": 0,
+    "stuck_seconds": 0,
+    "ci_seconds": 3555
+  },
+  "omissions": [
+    {
+      "wanted": "task.created",
+      "reason": "Notion createdTime not exposed by fetch; query_data_sources plan-gated on this connection"
+    },
+    {
+      "wanted": "task.status_changed",
+      "reason": "No property-history API; Status=Done observed at fetch with page_last_edited_at 2026-09-10T13:45:38.013Z but change instant unproven"
+    },
+    {
+      "wanted": "task.bot_changed",
+      "reason": "Bot=Solon (EM) observed; claim timestamp not recoverable"
+    },
+    {
+      "wanted": "board.stage_changed",
+      "reason": "Eng PRs Stage=Done observed; intermediate Stage transitions lack proven timestamps"
+    },
+    {
+      "wanted": "todo.*",
+      "reason": "Cursor todos not recoverable from agent transcript JSONL"
+    },
+    {
+      "wanted": "idle",
+      "reason": "No closed idle interval: after agent.ended the PR was already ready_for_review (waiting_human), not In-progress-without-agent idle"
+    },
+    {
+      "wanted": "stuck",
+      "reason": "CI failures were followed by tip-moving commits within minutes; no bounded thrash/orphan window proven"
+    },
+    {
+      "wanted": "notion_comments",
+      "reason": "get_comments returned no discussions on task or Eng PRs row"
+    },
+    {
+      "wanted": "ci.check_runs_non_tip",
+      "reason": "Per-job check-runs fetched only for tip HEAD 401b494c; earlier SHAs represented via workflow_run spans (startedAt\u2192updatedAt)"
+    }
+  ]
+}

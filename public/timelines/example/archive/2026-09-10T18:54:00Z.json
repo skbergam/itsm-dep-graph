@@ -1,0 +1,118 @@
+{
+  "schema": "task-timeline/v1",
+  "generated_at": "2026-09-10T18:54:00Z",
+  "as_of": "2026-09-10T18:54:00Z",
+  "task": {
+    "notion_url": "https://notion.so/example-task-123",
+    "title": "Example Task: Implement Timeline Feature",
+    "status": "In progress",
+    "running": true
+  },
+  "links": {
+    "eng_prs": [
+      "https://github.com/org/repo/pull/42"
+    ],
+    "prs": [
+      "https://github.com/org/repo/pull/42"
+    ],
+    "agents": [
+      "https://cursor.com/agents/bc_example123"
+    ]
+  },
+  "events": [
+    {
+      "id": "evt_001",
+      "type": "task_created",
+      "t": "2026-09-10T10:00:00Z",
+      "source": "notion",
+      "source_ref": "notion://tasks/123",
+      "summary": "Task created in Notion",
+      "meta": {}
+    },
+    {
+      "id": "evt_002",
+      "type": "agent_started",
+      "t": "2026-09-10T10:15:00Z",
+      "source": "cursor",
+      "source_ref": "bc_example123",
+      "summary": "Cloud agent started implementation",
+      "meta": {
+        "agent_id": "bc_example123"
+      }
+    },
+    {
+      "id": "evt_003",
+      "type": "pr_opened",
+      "t": "2026-09-10T12:30:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/42",
+      "summary": "Pull request #42 opened",
+      "meta": {
+        "pr_number": 42
+      }
+    },
+    {
+      "id": "evt_004",
+      "type": "ci_started",
+      "t": "2026-09-10T12:31:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/actions/runs/789",
+      "summary": "CI checks started",
+      "meta": {}
+    },
+    {
+      "id": "evt_005",
+      "type": "ci_completed",
+      "t": "2026-09-10T12:45:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/actions/runs/789",
+      "summary": "CI checks passed",
+      "meta": {
+        "status": "success"
+      }
+    },
+    {
+      "id": "evt_006",
+      "type": "review_requested",
+      "t": "2026-09-10T12:46:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/42",
+      "summary": "Review requested from team",
+      "meta": {}
+    }
+  ],
+  "spans": [
+    {
+      "kind": "wall",
+      "start": "2026-09-10T10:00:00Z",
+      "end": "2026-09-10T18:54:00Z",
+      "seconds": 31440
+    },
+    {
+      "kind": "idle",
+      "start": "2026-09-10T10:00:00Z",
+      "end": "2026-09-10T10:15:00Z",
+      "seconds": 900
+    },
+    {
+      "kind": "ci",
+      "start": "2026-09-10T12:31:00Z",
+      "end": "2026-09-10T12:45:00Z",
+      "seconds": 840
+    },
+    {
+      "kind": "waiting_human",
+      "start": "2026-09-10T12:46:00Z",
+      "end": "2026-09-10T18:54:00Z",
+      "seconds": 22080
+    }
+  ],
+  "totals": {
+    "wall_seconds": 31440,
+    "waiting_human_seconds": 22080,
+    "idle_seconds": 900,
+    "stuck_seconds": 0,
+    "ci_seconds": 840
+  },
+  "omissions": []
+}
