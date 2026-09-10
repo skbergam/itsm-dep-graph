@@ -1,7 +1,7 @@
 {
   "schema": "task-timeline/v1",
-  "generated_at": "2026-09-10T19:04:58Z",
-  "as_of": "2026-09-10T19:04:58Z",
+  "generated_at": "2026-09-10T19:26:57.992Z",
+  "as_of": "2026-09-10T19:26:57.992Z",
   "task": {
     "notion_id": "3d65dbdd-f0ea-81f6-880f-e041eda42d5b",
     "notion_url": "https://app.notion.com/p/3d65dbddf0ea81f6880fe041eda42d5b",
@@ -9,30 +9,33 @@
     "status": "In progress",
     "bot": "Solon (EM)",
     "running": true,
-    "page_last_edited_at": "2026-09-10T18:34:57.302Z",
-    "note": "ExplicitLink #177 + Relation #190 merged. Next slice KnowledgeArticleNode boarding now."
+    "page_last_edited_at": "2026-09-10T19:15:51.664Z",
+    "note": "ExplicitLink #177, Relation #190, Node #194 (a6b5123) merged. Next: KnowledgeDraftProposal boarding."
   },
   "links": {
     "eng_prs": [
       "https://app.notion.com/p/3d75dbddf0ea819292aaf26fff181914",
       "https://app.notion.com/p/3d75dbddf0ea81fb857cd928dc5217d1",
-      "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3"
+      "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
+      "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e"
     ],
     "prs": [
       "https://github.com/elementum-fde/products/pull/146",
       "https://github.com/elementum-fde/products/pull/177",
-      "https://github.com/elementum-fde/products/pull/190"
+      "https://github.com/elementum-fde/products/pull/190",
+      "https://github.com/elementum-fde/products/pull/194"
     ],
     "agents": [
       "https://cursor.com/agents/bc-998fc92a-9bd0-412b-960b-65a7ec415187",
       "https://cursor.com/agents/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
       "https://cursor.com/agents/bc-4d1d7968-4207-4015-9524-a30222fa056a",
-      "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2"
+      "https://cursor.com/agents/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+      "https://cursor.com/agents/bc-392c0fbe-005e-4925-b749-14caaabe7e61"
     ]
   },
   "events": [
     {
-      "id": "e0009",
+      "id": "e001",
       "type": "git.commit",
       "t": "2026-09-09T15:07:46Z",
       "source": "github",
@@ -45,7 +48,7 @@
       }
     },
     {
-      "id": "e0008",
+      "id": "e002",
       "type": "pr.created",
       "t": "2026-09-09T15:08:00Z",
       "source": "github",
@@ -58,7 +61,7 @@
       }
     },
     {
-      "id": "e0010",
+      "id": "e003",
       "type": "git.commit",
       "t": "2026-09-09T15:49:26Z",
       "source": "github",
@@ -71,7 +74,7 @@
       }
     },
     {
-      "id": "e0011",
+      "id": "e004",
       "type": "git.commit",
       "t": "2026-09-09T16:00:15Z",
       "source": "github",
@@ -84,7 +87,7 @@
       }
     },
     {
-      "id": "e0012",
+      "id": "e005",
       "type": "git.commit",
       "t": "2026-09-09T16:01:46Z",
       "source": "github",
@@ -97,7 +100,7 @@
       }
     },
     {
-      "id": "e0013",
+      "id": "e006",
       "type": "git.commit",
       "t": "2026-09-09T16:15:35Z",
       "source": "github",
@@ -110,7 +113,7 @@
       }
     },
     {
-      "id": "e0015",
+      "id": "e007",
       "type": "ci.started",
       "t": "2026-09-09T16:15:46Z",
       "source": "github",
@@ -123,7 +126,7 @@
       }
     },
     {
-      "id": "e0016",
+      "id": "e008",
       "type": "ci.ended",
       "t": "2026-09-09T16:18:52Z",
       "source": "github",
@@ -136,7 +139,7 @@
       }
     },
     {
-      "id": "e0014",
+      "id": "e009",
       "type": "pr.draft_changed",
       "t": "2026-09-09T19:29:38Z",
       "source": "github",
@@ -148,7 +151,7 @@
       }
     },
     {
-      "id": "e0017",
+      "id": "e010",
       "type": "pr.status_changed",
       "t": "2026-09-09T19:29:41Z",
       "source": "github",
@@ -161,7 +164,24 @@
       }
     },
     {
-      "id": "e0001",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T01:51:59.254Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789005119254"
+      },
+      "id": "e011"
+    },
+    {
+      "id": "e012",
       "type": "agent.started",
       "t": "2026-09-10T01:51:59.254Z",
       "source": "cloud_agent_transcript",
@@ -175,7 +195,7 @@
       }
     },
     {
-      "id": "e0019",
+      "id": "e013",
       "type": "git.commit",
       "t": "2026-09-10T02:08:26Z",
       "source": "github",
@@ -188,7 +208,7 @@
       }
     },
     {
-      "id": "e0020",
+      "id": "e014",
       "type": "git.commit",
       "t": "2026-09-10T02:16:46Z",
       "source": "github",
@@ -201,7 +221,7 @@
       }
     },
     {
-      "id": "e0021",
+      "id": "e015",
       "type": "git.commit",
       "t": "2026-09-10T02:35:08Z",
       "source": "github",
@@ -214,7 +234,7 @@
       }
     },
     {
-      "id": "e0022",
+      "id": "e016",
       "type": "git.commit",
       "t": "2026-09-10T02:43:25Z",
       "source": "github",
@@ -227,7 +247,7 @@
       }
     },
     {
-      "id": "e0023",
+      "id": "e017",
       "type": "git.commit",
       "t": "2026-09-10T02:51:58Z",
       "source": "github",
@@ -240,7 +260,7 @@
       }
     },
     {
-      "id": "e0024",
+      "id": "e018",
       "type": "git.commit",
       "t": "2026-09-10T02:56:10Z",
       "source": "github",
@@ -253,7 +273,7 @@
       }
     },
     {
-      "id": "e0025",
+      "id": "e019",
       "type": "git.commit",
       "t": "2026-09-10T03:02:20Z",
       "source": "github",
@@ -266,7 +286,7 @@
       }
     },
     {
-      "id": "e0026",
+      "id": "e020",
       "type": "git.commit",
       "t": "2026-09-10T03:03:39Z",
       "source": "github",
@@ -279,7 +299,7 @@
       }
     },
     {
-      "id": "e0027",
+      "id": "e021",
       "type": "git.commit",
       "t": "2026-09-10T03:07:42Z",
       "source": "github",
@@ -292,7 +312,7 @@
       }
     },
     {
-      "id": "e0028",
+      "id": "e022",
       "type": "git.commit",
       "t": "2026-09-10T03:12:39Z",
       "source": "github",
@@ -305,7 +325,7 @@
       }
     },
     {
-      "id": "e0018",
+      "id": "e023",
       "type": "pr.created",
       "t": "2026-09-10T03:13:12Z",
       "source": "github",
@@ -318,7 +338,7 @@
       }
     },
     {
-      "id": "e0029",
+      "id": "e024",
       "type": "git.commit",
       "t": "2026-09-10T03:23:44Z",
       "source": "github",
@@ -331,7 +351,7 @@
       }
     },
     {
-      "id": "e0030",
+      "id": "e025",
       "type": "git.commit",
       "t": "2026-09-10T03:30:55Z",
       "source": "github",
@@ -344,7 +364,24 @@
       }
     },
     {
-      "id": "e0031",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T03:31:48.843Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#reply",
+      "summary": "Slash command(s) on reply: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "reply",
+        "t_proof": "next_tool_started_at_ms=1789011108843"
+      },
+      "id": "e026"
+    },
+    {
+      "id": "e027",
       "type": "git.commit",
       "t": "2026-09-10T03:38:10Z",
       "source": "github",
@@ -357,7 +394,7 @@
       }
     },
     {
-      "id": "e0032",
+      "id": "e028",
       "type": "git.commit",
       "t": "2026-09-10T03:53:18Z",
       "source": "github",
@@ -370,7 +407,7 @@
       }
     },
     {
-      "id": "e0033",
+      "id": "e029",
       "type": "git.commit",
       "t": "2026-09-10T03:56:47Z",
       "source": "github",
@@ -383,7 +420,7 @@
       }
     },
     {
-      "id": "e0034",
+      "id": "e030",
       "type": "git.commit",
       "t": "2026-09-10T04:05:56Z",
       "source": "github",
@@ -396,7 +433,7 @@
       }
     },
     {
-      "id": "e0035",
+      "id": "e031",
       "type": "git.commit",
       "t": "2026-09-10T04:18:04Z",
       "source": "github",
@@ -409,7 +446,7 @@
       }
     },
     {
-      "id": "e0036",
+      "id": "e032",
       "type": "git.commit",
       "t": "2026-09-10T04:22:51Z",
       "source": "github",
@@ -422,7 +459,23 @@
       }
     },
     {
-      "id": "e0037",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T04:24:47.015Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-998fc92a-9bd0-412b-960b-65a7ec415187#reply",
+      "summary": "Slash command(s) on reply: /poteto-mode",
+      "meta": {
+        "agent_id": "bc-998fc92a-9bd0-412b-960b-65a7ec415187",
+        "commands": [
+          "/poteto-mode"
+        ],
+        "phase": "reply",
+        "t_proof": "next_tool_started_at_ms=1789014287015"
+      },
+      "id": "e033"
+    },
+    {
+      "id": "e034",
       "type": "git.commit",
       "t": "2026-09-10T04:26:05Z",
       "source": "github",
@@ -435,7 +488,7 @@
       }
     },
     {
-      "id": "e0038",
+      "id": "e035",
       "type": "git.commit",
       "t": "2026-09-10T04:30:02Z",
       "source": "github",
@@ -448,7 +501,7 @@
       }
     },
     {
-      "id": "e0039",
+      "id": "e036",
       "type": "git.commit",
       "t": "2026-09-10T04:38:27Z",
       "source": "github",
@@ -461,7 +514,7 @@
       }
     },
     {
-      "id": "e0040",
+      "id": "e037",
       "type": "git.commit",
       "t": "2026-09-10T04:40:42Z",
       "source": "github",
@@ -474,7 +527,7 @@
       }
     },
     {
-      "id": "e0041",
+      "id": "e038",
       "type": "git.commit",
       "t": "2026-09-10T04:48:50Z",
       "source": "github",
@@ -487,7 +540,7 @@
       }
     },
     {
-      "id": "e0042",
+      "id": "e039",
       "type": "git.commit",
       "t": "2026-09-10T04:55:20Z",
       "source": "github",
@@ -500,7 +553,7 @@
       }
     },
     {
-      "id": "e0043",
+      "id": "e040",
       "type": "git.commit",
       "t": "2026-09-10T05:02:35Z",
       "source": "github",
@@ -513,7 +566,7 @@
       }
     },
     {
-      "id": "e0044",
+      "id": "e041",
       "type": "git.commit",
       "t": "2026-09-10T05:09:26Z",
       "source": "github",
@@ -526,7 +579,7 @@
       }
     },
     {
-      "id": "e0045",
+      "id": "e042",
       "type": "git.commit",
       "t": "2026-09-10T05:14:33Z",
       "source": "github",
@@ -539,7 +592,7 @@
       }
     },
     {
-      "id": "e0046",
+      "id": "e043",
       "type": "git.commit",
       "t": "2026-09-10T05:20:03Z",
       "source": "github",
@@ -552,7 +605,7 @@
       }
     },
     {
-      "id": "e0047",
+      "id": "e044",
       "type": "git.commit",
       "t": "2026-09-10T05:49:36Z",
       "source": "github",
@@ -565,7 +618,7 @@
       }
     },
     {
-      "id": "e0048",
+      "id": "e045",
       "type": "git.commit",
       "t": "2026-09-10T05:59:42Z",
       "source": "github",
@@ -578,7 +631,7 @@
       }
     },
     {
-      "id": "e0049",
+      "id": "e046",
       "type": "git.commit",
       "t": "2026-09-10T06:05:06Z",
       "source": "github",
@@ -591,7 +644,7 @@
       }
     },
     {
-      "id": "e0050",
+      "id": "e047",
       "type": "git.commit",
       "t": "2026-09-10T06:10:37Z",
       "source": "github",
@@ -604,7 +657,7 @@
       }
     },
     {
-      "id": "e0051",
+      "id": "e048",
       "type": "git.commit",
       "t": "2026-09-10T06:15:40Z",
       "source": "github",
@@ -617,7 +670,7 @@
       }
     },
     {
-      "id": "e0052",
+      "id": "e049",
       "type": "git.commit",
       "t": "2026-09-10T06:34:33Z",
       "source": "github",
@@ -630,7 +683,7 @@
       }
     },
     {
-      "id": "e0053",
+      "id": "e050",
       "type": "git.commit",
       "t": "2026-09-10T06:51:00Z",
       "source": "github",
@@ -643,7 +696,7 @@
       }
     },
     {
-      "id": "e0054",
+      "id": "e051",
       "type": "git.commit",
       "t": "2026-09-10T06:52:26Z",
       "source": "github",
@@ -656,7 +709,7 @@
       }
     },
     {
-      "id": "e0055",
+      "id": "e052",
       "type": "git.commit",
       "t": "2026-09-10T07:02:51Z",
       "source": "github",
@@ -669,7 +722,7 @@
       }
     },
     {
-      "id": "e0056",
+      "id": "e053",
       "type": "git.commit",
       "t": "2026-09-10T07:03:41Z",
       "source": "github",
@@ -682,7 +735,7 @@
       }
     },
     {
-      "id": "e0057",
+      "id": "e054",
       "type": "git.commit",
       "t": "2026-09-10T07:05:16Z",
       "source": "github",
@@ -695,7 +748,7 @@
       }
     },
     {
-      "id": "e0058",
+      "id": "e055",
       "type": "git.commit",
       "t": "2026-09-10T07:07:51Z",
       "source": "github",
@@ -708,7 +761,7 @@
       }
     },
     {
-      "id": "e0059",
+      "id": "e056",
       "type": "git.commit",
       "t": "2026-09-10T07:22:50Z",
       "source": "github",
@@ -721,7 +774,7 @@
       }
     },
     {
-      "id": "e0060",
+      "id": "e057",
       "type": "git.commit",
       "t": "2026-09-10T07:26:07Z",
       "source": "github",
@@ -734,7 +787,7 @@
       }
     },
     {
-      "id": "e0061",
+      "id": "e058",
       "type": "git.commit",
       "t": "2026-09-10T07:26:33Z",
       "source": "github",
@@ -747,7 +800,7 @@
       }
     },
     {
-      "id": "e0062",
+      "id": "e059",
       "type": "git.commit",
       "t": "2026-09-10T07:27:44Z",
       "source": "github",
@@ -760,7 +813,7 @@
       }
     },
     {
-      "id": "e0063",
+      "id": "e060",
       "type": "git.commit",
       "t": "2026-09-10T07:29:04Z",
       "source": "github",
@@ -773,7 +826,7 @@
       }
     },
     {
-      "id": "e0064",
+      "id": "e061",
       "type": "git.commit",
       "t": "2026-09-10T07:29:22Z",
       "source": "github",
@@ -786,7 +839,7 @@
       }
     },
     {
-      "id": "e0065",
+      "id": "e062",
       "type": "git.commit",
       "t": "2026-09-10T07:33:25Z",
       "source": "github",
@@ -799,7 +852,7 @@
       }
     },
     {
-      "id": "e0066",
+      "id": "e063",
       "type": "git.commit",
       "t": "2026-09-10T07:34:10Z",
       "source": "github",
@@ -812,7 +865,7 @@
       }
     },
     {
-      "id": "e0067",
+      "id": "e064",
       "type": "git.commit",
       "t": "2026-09-10T07:36:10Z",
       "source": "github",
@@ -825,7 +878,7 @@
       }
     },
     {
-      "id": "e0068",
+      "id": "e065",
       "type": "git.commit",
       "t": "2026-09-10T07:39:37Z",
       "source": "github",
@@ -838,7 +891,7 @@
       }
     },
     {
-      "id": "e0069",
+      "id": "e066",
       "type": "git.commit",
       "t": "2026-09-10T07:40:30Z",
       "source": "github",
@@ -851,7 +904,7 @@
       }
     },
     {
-      "id": "e0070",
+      "id": "e067",
       "type": "git.commit",
       "t": "2026-09-10T07:41:24Z",
       "source": "github",
@@ -864,7 +917,7 @@
       }
     },
     {
-      "id": "e0071",
+      "id": "e068",
       "type": "git.commit",
       "t": "2026-09-10T07:44:15Z",
       "source": "github",
@@ -877,7 +930,7 @@
       }
     },
     {
-      "id": "e0072",
+      "id": "e069",
       "type": "git.commit",
       "t": "2026-09-10T07:57:56Z",
       "source": "github",
@@ -890,7 +943,7 @@
       }
     },
     {
-      "id": "e0073",
+      "id": "e070",
       "type": "git.commit",
       "t": "2026-09-10T08:17:10Z",
       "source": "github",
@@ -903,7 +956,7 @@
       }
     },
     {
-      "id": "e0074",
+      "id": "e071",
       "type": "git.commit",
       "t": "2026-09-10T08:23:19Z",
       "source": "github",
@@ -916,7 +969,7 @@
       }
     },
     {
-      "id": "e0075",
+      "id": "e072",
       "type": "git.commit",
       "t": "2026-09-10T08:24:54Z",
       "source": "github",
@@ -929,7 +982,7 @@
       }
     },
     {
-      "id": "e0076",
+      "id": "e073",
       "type": "git.commit",
       "t": "2026-09-10T08:27:11Z",
       "source": "github",
@@ -942,7 +995,7 @@
       }
     },
     {
-      "id": "e0077",
+      "id": "e074",
       "type": "git.commit",
       "t": "2026-09-10T08:29:17Z",
       "source": "github",
@@ -955,7 +1008,7 @@
       }
     },
     {
-      "id": "e0078",
+      "id": "e075",
       "type": "git.commit",
       "t": "2026-09-10T08:30:25Z",
       "source": "github",
@@ -968,7 +1021,7 @@
       }
     },
     {
-      "id": "e0079",
+      "id": "e076",
       "type": "git.commit",
       "t": "2026-09-10T08:42:14Z",
       "source": "github",
@@ -981,7 +1034,7 @@
       }
     },
     {
-      "id": "e0080",
+      "id": "e077",
       "type": "git.commit",
       "t": "2026-09-10T08:47:40Z",
       "source": "github",
@@ -994,7 +1047,7 @@
       }
     },
     {
-      "id": "e0081",
+      "id": "e078",
       "type": "git.commit",
       "t": "2026-09-10T08:56:28Z",
       "source": "github",
@@ -1007,7 +1060,7 @@
       }
     },
     {
-      "id": "e0082",
+      "id": "e079",
       "type": "git.commit",
       "t": "2026-09-10T08:57:05Z",
       "source": "github",
@@ -1020,7 +1073,7 @@
       }
     },
     {
-      "id": "e0083",
+      "id": "e080",
       "type": "git.commit",
       "t": "2026-09-10T09:04:38Z",
       "source": "github",
@@ -1033,7 +1086,7 @@
       }
     },
     {
-      "id": "e0084",
+      "id": "e081",
       "type": "git.commit",
       "t": "2026-09-10T09:06:07Z",
       "source": "github",
@@ -1046,7 +1099,7 @@
       }
     },
     {
-      "id": "e0085",
+      "id": "e082",
       "type": "git.commit",
       "t": "2026-09-10T09:07:43Z",
       "source": "github",
@@ -1059,7 +1112,7 @@
       }
     },
     {
-      "id": "e0086",
+      "id": "e083",
       "type": "git.commit",
       "t": "2026-09-10T09:09:22Z",
       "source": "github",
@@ -1072,7 +1125,7 @@
       }
     },
     {
-      "id": "e0087",
+      "id": "e084",
       "type": "git.commit",
       "t": "2026-09-10T09:15:11Z",
       "source": "github",
@@ -1085,7 +1138,7 @@
       }
     },
     {
-      "id": "e0088",
+      "id": "e085",
       "type": "git.commit",
       "t": "2026-09-10T09:16:38Z",
       "source": "github",
@@ -1098,7 +1151,7 @@
       }
     },
     {
-      "id": "e0089",
+      "id": "e086",
       "type": "git.commit",
       "t": "2026-09-10T09:18:17Z",
       "source": "github",
@@ -1111,7 +1164,7 @@
       }
     },
     {
-      "id": "e0090",
+      "id": "e087",
       "type": "git.commit",
       "t": "2026-09-10T09:19:27Z",
       "source": "github",
@@ -1124,7 +1177,7 @@
       }
     },
     {
-      "id": "e0091",
+      "id": "e088",
       "type": "git.commit",
       "t": "2026-09-10T09:32:13Z",
       "source": "github",
@@ -1137,7 +1190,7 @@
       }
     },
     {
-      "id": "e0092",
+      "id": "e089",
       "type": "git.commit",
       "t": "2026-09-10T09:35:02Z",
       "source": "github",
@@ -1150,7 +1203,7 @@
       }
     },
     {
-      "id": "e0093",
+      "id": "e090",
       "type": "git.commit",
       "t": "2026-09-10T09:37:55Z",
       "source": "github",
@@ -1163,7 +1216,7 @@
       }
     },
     {
-      "id": "e0094",
+      "id": "e091",
       "type": "git.commit",
       "t": "2026-09-10T09:48:52Z",
       "source": "github",
@@ -1176,7 +1229,7 @@
       }
     },
     {
-      "id": "e0095",
+      "id": "e092",
       "type": "git.commit",
       "t": "2026-09-10T09:57:18Z",
       "source": "github",
@@ -1189,7 +1242,7 @@
       }
     },
     {
-      "id": "e0096",
+      "id": "e093",
       "type": "git.commit",
       "t": "2026-09-10T10:07:40Z",
       "source": "github",
@@ -1202,7 +1255,7 @@
       }
     },
     {
-      "id": "e0097",
+      "id": "e094",
       "type": "git.commit",
       "t": "2026-09-10T10:18:29Z",
       "source": "github",
@@ -1215,7 +1268,7 @@
       }
     },
     {
-      "id": "e0098",
+      "id": "e095",
       "type": "git.commit",
       "t": "2026-09-10T10:20:07Z",
       "source": "github",
@@ -1228,7 +1281,7 @@
       }
     },
     {
-      "id": "e0099",
+      "id": "e096",
       "type": "git.commit",
       "t": "2026-09-10T10:21:36Z",
       "source": "github",
@@ -1241,7 +1294,7 @@
       }
     },
     {
-      "id": "e0100",
+      "id": "e097",
       "type": "git.commit",
       "t": "2026-09-10T10:28:01Z",
       "source": "github",
@@ -1254,7 +1307,7 @@
       }
     },
     {
-      "id": "e0101",
+      "id": "e098",
       "type": "git.commit",
       "t": "2026-09-10T10:36:21Z",
       "source": "github",
@@ -1267,7 +1320,7 @@
       }
     },
     {
-      "id": "e0102",
+      "id": "e099",
       "type": "git.commit",
       "t": "2026-09-10T10:38:02Z",
       "source": "github",
@@ -1280,7 +1333,7 @@
       }
     },
     {
-      "id": "e0103",
+      "id": "e100",
       "type": "git.commit",
       "t": "2026-09-10T10:39:38Z",
       "source": "github",
@@ -1293,7 +1346,7 @@
       }
     },
     {
-      "id": "e0104",
+      "id": "e101",
       "type": "git.commit",
       "t": "2026-09-10T10:41:18Z",
       "source": "github",
@@ -1306,7 +1359,7 @@
       }
     },
     {
-      "id": "e0105",
+      "id": "e102",
       "type": "git.commit",
       "t": "2026-09-10T10:42:29Z",
       "source": "github",
@@ -1319,7 +1372,7 @@
       }
     },
     {
-      "id": "e0106",
+      "id": "e103",
       "type": "git.commit",
       "t": "2026-09-10T10:54:25Z",
       "source": "github",
@@ -1332,7 +1385,7 @@
       }
     },
     {
-      "id": "e0107",
+      "id": "e104",
       "type": "git.commit",
       "t": "2026-09-10T10:56:54Z",
       "source": "github",
@@ -1345,7 +1398,7 @@
       }
     },
     {
-      "id": "e0108",
+      "id": "e105",
       "type": "git.commit",
       "t": "2026-09-10T11:04:46Z",
       "source": "github",
@@ -1358,7 +1411,7 @@
       }
     },
     {
-      "id": "e0109",
+      "id": "e106",
       "type": "git.commit",
       "t": "2026-09-10T11:06:08Z",
       "source": "github",
@@ -1371,7 +1424,7 @@
       }
     },
     {
-      "id": "e0110",
+      "id": "e107",
       "type": "git.commit",
       "t": "2026-09-10T11:20:06Z",
       "source": "github",
@@ -1384,7 +1437,7 @@
       }
     },
     {
-      "id": "e0130",
+      "id": "e108",
       "type": "pr.draft_changed",
       "t": "2026-09-10T11:22:25Z",
       "source": "github",
@@ -1396,7 +1449,7 @@
       }
     },
     {
-      "id": "e0002",
+      "id": "e109",
       "type": "agent.ended",
       "t": "2026-09-10T11:22:39.397Z",
       "source": "cloud_agent_transcript",
@@ -1411,7 +1464,24 @@
       }
     },
     {
-      "id": "e0003",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T11:24:51.916Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789039491916"
+      },
+      "id": "e110"
+    },
+    {
+      "id": "e111",
       "type": "agent.started",
       "t": "2026-09-10T11:24:51.916Z",
       "source": "cloud_agent_transcript",
@@ -1425,7 +1495,7 @@
       }
     },
     {
-      "id": "e0131",
+      "id": "e112",
       "type": "pr.draft_changed",
       "t": "2026-09-10T11:25:14Z",
       "source": "github",
@@ -1437,7 +1507,7 @@
       }
     },
     {
-      "id": "e0111",
+      "id": "e113",
       "type": "git.commit",
       "t": "2026-09-10T11:34:16Z",
       "source": "github",
@@ -1450,7 +1520,7 @@
       }
     },
     {
-      "id": "e0112",
+      "id": "e114",
       "type": "git.commit",
       "t": "2026-09-10T11:47:08Z",
       "source": "github",
@@ -1463,7 +1533,7 @@
       }
     },
     {
-      "id": "e0113",
+      "id": "e115",
       "type": "git.commit",
       "t": "2026-09-10T11:53:26Z",
       "source": "github",
@@ -1476,7 +1546,7 @@
       }
     },
     {
-      "id": "e0114",
+      "id": "e116",
       "type": "git.commit",
       "t": "2026-09-10T11:58:32Z",
       "source": "github",
@@ -1489,7 +1559,7 @@
       }
     },
     {
-      "id": "e0115",
+      "id": "e117",
       "type": "git.commit",
       "t": "2026-09-10T11:59:41Z",
       "source": "github",
@@ -1502,7 +1572,7 @@
       }
     },
     {
-      "id": "e0116",
+      "id": "e118",
       "type": "git.commit",
       "t": "2026-09-10T12:23:22Z",
       "source": "github",
@@ -1515,7 +1585,7 @@
       }
     },
     {
-      "id": "e0117",
+      "id": "e119",
       "type": "git.commit",
       "t": "2026-09-10T12:27:47Z",
       "source": "github",
@@ -1528,7 +1598,7 @@
       }
     },
     {
-      "id": "e0118",
+      "id": "e120",
       "type": "git.commit",
       "t": "2026-09-10T12:42:43Z",
       "source": "github",
@@ -1541,7 +1611,7 @@
       }
     },
     {
-      "id": "e0119",
+      "id": "e121",
       "type": "git.commit",
       "t": "2026-09-10T12:45:08Z",
       "source": "github",
@@ -1554,7 +1624,7 @@
       }
     },
     {
-      "id": "e0120",
+      "id": "e122",
       "type": "git.commit",
       "t": "2026-09-10T12:47:59Z",
       "source": "github",
@@ -1567,7 +1637,7 @@
       }
     },
     {
-      "id": "e0121",
+      "id": "e123",
       "type": "git.commit",
       "t": "2026-09-10T12:57:39Z",
       "source": "github",
@@ -1580,7 +1650,7 @@
       }
     },
     {
-      "id": "e0122",
+      "id": "e124",
       "type": "git.commit",
       "t": "2026-09-10T13:01:51Z",
       "source": "github",
@@ -1593,7 +1663,7 @@
       }
     },
     {
-      "id": "e0123",
+      "id": "e125",
       "type": "git.commit",
       "t": "2026-09-10T13:06:05Z",
       "source": "github",
@@ -1606,7 +1676,7 @@
       }
     },
     {
-      "id": "e0124",
+      "id": "e126",
       "type": "git.commit",
       "t": "2026-09-10T13:07:57Z",
       "source": "github",
@@ -1619,7 +1689,7 @@
       }
     },
     {
-      "id": "e0125",
+      "id": "e127",
       "type": "git.commit",
       "t": "2026-09-10T13:08:03Z",
       "source": "github",
@@ -1632,7 +1702,7 @@
       }
     },
     {
-      "id": "e0126",
+      "id": "e128",
       "type": "git.commit",
       "t": "2026-09-10T13:09:40Z",
       "source": "github",
@@ -1645,7 +1715,7 @@
       }
     },
     {
-      "id": "e0127",
+      "id": "e129",
       "type": "git.commit",
       "t": "2026-09-10T13:15:01Z",
       "source": "github",
@@ -1658,7 +1728,23 @@
       }
     },
     {
-      "id": "e0128",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T13:20:55.638Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-6caaa2d8-1a3d-4844-944e-901cf12d888a#reply",
+      "summary": "Slash command(s) on reply: /poteto-mode",
+      "meta": {
+        "agent_id": "bc-6caaa2d8-1a3d-4844-944e-901cf12d888a",
+        "commands": [
+          "/poteto-mode"
+        ],
+        "phase": "reply",
+        "t_proof": "next_tool_started_at_ms=1789046455638"
+      },
+      "id": "e130"
+    },
+    {
+      "id": "e131",
       "type": "git.commit",
       "t": "2026-09-10T14:24:59Z",
       "source": "github",
@@ -1671,7 +1757,7 @@
       }
     },
     {
-      "id": "e0129",
+      "id": "e132",
       "type": "git.commit",
       "t": "2026-09-10T14:31:21Z",
       "source": "github",
@@ -1684,7 +1770,7 @@
       }
     },
     {
-      "id": "e0133",
+      "id": "e133",
       "type": "ci.started",
       "t": "2026-09-10T14:31:32Z",
       "source": "github",
@@ -1697,7 +1783,7 @@
       }
     },
     {
-      "id": "e0134",
+      "id": "e134",
       "type": "ci.ended",
       "t": "2026-09-10T14:34:48Z",
       "source": "github",
@@ -1710,7 +1796,7 @@
       }
     },
     {
-      "id": "e0132",
+      "id": "e135",
       "type": "pr.draft_changed",
       "t": "2026-09-10T14:35:44Z",
       "source": "github",
@@ -1722,7 +1808,7 @@
       }
     },
     {
-      "id": "e0004",
+      "id": "e136",
       "type": "agent.ended",
       "t": "2026-09-10T14:36:34.499Z",
       "source": "cloud_agent_transcript",
@@ -1737,7 +1823,7 @@
       }
     },
     {
-      "id": "e0135",
+      "id": "e137",
       "type": "pr.status_changed",
       "t": "2026-09-10T14:52:21Z",
       "source": "github",
@@ -1750,7 +1836,7 @@
       }
     },
     {
-      "id": "e0147",
+      "id": "e138",
       "type": "board.stage_changed",
       "t": "2026-09-10T14:52:35.825Z",
       "source": "notion_eng_prs",
@@ -1764,7 +1850,41 @@
       }
     },
     {
-      "id": "e0005",
+      "type": "deploy.completed",
+      "t": "2026-09-10T14:54:40Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6374505136/statuses",
+      "summary": "Products Production deploy ready for merge SHA 7a83801e (PR #177)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 177,
+        "sha": "7a83801ea303209856297cfe99e3f7081f9365d0",
+        "environment": "Production",
+        "deployment_id": 6374505136,
+        "state": "success",
+        "target_url": "https://itsm-88kipkrzj-z124-d5f14b61.vercel.app"
+      },
+      "id": "e139"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-10T15:00:02.114Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-4d1d7968-4207-4015-9524-a30222fa056a#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-4d1d7968-4207-4015-9524-a30222fa056a",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789052402114"
+      },
+      "id": "e140"
+    },
+    {
+      "id": "e141",
       "type": "agent.started",
       "t": "2026-09-10T15:00:02.114Z",
       "source": "cloud_agent_transcript",
@@ -1778,7 +1898,7 @@
       }
     },
     {
-      "id": "e0137",
+      "id": "e142",
       "type": "git.commit",
       "t": "2026-09-10T17:05:23Z",
       "source": "github",
@@ -1791,7 +1911,7 @@
       }
     },
     {
-      "id": "e0136",
+      "id": "e143",
       "type": "pr.created",
       "t": "2026-09-10T17:05:44Z",
       "source": "github",
@@ -1804,7 +1924,7 @@
       }
     },
     {
-      "id": "e0138",
+      "id": "e144",
       "type": "git.commit",
       "t": "2026-09-10T17:07:20Z",
       "source": "github",
@@ -1817,7 +1937,7 @@
       }
     },
     {
-      "id": "e0139",
+      "id": "e145",
       "type": "git.commit",
       "t": "2026-09-10T17:25:42Z",
       "source": "github",
@@ -1830,7 +1950,7 @@
       }
     },
     {
-      "id": "e0140",
+      "id": "e146",
       "type": "git.commit",
       "t": "2026-09-10T18:02:37Z",
       "source": "github",
@@ -1843,7 +1963,7 @@
       }
     },
     {
-      "id": "e0141",
+      "id": "e147",
       "type": "git.commit",
       "t": "2026-09-10T18:02:37Z",
       "source": "github",
@@ -1856,7 +1976,7 @@
       }
     },
     {
-      "id": "e0142",
+      "id": "e148",
       "type": "git.commit",
       "t": "2026-09-10T18:03:36Z",
       "source": "github",
@@ -1869,7 +1989,7 @@
       }
     },
     {
-      "id": "e0144",
+      "id": "e149",
       "type": "ci.started",
       "t": "2026-09-10T18:03:58Z",
       "source": "github",
@@ -1882,7 +2002,7 @@
       }
     },
     {
-      "id": "e0145",
+      "id": "e150",
       "type": "ci.ended",
       "t": "2026-09-10T18:07:33Z",
       "source": "github",
@@ -1895,7 +2015,7 @@
       }
     },
     {
-      "id": "e0143",
+      "id": "e151",
       "type": "pr.draft_changed",
       "t": "2026-09-10T18:08:27Z",
       "source": "github",
@@ -1907,7 +2027,7 @@
       }
     },
     {
-      "id": "e0006",
+      "id": "e152",
       "type": "agent.ended",
       "t": "2026-09-10T18:30:32.918Z",
       "source": "cloud_agent_transcript",
@@ -1922,7 +2042,7 @@
       }
     },
     {
-      "id": "e0146",
+      "id": "e153",
       "type": "pr.status_changed",
       "t": "2026-09-10T18:34:07Z",
       "source": "github",
@@ -1935,7 +2055,7 @@
       }
     },
     {
-      "id": "e0148",
+      "id": "e154",
       "type": "board.stage_changed",
       "t": "2026-09-10T18:34:49.287Z",
       "source": "notion_eng_prs",
@@ -1949,7 +2069,7 @@
       }
     },
     {
-      "id": "e0149",
+      "id": "e155",
       "type": "board.stage_changed",
       "t": "2026-09-10T18:35:04.902Z",
       "source": "notion_eng_prs",
@@ -1964,7 +2084,24 @@
       }
     },
     {
-      "id": "e0007",
+      "type": "agent.slash_command",
+      "t": "2026-09-10T18:35:11.277Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2#user_line=0",
+      "summary": "Slash command(s) on launch: /poteto-mode, /pstack",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "commands": [
+          "/poteto-mode",
+          "/pstack"
+        ],
+        "phase": "launch",
+        "t_proof": "first_tool_started_at_ms=1789065311277"
+      },
+      "id": "e156"
+    },
+    {
+      "id": "e157",
       "type": "agent.started",
       "t": "2026-09-10T18:35:11.277Z",
       "source": "cloud_agent_transcript",
@@ -1976,6 +2113,167 @@
         "pr": null,
         "proof": "first transcript tool started_at_ms (still running as_of)"
       }
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-10T18:36:26Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6378580898/statuses",
+      "summary": "Products Production deploy ready for merge SHA 903a260c (PR #190)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 190,
+        "sha": "903a260c2e30a43d7b8bf2337e139811be9566c3",
+        "environment": "Production",
+        "deployment_id": 6378580898,
+        "state": "success",
+        "target_url": "https://itsm-1ecyfme7c-z124-d5f14b61.vercel.app"
+      },
+      "id": "e158"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-10T19:08:27Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "summary": "PR #194 commit 1bbf3d0a227e: feat(ontology): migrate KnowledgeArticleNode",
+      "meta": {
+        "pr": 194,
+        "sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac"
+      },
+      "id": "e159"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-10T19:08:42Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194",
+      "summary": "PR #194 opened: feat(ontology): migrate KnowledgeArticleNode",
+      "meta": {
+        "pr": 194,
+        "draft": true,
+        "head": "cursor/knowledge-article-node-ontology-98d2"
+      },
+      "id": "e160"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-10T19:08:48Z",
+      "source": "github_check_runs",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "summary": "PR #194 CI started (final head check-runs)",
+      "meta": {
+        "pr": 194,
+        "head_sha": "1bbf3d0a227e33943eb21724e6f917ed610ac0ac"
+      },
+      "id": "e161"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-10T19:12:34.538Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2#completed_at_ms=1789067554538",
+      "summary": "Cloud agent last tool activity (finished): ONTO-1 KnowledgeArticleNode",
+      "meta": {
+        "agent_id": "bc-3c4b856f-a9f1-4c30-8e25-5f34082998d2",
+        "status": "finished",
+        "evidence": "max completed_at_ms in transcript"
+      },
+      "id": "e162"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-10T19:12:57Z",
+      "source": "github_check_runs",
+      "source_ref": "https://github.com/elementum-fde/products/commit/1bbf3d0a227e33943eb21724e6f917ed610ac0ac",
+      "summary": "PR #194 CI ended (success)",
+      "meta": {
+        "pr": 194,
+        "conclusion": "success",
+        "check_runs": 45
+      },
+      "id": "e163"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-10T19:14:50Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194",
+      "summary": "PR #194 marked ready for review",
+      "meta": {
+        "pr": 194,
+        "draft": false
+      },
+      "id": "e164"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-10T19:15:29Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/194",
+      "summary": "PR #194 merged",
+      "meta": {
+        "pr": 194,
+        "state": "MERGED",
+        "merge_sha": "a6b5123f1cec415d61e9c1c626c254d53dcd9448"
+      },
+      "id": "e165"
+    },
+    {
+      "type": "board.stage_changed",
+      "t": "2026-09-10T19:15:49.581Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81c0bd98c0369d35dff3",
+      "summary": "Eng PRs ArticleNode row observed Stage=Done (#194 merged)",
+      "meta": {
+        "stage": "Done",
+        "prs": "#194 merged",
+        "page_last_edited_at": "2026-09-10T19:15:49.581Z"
+      },
+      "id": "e166"
+    },
+    {
+      "type": "board.stage_changed",
+      "t": "2026-09-10T19:15:59.310Z",
+      "source": "notion",
+      "source_ref": "https://app.notion.com/p/3d75dbddf0ea81008c8eca0f4d672f0e",
+      "summary": "Eng PRs DraftProposal row observed Stage=Working + agent bc-392c0fbe\u2026 bound",
+      "meta": {
+        "stage": "Working",
+        "agent": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+        "page_last_edited_at": "2026-09-10T19:15:59.310Z"
+      },
+      "id": "e167"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-10T19:16:04.641Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-392c0fbe-005e-4925-b749-14caaabe7e61#started_at_ms=1789067764641",
+      "summary": "Cloud agent started/active: ONTO-1 KnowledgeDraftProposal ontology slice",
+      "meta": {
+        "agent_id": "bc-392c0fbe-005e-4925-b749-14caaabe7e61",
+        "status": "running",
+        "evidence": "min started_at_ms in transcript"
+      },
+      "id": "e168"
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-10T19:17:49Z",
+      "source": "github_deployment_status",
+      "source_ref": "https://api.github.com/repos/elementum-fde/products/deployments/6379301420/statuses",
+      "summary": "Products Production deploy ready for merge SHA a6b5123f (PR #194)",
+      "meta": {
+        "repo": "elementum-fde/products",
+        "pr": 194,
+        "sha": "a6b5123f1cec415d61e9c1c626c254d53dcd9448",
+        "environment": "Production",
+        "deployment_id": 6379301420,
+        "state": "success",
+        "target_url": "https://itsm-38a4vbufu-z124-d5f14b61.vercel.app"
+      },
+      "id": "e169"
     }
   ],
   "spans": [
@@ -1983,8 +2281,8 @@
       "id": "span-wall",
       "kind": "wall",
       "start": "2026-09-09T15:07:46Z",
-      "end": "2026-09-10T19:04:58Z",
-      "seconds": 100632,
+      "end": "2026-09-10T19:26:57.992Z",
+      "seconds": 101951,
       "meta": {
         "start_proof": "first git.commit on PR #146 (task.created unproven)",
         "end_proof": "as_of (still running)"
@@ -2008,7 +2306,7 @@
       "end": "2026-09-10T11:24:51.916Z",
       "seconds": 132,
       "meta": {
-        "reason": "after bc-998fc92a-\u2026 until bc-6caaa2d8-\u2026",
+        "reason": "after bc-998fc92a\u2026 until bc-6caaa2d8\u2026",
         "status_assumed": "In progress"
       }
     },
@@ -2019,7 +2317,7 @@
       "end": "2026-09-10T15:00:02.114Z",
       "seconds": 1407,
       "meta": {
-        "reason": "after bc-6caaa2d8-\u2026 until bc-4d1d7968-\u2026",
+        "reason": "after bc-6caaa2d8\u2026 until bc-4d1d7968\u2026",
         "status_assumed": "In progress"
       }
     },
@@ -2030,7 +2328,18 @@
       "end": "2026-09-10T18:35:11.277Z",
       "seconds": 278,
       "meta": {
-        "reason": "after bc-4d1d7968-\u2026 until bc-3c4b856f-\u2026",
+        "reason": "after bc-4d1d7968\u2026 until bc-3c4b856f\u2026",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-5",
+      "kind": "idle",
+      "start": "2026-09-10T19:12:34.538Z",
+      "end": "2026-09-10T19:16:04.641Z",
+      "seconds": 210,
+      "meta": {
+        "reason": "after bc-3c4b856f\u2026 until bc-392c0fbe\u2026",
         "status_assumed": "In progress"
       }
     },
@@ -2042,7 +2351,6 @@
       "seconds": 186,
       "meta": {
         "pr": 146,
-        "run_id": 34375598122,
         "conclusion": "success",
         "note": "final head check-run window only"
       }
@@ -2055,7 +2363,6 @@
       "seconds": 196,
       "meta": {
         "pr": 177,
-        "run_id": 34489624774,
         "conclusion": "success",
         "note": "final head check-run window only"
       }
@@ -2068,23 +2375,34 @@
       "seconds": 215,
       "meta": {
         "pr": 190,
-        "run_id": 34511999760,
+        "conclusion": "success",
+        "note": "final head check-run window only"
+      }
+    },
+    {
+      "id": "span-ci-pr194",
+      "kind": "ci",
+      "start": "2026-09-10T19:08:48Z",
+      "end": "2026-09-10T19:12:57Z",
+      "seconds": 249,
+      "meta": {
+        "pr": 194,
         "conclusion": "success",
         "note": "final head check-run window only"
       }
     }
   ],
   "totals": {
-    "wall_seconds": 100632,
+    "wall_seconds": 101951,
     "waiting_human_seconds": 0,
-    "idle_seconds": 24755,
+    "idle_seconds": 24965,
     "stuck_seconds": 0,
-    "ci_seconds": 597
+    "ci_seconds": 846
   },
   "omissions": [
     {
       "wanted": "task.created",
-      "reason": "Notion created_time not exposed by fetch; query_data_sources hit plan usage limit"
+      "reason": "Notion created_time not exposed by fetch; query_data_sources plan-gated"
     },
     {
       "wanted": "task.status_changed / task.bot_changed",
@@ -2092,15 +2410,23 @@
     },
     {
       "wanted": "agent.* for PR #146",
-      "reason": "No cloud-agent transcript with started_at_ms recovered for KnowledgeOperatorOperation slice; bc-2b6c5fff maps to PR #141 not #146"
+      "reason": "No cloud-agent transcript with started_at_ms recovered for KnowledgeOperatorOperation slice"
+    },
+    {
+      "wanted": "deploy.completed for PR #146",
+      "reason": "Vercel deployment_status for merge SHA a5446a73 was failure (2026-09-09T19:30:48Z); only success\u2192ready emits deploy.completed"
+    },
+    {
+      "wanted": "agent.slash_command for bc-392c0fbe launch",
+      "reason": "Launch prompt mentions pstack/poteto quality but no explicit /poteto-mode or /pstack slash invocation"
     },
     {
       "wanted": "todo.*",
-      "reason": "Cursor todos not recoverable as timed events from transcripts (todo_write present without stable add/complete timestamps beyond tool ms)"
+      "reason": "Cursor todos not recoverable as timed events from transcripts"
     },
     {
       "wanted": "ci.* intermediate runs",
-      "reason": "Only final successful check-run windows per PR included; PR #177 branch alone had 124 workflow runs"
+      "reason": "Only final successful check-run windows per PR included"
     },
     {
       "wanted": "human.approval_* / waiting_human",
@@ -2108,11 +2434,11 @@
     },
     {
       "wanted": "subagent.*",
-      "reason": "No recoverable Cursor subagent start/end pairs with proven t"
+      "reason": "No recoverable Cursor subagent start/end pairs with proven t (system_notification subagent tasks lack paired ended events with stable ids)"
     },
     {
       "wanted": "page comments",
-      "reason": "notion-get-comments returned no discussions (suggested_edits_status=not_enabled)"
+      "reason": "notion-get-comments not re-queried; prior gather returned none"
     },
     {
       "wanted": "Note dated stamps",
