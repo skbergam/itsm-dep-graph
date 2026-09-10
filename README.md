@@ -1,180 +1,118 @@
+# ITSM Dependency Graph (Next.js)
+
+Modern hierarchical dependency graph visualizer for ITSM tasks, built with **Next.js**, **React Flow**, and **dagre** layout engine.
+
 ## Live
 
-- App: https://itsm-dep-graph.vercel.app
-- Repo: https://github.com/skbergam/itsm-dep-graph
-
-# ITSM Dependency Graph Visualizer
-
-A TypeScript-based dependency graph visualizer for ITSM tasks, built with Vite, Canvas API, and dagre layout engine.
+- **App**: https://itsm-dep-graph.vercel.app
+- **Repo**: https://github.com/skbergam/itsm-dep-graph
 
 ## Features
 
-- **Hierarchical DAG Layout**: Tasks organized under their projects with proper dependency layering
-- **Interactive Canvas**: Pan, zoom, and click nodes
-- **Bidirectional Highlighting**: Hover in sidebar highlights graph nodes and vice versa
-- **Status Color Coding**:
+- **Blocked Task Emphasis**: Impossible to miss — red coloring, bold borders, animated edges
+- **Hierarchical DAG**: Tasks organized under project containers, not flat blobs
+- **Readable Names**: Default zoom shows task IDs and names clearly
+- **Bidirectional Sync**: Click sidebar → canvas pans; click canvas → sidebar scrolls
+- **Notion Status Colors**:
   - 🟢 **Done** (green)
   - 🔵 **In Progress** (blue)
   - 🟡 **Waiting** (yellow)
   - 🔴 **Blocked** (red)
   - ⚪ **Not Started** (gray)
   - 🟣 **Projects** (purple)
-- **Dependency Edges**: Clear arrows showing task dependencies, including cross-project dependencies
-- **Offline-Capable**: Bundled static artifact works via `file://` or simple HTTP server
+- **Clear Dependency Edges**: Arrows show direction, animated for blocked tasks
 
-## Project Structure
+## Running Locally
 
-```
-/workspace/itsm-dep-graph/
-├── out/
-│   └── itsm-graph.json       # Fixture data (3 projects, 22 tasks)
-├── src/
-│   ├── main.ts               # Entry point
-│   ├── types.ts              # TypeScript types
-│   ├── layout.ts             # Dagre layout engine
-│   ├── renderer.ts           # Canvas rendering
-│   ├── sidebar.ts            # Sidebar UI
-│   └── style.css             # Styles
-├── dist/                     # Built static artifact
-├── index.html                # HTML template
-├── package.json
-└── README.md
-```
-
-## Installation
+Install dependencies and start the dev server: // pragma: allowlist secret
 
 ```bash
-npm install
+npm install && npm start
 ```
 
-npm install
-```
-
-## Development // pragma: allowlist secret
-
-Run the local server:
-
-```bash
-npm run dev  # pragma: allowlist secret
-```
-
-Then open http://localhost:5173 (or the port shown in terminal).
+Open http://localhost:3000 in your browser.
 
 ## Building
 
+```bash
 npm run build
 ```
 
-This generates a `dist/` folder with bundled assets. To use offline:
-
-1. Copy `out/itsm-graph.json` to `dist/out/` (or run the copy command below)
-2. Open `dist/index.html` in a browser via `file://` or serve with any HTTP server
-
-```bash
-# After build, ensure fixture is in dist
-cp -r out dist/
-
-# Optional: serve locally
-npx serve dist
-```
+Generates static export in `dist/` folder.
 
 ## Data Format
 
-The app consumes JSON from `out/itsm-graph.json` with this schema:
+The app consumes `out/itsm-graph.json` with this structure:
 
 ```json
 {
   "projects": [
     {
-      "id": "PROJ-ID",
-      "name": "Project Name",
-      "status": "in_progress"
+      "id": "proj-ontology",
+      "name": "Platform - Ontology",
+      "prefix": "ONTO"
     }
   ],
   "tasks": [
     {
-      "id": "TASK-ID",
-      "name": "Task Name",
-      "status": "not_started|in_progress|waiting|blocked|done",
-      "project_id": "PROJ-ID"
+      "id": "task-uuid",
+      "name": "ONTO-5 — TypeBox vs Zod bakeoff",
+      "code": "ONTO-5",
+      "status": "Not started",
+      "project_ids": ["proj-ontology"],
+      "depends_on": ["other-task-id"]
     }
   ],
   "edges": [
     {
-      "from": "TASK-A",
-      "to": "TASK-B"
+      "from": "task-a",
+      "to": "task-b"
     }
-  ],
-  "membership": {},
-  "pulse": {}
+  ]
 }
 ```
 
-## Regenerating Data
+### Status Values
 
-If using Notion MCP or another source:
+Must be one of: `"Not started"`, `"In progress"`, `"Waiting"`, `"Blocked"`, `"Done"`
 
-1. Export ITSM data to `out/itsm-graph.json` in the format above
-If using Notion MCP or another source:
+## Deployment
 
-1. Export ITSM data to `out/itsm-graph.json` in the format above
-2. Refresh browser (local mode) or rebuild (production)
-
-Example Python normalizer stub:
-
-from notion_client import Client
-
-# Fetch from Notion, normalize to schema
-data = {
-    "projects": [...],
-    "tasks": [...],
-    "edges": [...],
-    "membership": {},
-    "pulse": {}
-}
-
-with open('out/itsm-graph.json', 'w') as f:
-    json.dump(data, f, indent=2)
-```
-
-## Usage for Grok Bot
-
-Built artifact can be copied to Grok Bot scratch box:
-
-```bash
-# Build and prepare
-npm run build
-cp -r out dist/
-
-# Copy entire folder to Grok Bot workspace
-# Path: /workspace/itsm-dep-graph/
-```
-
-# Path: /workspace/itsm-dep-graph/
-```
-
-Open `dist/index.html` or use the local server output.
-
-## Controls
-
-- **Click + Drag**: Pan canvas
-- **Hover**: Highlight task/project in sidebar and graph
-- **Click Node**: Select and log to console
-
-## Architecture
-
-- **Layout Engine**: `@dagrejs/dagre` for hierarchical DAG layout with compound nodes (tasks grouped under projects)
-- **Rendering**: HTML5 Canvas with manual node/edge drawing
-- **No External CDN**: All dependencies bundled into `dist/assets/`
-- **Responsive**: Mobile-friendly with vertical layout on small screens
+Vercel detects Next.js automatically. The build outputs static files to `dist/` via `output: "export"` in `next.config.ts`.
 
 ## Tech Stack
 
-- **TypeScript 6.0**
-- **Vite 8.2** (build tool)
-- **Dagre 1.1** (graph layout)
-- **Vanilla JS/Canvas** (no React/Vue/etc.)
+- **Next.js 15** (React 19, static export)
+- **React Flow 12** (canvas rendering, controls, minimap)
+- **dagre 0.8** (hierarchical DAG layout)
+- **TypeScript 5.7**
+- **Tailwind CSS 3.4**
 
-## License
+## Architecture
 
-Internal tool for Grok Bot ITSM dependency visualization.
+- **`app/page.tsx`**: Entry point, dynamic import of graph component
+- **`components/DependencyGraph.tsx`**: Main orchestrator (layout, state, React Flow setup)
+- **`components/TaskNode.tsx`**: Task node rendering with status colors
+- **`components/ProjectNode.tsx`**: Project container rendering
+- **`components/Sidebar.tsx`**: Task list with selection sync
+- **`types/graph.ts`**: TypeScript interfaces for data shape
+
+The layout engine uses dagre's compound graph feature to nest tasks inside project nodes. React Flow provides pan/zoom, minimap, and interactive controls. Bidirectional selection uses `useReactFlow()` hook for programmatic viewport control.
+
+## Clean Rewrite Notes
+
+This is a **clean rewrite** from the original Vite+canvas implementation. The old approach had:
+- Tiny canvas-rendered labels (unreadable at default zoom)
+- Blob layout without clear project hierarchy
+- Weak edge visibility
+
+The new Next.js + React Flow solution addresses all experience contract requirements:
+- Task names readable by default
+- Projects as visual containers (purple borders)
+- Blocked tasks with red emphasis + animated edges
+- Sidebar ↔ canvas bidirectional selection sync
+- Clear dependency arrows
+
+---
+
+**Internal tool for ITSM dependency visualization.**
