@@ -69,8 +69,8 @@ function getLayoutedElements(
 
   graphData.tasks.forEach((task) => {
     dagreGraph.setNode(task.id, {
-      width: 280,
-      height: 85,
+      width: 320,
+      height: 110,
       type: "task",
     });
 
@@ -115,8 +115,8 @@ function getLayoutedElements(
     if (nodeData) {
       const bounds = projectChildBounds.get(project.id);
       const projectHeight = bounds 
-        ? Math.max(80, bounds.maxY - bounds.minY + 40)
-        : 80;
+        ? Math.max(60, bounds.maxY - bounds.minY + 16)
+        : 60;
 
       nodes.push({
         id: project.id,
@@ -239,7 +239,7 @@ function DependencyGraphInner() {
           ...edge,
           style: {
             ...edge.style,
-            opacity: shouldDim ? 0.15 : (isBlockedTarget || isBlockedSource ? 0.9 : 0.9),
+            opacity: shouldDim ? 0.08 : (isBlockedTarget || isBlockedSource ? 0.9 : 0.9),
           },
         };
       })
@@ -290,16 +290,19 @@ function DependencyGraphInner() {
       const node = nodes.find((n) => n.id === nodeId);
       if (node) {
         const targetProjectId = node.type === "project" ? node.id : node.parentId;
-        const projectNode = targetProjectId ? nodes.find((n) => n.id === targetProjectId) : null;
         
-        if (projectNode) {
-          reactFlowInstance.fitView({
-            padding: 0.3,
-            duration: 800,
-            nodes: [projectNode],
-            minZoom: 0.5,
-            maxZoom: 2,
-          });
+        if (targetProjectId) {
+          const childTaskNodes = nodes.filter((n) => n.parentId === targetProjectId);
+          
+          if (childTaskNodes.length > 0) {
+            reactFlowInstance.fitView({
+              padding: 0.3,
+              duration: 800,
+              nodes: childTaskNodes,
+              minZoom: 0.5,
+              maxZoom: 2,
+            });
+          }
         }
       }
     }

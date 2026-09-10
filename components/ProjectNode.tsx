@@ -14,7 +14,7 @@ function ProjectNode({ data }: NodeProps) {
         hovered 
           ? "border-purple-400 bg-purple-900/30 shadow-md shadow-purple-400/30" 
           : "border-purple-500/40 bg-purple-900/15"
-      } backdrop-blur-sm p-2.5`}
+      } backdrop-blur-sm p-1.5`}
       style={{
         width: "100%",
         height: "100%",
