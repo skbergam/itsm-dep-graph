@@ -306,7 +306,7 @@ function DependencyGraphInner() {
           <Controls showInteractive={false} />
           <Panel position="top-right" className="flex gap-2 m-2">
             <a
-              href="/timelines/example"
+              href="/timelines"
               className="px-3 py-1.5 bg-purple-700 hover:bg-purple-600 text-white text-sm font-medium rounded border border-purple-500 transition-colors"
               title="View task timelines"
             >
