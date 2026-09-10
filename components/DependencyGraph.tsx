@@ -166,6 +166,7 @@ function DependencyGraphInner() {
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [initialFitDone, setInitialFitDone] = useState(false);
   const reactFlowInstance = useReactFlow();
 
   useEffect(() => {
@@ -184,6 +185,24 @@ function DependencyGraphInner() {
       });
   }, [setNodes, setEdges]);
 
+  useEffect(() => {
+    if (!loading && nodes.length > 0 && !initialFitDone) {
+      setTimeout(() => {
+        const firstProject = nodes.find((n) => n.type === "project");
+        if (firstProject) {
+          reactFlowInstance.fitView({
+            padding: 0.3,
+            duration: 0,
+            nodes: [firstProject],
+            minZoom: 0.5,
+            maxZoom: 2,
+          });
+        }
+        setInitialFitDone(true);
+      }, 50);
+    }
+  }, [loading, nodes, initialFitDone, reactFlowInstance]);
+
   const handleNodeSelect = useCallback((nodeId: string | null) => {
     setSelectedNodeId(nodeId);
     setNodes((nds) =>
@@ -199,11 +218,18 @@ function DependencyGraphInner() {
     if (nodeId) {
       const node = nodes.find((n) => n.id === nodeId);
       if (node) {
-        reactFlowInstance.fitView({
-          padding: 0.3,
-          duration: 800,
-          nodes: [node],
-        });
+        const projectId = node.type === "project" ? node.id : node.parentId;
+        const projectNode = projectId ? nodes.find((n) => n.id === projectId) : null;
+        
+        if (projectNode) {
+          reactFlowInstance.fitView({
+            padding: 0.3,
+            duration: 800,
+            nodes: [projectNode],
+            minZoom: 0.5,
+            maxZoom: 2,
+          });
+        }
       }
     }
   }, [setNodes, nodes, reactFlowInstance]);
@@ -219,13 +245,40 @@ function DependencyGraphInner() {
         },
       }))
     );
-  }, [setNodes]);
+
+    if (nodeId) {
+      const node = nodes.find((n) => n.id === nodeId);
+      if (node) {
+        const projectId = node.type === "project" ? node.id : node.parentId;
+        const projectNode = projectId ? nodes.find((n) => n.id === projectId) : null;
+        
+        if (projectNode) {
+          reactFlowInstance.fitView({
+            padding: 0.3,
+            duration: 600,
+            nodes: [projectNode],
+            minZoom: 0.5,
+            maxZoom: 2,
+          });
+        }
+      }
+    }
+  }, [setNodes, nodes, reactFlowInstance]);
 
   const miniMapNodeColor = useCallback((node: Node) => {
     if (node.type === "project") return "#A855F7";
     const task = node.data.task as Task | undefined;
     return task ? STATUS_COLORS[task.status] : "#9CA3AF";
   }, []);
+
+  const handleFitAll = useCallback(() => {
+    reactFlowInstance.fitView({
+      padding: 0.2,
+      duration: 800,
+      minZoom: 0.5,
+      maxZoom: 2,
+    });
+  }, [reactFlowInstance]);
 
   if (loading) {
     return (
@@ -259,9 +312,7 @@ function DependencyGraphInner() {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           nodeTypes={nodeTypes}
-          fitView
-          fitViewOptions={{ padding: 0.15 }}
-          minZoom={0.1}
+          minZoom={0.5}
           maxZoom={2}
           defaultViewport={{ x: 0, y: 0, zoom: 1.0 }}
           onNodeClick={(_, node) => handleNodeSelect(node.id)}
@@ -270,6 +321,15 @@ function DependencyGraphInner() {
         >
           <Background color="#334155" gap={16} />
           <Controls showInteractive={false} />
+          <Panel position="top-right" className="flex gap-2 m-2">
+            <button
+              onClick={handleFitAll}
+              className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded border border-slate-500 transition-colors"
+              title="Fit all projects"
+            >
+              Fit All
+            </button>
+          </Panel>
           <MiniMap
             nodeColor={miniMapNodeColor}
             pannable
