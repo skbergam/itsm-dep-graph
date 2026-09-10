@@ -984,17 +984,6 @@ export default function TimelineView() {
                       });
                     }
                     
-                    // Debug: log segments (remove after fix)
-                    if (segments.length === 0) {
-                      console.warn('Wall strip: No segments generated!', { 
-                        totalWall, 
-                        eventsCount: events.length,
-                        spansCount: safeTimeline.spans.filter(s => s.kind !== 'wall' && s.seconds > 0).length 
-                      });
-                    } else {
-                      console.log('Wall strip segments:', segments.slice(0, 5), `(${segments.length} total)`);
-                    }
-                    
                     // Render segments
                     return segments.map((seg, idx) => {
                       const x = (seg.start / totalWall) * 100;
