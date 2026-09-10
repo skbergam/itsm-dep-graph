@@ -41,14 +41,14 @@ function TaskNode({ data }: NodeProps) {
       <div className="flex flex-col h-full justify-between">
         <div className="space-y-1">
           <div
-            className={`text-base font-bold text-white leading-tight line-clamp-2 ${
+            className={`text-base font-bold text-white leading-snug ${
               isBlocked ? "text-lg" : ""
             }`}
           >
             {task.name}
           </div>
           {task.code && (
-            <div className="text-xs text-white/60 uppercase tracking-wide truncate">
+            <div className="text-xs text-white/60 uppercase tracking-wide">
               {task.code}
             </div>
           )}
