@@ -42,9 +42,9 @@ function getLayoutedElements(
 
   dagreGraph.setGraph({
     rankdir: "TB",
-    ranksep: 120,
-    nodesep: 60,
-    edgesep: 30,
+    ranksep: 80,
+    nodesep: 40,
+    edgesep: 20,
   });
 
   const projectMap = new Map<string, Project>();
@@ -61,10 +61,10 @@ function getLayoutedElements(
 
   graphData.projects.forEach((project) => {
     const tasks = tasksByProject.get(project.id) || [];
-    const projectHeight = Math.max(200, tasks.length * 100 + 80);
+    const projectHeight = Math.max(140, tasks.length * 95 + 50);
     
     dagreGraph.setNode(project.id, {
-      width: 320,
+      width: 300,
       height: projectHeight,
       type: "project",
     });
@@ -144,13 +144,14 @@ function getLayoutedElements(
       animated: isBlockedTarget || isBlockedSource,
       style: {
         stroke: isBlockedTarget || isBlockedSource ? "#EF4444" : "#94A3B8",
-        strokeWidth: isBlockedTarget || isBlockedSource ? 3 : 2,
+        strokeWidth: isBlockedTarget || isBlockedSource ? 4 : 3,
+        opacity: 0.9,
       },
       markerEnd: {
         type: "arrowclosed" as const,
         color: isBlockedTarget || isBlockedSource ? "#EF4444" : "#94A3B8",
-        width: 20,
-        height: 20,
+        width: 24,
+        height: 24,
       },
     };
   });

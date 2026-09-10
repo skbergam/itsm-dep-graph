@@ -40,25 +40,25 @@ function TaskNode({ data }: NodeProps) {
       
       <div className="flex flex-col h-full justify-between">
         <div className="space-y-1">
-          {task.code && (
-            <div className="text-xs font-bold text-white/90 uppercase tracking-wide">
-              {task.code}
-            </div>
-          )}
           <div
-            className={`text-sm font-semibold text-white leading-tight line-clamp-2 ${
-              isBlocked ? "font-bold" : ""
+            className={`text-base font-bold text-white leading-tight line-clamp-2 ${
+              isBlocked ? "text-lg" : ""
             }`}
           >
             {task.name}
           </div>
+          {task.code && (
+            <div className="text-xs text-white/60 uppercase tracking-wide truncate">
+              {task.code}
+            </div>
+          )}
         </div>
         
-        <div className="flex items-center justify-between text-xs mt-2">
+        <div className="flex items-center justify-between text-sm mt-2">
           <span
-            className={`px-2 py-0.5 rounded ${
+            className={`px-2 py-0.5 rounded font-semibold ${
               isBlocked
-                ? "bg-red-900/60 text-white font-bold"
+                ? "bg-red-900/60 text-white"
                 : "bg-black/20 text-white/80"
             }`}
           >

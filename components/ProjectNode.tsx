@@ -9,17 +9,17 @@ function ProjectNode({ data }: NodeProps) {
 
   return (
     <div
-      className="rounded-xl border-2 border-purple-500/50 bg-purple-900/20 backdrop-blur-sm p-4"
+      className="rounded-lg border border-purple-500/40 bg-purple-900/15 backdrop-blur-sm p-2.5"
       style={{
         width: "100%",
         height: "100%",
       }}
     >
       <div className="flex flex-col">
-        <div className="text-xs font-semibold text-purple-300 uppercase tracking-wider mb-1">
+        <div className="text-xs font-semibold text-purple-300/70 uppercase tracking-wider mb-0.5">
           {project.prefix || project.id}
         </div>
-        <div className="text-base font-bold text-purple-100 leading-tight">
+        <div className="text-sm font-bold text-purple-100/80 leading-tight">
           {project.name}
         </div>
       </div>

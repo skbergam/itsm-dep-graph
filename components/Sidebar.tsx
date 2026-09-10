@@ -130,24 +130,24 @@ export default function Sidebar({
                           style={{ backgroundColor }}
                         />
                         <div className="flex-1 min-w-0">
+                          <div
+                            className={`text-sm leading-tight ${
+                              isBlocked
+                                ? "font-bold text-white"
+                                : "font-semibold text-slate-100"
+                            }`}
+                          >
+                            {task.name}
+                          </div>
                           {task.code && (
                             <div
-                              className={`text-xs font-bold mb-1 uppercase tracking-wide ${
-                                isBlocked ? "text-red-200" : "text-slate-300"
+                              className={`text-xs mt-1 uppercase tracking-wide truncate ${
+                                isBlocked ? "text-red-300/70" : "text-slate-400"
                               }`}
                             >
                               {task.code}
                             </div>
                           )}
-                          <div
-                            className={`text-sm leading-tight ${
-                              isBlocked
-                                ? "font-bold text-white"
-                                : "font-medium text-slate-100"
-                            }`}
-                          >
-                            {task.name}
-                          </div>
                           <div className="flex items-center gap-2 mt-1.5 text-xs">
                             <span
                               className={`px-1.5 py-0.5 rounded font-medium ${
