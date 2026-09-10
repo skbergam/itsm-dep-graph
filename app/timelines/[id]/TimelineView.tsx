@@ -13,6 +13,7 @@ export default function TimelineView() {
   const [timeline, setTimeline] = useState<TaskTimeline | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<'spans' | 'timeline'>('timeline');
   
   // Guard against missing/invalid timeline data
   const safeTimeline = timeline && {
@@ -94,6 +95,64 @@ export default function TimelineView() {
   };
 
   const totalWall = safeTimeline.totals.wall_seconds;
+
+  // Calculate pie chart data (exclude wall)
+  const pieData = [
+    { kind: 'waiting_human', seconds: safeTimeline.totals.waiting_human_seconds, color: '#facc15', label: 'Waiting Human' },
+    { kind: 'idle', seconds: safeTimeline.totals.idle_seconds, color: '#60a5fa', label: 'Idle' },
+    { kind: 'stuck', seconds: safeTimeline.totals.stuck_seconds, color: '#ef4444', label: 'Stuck' },
+    { kind: 'ci', seconds: safeTimeline.totals.ci_seconds, color: '#a855f7', label: 'CI' },
+  ].filter(d => d.seconds > 0);
+
+  const totalNonWall = pieData.reduce((sum, d) => sum + d.seconds, 0);
+
+  // Generate pie chart SVG paths
+  const generatePieChart = () => {
+    if (totalNonWall === 0) return null;
+    
+    const radius = 80;
+    const cx = 100;
+    const cy = 100;
+    let currentAngle = -90; // Start at top
+    
+    return pieData.map((data, idx) => {
+      const percentage = data.seconds / totalNonWall;
+      const angle = percentage * 360;
+      const startAngle = (currentAngle * Math.PI) / 180;
+      const endAngle = ((currentAngle + angle) * Math.PI) / 180;
+      
+      const x1 = cx + radius * Math.cos(startAngle);
+      const y1 = cy + radius * Math.sin(startAngle);
+      const x2 = cx + radius * Math.cos(endAngle);
+      const y2 = cy + radius * Math.sin(endAngle);
+      
+      const largeArcFlag = angle > 180 ? 1 : 0;
+      
+      const pathData = [
+        `M ${cx} ${cy}`,
+        `L ${x1} ${y1}`,
+        `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+        'Z'
+      ].join(' ');
+      
+      currentAngle += angle;
+      
+      return (
+        <path
+          key={idx}
+          d={pathData}
+          fill={data.color}
+          stroke="white"
+          strokeWidth="2"
+        />
+      );
+    });
+  };
+
+  // Calculate timeline scale
+  const timelineStart = new Date(safeTimeline.spans.find(s => s.kind === 'wall')?.start || safeTimeline.as_of).getTime();
+  const timelineEnd = new Date(safeTimeline.spans.find(s => s.kind === 'wall')?.end || safeTimeline.as_of).getTime();
+  const timelineRange = timelineEnd - timelineStart;
 
   return (
     <div className="bg-gray-50 p-8">
@@ -226,49 +285,158 @@ export default function TimelineView() {
         {/* Totals */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Time Totals</h2>
-          <div className="grid grid-cols-5 gap-4">
-            {Object.entries(safeTimeline.totals).map(([key, seconds]) => {
-              const label = spanKindLabels[key.replace('_seconds', '')] || key;
-              const color = spanKindColors[key.replace('_seconds', '')] || 'bg-gray-400';
-              const percentage = totalWall > 0 ? ((seconds / totalWall) * 100).toFixed(1) : '0';
-              
-              return (
-                <div key={key} className="text-center">
-                  <div className={`${color} w-12 h-12 rounded-lg mx-auto mb-2 flex items-center justify-center text-white font-bold`}>
-                    {percentage}%
-                  </div>
-                  <div className="text-xs font-medium text-gray-700 mb-1">{label}</div>
-                  <div className="text-sm font-semibold text-gray-900">{humanizeDuration(seconds)}</div>
-                  <div className="text-xs text-gray-500">{seconds.toLocaleString()}s</div>
+          
+          <div className="flex gap-8 items-start">
+            {/* Numeric totals */}
+            <div className="flex-1">
+              <div className="grid grid-cols-5 gap-4">
+                {Object.entries(safeTimeline.totals).map(([key, seconds]) => {
+                  const kind = key.replace('_seconds', '');
+                  const label = spanKindLabels[kind] || key;
+                  const color = spanKindColors[kind] || 'bg-gray-400';
+                  const percentage = totalWall > 0 ? ((seconds / totalWall) * 100).toFixed(1) : '0';
+                  
+                  return (
+                    <div key={key} className="text-center">
+                      <div className={`${color} w-12 h-12 rounded-lg mx-auto mb-2 flex items-center justify-center text-white font-bold text-sm`}>
+                        {percentage}%
+                      </div>
+                      <div className="text-xs font-medium text-gray-700 mb-1">{label}</div>
+                      <div className="text-sm font-semibold text-gray-900">{humanizeDuration(seconds)}</div>
+                      <div className="text-xs text-gray-500">{seconds.toLocaleString()}s</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Pie chart (non-wall composition) */}
+            {totalNonWall > 0 && (
+              <div className="flex-shrink-0">
+                <div className="text-xs font-medium text-gray-700 mb-2 text-center">Composition</div>
+                <svg width="200" height="200" viewBox="0 0 200 200" className="mx-auto">
+                  {generatePieChart()}
+                </svg>
+                <div className="mt-3 space-y-1">
+                  {pieData.map((data, idx) => {
+                    const percentage = ((data.seconds / totalNonWall) * 100).toFixed(1);
+                    return (
+                      <div key={idx} className="flex items-center gap-2 text-xs">
+                        <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: data.color }} />
+                        <span className="text-gray-700">{data.label}: {percentage}%</span>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Spans */}
+        {/* Spans - with toggle */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Spans by Kind</h2>
-          <div className="space-y-3">
-            {safeTimeline.spans.map((span, idx) => (
-              <div key={idx} className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className={`${spanKindColors[span.kind]} w-3 h-3 rounded`} />
-                    <span className="font-medium text-gray-900">{spanKindLabels[span.kind]}</span>
-                  </div>
-                  <span className="text-sm font-semibold text-gray-700">
-                    {humanizeDuration(span.seconds)}
-                  </span>
-                </div>
-                <div className="text-xs text-gray-600 flex gap-4">
-                  <span>Start: {formatTimestamp(span.start)}</span>
-                  <span>End: {formatTimestamp(span.end)}</span>
-                  <span className="text-gray-500">{span.seconds}s</span>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">
+              {viewMode === 'spans' ? 'Spans by Kind' : 'Timeline View'}
+            </h2>
+            <div className="flex gap-2 bg-gray-100 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('timeline')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  viewMode === 'timeline'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Timeline
+              </button>
+              <button
+                onClick={() => setViewMode('spans')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  viewMode === 'spans'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Spans by Kind
+              </button>
+            </div>
+          </div>
+
+          {viewMode === 'timeline' ? (
+            <div className="space-y-4">
+              {/* Timeline axis */}
+              <div className="border-b border-gray-200 pb-2">
+                <div className="flex justify-between text-xs text-gray-500">
+                  <span>{formatTimestamp(safeTimeline.spans.find(s => s.kind === 'wall')?.start || safeTimeline.as_of)}</span>
+                  <span>Wall: {humanizeDuration(totalWall)}</span>
+                  <span>{formatTimestamp(safeTimeline.spans.find(s => s.kind === 'wall')?.end || safeTimeline.as_of)}</span>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* To-scale timeline bars */}
+              <div className="space-y-2">
+                {['waiting_human', 'idle', 'stuck', 'ci'].map(kind => {
+                  const kindSpans = safeTimeline.spans.filter(s => s.kind === kind);
+                  if (kindSpans.length === 0) return null;
+                  
+                  return (
+                    <div key={kind} className="space-y-1">
+                      <div className="flex items-center gap-2 text-xs font-medium text-gray-700">
+                        <span className={`${spanKindColors[kind]} w-3 h-3 rounded`} />
+                        {spanKindLabels[kind]}
+                      </div>
+                      <div className="relative h-8 bg-gray-50 rounded border border-gray-200">
+                        {kindSpans.map((span, idx) => {
+                          const spanStart = new Date(span.start).getTime();
+                          const spanEnd = new Date(span.end).getTime();
+                          const left = ((spanStart - timelineStart) / timelineRange) * 100;
+                          const width = ((spanEnd - spanStart) / timelineRange) * 100;
+                          
+                          return (
+                            <div
+                              key={idx}
+                              className={`absolute top-1 bottom-1 ${spanKindColors[kind]} rounded opacity-90 hover:opacity-100 transition-opacity group cursor-pointer`}
+                              style={{
+                                left: `${Math.max(0, left)}%`,
+                                width: `${Math.min(100 - left, width)}%`,
+                              }}
+                              title={`${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${formatTimestamp(span.end)})`}
+                            >
+                              <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                                {span.seconds > 60 && humanizeDuration(span.seconds)}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {safeTimeline.spans.map((span, idx) => (
+                <div key={idx} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className={`${spanKindColors[span.kind]} w-3 h-3 rounded`} />
+                      <span className="font-medium text-gray-900">{spanKindLabels[span.kind]}</span>
+                    </div>
+                    <span className="text-sm font-semibold text-gray-700">
+                      {humanizeDuration(span.seconds)}
+                    </span>
+                  </div>
+                  <div className="text-xs text-gray-600 flex gap-4">
+                    <span>Start: {formatTimestamp(span.start)}</span>
+                    <span>End: {formatTimestamp(span.end)}</span>
+                    <span className="text-gray-500">{span.seconds}s</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Events */}
