@@ -10,6 +10,153 @@ type TimelineItem =
   | { type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string } }
   | { type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } };
 
+type SpanGroup = {
+  type: 'span-group';
+  kind: string;
+  spans: Array<{ type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } }>;
+  startIdx: number;
+};
+
+// Collapsible span group component
+interface SpanGroupRowProps {
+  group: SpanGroup;
+  timelineStart: number;
+  timelineEnd: number;
+  timelineRange: number;
+  spanKindColors: Record<string, string>;
+  spanKindLabels: Record<string, string>;
+  highlightedRowIndex: number | null;
+  setHighlightedRowIndex: (idx: number | null) => void;
+  waterFallContainerRef: React.RefObject<HTMLDivElement | null>;
+}
+
+function SpanGroupRow({
+  group,
+  timelineStart,
+  timelineEnd,
+  timelineRange,
+  spanKindColors,
+  spanKindLabels,
+  highlightedRowIndex,
+  setHighlightedRowIndex,
+  waterFallContainerRef
+}: SpanGroupRowProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = rowRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHighlightedRowIndex(group.startIdx);
+          }
+        });
+      },
+      {
+        root: waterFallContainerRef.current,
+        threshold: 0.5,
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [group.startIdx, waterFallContainerRef, setHighlightedRowIndex]);
+
+  const isHighlighted = highlightedRowIndex === group.startIdx;
+  const colorClass = spanKindColors[group.kind] || 'bg-gray-400';
+  const totalSeconds = group.spans.reduce((sum, span) => sum + span.data.seconds, 0);
+  
+  // Extract base color for hover tint (remove 'bg-' prefix and opacity)
+  const baseColorMap: Record<string, string> = {
+    'bg-yellow-400': 'rgba(250, 204, 21, 0.1)',
+    'bg-blue-400': 'rgba(96, 165, 250, 0.1)',
+    'bg-red-500': 'rgba(239, 68, 68, 0.1)',
+    'bg-purple-400': 'rgba(168, 85, 247, 0.1)',
+    'bg-gray-400': 'rgba(156, 163, 175, 0.1)',
+  };
+  const hoverTint = baseColorMap[colorClass] || 'rgba(156, 163, 175, 0.1)';
+
+  if (isExpanded) {
+    return (
+      <>
+        {group.spans.map((span, idx) => (
+          <WaterfallRow
+            key={`span-${group.startIdx}-${idx}`}
+            item={span}
+            idx={group.startIdx + idx}
+            timelineStart={timelineStart}
+            timelineEnd={timelineEnd}
+            timelineRange={timelineRange}
+            spanKindColors={spanKindColors}
+            spanKindLabels={spanKindLabels}
+            highlightedRowIndex={highlightedRowIndex}
+            setHighlightedRowIndex={setHighlightedRowIndex}
+            waterFallContainerRef={waterFallContainerRef}
+          />
+        ))}
+      </>
+    );
+  }
+
+  return (
+    <div
+      ref={rowRef}
+      className={`relative h-6 transition-colors cursor-pointer ${
+        isHighlighted ? 'border-l-2 border-blue-500' : ''
+      }`}
+      style={{ backgroundColor: isHovered ? hoverTint : 'transparent' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setIsExpanded(true)}
+    >
+      {/* Render all spans in the group as bars */}
+      {group.spans.map((span, idx) => {
+        const spanStart = new Date(span.data.start).getTime();
+        const spanEnd = span.data.end ? new Date(span.data.end).getTime() : timelineEnd;
+        const left = ((spanStart - timelineStart) / timelineRange) * 100;
+        const width = ((spanEnd - spanStart) / timelineRange) * 100;
+        const isOpen = !span.data.end;
+
+        return (
+          <div
+            key={idx}
+            className={`absolute h-5 ${colorClass} rounded opacity-90 z-10`}
+            style={{
+              left: `${Math.max(0, left)}%`,
+              width: `${Math.min(100 - left, width)}%`,
+            }}
+          >
+            {isOpen && (
+              <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
+            )}
+          </div>
+        );
+      })}
+      
+      {/* Hover info overlay */}
+      {isHovered && (
+        <div className="absolute left-2 top-0 h-full flex items-center z-20 pointer-events-none">
+          <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+            {group.spans.length}× {spanKindLabels[group.kind]}: {humanizeDuration(totalSeconds)} total
+          </span>
+        </div>
+      )}
+      
+      {/* Collapse indicator */}
+      <div className="absolute right-2 top-0 h-full flex items-center z-20 pointer-events-none">
+        <span className="text-xs text-gray-500 bg-white px-1 rounded">
+          {group.spans.length}×
+        </span>
+      </div>
+    </div>
+  );
+}
+
 // WaterfallRow component extracted to module scope to avoid hooks violations
 interface WaterfallRowProps {
   item: TimelineItem;
@@ -37,6 +184,7 @@ function WaterfallRow({
   waterFallContainerRef 
 }: WaterfallRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const element = rowRef.current;
@@ -72,6 +220,9 @@ function WaterfallRow({
         className={`relative h-6 flex items-center transition-colors ${
           isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
         }`}
+        style={{ backgroundColor: isHovered && !isHighlighted ? 'rgba(59, 130, 246, 0.05)' : undefined }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {/* Dot at time position */}
         <div 
@@ -84,10 +235,11 @@ function WaterfallRow({
             {event.type}: {event.summary}
           </div>
         </div>
-        {/* Label - show full detail when highlighted */}
-        {isHighlighted ? (
+        {/* Label - show full detail when highlighted or hovered */}
+        {(isHighlighted || isHovered) ? (
           <span className="ml-2 text-xs font-medium text-gray-900 z-10 px-2 py-1 bg-white rounded shadow-sm">
-            {event.type}: {event.summary}
+            {event.type}: {event.summary} @ {formatTimestamp(event.t)}
+            {event.source && ` (${event.source})`}
           </span>
         ) : (
           <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
@@ -106,12 +258,25 @@ function WaterfallRow({
     
     const colorClass = spanKindColors[span.kind] || 'bg-gray-400';
     
+    // Extract base color for hover tint
+    const baseColorMap: Record<string, string> = {
+      'bg-yellow-400': 'rgba(250, 204, 21, 0.1)',
+      'bg-blue-400': 'rgba(96, 165, 250, 0.1)',
+      'bg-red-500': 'rgba(239, 68, 68, 0.1)',
+      'bg-purple-400': 'rgba(168, 85, 247, 0.1)',
+      'bg-gray-400': 'rgba(156, 163, 175, 0.1)',
+    };
+    const hoverTint = baseColorMap[colorClass] || 'rgba(156, 163, 175, 0.1)';
+    
     return (
       <div 
         ref={rowRef}
         className={`relative h-6 transition-colors ${
-          isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+          isHighlighted ? 'border-l-2 border-blue-500' : ''
         }`}
+        style={{ backgroundColor: isHovered && !isHighlighted ? hoverTint : (isHighlighted ? 'rgb(239, 246, 255)' : 'transparent') }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div
           className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group z-10`}
@@ -128,11 +293,11 @@ function WaterfallRow({
             <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
           )}
         </div>
-        {/* Show full detail overlay when highlighted */}
-        {isHighlighted && (
-          <div className="absolute left-2 top-0 h-full flex items-center z-20">
+        {/* Show full detail overlay when highlighted or hovered */}
+        {(isHighlighted || isHovered) && (
+          <div className="absolute left-2 top-0 h-full flex items-center z-20 pointer-events-none">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-              {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)}
+              {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)} ({formatTimestamp(span.start)} → {span.end ? formatTimestamp(span.end) : 'ongoing'})
             </span>
           </div>
         )}
@@ -640,23 +805,85 @@ export default function TimelineView() {
                   
                   items.sort((a, b) => a.t - b.t);
                   
+                  // Group consecutive spans of the same kind
+                  const groupedItems: Array<TimelineItem | SpanGroup> = [];
+                  let i = 0;
+                  
+                  while (i < items.length) {
+                    const item = items[i];
+                    
+                    if (item.type === 'event') {
+                      groupedItems.push(item);
+                      i++;
+                    } else {
+                      // Look ahead for consecutive spans of the same kind
+                      const spanKind = item.data.kind;
+                      const consecutiveSpans: Array<typeof item> = [item];
+                      let j = i + 1;
+                      
+                      while (j < items.length) {
+                        const nextItem = items[j];
+                        if (nextItem.type === 'span' && nextItem.data.kind === spanKind) {
+                          consecutiveSpans.push(nextItem);
+                          j++;
+                        } else {
+                          break;
+                        }
+                      }
+                      
+                      if (consecutiveSpans.length > 1) {
+                        // Create a collapsed group
+                        groupedItems.push({
+                          type: 'span-group',
+                          kind: spanKind,
+                          spans: consecutiveSpans as Array<{ type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } }>,
+                          startIdx: groupedItems.length,
+                        });
+                      } else {
+                        // Single span, don't group
+                        groupedItems.push(item);
+                      }
+                      
+                      i = j;
+                    }
+                  }
+                  
                   return (
                     <>
-                      {items.map((item, idx) => (
-                        <WaterfallRow 
-                          key={`row-${idx}`} 
-                          item={item} 
-                          idx={idx}
-                          timelineStart={timelineStart}
-                          timelineEnd={timelineEnd}
-                          timelineRange={timelineRange}
-                          spanKindColors={spanKindColors}
-                          spanKindLabels={spanKindLabels}
-                          highlightedRowIndex={highlightedRowIndex}
-                          setHighlightedRowIndex={setHighlightedRowIndex}
-                          waterFallContainerRef={waterFallContainerRef}
-                        />
-                      ))}
+                      {groupedItems.map((item, idx) => {
+                        if ('type' in item && item.type === 'span-group') {
+                          return (
+                            <SpanGroupRow
+                              key={`group-${idx}`}
+                              group={item}
+                              timelineStart={timelineStart}
+                              timelineEnd={timelineEnd}
+                              timelineRange={timelineRange}
+                              spanKindColors={spanKindColors}
+                              spanKindLabels={spanKindLabels}
+                              highlightedRowIndex={highlightedRowIndex}
+                              setHighlightedRowIndex={setHighlightedRowIndex}
+                              waterFallContainerRef={waterFallContainerRef}
+                            />
+                          );
+                        } else {
+                          return (
+                            <WaterfallRow 
+                              key={`row-${idx}`} 
+                              item={item as TimelineItem}
+                              idx={idx}
+                              timelineStart={timelineStart}
+                              timelineEnd={timelineEnd}
+                              timelineRange={timelineRange}
+                              spanKindColors={spanKindColors}
+                              spanKindLabels={spanKindLabels}
+                              highlightedRowIndex={highlightedRowIndex}
+                              setHighlightedRowIndex={setHighlightedRowIndex}
+                              waterFallContainerRef={waterFallContainerRef}
+                            />
+                          );
+                        }
+                      })}
                       
                       {/* Note about zero-second CI spans */}
                       {zeroSecondCISpans.length > 0 && (
