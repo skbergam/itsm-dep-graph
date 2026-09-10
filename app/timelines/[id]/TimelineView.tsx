@@ -382,9 +382,21 @@ export default function TimelineView() {
                     | { type: 'event'; t: number; data: typeof safeTimeline.events[0] }
                     | { type: 'span'; t: number; data: typeof safeTimeline.spans[0] };
                   
+                  // Event types that are represented as spans and should not appear as point events
+                  const spanEventTypes = new Set([
+                    'ci.started',
+                    'ci.ended',
+                    'ci_started',
+                    'ci_completed',
+                    // Add other span-represented event pairs here if needed
+                  ]);
+                  
                   const items: TimelineItem[] = [
                     ...safeTimeline.events
-                      .filter(e => e.type !== 'agent.slash_command') // Skip noise events
+                      .filter(e => 
+                        e.type !== 'agent.slash_command' && // Skip noise events
+                        !spanEventTypes.has(e.type) // Skip events represented as spans
+                      )
                       .map(e => ({ type: 'event' as const, t: new Date(e.t).getTime(), data: e })),
                     ...safeTimeline.spans
                       .filter(s => s.kind !== 'wall' && s.seconds > 0)
