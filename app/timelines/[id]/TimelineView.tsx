@@ -166,6 +166,79 @@ export default function TimelineView() {
     omissions: Array.isArray(timeline.omissions) ? timeline.omissions : [],
   };
 
+  // Calculate timeline scale (needed for generateTimeAxisTicks)
+  const wallSpan = safeTimeline?.spans.find(s => s.kind === 'wall');
+  const timelineStart = wallSpan ? new Date(wallSpan.start).getTime() : (safeTimeline ? new Date(safeTimeline.as_of).getTime() : 0);
+  const timelineEnd = wallSpan ? (wallSpan.end ? new Date(wallSpan.end).getTime() : (safeTimeline ? new Date(safeTimeline.as_of).getTime() : 0)) : (safeTimeline ? new Date(safeTimeline.as_of).getTime() : 0);
+  const timelineRange = timelineEnd - timelineStart;
+  const isRunning = safeTimeline?.task.running || false;
+  const totalWall = safeTimeline?.totals.wall_seconds || 0;
+
+  // Generate adaptive time axis ticks - moved BEFORE early returns to satisfy Rules of Hooks
+  const generateTimeAxisTicks = useCallback(() => {
+    if (!safeTimeline || !wallSpan) return [];
+    
+    const durationSeconds = totalWall;
+    let tickInterval: number;
+    let formatTick: (ms: number) => string;
+
+    if (durationSeconds < 60 * 5) {
+      tickInterval = 30;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        return `${date.getSeconds()}s`;
+      };
+    } else if (durationSeconds < 60 * 60) {
+      tickInterval = 5 * 60;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        return `${date.getMinutes()}m`;
+      };
+    } else if (durationSeconds < 60 * 60 * 24) {
+      tickInterval = 60 * 60;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        return `${date.getHours()}:00`;
+      };
+    } else {
+      tickInterval = 6 * 60 * 60;
+      formatTick = (ms: number) => {
+        const date = new Date(ms);
+        const hours = date.getHours();
+        const day = date.getDate();
+        return hours === 0 ? `Day ${day}` : `${hours}:00`;
+      };
+    }
+
+    const ticks: Array<{ position: number; label: string; ms: number }> = [];
+    
+    ticks.push({
+      position: 0,
+      label: formatTimestamp(wallSpan.start || safeTimeline.as_of),
+      ms: timelineStart
+    });
+
+    const tickCount = Math.floor(durationSeconds / tickInterval);
+    for (let i = 1; i <= tickCount; i++) {
+      const tickMs = timelineStart + (i * tickInterval * 1000);
+      if (tickMs < timelineEnd) {
+        ticks.push({
+          position: ((tickMs - timelineStart) / timelineRange) * 100,
+          label: formatTick(tickMs),
+          ms: tickMs
+        });
+      }
+    }
+
+    ticks.push({
+      position: 100,
+      label: isRunning ? 'NOW' : formatTimestamp(wallSpan.end || safeTimeline.as_of),
+      ms: timelineEnd
+    });
+
+    return ticks;
+  }, [totalWall, timelineStart, timelineEnd, timelineRange, isRunning, wallSpan, safeTimeline]);
+
   useEffect(() => {
     async function loadTimeline() {
       try {
@@ -232,8 +305,6 @@ export default function TimelineView() {
     ci: 'CI',
   };
 
-  const totalWall = safeTimeline.totals.wall_seconds;
-
   // Calculate pie chart data (exclude wall)
   const pieData = [
     { kind: 'waiting_human', seconds: safeTimeline.totals.waiting_human_seconds, color: '#facc15', label: 'Waiting Human' },
@@ -286,83 +357,6 @@ export default function TimelineView() {
       );
     });
   };
-
-  // Calculate timeline scale
-  const wallSpan = safeTimeline.spans.find(s => s.kind === 'wall');
-  const timelineStart = new Date(wallSpan?.start || safeTimeline.as_of).getTime();
-  const timelineEnd = new Date(wallSpan?.end || safeTimeline.as_of).getTime();
-  const timelineRange = timelineEnd - timelineStart;
-  const isRunning = safeTimeline.task.running;
-
-  // Generate adaptive time axis ticks
-  const generateTimeAxisTicks = useCallback(() => {
-    const durationSeconds = totalWall;
-    let tickInterval: number; // in seconds
-    let formatTick: (ms: number) => string;
-
-    if (durationSeconds < 60 * 5) {
-      // < 5 minutes: show every 30 seconds
-      tickInterval = 30;
-      formatTick = (ms: number) => {
-        const date = new Date(ms);
-        return `${date.getSeconds()}s`;
-      };
-    } else if (durationSeconds < 60 * 60) {
-      // < 1 hour: show every 5 minutes
-      tickInterval = 5 * 60;
-      formatTick = (ms: number) => {
-        const date = new Date(ms);
-        return `${date.getMinutes()}m`;
-      };
-    } else if (durationSeconds < 60 * 60 * 24) {
-      // < 1 day: show every hour
-      tickInterval = 60 * 60;
-      formatTick = (ms: number) => {
-        const date = new Date(ms);
-        return `${date.getHours()}:00`;
-      };
-    } else {
-      // >= 1 day: show every 6 hours
-      tickInterval = 6 * 60 * 60;
-      formatTick = (ms: number) => {
-        const date = new Date(ms);
-        const hours = date.getHours();
-        const day = date.getDate();
-        return hours === 0 ? `Day ${day}` : `${hours}:00`;
-      };
-    }
-
-    const ticks: Array<{ position: number; label: string; ms: number }> = [];
-    
-    // Always include start
-    ticks.push({
-      position: 0,
-      label: formatTimestamp(wallSpan?.start || safeTimeline.as_of),
-      ms: timelineStart
-    });
-
-    // Generate intermediate ticks
-    const tickCount = Math.floor(durationSeconds / tickInterval);
-    for (let i = 1; i <= tickCount; i++) {
-      const tickMs = timelineStart + (i * tickInterval * 1000);
-      if (tickMs < timelineEnd) {
-        ticks.push({
-          position: ((tickMs - timelineStart) / timelineRange) * 100,
-          label: formatTick(tickMs),
-          ms: tickMs
-        });
-      }
-    }
-
-    // Always include end (or NOW if running)
-    ticks.push({
-      position: 100,
-      label: isRunning ? 'NOW' : formatTimestamp(wallSpan?.end || safeTimeline.as_of),
-      ms: timelineEnd
-    });
-
-    return ticks;
-  }, [totalWall, timelineStart, timelineEnd, timelineRange, isRunning, wallSpan, safeTimeline.as_of]);
 
   return (
     <div className="bg-gray-50 p-8">
@@ -680,49 +674,57 @@ export default function TimelineView() {
                 <div className="text-xs font-medium text-gray-700 mb-2">Wall Time Coverage</div>
                 <svg width="100%" height="32" className="border border-gray-300 rounded">
                   {(() => {
-                    // Build second-by-second coverage map
-                    const coverage: { [second: number]: Set<string> } = {};
+                    // Build coverage segments using interval merge algorithm (avoids per-second allocation)
+                    type Event = { time: number; kind: string; isStart: boolean };
+                    const events: Event[] = [];
                     
-                    for (let s = 0; s < totalWall; s++) {
-                      coverage[s] = new Set();
-                    }
-                    
-                    // Fill coverage from spans (excluding wall)
+                    // Collect all span start/end events
                     safeTimeline.spans
                       .filter(span => span.kind !== 'wall' && span.seconds > 0)
                       .forEach(span => {
-                        const spanStart = Math.floor((new Date(span.start).getTime() - timelineStart) / 1000);
+                        const spanStart = (new Date(span.start).getTime() - timelineStart) / 1000;
                         const spanEnd = span.end 
-                          ? Math.floor((new Date(span.end).getTime() - timelineStart) / 1000)
+                          ? (new Date(span.end).getTime() - timelineStart) / 1000
                           : totalWall;
                         
-                        for (let s = Math.max(0, spanStart); s < Math.min(totalWall, spanEnd); s++) {
-                          coverage[s].add(span.kind);
-                        }
+                        events.push({ time: Math.max(0, spanStart), kind: span.kind, isStart: true });
+                        events.push({ time: Math.min(totalWall, spanEnd), kind: span.kind, isStart: false });
                       });
                     
-                    // Build segments with consistent kind sets
-                    const segments: Array<{ start: number; end: number; kinds: string[] }> = [];
-                    let currentKinds: string[] = [];
-                    let segmentStart = 0;
+                    // Sort events by time (start before end at same time)
+                    events.sort((a, b) => {
+                      if (a.time !== b.time) return a.time - b.time;
+                      return a.isStart ? -1 : 1;
+                    });
                     
-                    for (let s = 0; s < totalWall; s++) {
-                      const kinds = Array.from(coverage[s]).sort();
-                      const kindsKey = kinds.join(',');
-                      const currentKey = currentKinds.join(',');
+                    // Sweep through events to build segments
+                    const segments: Array<{ start: number; end: number; kinds: string[] }> = [];
+                    const activeKinds = new Set<string>();
+                    let segmentStart = 0;
+                    let prevKinds: string[] = [];
+                    
+                    for (const event of events) {
+                      const currentTime = event.time;
+                      const currentKinds = Array.from(activeKinds).sort();
+                      const kindsChanged = currentKinds.join(',') !== prevKinds.join(',');
                       
-                      if (kindsKey !== currentKey) {
-                        if (s > segmentStart) {
-                          segments.push({ start: segmentStart, end: s, kinds: currentKinds });
-                        }
-                        currentKinds = kinds;
-                        segmentStart = s;
+                      if (kindsChanged && segmentStart < currentTime) {
+                        segments.push({ start: segmentStart, end: currentTime, kinds: prevKinds });
+                        segmentStart = currentTime;
                       }
+                      
+                      if (event.isStart) {
+                        activeKinds.add(event.kind);
+                      } else {
+                        activeKinds.delete(event.kind);
+                      }
+                      
+                      prevKinds = Array.from(activeKinds).sort();
                     }
                     
                     // Final segment
-                    if (totalWall > segmentStart) {
-                      segments.push({ start: segmentStart, end: totalWall, kinds: currentKinds });
+                    if (segmentStart < totalWall) {
+                      segments.push({ start: segmentStart, end: totalWall, kinds: Array.from(activeKinds).sort() });
                     }
                     
                     // Render segments
