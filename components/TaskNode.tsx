@@ -25,9 +25,9 @@ function TaskNode({ data }: NodeProps) {
         isBlocked
           ? "border-red-500 shadow-lg shadow-red-500/40"
           : selected
-          ? "border-white shadow-lg"
+          ? "border-white shadow-lg shadow-white/50"
           : hovered
-          ? "border-blue-400 shadow-md shadow-blue-400/30"
+          ? "border-blue-400 shadow-lg shadow-blue-400/60 scale-105"
           : "border-slate-600"
       }`}
       style={{

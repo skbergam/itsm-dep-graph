@@ -88,7 +88,11 @@ export default function Sidebar({
           return (
             <div key={project.id} className="space-y-2">
               <div
-                className="cursor-pointer hover:bg-purple-900/30 rounded-lg p-2 border border-purple-500/30 bg-purple-900/10 transition-colors"
+                className={`cursor-pointer rounded-lg p-2 border transition-all ${
+                  hoveredNodeId === project.id
+                    ? "border-purple-400 bg-purple-900/40 shadow-md shadow-purple-400/20"
+                    : "border-purple-500/30 bg-purple-900/10 hover:bg-purple-900/30"
+                }`}
                 onClick={() => onNodeSelect(project.id)}
                 onMouseEnter={() => onNodeHover(project.id)}
                 onMouseLeave={() => onNodeHover(null)}
@@ -115,9 +119,9 @@ export default function Sidebar({
                         isBlocked
                           ? "border-red-500 bg-red-500/15 shadow-md shadow-red-500/20"
                           : isSelected
-                          ? "border-white bg-slate-700/50"
+                          ? "border-white bg-slate-700/50 shadow-md shadow-white/30"
                           : isHovered
-                          ? "border-blue-400 bg-slate-700/60"
+                          ? "border-blue-400 bg-blue-500/20 shadow-lg shadow-blue-400/40"
                           : "border-transparent bg-slate-700/30 hover:bg-slate-700/50"
                       }`}
                       onClick={() => onNodeSelect(task.id)}

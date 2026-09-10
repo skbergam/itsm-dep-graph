@@ -61,7 +61,7 @@ function getLayoutedElements(
 
   graphData.projects.forEach((project) => {
     const tasks = tasksByProject.get(project.id) || [];
-    const projectHeight = Math.max(140, tasks.length * 95 + 50);
+    const projectHeight = Math.max(60, tasks.length * 95 + 20);
     
     dagreGraph.setNode(project.id, {
       width: 300,
