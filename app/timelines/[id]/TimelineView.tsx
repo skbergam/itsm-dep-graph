@@ -5,6 +5,142 @@ import { useParams, useRouter } from "next/navigation";
 import type { TaskTimeline } from "@/types/timeline";
 import { humanizeDuration, formatTimestamp } from "@/lib/timeline-utils";
 
+// Timeline item types
+type TimelineItem = 
+  | { type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string } }
+  | { type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } };
+
+// WaterfallRow component extracted to module scope to avoid hooks violations
+interface WaterfallRowProps {
+  item: TimelineItem;
+  idx: number;
+  timelineStart: number;
+  timelineEnd: number;
+  timelineRange: number;
+  spanKindColors: Record<string, string>;
+  spanKindLabels: Record<string, string>;
+  highlightedRowIndex: number | null;
+  setHighlightedRowIndex: (idx: number | null) => void;
+  waterFallContainerRef: React.RefObject<HTMLDivElement | null>;
+}
+
+function WaterfallRow({ 
+  item, 
+  idx, 
+  timelineStart, 
+  timelineEnd, 
+  timelineRange, 
+  spanKindColors, 
+  spanKindLabels,
+  highlightedRowIndex,
+  setHighlightedRowIndex,
+  waterFallContainerRef 
+}: WaterfallRowProps) {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = rowRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHighlightedRowIndex(idx);
+          }
+        });
+      },
+      {
+        root: waterFallContainerRef.current,
+        threshold: 0.5,
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [idx, waterFallContainerRef, setHighlightedRowIndex]);
+
+  const isHighlighted = highlightedRowIndex === idx;
+
+  if (item.type === 'event') {
+    const event = item.data;
+    const left = ((item.t - timelineStart) / timelineRange) * 100;
+    
+    return (
+      <div 
+        ref={rowRef}
+        className={`relative h-6 flex items-center transition-colors ${
+          isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+        }`}
+      >
+        {/* Dot at time position */}
+        <div 
+          className="absolute w-2 h-2 bg-blue-500 rounded-full hover:ring-2 hover:ring-blue-300 transition-all cursor-pointer group z-10"
+          style={{ left: `${Math.max(0, Math.min(100, left))}%` }}
+          title={`${event.type} at ${formatTimestamp(event.t)}`}
+        >
+          {/* Tooltip on hover */}
+          <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+            {event.type}: {event.summary}
+          </div>
+        </div>
+        {/* Label - show full detail when highlighted */}
+        {isHighlighted ? (
+          <span className="ml-2 text-xs font-medium text-gray-900 z-10 px-2 py-1 bg-white rounded shadow-sm">
+            {event.type}: {event.summary}
+          </span>
+        ) : (
+          <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
+            {event.type}
+          </span>
+        )}
+      </div>
+    );
+  } else {
+    const span = item.data;
+    const spanStart = new Date(span.start).getTime();
+    const spanEnd = span.end ? new Date(span.end).getTime() : timelineEnd;
+    const left = ((spanStart - timelineStart) / timelineRange) * 100;
+    const width = ((spanEnd - spanStart) / timelineRange) * 100;
+    const isOpen = !span.end;
+    
+    const colorClass = spanKindColors[span.kind] || 'bg-gray-400';
+    
+    return (
+      <div 
+        ref={rowRef}
+        className={`relative h-6 transition-colors ${
+          isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+        }`}
+      >
+        <div
+          className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group z-10`}
+          style={{
+            left: `${Math.max(0, left)}%`,
+            width: `${Math.min(100 - left, width)}%`,
+          }}
+          title={`${spanKindLabels[span.kind]}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
+        >
+          <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity px-1">
+            {span.seconds > 60 && humanizeDuration(span.seconds)}
+          </div>
+          {isOpen && (
+            <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
+          )}
+        </div>
+        {/* Show full detail overlay when highlighted */}
+        {isHighlighted && (
+          <div className="absolute left-2 top-0 h-full flex items-center z-20">
+            <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+              {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)}
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
 export default function TimelineView() {
   const params = useParams();
   const router = useRouter();
@@ -485,11 +621,6 @@ export default function TimelineView() {
                 </div>
 
                 {(() => {
-                  // Combine events and spans into unified timeline items
-                  type TimelineItem = 
-                    | { type: 'event'; t: number; data: typeof safeTimeline.events[0] }
-                    | { type: 'span'; t: number; data: typeof safeTimeline.spans[0] };
-                  
                   // Event types that are represented as spans and should not appear as point events
                   const spanEventTypes = new Set([
                     'ci.started',
@@ -514,119 +645,23 @@ export default function TimelineView() {
                   ];
                   
                   items.sort((a, b) => a.t - b.t);
-
-                  const WaterfallRow = ({ item, idx }: { item: TimelineItem; idx: number }) => {
-                    const rowRef = useRef<HTMLDivElement>(null);
-
-                    useEffect(() => {
-                      const element = rowRef.current;
-                      if (!element) return;
-
-                      const observer = new IntersectionObserver(
-                        (entries) => {
-                          entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                              setHighlightedRowIndex(idx);
-                            }
-                          });
-                        },
-                        {
-                          root: waterFallContainerRef.current,
-                          threshold: 0.5,
-                        }
-                      );
-
-                      observer.observe(element);
-                      return () => observer.disconnect();
-                    }, [idx]);
-
-                    const isHighlighted = highlightedRowIndex === idx;
-
-                    if (item.type === 'event') {
-                      const event = item.data;
-                      const left = ((item.t - timelineStart) / timelineRange) * 100;
-                      
-                      return (
-                        <div 
-                          key={`evt-${idx}`} 
-                          ref={rowRef}
-                          className={`relative h-6 flex items-center transition-colors ${
-                            isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
-                          }`}
-                        >
-                          {/* Dot at time position */}
-                          <div 
-                            className="absolute w-2 h-2 bg-blue-500 rounded-full hover:ring-2 hover:ring-blue-300 transition-all cursor-pointer group z-10"
-                            style={{ left: `${Math.max(0, Math.min(100, left))}%` }}
-                            title={`${event.type} at ${formatTimestamp(event.t)}`}
-                          >
-                            {/* Tooltip on hover */}
-                            <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                              {event.type}: {event.summary}
-                            </div>
-                          </div>
-                          {/* Label - show full detail when highlighted */}
-                          {isHighlighted ? (
-                            <span className="ml-2 text-xs font-medium text-gray-900 z-10 px-2 py-1 bg-white rounded shadow-sm">
-                              {event.type}: {event.summary}
-                            </span>
-                          ) : (
-                            <span className="ml-2 text-xs text-gray-600 truncate" style={{ marginLeft: `calc(${Math.max(0, Math.min(100, left))}% + 8px)` }}>
-                              {event.type}
-                            </span>
-                          )}
-                        </div>
-                      );
-                    } else {
-                      const span = item.data;
-                      const spanStart = new Date(span.start).getTime();
-                      const spanEnd = span.end ? new Date(span.end).getTime() : timelineEnd;
-                      const left = ((spanStart - timelineStart) / timelineRange) * 100;
-                      const width = ((spanEnd - spanStart) / timelineRange) * 100;
-                      const isOpen = !span.end;
-                      
-                      const colorClass = spanKindColors[span.kind] || 'bg-gray-400';
-                      
-                      return (
-                        <div 
-                          key={`span-${idx}`} 
-                          ref={rowRef}
-                          className={`relative h-6 transition-colors ${
-                            isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
-                          }`}
-                        >
-                          <div
-                            className={`absolute h-5 ${colorClass} rounded opacity-90 hover:opacity-100 transition-opacity cursor-pointer group z-10`}
-                            style={{
-                              left: `${Math.max(0, left)}%`,
-                              width: `${Math.min(100 - left, width)}%`,
-                            }}
-                            title={`${spanKindLabels[span.kind]}: ${humanizeDuration(span.seconds)} (${formatTimestamp(span.start)} → ${span.end ? formatTimestamp(span.end) : 'ongoing'})`}
-                          >
-                            <div className="h-full flex items-center justify-center text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity px-1">
-                              {span.seconds > 60 && humanizeDuration(span.seconds)}
-                            </div>
-                            {isOpen && (
-                              <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
-                            )}
-                          </div>
-                          {/* Show full detail overlay when highlighted */}
-                          {isHighlighted && (
-                            <div className="absolute left-2 top-0 h-full flex items-center z-20">
-                              <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-                                {spanKindLabels[span.kind]}: {humanizeDuration(span.seconds)}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-                  };
                   
                   return (
                     <>
                       {items.map((item, idx) => (
-                        <WaterfallRow key={`row-${idx}`} item={item} idx={idx} />
+                        <WaterfallRow 
+                          key={`row-${idx}`} 
+                          item={item} 
+                          idx={idx}
+                          timelineStart={timelineStart}
+                          timelineEnd={timelineEnd}
+                          timelineRange={timelineRange}
+                          spanKindColors={spanKindColors}
+                          spanKindLabels={spanKindLabels}
+                          highlightedRowIndex={highlightedRowIndex}
+                          setHighlightedRowIndex={setHighlightedRowIndex}
+                          waterFallContainerRef={waterFallContainerRef}
+                        />
                       ))}
                       
                       {/* Note about zero-second CI spans */}
