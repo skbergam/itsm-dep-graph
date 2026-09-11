@@ -102,11 +102,66 @@
       "source_ref": "https://github.com/org/repo/pull/99",
       "summary": "Pull request #99 opened",
       "meta": {
-        "pr_number": 99
+        "number": 99
       }
     },
     {
       "id": "e008",
+      "type": "pr.set_to_draft",
+      "t": "2026-09-11T00:41:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/99",
+      "summary": "Pull request #99 converted to draft",
+      "meta": {
+        "number": 99
+      }
+    },
+    {
+      "id": "e009",
+      "type": "pr.ready_for_review",
+      "t": "2026-09-11T00:42:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/99",
+      "summary": "Pull request #99 marked ready for review",
+      "meta": {
+        "number": 99
+      }
+    },
+    {
+      "id": "e010",
+      "type": "pr.closed",
+      "t": "2026-09-11T00:43:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/99",
+      "summary": "Pull request #99 closed",
+      "meta": {
+        "number": 99
+      }
+    },
+    {
+      "id": "e011",
+      "type": "pr.reopened",
+      "t": "2026-09-11T00:44:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/99",
+      "summary": "Pull request #99 reopened",
+      "meta": {
+        "number": 99
+      }
+    },
+    {
+      "id": "e012",
+      "type": "pr.merged",
+      "t": "2026-09-11T00:46:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/99",
+      "summary": "Pull request #99 merged",
+      "meta": {
+        "number": 99
+      }
+    },
+    {
+      "id": "e013",
       "type": "agent.ended",
       "t": "2026-09-11T00:45:00Z",
       "source": "cursor",

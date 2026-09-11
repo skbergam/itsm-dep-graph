@@ -610,11 +610,11 @@ function WaterfallRow({
       <div 
         ref={rowRef}
         className={`relative h-6 flex items-center transition-colors ${
-          isHighlighted ? 'bg-blue-50 border-l-2' : isHovered ? 'border-l-2' : ''
+          isHighlighted ? 'border-l-2' : isHovered ? 'border-l-2' : ''
         }`}
         style={{ 
-          backgroundColor: !isHighlighted && isHovered ? hoverBgColor : undefined,
-          borderLeftColor: isHighlighted ? '#3b82f6' : isHovered ? eventColor : 'transparent'
+          backgroundColor: isHighlighted ? hoverBgColor : (isHovered ? hoverBgColor : 'transparent'),
+          borderLeftColor: isHighlighted || isHovered ? eventColor : 'transparent'
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
