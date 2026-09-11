@@ -19,13 +19,17 @@ export interface TaskTimelineEvent {
 }
 
 export interface TaskTimelineSpan {
-  kind: 'wall' | 'waiting_human' | 'idle' | 'stuck' | 'ci' | 'agent';
+  kind: 'wall' | 'waiting_human' | 'idle' | 'stuck' | 'ci' | 'agent' | 'subagent';
   start: string;
   end: string;
   seconds: number;
   meta?: {
     usage?: AgentUsage;
     agent_id?: string;
+    subagent_id?: string;
+    parent_agent_id?: string;
+    description?: string;
+    open_ended?: boolean;
     [key: string]: unknown;
   };
 }

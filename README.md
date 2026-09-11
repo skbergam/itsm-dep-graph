@@ -119,6 +119,57 @@ python3 enrich_timeline.py --timeline public/timelines/<id>.json
 **Environment Variables:**
 - `CURSOR_API_KEY`: Required. Your Cursor API key for authenticating with the Cursor Cloud Agents API. Get yours from [cursor.com/settings/api](https://cursor.com/settings/api).
 
+### Recovering Subagent Spans
+
+Timelines can be enriched with **nested subagent** spans (Task tool calls within parent agents) using the `recover_subagents.py` script:
+
+```bash
+# Set your Cursor API key
+export CURSOR_API_KEY="your-api-key-here"
+
+# Recover subagent spans from parent agent transcripts
+python3 recover_subagents.py --timeline public/timelines/<id>.json
+```
+
+**What it does:**
+- Reads agent IDs from `links.agents` in the timeline JSON
+- Fetches full transcripts for each parent agent
+- Extracts Task tool calls (which spawn subagents) from transcripts
+- Recovers subagent bcIds from Task tool results
+- Emits `subagent.started` and `subagent.ended` events with proven timestamps
+- Emits `subagent` spans with duration (or open-ended → `as_of`)
+- **Deterministic timestamps only** — extracted from source records (ISO from ms)
+- **Never invents** spans when timing cannot be proven from transcript
+
+**Recovery Strategy:**
+1. Fetch transcript for each parent agent in timeline
+2. Find all Task tool calls (these spawn subagents)
+3. Extract subagent bcId from Task tool results
+4. For each subagent, extract timing from the transcript:
+   - `started_at_ms` from Task tool call message timestamp
+   - `completed_at_ms` from Task tool result message timestamp
+5. Emit subagent.started and subagent.ended events with proven timestamps
+6. Emit subagent spans with duration
+7. For subagents still running at `as_of` time: emit open-ended span
+
+**UI Display:**
+- Subagent events and spans are displayed with distinct lime-green color
+- Event type shows as "Subagent Started" / "Subagent Ended"
+- Span kind shows as "Subagent"
+- Hover shows subagent ID, parent agent ID, and description
+
+**Known Gaps:**
+- Subagent recovery requires parent agent transcript API access
+- If transcript API is unavailable: adds omission, skips subagent spans
+- Transcript structure may vary; script handles common patterns
+- Only Task tool calls with recoverable bcIds are processed
+- Parallel sibling cloud agents (bc-*) are NOT subagents — they're separate runs
+
+**Integration Notes:**
+- This script is designed to be integrated into the gather pipeline
+- For gather pipelines that don't use Cursor API: adapt to use MCP `batch-fetch-details`
+- See script comments for alternative recovery approaches from transcript structure
+
 ## Architecture
 
 - **`app/page.tsx`**: Entry point, dynamic import of graph component

@@ -42,6 +42,8 @@ const eventTypeColors: Record<string, string> = {
   'ci.ended': '#7c3aed',        // purple-600
   'agent.started': '#06b6d4',   // cyan-500
   'agent.ended': '#0891b2',     // cyan-600
+  'subagent.started': '#84cc16', // lime-500
+  'subagent.ended': '#65a30d',  // lime-600
   'deploy.completed': '#14b8a6', // teal-500 (unique hue for deploy events)
   'deploy.started': '#0d9488',   // teal-600
   'default': '#6366f1',         // indigo-500
@@ -1004,6 +1006,7 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
     stuck: 'bg-red-500',
     ci: 'bg-purple-400',
     agent: 'bg-cyan-400',
+    subagent: 'bg-lime-500',
   };
 
   const spanKindLabels: Record<string, string> = {
@@ -1013,6 +1016,7 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
     stuck: 'Stuck',
     ci: 'CI',
     agent: 'Agent',
+    subagent: 'Subagent',
   };
   
   // Fallback function for unknown span kinds
