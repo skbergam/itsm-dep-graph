@@ -23,6 +23,7 @@ const TIMELINE_IDS = [
   'example',
   '3d75dbdd-f0ea-8145-9a95-f418353a05b5',
   '3d65dbdd-f0ea-81f6-880f-e041eda42d5b',
+  '3d75dbdd-f0ea-8127-ab07-d6423df3e06b',
 ];
 
 export default function TimelinesPage() {
