@@ -24,24 +24,27 @@ type EventGroup = {
   startIdx: number;
 };
 
-// Event type color mapping
+// Event type color mapping - single source of truth for hues
+// Each event type gets a unique hue for consistent coloring across dots, bars, and hover highlights
 const eventTypeColors: Record<string, string> = {
-  'git.commit': '#10b981',
-  'git.push': '#3b82f6',
-  'git.branch': '#8b5cf6',
-  'pr.created': '#f59e0b',
-  'pr.updated': '#f97316',
-  'pr.merged': '#22c55e',
-  'pr.closed': '#ef4444',
-  'pr.set_to_draft': '#ec4899',
-  'pr.ready_for_review': '#8b5cf6',
-  'pr.draft_changed': '#ec4899',
-  'pr.status_changed': '#f59e0b',
-  'ci.started': '#a855f7',
-  'ci.ended': '#7c3aed',
-  'agent.started': '#06b6d4',
-  'agent.ended': '#0891b2',
-  'default': '#6366f1',
+  'git.commit': '#10b981',      // green-500
+  'git.push': '#3b82f6',        // blue-500
+  'git.branch': '#8b5cf6',      // violet-500
+  'pr.created': '#f59e0b',      // amber-500
+  'pr.updated': '#f97316',      // orange-500
+  'pr.merged': '#22c55e',       // green-500
+  'pr.closed': '#ef4444',       // red-500
+  'pr.set_to_draft': '#ec4899', // pink-500
+  'pr.ready_for_review': '#a78bfa', // violet-400 (different from git.branch)
+  'pr.draft_changed': '#ec4899', // pink-500
+  'pr.status_changed': '#f59e0b', // amber-500
+  'ci.started': '#a855f7',      // purple-500
+  'ci.ended': '#7c3aed',        // purple-600
+  'agent.started': '#06b6d4',   // cyan-500
+  'agent.ended': '#0891b2',     // cyan-600
+  'deploy.completed': '#14b8a6', // teal-500 (unique hue for deploy events)
+  'deploy.started': '#0d9488',   // teal-600
+  'default': '#6366f1',         // indigo-500
 };
 
 function getEventColor(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
@@ -67,6 +70,14 @@ function getEventColor(eventType: string, event?: { summary: string; meta?: Reco
   return eventTypeColors[eventType] || eventTypeColors.default;
 }
 
+// Convert hex color to rgba with specified opacity for hover highlights
+function hexToRgba(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 function getFriendlyEventTypeName(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
   // Extract PR number from event if available
   const getPRNumber = (): string | null => {
@@ -77,6 +88,11 @@ function getFriendlyEventTypeName(eventType: string, event?: { summary: string; 
       return `#${event.meta.number}`;
     }
     
+    // Try meta.pr (for deploy events)
+    if (event.meta?.pr) {
+      return `#${event.meta.pr}`;
+    }
+    
     // Try to extract from summary (e.g., "PR #178 opened")
     const match = event.summary?.match(/#(\d+)/);
     if (match) {
@@ -85,6 +101,17 @@ function getFriendlyEventTypeName(eventType: string, event?: { summary: string; 
     
     return null;
   };
+  
+  // Handle deploy events with PR numbers
+  if (eventType === 'deploy.completed') {
+    const prNumber = getPRNumber() || '#???';
+    return `PR ${prNumber} Deployed`;
+  }
+  
+  if (eventType === 'deploy.started') {
+    const prNumber = getPRNumber() || '#???';
+    return `PR ${prNumber} Deploy Started`;
+  }
   
   // Handle PR events with specific states and numbers
   if (eventType.startsWith('pr.')) {
@@ -151,10 +178,6 @@ function getFriendlyEventTypeName(eventType: string, event?: { summary: string; 
     
     // Board events
     'board.stage_changed': 'Board Stage Changed',
-    
-    // Deployment events
-    'deploy.completed': 'Deploy Completed',
-    'deploy.started': 'Deploy Started',
     
     // Todo events
     'todo.created': 'Todo Created',
@@ -231,6 +254,9 @@ function EventGroupRow({
   const eventColor = getEventColor(group.eventType, group.events[0]?.data);
   const friendlyTypeName = getFriendlyEventTypeName(group.eventType, group.events[0]?.data);
   
+  // Derive light hover tint from the event's hue
+  const hoverBgColor = hexToRgba(eventColor, 0.05);
+  
   if (isExpanded) {
     return (
       <>
@@ -260,9 +286,12 @@ function EventGroupRow({
     <div
       ref={rowRef}
       className={`relative h-6 transition-colors ${
-        isHighlighted ? 'border-l-2 border-blue-500' : ''
+        isHighlighted ? 'border-l-2' : isHovered ? 'border-l-2' : ''
       }`}
-      style={{ backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.05)' : 'transparent' }}
+      style={{ 
+        backgroundColor: isHovered ? hoverBgColor : 'transparent',
+        borderLeftColor: isHighlighted || isHovered ? eventColor : 'transparent'
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -396,6 +425,17 @@ function SpanGroupRow({
     'bg-cyan-400': 'rgba(34, 211, 238, 0.1)',
   };
   const hoverTint = baseColorMap[colorClass] || 'rgba(156, 163, 175, 0.1)';
+  
+  // Get solid color for border from colorClass
+  const borderColorMap: Record<string, string> = {
+    'bg-yellow-400': '#facc15',
+    'bg-blue-400': '#60a5fa',
+    'bg-red-500': '#ef4444',
+    'bg-purple-400': '#a855f7',
+    'bg-gray-400': '#9ca3af',
+    'bg-cyan-400': '#22d3ee',
+  };
+  const borderColor = borderColorMap[colorClass] || '#9ca3af';
 
   if (isExpanded) {
     return (
@@ -427,9 +467,12 @@ function SpanGroupRow({
     <div
       ref={rowRef}
       className={`relative h-6 transition-colors ${
-        isHighlighted ? 'border-l-2 border-blue-500' : ''
+        isHighlighted ? 'border-l-2' : isHovered ? 'border-l-2' : ''
       }`}
-      style={{ backgroundColor: isHovered ? hoverTint : 'transparent' }}
+      style={{ 
+        backgroundColor: isHovered ? hoverTint : 'transparent',
+        borderLeftColor: isHighlighted || isHovered ? borderColor : 'transparent'
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -574,13 +617,19 @@ function WaterfallRow({
     const eventColor = getEventColor(event.type, event);
     const friendlyTypeName = getFriendlyEventTypeName(event.type, event);
     
+    // Derive light hover tint from the event's hue
+    const hoverBgColor = hexToRgba(eventColor, 0.05);
+    
     return (
       <div 
         ref={rowRef}
         className={`relative h-6 flex items-center transition-colors ${
-          isHighlighted ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+          isHighlighted ? 'bg-blue-50 border-l-2' : isHovered ? 'border-l-2' : ''
         }`}
-        style={{ backgroundColor: isHovered && !isHighlighted ? 'rgba(59, 130, 246, 0.05)' : undefined }}
+        style={{ 
+          backgroundColor: !isHighlighted && isHovered ? hoverBgColor : undefined,
+          borderLeftColor: isHighlighted ? '#3b82f6' : isHovered ? eventColor : 'transparent'
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -666,13 +715,27 @@ function WaterfallRow({
     };
     const hoverTint = baseColorMap[colorClass] || 'rgba(156, 163, 175, 0.1)';
     
+    // Get solid color for border from colorClass
+    const borderColorMap: Record<string, string> = {
+      'bg-yellow-400': '#facc15',
+      'bg-blue-400': '#60a5fa',
+      'bg-red-500': '#ef4444',
+      'bg-purple-400': '#a855f7',
+      'bg-gray-400': '#9ca3af',
+      'bg-cyan-400': '#22d3ee',
+    };
+    const borderColor = borderColorMap[colorClass] || '#9ca3af';
+    
     return (
       <div 
         ref={rowRef}
         className={`relative h-6 transition-colors ${
-          isHighlighted ? 'border-l-2 border-blue-500' : ''
+          isHighlighted ? 'border-l-2' : isHovered ? 'border-l-2' : ''
         }`}
-        style={{ backgroundColor: isHovered && !isHighlighted ? hoverTint : (isHighlighted ? 'rgb(239, 246, 255)' : 'transparent') }}
+        style={{ 
+          backgroundColor: isHovered && !isHighlighted ? hoverTint : (isHighlighted ? 'rgb(239, 246, 255)' : 'transparent'),
+          borderLeftColor: isHighlighted || isHovered ? borderColor : 'transparent'
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
