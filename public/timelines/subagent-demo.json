@@ -1,0 +1,182 @@
+{
+  "schema": "task-timeline/v1",
+  "generated_at": "2026-09-11T00:55:00Z",
+  "as_of": "2026-09-11T00:55:00Z",
+  "task": {
+    "notion_url": "https://notion.so/demo-task-456",
+    "title": "Demo Task: Subagent Recovery Test",
+    "status": "In progress",
+    "running": false
+  },
+  "links": {
+    "eng_prs": [
+      "https://github.com/org/repo/pull/99"
+    ],
+    "prs": [
+      "https://github.com/org/repo/pull/99"
+    ],
+    "agents": [
+      "https://cursor.com/agents/bc-parent-agent-demo"
+    ]
+  },
+  "events": [
+    {
+      "id": "e001",
+      "type": "task.created",
+      "t": "2026-09-11T00:00:00Z",
+      "source": "notion",
+      "source_ref": "notion://tasks/456",
+      "summary": "Task created in Notion",
+      "meta": {}
+    },
+    {
+      "id": "e002",
+      "type": "agent.started",
+      "t": "2026-09-11T00:10:00Z",
+      "source": "cursor",
+      "source_ref": "bc-parent-agent-demo",
+      "summary": "Cloud agent started implementation",
+      "meta": {
+        "agent_id": "bc-parent-agent-demo"
+      }
+    },
+    {
+      "id": "e003",
+      "type": "subagent.started",
+      "t": "2026-09-11T00:15:00Z",
+      "source": "parent_agent_transcript",
+      "source_ref": "cursor://agent/bc-parent-agent-demo#task_call=call_abc123",
+      "summary": "Subagent bc-subagent-1… started: Explore codebase structure",
+      "meta": {
+        "subagent_id": "bc-subagent-1-demo-explore",
+        "parent_agent_id": "bc-parent-agent-demo",
+        "description": "Explore codebase structure",
+        "evidence": "Task tool call started_at_ms from parent transcript"
+      }
+    },
+    {
+      "id": "e004",
+      "type": "subagent.ended",
+      "t": "2026-09-11T00:20:00Z",
+      "source": "parent_agent_transcript",
+      "source_ref": "cursor://agent/bc-parent-agent-demo#task_result=call_abc123",
+      "summary": "Subagent bc-subagent-1… completed",
+      "meta": {
+        "subagent_id": "bc-subagent-1-demo-explore",
+        "parent_agent_id": "bc-parent-agent-demo",
+        "evidence": "Task tool result completed_at_ms from parent transcript"
+      }
+    },
+    {
+      "id": "e005",
+      "type": "subagent.started",
+      "t": "2026-09-11T00:22:00Z",
+      "source": "parent_agent_transcript",
+      "source_ref": "cursor://agent/bc-parent-agent-demo#task_call=call_def456",
+      "summary": "Subagent bc-subagent-2… started: Implement feature logic",
+      "meta": {
+        "subagent_id": "bc-subagent-2-demo-implement",
+        "parent_agent_id": "bc-parent-agent-demo",
+        "description": "Implement feature logic",
+        "evidence": "Task tool call started_at_ms from parent transcript"
+      }
+    },
+    {
+      "id": "e006",
+      "type": "subagent.ended",
+      "t": "2026-09-11T00:35:00Z",
+      "source": "parent_agent_transcript",
+      "source_ref": "cursor://agent/bc-parent-agent-demo#task_result=call_def456",
+      "summary": "Subagent bc-subagent-2… completed",
+      "meta": {
+        "subagent_id": "bc-subagent-2-demo-implement",
+        "parent_agent_id": "bc-parent-agent-demo",
+        "evidence": "Task tool result completed_at_ms from parent transcript"
+      }
+    },
+    {
+      "id": "e007",
+      "type": "pr.created",
+      "t": "2026-09-11T00:40:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/org/repo/pull/99",
+      "summary": "Pull request #99 opened",
+      "meta": {
+        "pr_number": 99
+      }
+    },
+    {
+      "id": "e008",
+      "type": "agent.ended",
+      "t": "2026-09-11T00:45:00Z",
+      "source": "cursor",
+      "source_ref": "bc-parent-agent-demo",
+      "summary": "Cloud agent completed",
+      "meta": {
+        "agent_id": "bc-parent-agent-demo",
+        "status": "finished"
+      }
+    }
+  ],
+  "spans": [
+    {
+      "kind": "wall",
+      "start": "2026-09-11T00:00:00Z",
+      "end": "2026-09-11T00:55:00Z",
+      "seconds": 3300
+    },
+    {
+      "kind": "idle",
+      "start": "2026-09-11T00:00:00Z",
+      "end": "2026-09-11T00:10:00Z",
+      "seconds": 600
+    },
+    {
+      "kind": "agent",
+      "start": "2026-09-11T00:10:00Z",
+      "end": "2026-09-11T00:45:00Z",
+      "seconds": 2100,
+      "meta": {
+        "agent_id": "bc-parent-agent-demo"
+      }
+    },
+    {
+      "kind": "subagent",
+      "start": "2026-09-11T00:15:00Z",
+      "end": "2026-09-11T00:20:00Z",
+      "seconds": 300,
+      "meta": {
+        "subagent_id": "bc-subagent-1-demo-explore",
+        "parent_agent_id": "bc-parent-agent-demo",
+        "description": "Explore codebase structure",
+        "open_ended": false
+      }
+    },
+    {
+      "kind": "subagent",
+      "start": "2026-09-11T00:22:00Z",
+      "end": "2026-09-11T00:35:00Z",
+      "seconds": 780,
+      "meta": {
+        "subagent_id": "bc-subagent-2-demo-implement",
+        "parent_agent_id": "bc-parent-agent-demo",
+        "description": "Implement feature logic",
+        "open_ended": false
+      }
+    },
+    {
+      "kind": "waiting_human",
+      "start": "2026-09-11T00:45:00Z",
+      "end": "2026-09-11T00:55:00Z",
+      "seconds": 600
+    }
+  ],
+  "totals": {
+    "wall_seconds": 3300,
+    "waiting_human_seconds": 600,
+    "idle_seconds": 600,
+    "stuck_seconds": 0,
+    "ci_seconds": 0
+  },
+  "omissions": []
+}
