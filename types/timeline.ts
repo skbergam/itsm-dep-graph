@@ -1,3 +1,10 @@
+export interface AgentUsage {
+  inputTokens?: number;
+  outputTokens?: number;
+  totalTokens?: number;
+  costUsd?: number;
+}
+
 export interface TaskTimelineEvent {
   id: string;
   type: string;
@@ -5,14 +12,22 @@ export interface TaskTimelineEvent {
   source: string;
   source_ref: string;
   summary: string;
-  meta: Record<string, unknown>;
+  meta: Record<string, unknown> & {
+    usage?: AgentUsage;
+    agent_id?: string;
+  };
 }
 
 export interface TaskTimelineSpan {
-  kind: 'wall' | 'waiting_human' | 'idle' | 'stuck' | 'ci';
+  kind: 'wall' | 'waiting_human' | 'idle' | 'stuck' | 'ci' | 'agent';
   start: string;
   end: string;
   seconds: number;
+  meta?: {
+    usage?: AgentUsage;
+    agent_id?: string;
+    [key: string]: unknown;
+  };
 }
 
 export interface TaskTimelineTotals {

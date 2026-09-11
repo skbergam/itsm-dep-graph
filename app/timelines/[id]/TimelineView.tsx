@@ -3,24 +3,24 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import type { TaskTimeline } from "@/types/timeline";
-import { humanizeDuration, formatTimestamp } from "@/lib/timeline-utils";
+import { humanizeDuration, formatTimestamp, formatAgentUsage, type AgentUsage } from "@/lib/timeline-utils";
 
 // Timeline item types
 type TimelineItem = 
-  | { type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string } }
-  | { type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } };
+  | { type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string; meta?: Record<string, unknown> & { usage?: AgentUsage; agent_id?: string } } }
+  | { type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number; meta?: { usage?: AgentUsage; agent_id?: string; [key: string]: unknown } } };
 
 type SpanGroup = {
   type: 'span-group';
   kind: string;
-  spans: Array<{ type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number } }>;
+  spans: Array<{ type: 'span'; t: number; data: { kind: string; start: string; end: string | null; seconds: number; meta?: { usage?: AgentUsage; agent_id?: string; [key: string]: unknown } } }>;
   startIdx: number;
 };
 
 type EventGroup = {
   type: 'event-group';
   eventType: string;
-  events: Array<{ type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string } }>;
+  events: Array<{ type: 'event'; t: number; data: { id: string; type: string; t: string; source: string; summary: string; source_ref?: string; meta?: Record<string, unknown> & { usage?: AgentUsage; agent_id?: string } } }>;
   startIdx: number;
 };
 
@@ -617,6 +617,12 @@ function WaterfallRow({
     const eventColor = getEventColor(event.type, event);
     const friendlyTypeName = getFriendlyEventTypeName(event.type, event);
     
+    // Extract usage data for agent events
+    const usage = (event.type === 'agent.started' || event.type === 'agent.ended') 
+      ? (event.meta?.usage as AgentUsage | undefined)
+      : undefined;
+    const usageText = formatAgentUsage(usage);
+    
     // Derive light hover tint from the event's hue
     const hoverBgColor = hexToRgba(eventColor, 0.05);
     
@@ -682,6 +688,11 @@ function WaterfallRow({
         >
           <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
             {event.summary}
+            {usageText && (
+              <div className="text-xs text-gray-300 mt-1 border-t border-gray-700 pt-1">
+                {usageText}
+              </div>
+            )}
           </div>
         </div>
         
@@ -690,6 +701,11 @@ function WaterfallRow({
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
               {friendlyTypeName} @ {formatTimestamp(event.t)}
               {event.source && ` (${event.source})`}
+              {usageText && (
+                <span className="block text-xs text-gray-600 mt-1">
+                  {usageText}
+                </span>
+              )}
             </span>
           </div>
         )}
@@ -704,6 +720,12 @@ function WaterfallRow({
     const isOpen = !span.end;
     
     const colorClass = groupColorClass || spanKindColors[span.kind] || 'bg-gray-400';
+    
+    // Extract usage data for agent spans
+    const usage = span.kind === 'agent' 
+      ? (span.meta?.usage as AgentUsage | undefined)
+      : undefined;
+    const usageText = formatAgentUsage(usage);
     
     const baseColorMap: Record<string, string> = {
       'bg-yellow-400': 'rgba(250, 204, 21, 0.1)',
@@ -789,12 +811,22 @@ function WaterfallRow({
           {isOpen && (
             <div className="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50"></div>
           )}
+          {usageText && (
+            <div className="absolute left-0 top-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+              {usageText}
+            </div>
+          )}
         </div>
         
         {(isHighlighted || isHovered) && (
           <div className="absolute left-0 top-0 h-full flex items-center z-20 pointer-events-none ml-2">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
               {humanizeDuration(span.seconds)} ({formatTimestamp(span.start)} → {span.end ? formatTimestamp(span.end) : 'ongoing'})
+              {usageText && (
+                <span className="block text-xs text-gray-600 mt-1">
+                  {usageText}
+                </span>
+              )}
             </span>
           </div>
         )}

@@ -88,6 +88,37 @@ Vercel detects Next.js automatically. The build outputs static files to `dist/` 
 - **TypeScript 5.7**
 - **Tailwind CSS 3.4**
 
+## Timeline Feature
+
+This repo includes a timeline viewer for ITSM task execution (see `app/timelines/[id]/` and `public/timelines/`).
+
+### Enriching Timelines with Agent Usage
+
+Timelines can be enriched with real Cursor Cloud Agents API usage data (tokens and cost) using the `enrich_timeline.py` script:
+
+```bash
+# Set your Cursor API key
+export CURSOR_API_KEY="your-api-key-here"
+
+# Enrich a timeline with agent usage data
+python3 enrich_timeline.py --timeline public/timelines/<id>.json
+```
+
+**What it does:**
+- Reads agent IDs from `links.agents` in the timeline JSON
+- Calls `GET /v1/agents/{id}/usage` for each agent (Cursor Cloud Agents API)
+- Enriches `agent.started`/`agent.ended` events with `meta.usage` fields:
+  - `inputTokens`, `outputTokens`, `totalTokens`, `costUsd`
+- Adds omissions for agents where usage data is unavailable (404/error)
+- **Never invents** token counts — missing usage stays empty
+
+**UI Display:**
+- Agent event/span hover shows token usage and cost (when present)
+- If usage is unavailable, nothing is shown (no fake zeros)
+
+**Environment Variables:**
+- `CURSOR_API_KEY`: Required. Your Cursor API key for authenticating with the Cursor Cloud Agents API. Get yours from [cursor.com/settings/api](https://cursor.com/settings/api).
+
 ## Architecture
 
 - **`app/page.tsx`**: Entry point, dynamic import of graph component
