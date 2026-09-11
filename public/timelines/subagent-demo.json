@@ -46,7 +46,7 @@
       "t": "2026-09-11T00:15:00Z",
       "source": "parent_agent_transcript",
       "source_ref": "cursor://agent/bc-parent-agent-demo#task_call=call_abc123",
-      "summary": "Subagent bc-subagent-1… started: Explore codebase structure",
+      "summary": "Subagent bc-subagent-1\u2026 started: Explore codebase structure",
       "meta": {
         "subagent_id": "bc-subagent-1-demo-explore",
         "parent_agent_id": "bc-parent-agent-demo",
@@ -60,7 +60,7 @@
       "t": "2026-09-11T00:20:00Z",
       "source": "parent_agent_transcript",
       "source_ref": "cursor://agent/bc-parent-agent-demo#task_result=call_abc123",
-      "summary": "Subagent bc-subagent-1… completed",
+      "summary": "Subagent bc-subagent-1\u2026 completed",
       "meta": {
         "subagent_id": "bc-subagent-1-demo-explore",
         "parent_agent_id": "bc-parent-agent-demo",
@@ -73,7 +73,7 @@
       "t": "2026-09-11T00:22:00Z",
       "source": "parent_agent_transcript",
       "source_ref": "cursor://agent/bc-parent-agent-demo#task_call=call_def456",
-      "summary": "Subagent bc-subagent-2… started: Implement feature logic",
+      "summary": "Subagent bc-subagent-2\u2026 started: Implement feature logic",
       "meta": {
         "subagent_id": "bc-subagent-2-demo-implement",
         "parent_agent_id": "bc-parent-agent-demo",
@@ -87,7 +87,7 @@
       "t": "2026-09-11T00:35:00Z",
       "source": "parent_agent_transcript",
       "source_ref": "cursor://agent/bc-parent-agent-demo#task_result=call_def456",
-      "summary": "Subagent bc-subagent-2… completed",
+      "summary": "Subagent bc-subagent-2\u2026 completed",
       "meta": {
         "subagent_id": "bc-subagent-2-demo-implement",
         "parent_agent_id": "bc-parent-agent-demo",

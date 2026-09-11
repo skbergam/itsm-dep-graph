@@ -140,7 +140,7 @@
     },
     {
       "id": "e009",
-      "type": "pr.draft_changed",
+      "type": "pr.ready_for_review",
       "t": "2026-09-09T19:29:38Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/146",
@@ -1438,7 +1438,7 @@
     },
     {
       "id": "e108",
-      "type": "pr.draft_changed",
+      "type": "pr.ready_for_review",
       "t": "2026-09-10T11:22:25Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177",
@@ -1496,7 +1496,7 @@
     },
     {
       "id": "e112",
-      "type": "pr.draft_changed",
+      "type": "pr.set_to_draft",
       "t": "2026-09-10T11:25:14Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177",
@@ -1797,7 +1797,7 @@
     },
     {
       "id": "e135",
-      "type": "pr.draft_changed",
+      "type": "pr.ready_for_review",
       "t": "2026-09-10T14:35:44Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/177",
@@ -2016,7 +2016,7 @@
     },
     {
       "id": "e151",
-      "type": "pr.draft_changed",
+      "type": "pr.ready_for_review",
       "t": "2026-09-10T18:08:27Z",
       "source": "github",
       "source_ref": "https://github.com/elementum-fde/products/pull/190",

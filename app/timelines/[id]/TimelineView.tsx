@@ -32,12 +32,11 @@ const eventTypeColors: Record<string, string> = {
   'git.branch': '#8b5cf6',      // violet-500
   'pr.created': '#f59e0b',      // amber-500
   'pr.updated': '#f97316',      // orange-500
-  'pr.merged': '#22c55e',       // green-500
-  'pr.closed': '#ef4444',       // red-500
-  'pr.set_to_draft': '#ec4899', // pink-500
-  'pr.ready_for_review': '#a78bfa', // violet-400 (different from git.branch)
-  'pr.draft_changed': '#ec4899', // pink-500
-  'pr.status_changed': '#f59e0b', // amber-500
+  'pr.merged': '#22c55e',       // green-500 (bright green for successful merge)
+  'pr.closed': '#ef4444',       // red-500 (red for closed without merging)
+  'pr.reopened': '#3b82f6',     // blue-500 (blue for reopened)
+  'pr.set_to_draft': '#ec4899', // pink-500 (pink for draft state)
+  'pr.ready_for_review': '#a78bfa', // violet-400 (violet for ready for review)
   'ci.started': '#a855f7',      // purple-500
   'ci.ended': '#7c3aed',        // purple-600
   'agent.started': '#06b6d4',   // cyan-500
@@ -50,25 +49,6 @@ const eventTypeColors: Record<string, string> = {
 };
 
 function getEventColor(eventType: string, event?: { summary: string; meta?: Record<string, unknown> }): string {
-  // Handle PR events with state-specific colors
-  if (eventType === 'pr.draft_changed' && event) {
-    const to = event.meta?.to as string;
-    if (to === 'draft') {
-      return eventTypeColors['pr.set_to_draft'];
-    } else if (to === 'ready_for_review' || to === 'ready') {
-      return eventTypeColors['pr.ready_for_review'];
-    }
-  }
-  
-  if (eventType === 'pr.status_changed' && event) {
-    const to = event.meta?.to as string;
-    if (to === 'merged') {
-      return eventTypeColors['pr.merged'];
-    } else if (to === 'closed') {
-      return eventTypeColors['pr.closed'];
-    }
-  }
-  
   return eventTypeColors[eventType] || eventTypeColors.default;
 }
 
@@ -123,26 +103,24 @@ function getFriendlyEventTypeName(eventType: string, event?: { summary: string; 
       return `PR ${prNumber} Created`;
     }
     
-    if (eventType === 'pr.draft_changed') {
-      const to = event?.meta?.to as string;
-      if (to === 'draft') {
-        return `PR ${prNumber} Set to Draft`;
-      } else if (to === 'ready_for_review' || to === 'ready') {
-        return `PR ${prNumber} Ready for Review`;
-      }
-      return `PR ${prNumber} Draft Status Changed`;
+    if (eventType === 'pr.set_to_draft') {
+      return `PR ${prNumber} Set to Draft`;
     }
     
-    if (eventType === 'pr.status_changed') {
-      const to = event?.meta?.to as string;
-      if (to === 'merged') {
-        return `PR ${prNumber} Merged`;
-      } else if (to === 'closed') {
-        return `PR ${prNumber} Closed`;
-      } else if (to === 'open') {
-        return `PR ${prNumber} Reopened`;
-      }
-      return `PR ${prNumber} Status Changed`;
+    if (eventType === 'pr.ready_for_review') {
+      return `PR ${prNumber} Ready for Review`;
+    }
+    
+    if (eventType === 'pr.merged') {
+      return `PR ${prNumber} Merged`;
+    }
+    
+    if (eventType === 'pr.closed') {
+      return `PR ${prNumber} Closed`;
+    }
+    
+    if (eventType === 'pr.reopened') {
+      return `PR ${prNumber} Reopened`;
     }
     
     if (eventType === 'pr.updated') {
