@@ -5,6 +5,15 @@ export interface AgentUsage {
   costUsd?: number;
 }
 
+/**
+ * Canonical event types for PR status changes:
+ * - pr.created: PR opened
+ * - pr.merged: PR status changed to merged
+ * - pr.closed: PR status changed to closed (without merging)
+ * - pr.reopened: PR status changed back to open
+ * - pr.set_to_draft: PR draft status set (converted to draft)
+ * - pr.ready_for_review: PR draft status removed (marked ready for review)
+ */
 export interface TaskTimelineEvent {
   id: string;
   type: string;
