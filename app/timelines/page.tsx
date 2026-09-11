@@ -21,6 +21,7 @@ interface TimelineWithArchives {
 
 const TIMELINE_IDS = [
   'example',
+  'subagent-demo',
   '3d75dbdd-f0ea-8145-9a95-f418353a05b5',
   '3d65dbdd-f0ea-81f6-880f-e041eda42d5b',
   '3d75dbdd-f0ea-8127-ab07-d6423df3e06b',
@@ -90,8 +91,9 @@ export default function TimelinesPage() {
     );
   }
 
-  const realTimelines = timelines.filter(t => t.id !== 'example');
+  const realTimelines = timelines.filter(t => t.id !== 'example' && t.id !== 'subagent-demo');
   const exampleTimeline = timelines.find(t => t.id === 'example');
+  const demoTimeline = timelines.find(t => t.id === 'subagent-demo');
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100">
@@ -211,54 +213,84 @@ export default function TimelinesPage() {
           </section>
         )}
 
-        {exampleTimeline && (
+        {(demoTimeline || exampleTimeline) && (
           <section>
-            <h2 className="text-xl font-semibold mb-4 text-slate-400">Example Timeline</h2>
-            <div>
-              <Link
-                href={`/timelines/${exampleTimeline.id}`}
-                className="block p-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-slate-600 rounded-lg transition-colors"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-slate-300 mb-1">
-                      {exampleTimeline.data.task?.title || 'Example Timeline'}
-                    </h3>
-                    <p className="text-sm text-slate-500">
-                      Sample timeline for reference and testing
-                    </p>
-                  </div>
-                  <svg 
-                    className="w-5 h-5 text-slate-600 flex-shrink-0 mt-1" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-              
-              {showArchived && exampleTimeline.archives.length > 0 && (
-                <div className="ml-8 mt-2 space-y-2">
-                  {exampleTimeline.archives.map((archive) => (
-                    <Link
-                      key={archive.timestamp}
-                      href={`/timelines/${exampleTimeline.id}/archive/${archive.timestamp.replace(/:/g, '-')}`}
-                      className="block p-3 bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-slate-600 rounded-lg transition-colors"
+            <h2 className="text-xl font-semibold mb-4 text-slate-400">Demo & Example Timelines</h2>
+            <div className="space-y-3">
+              {demoTimeline && (
+                <Link
+                  href={`/timelines/${demoTimeline.id}`}
+                  className="block p-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-slate-600 rounded-lg transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-slate-300 mb-1">
+                        {demoTimeline.data.task?.title || 'Subagent Recovery Demo'}
+                      </h3>
+                      <p className="text-sm text-slate-500">
+                        Demonstration of nested subagent span recovery (PJM-11)
+                      </p>
+                    </div>
+                    <svg 
+                      className="w-5 h-5 text-slate-600 flex-shrink-0 mt-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
                     >
-                      <div className="flex items-center gap-3">
-                        <svg className="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                        </svg>
-                        <div className="flex-1 text-sm">
-                          <span className="text-slate-400">Archived: </span>
-                          <span className="text-slate-300">{new Date(archive.timestamp).toLocaleString()}</span>
-                        </div>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              )}
+              
+              {exampleTimeline && (
+                <>
+                  <Link
+                    href={`/timelines/${exampleTimeline.id}`}
+                    className="block p-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-slate-600 rounded-lg transition-colors"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-medium text-slate-300 mb-1">
+                          {exampleTimeline.data.task?.title || 'Example Timeline'}
+                        </h3>
+                        <p className="text-sm text-slate-500">
+                          Sample timeline for reference and testing
+                        </p>
                       </div>
-                    </Link>
-                  ))}
-                </div>
+                      <svg 
+                        className="w-5 h-5 text-slate-600 flex-shrink-0 mt-1" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </Link>
+                  
+                  {showArchived && exampleTimeline.archives.length > 0 && (
+                    <div className="ml-8 mt-2 space-y-2">
+                      {exampleTimeline.archives.map((archive) => (
+                        <Link
+                          key={archive.timestamp}
+                          href={`/timelines/${exampleTimeline.id}/archive/${archive.timestamp.replace(/:/g, '-')}`}
+                          className="block p-3 bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-slate-600 rounded-lg transition-colors"
+                        >
+                          <div className="flex items-center gap-3">
+                            <svg className="w-4 h-4 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                            </svg>
+                            <div className="flex-1 text-sm">
+                              <span className="text-slate-400">Archived: </span>
+                              <span className="text-slate-300">{new Date(archive.timestamp).toLocaleString()}</span>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </section>
