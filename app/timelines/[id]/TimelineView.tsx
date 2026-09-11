@@ -688,7 +688,7 @@ function WaterfallRow({
         {(isHighlighted || isHovered) && (
           <div className="absolute left-0 top-0 h-full flex items-center z-20 pointer-events-none ml-2">
             <span className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-              {event.summary} @ {formatTimestamp(event.t)}
+              {friendlyTypeName} @ {formatTimestamp(event.t)}
               {event.source && ` (${event.source})`}
             </span>
           </div>
