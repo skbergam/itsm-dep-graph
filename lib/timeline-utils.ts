@@ -31,3 +31,31 @@ export function formatTimestamp(isoString: string): string {
     second: '2-digit',
   });
 }
+
+export interface AgentUsage {
+  inputTokens?: number;
+  outputTokens?: number;
+  totalTokens?: number;
+  costUsd?: number;
+}
+
+export function formatAgentUsage(usage: AgentUsage | undefined): string | null {
+  if (!usage) return null;
+  
+  const parts: string[] = [];
+  
+  if (usage.inputTokens !== undefined || usage.outputTokens !== undefined) {
+    const inTokens = usage.inputTokens ?? 0;
+    const outTokens = usage.outputTokens ?? 0;
+    const total = usage.totalTokens ?? (inTokens + outTokens);
+    
+    parts.push(`${total.toLocaleString()} tokens`);
+    parts.push(`(${inTokens.toLocaleString()} in / ${outTokens.toLocaleString()} out)`);
+  }
+  
+  if (usage.costUsd !== undefined) {
+    parts.push(`$${usage.costUsd.toFixed(2)}`);
+  }
+  
+  return parts.length > 0 ? parts.join(' · ') : null;
+}
