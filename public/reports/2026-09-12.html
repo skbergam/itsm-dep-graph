@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>ITSM Progress — Fri 2026-09-11 catch-up</title>
+<style>
+  :root { --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --bg:#f8fafc; --card:#fff;
+    --red:#b91c1c; --redbg:#fef2f2; --amber:#b45309; --amberbg:#fffbeb;
+    --green:#166534; --greenbg:#f0fdf4; --blue:#1d4ed8; --bluebg:#eff6ff; }
+  body { font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink); background: var(--bg); margin: 0; padding: 32px 24px 48px; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { font-size: 1.55rem; margin: 0 0 4px; }
+  .meta { color: var(--muted); margin: 0 0 20px; }
+  .pulse { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
+  .pulse .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .pulse .n { font-size: 1.6rem; font-weight: 700; }
+  .pulse .l { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  h2 { font-size: 1.15rem; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+  h3 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; background: var(--card);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #f1f5f9; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  tr:last-child td { border-bottom: none; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 8px;
+    border-radius: 999px; white-space: nowrap; }
+  .b-blocked { background: var(--redbg); color: var(--red); }
+  .b-waiting { background: var(--amberbg); color: var(--amber); }
+  .b-ready { background: var(--bluebg); color: var(--blue); }
+  .b-done { background: var(--greenbg); color: var(--green); }
+  .b-todo { background: #f1f5f9; color: #334155; }
+  .note { color: var(--muted); font-size: 0.88rem; }
+  .callout { background: var(--card); border-left: 4px solid var(--amber); padding: 12px 14px;
+    margin: 12px 0 16px; border-radius: 0 8px 8px 0; border: 1px solid var(--line); border-left-width: 4px; }
+  ul.compact { margin: 6px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.9rem; }
+  footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ITSM progress report</h1>
+  <p class="meta">Friday 11 Sep 2026 catch-up · includes Sat 12 Sep afternoon MT · Notion Tasks + Eng PRs</p>
+
+  <div class="pulse">
+    <div class="card"><div class="n">2</div><div class="l">Blocked (Sean)</div></div>
+    <div class="card"><div class="n">21</div><div class="l">Waiting deps</div></div>
+    <div class="card"><div class="n">25</div><div class="l">Done Fri–Sat</div></div>
+    <div class="card"><div class="n">4</div><div class="l">Not started</div></div>
+  </div>
+
+  <div class="callout">
+    <strong>Needs you:</strong> INC-0 + CMDB-0 product-design sign-offs · ONTO-26 Vitruvius variant pick ·
+    squash-merge <a href="https://github.com/elementum-fde/products/pull/251">#251</a> (ONTO-20) and
+    <a href="https://github.com/elementum-fde/products/pull/253">#253</a> (ONTO-25)
+  </div>
+
+  <h2>1. Blocked or waiting</h2>
+
+  <h3>Hard gates (Blocked)</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Project</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="badge b-blocked">Blocked</span><br>
+          <a href="https://app.notion.com/3d65dbddf0ea8156b03be5dc94368e9b">INC-0 — SIGN-OFF Incident Product Design</a></td>
+        <td>Resolv — Incident</td>
+        <td class="note">Your product-design approval before any INC-* / Incident ontology. Gates INC-1…6 + ONTO-8.</td>
+      </tr>
+      <tr>
+        <td><span class="badge b-blocked">Blocked</span><br>
+          <a href="https://app.notion.com/3d65dbddf0ea8152acc7f0bcdcf5c3bc">CMDB-0 — SIGN-OFF CMDB Product Design</a></td>
+        <td>Resolv — CMDB</td>
+        <td class="note">Your product-design approval before any CMDB-* / CMDB ontology. Gates CMDB-1…6 + ONTO-9.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Ready for your squash merge (Eng PRs)</h3>
+  <table>
+    <thead><tr><th>Eng PR</th><th>Tip</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://github.com/elementum-fde/products/pull/251">#251</a> — ONTO-20 extract Knowledge named-ops / <code>compileKnowledge*</code></td>
+        <td><code>ba31ac5</code></td>
+        <td><span class="badge b-ready">Ready for review</span></td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/elementum-fde/products/pull/253">#253</a> — ONTO-25 Operations | Entities sub-nav</td>
+        <td><code>21a1e30</code></td>
+        <td><span class="badge b-ready">Ready for review</span> · Jony Fit PASS</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Waiting on you (product / architecture)</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="badge b-waiting">Waiting</span>
+          <a href="https://app.notion.com/3d95dbddf0ea81a0a90ad64c55459e92">ONTO-26</a> — ontology variants</td>
+        <td class="note">Vitruvius Q1–Q6 options sent 2026-09-11; awaiting your pick (lean C reshape/lift).</td>
+      </tr>
+      <tr>
+        <td><span class="badge b-waiting">Waiting</span>
+          ONTO-21 PR-F Exp — PG→PG migrate</td>
+        <td class="note">Product Exp draft on <a href="https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904">ONTO-21</a>; eng Working under lock first entity <code>KnowledgeSetupProposal</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Waiting on dependencies (collapsed)</h3>
+  <table>
+    <thead><tr><th>Chain</th><th>Count</th><th>Blocked by</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>INC-1 … INC-6</td>
+        <td>6</td>
+        <td class="note">INC-0 sign-off</td>
+      </tr>
+      <tr>
+        <td>CMDB-1 … CMDB-6</td>
+        <td>6</td>
+        <td class="note">CMDB-0 sign-off</td>
+      </tr>
+      <tr>
+        <td>ONTO-8 / ONTO-9</td>
+        <td>2</td>
+        <td class="note">INC-0 / CMDB-0 (+ ONTO-4)</td>
+      </tr>
+      <tr>
+        <td>ONTO-4 → 6 → 7 → 10 → 11</td>
+        <td>5</td>
+        <td class="note">SR path + bakeoffs; ONTO-4 still marked Waiting though ONTO-1 is Done (board hygiene)</td>
+      </tr>
+      <tr>
+        <td>ONTO-18 (PG↔SF migrate UI)</td>
+        <td>1</td>
+        <td class="note">ONTO-21 PG→PG first; SF hard-gated</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Got done (Fri 11 → Sat 12)</h2>
+  <p class="note">Catch-up window: board Done + Eng PRs Done with commits on/after Fri 11 Sep.</p>
+
+  <h3>Ontology — product tickets</h3>
+  <table>
+    <thead><tr><th>Ticket</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://app.notion.com/3d65dbddf0ea81f6880fe041eda42d5b">ONTO-1</a></td>
+        <td class="note">Knowledge entity migration umbrella closed via ONTO-19 #232 → <code>6b03891</code></td></tr>
+      <tr><td>ONTO-15</td><td class="note">Named-ops assumptions audit Done (PASS/PARTIAL/FAIL/FAIL) · #224</td></tr>
+      <tr><td>ONTO-16</td><td class="note">Admin Ontology catalog · #239 merged</td></tr>
+      <tr><td>ONTO-17</td><td class="note">Generic <code>ontology-snowflake</code> · #237 → <code>a0cd507</code></td></tr>
+      <tr><td>ONTO-19</td><td class="note">Four leftover Knowledge models · #232</td></tr>
+      <tr><td>ONTO-22</td><td class="note">Architectural boundary CI entrypoint · #249 → <code>2f91d5a</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Ontology — Eng PRs shipped (CloudLink + Knowledge)</h3>
+  <table>
+    <thead><tr><th>PR</th><th>What</th></tr></thead>
+    <tbody>
+      <tr><td>#201–#225</td><td class="note">ONTO-1 Knowledge batch (Import, SourceVersion, OrgConnector, IntakeDocument, Draft…)</td></tr>
+      <tr><td>#241</td><td class="note">Ban <code>OntologyInternalFactory</code> product imports</td></tr>
+      <tr><td>#242 / #245 / #244 / #248</td><td class="note">ONTO-21 PR-A…D CloudLink contracts + PG/SF specifics + multi-store runtime</td></tr>
+      <tr><td>#257</td><td class="note">ONTO-21 PR-E Cloud Links UI (Connectors → Providers) · squash <code>dd8c8ee</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Project Management (timeline tooling)</h3>
+  <table>
+    <thead><tr><th>Ticket</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>PJM-10</td><td class="note">Usage API gather · Fit PASS <code>fd19f10</code></td></tr>
+      <tr><td>PJM-11</td><td class="note">Nested subagent spans · Fit PASS <code>b3502cb</code></td></tr>
+      <tr><td>PJM-12</td><td class="note">PR event type split + timeline colors · Fit PASS <code>b24d355</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Outstanding — not started yet</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Project</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="badge b-todo">Not started</span> ONTO-3 — backlog hygiene</td>
+        <td>Ontology</td>
+        <td class="note">Unblocked — can start anytime</td>
+      </tr>
+      <tr>
+        <td><span class="badge b-todo">Not started</span> ONTO-5 — TypeBox vs Zod bakeoff</td>
+        <td>Ontology</td>
+        <td class="note">ONTO-1 Done; independent of ONTO-4</td>
+      </tr>
+      <tr>
+        <td><span class="badge b-todo">Not started</span> ONTO-23 — consolidate wall scripts</td>
+        <td>Ontology</td>
+        <td class="note">Breadcrumb after ONTO-22</td>
+      </tr>
+      <tr>
+        <td><span class="badge b-todo">Not started</span> ONTO-24 — Factory ban warn→error</td>
+        <td>Ontology</td>
+        <td class="note">After named-ops extract settles</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Also in flight (context)</h2>
+  <ul class="compact">
+    <li><strong>ONTO-20</strong> — In progress / Eng Ready #251 (extract)</li>
+    <li><strong>ONTO-21</strong> — In progress · PR-F Working (<code>bc-b911aaeb</code>) · first entity <code>KnowledgeSetupProposal</code></li>
+    <li><strong>ONTO-25</strong> — In progress / Eng Ready #253 (sub-nav)</li>
+  </ul>
+
+  <footer>
+    Sources: Grok Bot Workbench Tasks + Eng PRs · generated 2026-09-12 by Leslie Groves (PjM).<br/>
+    Caveat: Tasks SQL has no last_edited; Done window inferred from Notes + Eng Last commit. INC/CMDB Planning projects unchanged pending sign-off.
+  </footer>
+</div>
+</body>
+</html>
