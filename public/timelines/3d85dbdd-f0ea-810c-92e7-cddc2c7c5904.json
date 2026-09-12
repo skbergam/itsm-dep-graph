@@ -1,0 +1,4141 @@
+{
+  "schema": "task-timeline/v1",
+  "generated_at": "2026-09-12T21:11:02.536Z",
+  "as_of": "2026-09-12T21:11:02.536Z",
+  "task": {
+    "notion_id": "3d85dbdd-f0ea-810c-92e7-cddc2c7c5904",
+    "notion_url": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904",
+    "title": "ONTO-21 \u2014 CloudLink management (generic ontology + PG/Snowflake specifics; Knowhere-inspired credentials)",
+    "status": "In progress",
+    "bot": "Solon (EM)",
+    "running": true,
+    "page_last_edited_at": "2026-09-12T20:54:51.243Z",
+    "note": "Sean LOCK 2026-09-12: PR-F first entity = KnowledgeSetupProposal (Event proof relaxed). Eng bc-b911aaeb. After merge: Knowledge E2E smoke."
+  },
+  "links": {
+    "eng_prs": [
+      "https://app.notion.com/p/3d85dbddf0ea8149b21cd498979e2770",
+      "https://app.notion.com/p/3d85dbddf0ea81f39a63f92250899939",
+      "https://app.notion.com/p/3d85dbddf0ea81ad8cd7f23a6d0d8f46",
+      "https://app.notion.com/p/3d85dbddf0ea81afa2e1feeb00742533",
+      "https://app.notion.com/p/3d85dbddf0ea81298379cc179b2ece9b",
+      "https://app.notion.com/p/3d95dbddf0ea81abb16cc6c6b045d240"
+    ],
+    "prs": [
+      "https://github.com/elementum-fde/products/pull/242",
+      "https://github.com/elementum-fde/products/pull/245",
+      "https://github.com/elementum-fde/products/pull/244",
+      "https://github.com/elementum-fde/products/pull/248",
+      "https://github.com/elementum-fde/products/pull/257",
+      "https://github.com/elementum-fde/products/pull/263"
+    ],
+    "agents": [
+      "https://cursor.com/agents/bc-84d5d938-55c4-4579-9db9-f74462f1c485",
+      "https://cursor.com/agents/bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e",
+      "https://cursor.com/agents/bc-9c1070c9-cb88-4195-bf9e-92ed3753c230",
+      "https://cursor.com/agents/bc-52ce4d67-9f52-4870-80c8-2015d2389f44",
+      "https://cursor.com/agents/bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1",
+      "https://cursor.com/agents/bc-8ffadbd5-affe-4a55-a91c-d28dd8ec3642",
+      "https://cursor.com/agents/bc-d2513ffd-0459-4443-9cb2-6d7cdaee8cac",
+      "https://cursor.com/agents/bc-61bc7acd-8ab9-40d3-b1a4-6ff210af1121",
+      "https://cursor.com/agents/bc-eeee554f-852a-4abe-90d5-402709c51fcb",
+      "https://cursor.com/agents/bc-b911aaeb-7d51-4780-83fd-5f0232399ce3"
+    ]
+  },
+  "events": [
+    {
+      "type": "agent.started",
+      "t": "2026-09-11T17:13:58.130Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-84d5d938-55c4-4579-9db9-f74462f1c485#started_at_ms=1789146838130",
+      "summary": "Cloud agent bc-84d5d938-\u2026 first tool (PR-A generic CloudLink contracts)",
+      "meta": {
+        "agent_id": "bc-84d5d938-55c4-4579-9db9-f74462f1c485",
+        "pr": 242,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "A"
+      },
+      "id": "e001"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:38:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/91b7a813dce690532abab5a3c587e451c71c1784",
+      "summary": "PR #242 commit 91b7a813dce6: feat(ontology): add generic CloudLink contracts",
+      "meta": {
+        "pr": 242,
+        "sha": "91b7a813dce690532abab5a3c587e451c71c1784",
+        "author": "cursoragent"
+      },
+      "id": "e002"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-11T17:38:19Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242",
+      "summary": "PR #242 opened: feat(ontology): add generic CloudLink contracts",
+      "meta": {
+        "number": 242,
+        "head": "cursor/onto-21-cloudlink-contracts-c485",
+        "draft": true
+      },
+      "id": "e003"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:38:22Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34628817080",
+      "summary": "workflow preview-plane started (success) PR #242",
+      "meta": {
+        "run_id": 34628817080,
+        "name": "preview-plane",
+        "headSha": "91b7a813dce690532abab5a3c587e451c71c1784",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e004"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T17:42:57Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34628817080",
+      "summary": "workflow preview-plane ended (success) PR #242",
+      "meta": {
+        "run_id": 34628817080,
+        "name": "preview-plane",
+        "headSha": "91b7a813dce690532abab5a3c587e451c71c1784",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e005"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:45:51Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/282cd779bd644298c450413da13758f5054c12a0",
+      "summary": "PR #242 commit 282cd779bd64: fix(ontology): seal CloudLink projections",
+      "meta": {
+        "pr": 242,
+        "sha": "282cd779bd644298c450413da13758f5054c12a0",
+        "author": "cursoragent"
+      },
+      "id": "e006"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:45:58Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34629529958",
+      "summary": "workflow preview-plane started (cancelled) PR #242",
+      "meta": {
+        "run_id": 34629529958,
+        "name": "preview-plane",
+        "headSha": "282cd779bd644298c450413da13758f5054c12a0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e007"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:48:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/c09f7747631d5ed9478ab69913fb67596f62a6df",
+      "summary": "PR #242 commit c09f7747631d: fix(ontology): reject contaminated CloudLinks",
+      "meta": {
+        "pr": 242,
+        "sha": "c09f7747631d5ed9478ab69913fb67596f62a6df",
+        "author": "cursoragent"
+      },
+      "id": "e008"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:48:53Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34629798103",
+      "summary": "workflow preview-plane started (cancelled) PR #242",
+      "meta": {
+        "run_id": 34629798103,
+        "name": "preview-plane",
+        "headSha": "c09f7747631d5ed9478ab69913fb67596f62a6df",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e009"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T17:49:24Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34629529958",
+      "summary": "workflow preview-plane ended (cancelled) PR #242",
+      "meta": {
+        "run_id": 34629529958,
+        "name": "preview-plane",
+        "headSha": "282cd779bd644298c450413da13758f5054c12a0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e010"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:49:56Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/c433cc95996da08ab0ee2c0301142257dd441d0c",
+      "summary": "PR #242 commit c433cc95996d: test(ontology): verify CloudLink JSON output",
+      "meta": {
+        "pr": 242,
+        "sha": "c433cc95996da08ab0ee2c0301142257dd441d0c",
+        "author": "cursoragent"
+      },
+      "id": "e011"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:50:02Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34629900550",
+      "summary": "workflow preview-plane started (cancelled) PR #242",
+      "meta": {
+        "run_id": 34629900550,
+        "name": "preview-plane",
+        "headSha": "c433cc95996da08ab0ee2c0301142257dd441d0c",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e012"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T17:51:19Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34629798103",
+      "summary": "workflow preview-plane ended (cancelled) PR #242",
+      "meta": {
+        "run_id": 34629798103,
+        "name": "preview-plane",
+        "headSha": "c09f7747631d5ed9478ab69913fb67596f62a6df",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e013"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:53:59Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/8f83b4ca6161d1cb0f07f414ed6bd41c420cb5a0",
+      "summary": "PR #242 commit 8f83b4ca6161: fix(ontology): sanitize CloudLink port outputs",
+      "meta": {
+        "pr": 242,
+        "sha": "8f83b4ca6161d1cb0f07f414ed6bd41c420cb5a0",
+        "author": "cursoragent"
+      },
+      "id": "e014"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:54:08Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34630280104",
+      "summary": "workflow preview-plane started (cancelled) PR #242",
+      "meta": {
+        "run_id": 34630280104,
+        "name": "preview-plane",
+        "headSha": "8f83b4ca6161d1cb0f07f414ed6bd41c420cb5a0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e015"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:54:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/82586b72788e49b03dfbced7d006e09a923b0bac",
+      "summary": "PR #242 commit 82586b72788e: fix(ontology): construct branded CloudLink ports",
+      "meta": {
+        "pr": 242,
+        "sha": "82586b72788e49b03dfbced7d006e09a923b0bac",
+        "author": "cursoragent"
+      },
+      "id": "e016"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:54:47Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34630335746",
+      "summary": "workflow preview-plane started (cancelled) PR #242",
+      "meta": {
+        "run_id": 34630335746,
+        "name": "preview-plane",
+        "headSha": "82586b72788e49b03dfbced7d006e09a923b0bac",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e017"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T17:54:48Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34630280104",
+      "summary": "workflow preview-plane ended (cancelled) PR #242",
+      "meta": {
+        "run_id": 34630280104,
+        "name": "preview-plane",
+        "headSha": "8f83b4ca6161d1cb0f07f414ed6bd41c420cb5a0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e018"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T17:55:22Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34629900550",
+      "summary": "workflow preview-plane ended (cancelled) PR #242",
+      "meta": {
+        "run_id": 34629900550,
+        "name": "preview-plane",
+        "headSha": "c433cc95996da08ab0ee2c0301142257dd441d0c",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e019"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T17:59:16Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/dddfb621cc5ff467831d8040f22faa839b357926",
+      "summary": "PR #242 commit dddfb621cc5f: fix(ontology): preserve CloudLink port provenance",
+      "meta": {
+        "pr": 242,
+        "sha": "dddfb621cc5ff467831d8040f22faa839b357926",
+        "author": "cursoragent"
+      },
+      "id": "e020"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T17:59:22Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34630749546",
+      "summary": "workflow preview-plane started (success) PR #242",
+      "meta": {
+        "run_id": 34630749546,
+        "name": "preview-plane",
+        "headSha": "dddfb621cc5ff467831d8040f22faa839b357926",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e021"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T17:59:46Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34630335746",
+      "summary": "workflow preview-plane ended (cancelled) PR #242",
+      "meta": {
+        "run_id": 34630335746,
+        "name": "preview-plane",
+        "headSha": "82586b72788e49b03dfbced7d006e09a923b0bac",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e022"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:03:58Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34630749546",
+      "summary": "workflow preview-plane ended (success) PR #242",
+      "meta": {
+        "run_id": 34630749546,
+        "name": "preview-plane",
+        "headSha": "dddfb621cc5ff467831d8040f22faa839b357926",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e023"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:04:01Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/6f409f886a8dbf257dc1cef6c7e23a1dfccf43cd",
+      "summary": "PR #242 commit 6f409f886a8d: fix(ontology): freeze CloudLink port methods",
+      "meta": {
+        "pr": 242,
+        "sha": "6f409f886a8dbf257dc1cef6c7e23a1dfccf43cd",
+        "author": "cursoragent"
+      },
+      "id": "e024"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:04:07Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34631199966",
+      "summary": "workflow preview-plane started (cancelled) PR #242",
+      "meta": {
+        "run_id": 34631199966,
+        "name": "preview-plane",
+        "headSha": "6f409f886a8dbf257dc1cef6c7e23a1dfccf43cd",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e025"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:04:35Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242/commits/09ca7ab6d713e61084a42aa33c23fd96964ae01e",
+      "summary": "PR #242 commit 09ca7ab6d713: test(ontology): reuse CloudLink registration input",
+      "meta": {
+        "pr": 242,
+        "sha": "09ca7ab6d713e61084a42aa33c23fd96964ae01e",
+        "author": "cursoragent"
+      },
+      "id": "e026"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:04:42Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34631256630",
+      "summary": "workflow preview-plane started (success) PR #242",
+      "meta": {
+        "run_id": 34631256630,
+        "name": "preview-plane",
+        "headSha": "09ca7ab6d713e61084a42aa33c23fd96964ae01e",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e027"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:05:56Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34631199966",
+      "summary": "workflow preview-plane ended (cancelled) PR #242",
+      "meta": {
+        "run_id": 34631199966,
+        "name": "preview-plane",
+        "headSha": "6f409f886a8dbf257dc1cef6c7e23a1dfccf43cd",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e028"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:10:22Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34631256630",
+      "summary": "workflow preview-plane ended (success) PR #242",
+      "meta": {
+        "run_id": 34631256630,
+        "name": "preview-plane",
+        "headSha": "09ca7ab6d713e61084a42aa33c23fd96964ae01e",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 242
+      },
+      "id": "e029"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-11T18:12:01.440Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e#started_at_ms=1789150321440",
+      "summary": "Cloud agent bc-fa5e28d1-\u2026 first tool (PR-B PG CloudLink specifics)",
+      "meta": {
+        "agent_id": "bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e",
+        "pr": 245,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "B"
+      },
+      "id": "e030"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-11T18:12:01.440Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e#launch",
+      "summary": "Launch prompt named pstack, poteto-mode",
+      "meta": {
+        "agent_id": "bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e",
+        "commands": [
+          "pstack",
+          "poteto-mode"
+        ],
+        "on": "launch",
+        "pr": 245
+      },
+      "id": "e031"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-11T18:12:04.141Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-9c1070c9-cb88-4195-bf9e-92ed3753c230#started_at_ms=1789150324141",
+      "summary": "Cloud agent bc-9c1070c9-\u2026 first tool (PR-C Snowflake CloudLink specifics)",
+      "meta": {
+        "agent_id": "bc-9c1070c9-cb88-4195-bf9e-92ed3753c230",
+        "pr": 244,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "C"
+      },
+      "id": "e032"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-11T18:12:04.141Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-9c1070c9-cb88-4195-bf9e-92ed3753c230#launch",
+      "summary": "Launch prompt named pstack, poteto-mode",
+      "meta": {
+        "agent_id": "bc-9c1070c9-cb88-4195-bf9e-92ed3753c230",
+        "commands": [
+          "pstack",
+          "poteto-mode"
+        ],
+        "on": "launch",
+        "pr": 244
+      },
+      "id": "e033"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-11T18:13:07Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242",
+      "summary": "PR #242 marked ready for review",
+      "meta": {
+        "number": 242,
+        "draft": false,
+        "from": "draft",
+        "to": "ready"
+      },
+      "id": "e034"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-11T18:23:35.742Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-84d5d938-55c4-4579-9db9-f74462f1c485#completed_at_ms=1789151015742",
+      "summary": "Cloud agent bc-84d5d938-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-84d5d938-55c4-4579-9db9-f74462f1c485",
+        "pr": 242,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "A"
+      },
+      "id": "e035"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-11T18:28:01Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/242",
+      "summary": "PR #242 merged",
+      "meta": {
+        "number": 242,
+        "state": "MERGED",
+        "sha": "da6335a89b5314e223d5db545b66fcf00451d226"
+      },
+      "id": "e036"
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-11T18:30:56Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6399362735",
+      "summary": "Products Production deploy ready for merge SHA da6335a8 (PR #242)",
+      "meta": {
+        "pr": 242,
+        "sha": "da6335a89b5314e223d5db545b66fcf00451d226",
+        "environment": "Production",
+        "deployment_id": 6399362735
+      },
+      "id": "e037"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:31:43Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/244/commits/ecf3ac35085d34bfc5d7d1515482c083b1849a44",
+      "summary": "PR #244 commit ecf3ac35085d: feat(ontology-snowflake): reuse CloudLink credential refs",
+      "meta": {
+        "pr": 244,
+        "sha": "ecf3ac35085d34bfc5d7d1515482c083b1849a44",
+        "author": "cursoragent"
+      },
+      "id": "e038"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-11T18:32:03Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/244",
+      "summary": "PR #244 opened: feat(ontology-snowflake): reuse CloudLink credential refs",
+      "meta": {
+        "number": 244,
+        "head": "cursor/onto-21-snowflake-cloudlink-c230",
+        "draft": true
+      },
+      "id": "e039"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:32:06Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34633804638",
+      "summary": "workflow preview-plane started (cancelled) PR #244",
+      "meta": {
+        "run_id": 34633804638,
+        "name": "preview-plane",
+        "headSha": "ecf3ac35085d34bfc5d7d1515482c083b1849a44",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 244
+      },
+      "id": "e040"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:33:35Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/244/commits/b7e947e64ecd33c64134f508f672fbe3b2e66912",
+      "summary": "PR #244 commit b7e947e64ecd: test(ontology-snowflake): prove credential behavior",
+      "meta": {
+        "pr": 244,
+        "sha": "b7e947e64ecd33c64134f508f672fbe3b2e66912",
+        "author": "cursoragent"
+      },
+      "id": "e041"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:33:41Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34633954524",
+      "summary": "workflow preview-plane started (success) PR #244",
+      "meta": {
+        "run_id": 34633954524,
+        "name": "preview-plane",
+        "headSha": "b7e947e64ecd33c64134f508f672fbe3b2e66912",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 244
+      },
+      "id": "e042"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:35:09Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34633804638",
+      "summary": "workflow preview-plane ended (cancelled) PR #244",
+      "meta": {
+        "run_id": 34633804638,
+        "name": "preview-plane",
+        "headSha": "ecf3ac35085d34bfc5d7d1515482c083b1849a44",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 244
+      },
+      "id": "e043"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:38:18Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245/commits/8237d6c12eaf0dfbfb4b3324b0de5e74ade4014e",
+      "summary": "PR #245 commit 8237d6c12eaf: feat(ontology-postgres): add Postgres CloudLink store",
+      "meta": {
+        "pr": 245,
+        "sha": "8237d6c12eaf0dfbfb4b3324b0de5e74ade4014e",
+        "author": "cursoragent"
+      },
+      "id": "e044"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-11T18:38:37Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245",
+      "summary": "PR #245 opened: feat(ontology-postgres): add Postgres CloudLink store",
+      "meta": {
+        "number": 245,
+        "head": "cursor/onto-21-pg-cloudlinks-d57e",
+        "draft": true
+      },
+      "id": "e045"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:38:40Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34634435437",
+      "summary": "workflow preview-plane started (cancelled) PR #245",
+      "meta": {
+        "run_id": 34634435437,
+        "name": "preview-plane",
+        "headSha": "8237d6c12eaf0dfbfb4b3324b0de5e74ade4014e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e046"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:39:22Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245/commits/d5d615feb46b1a51d4da07e4da5d8b809071dfc5",
+      "summary": "PR #245 commit d5d615feb46b: test(ontology-postgres): pin CloudLink probe inference",
+      "meta": {
+        "pr": 245,
+        "sha": "d5d615feb46b1a51d4da07e4da5d8b809071dfc5",
+        "author": "cursoragent"
+      },
+      "id": "e047"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:39:27Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34634509265",
+      "summary": "workflow preview-plane started (success) PR #245",
+      "meta": {
+        "run_id": 34634509265,
+        "name": "preview-plane",
+        "headSha": "d5d615feb46b1a51d4da07e4da5d8b809071dfc5",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e048"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:39:47Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34633954524",
+      "summary": "workflow preview-plane ended (success) PR #244",
+      "meta": {
+        "run_id": 34633954524,
+        "name": "preview-plane",
+        "headSha": "b7e947e64ecd33c64134f508f672fbe3b2e66912",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 244
+      },
+      "id": "e049"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:40:29Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34634435437",
+      "summary": "workflow preview-plane ended (cancelled) PR #245",
+      "meta": {
+        "run_id": 34634435437,
+        "name": "preview-plane",
+        "headSha": "8237d6c12eaf0dfbfb4b3324b0de5e74ade4014e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e050"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:45:18Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/244/commits/b10993a40a4750a28b90d2124eb9e7defbe3f04a",
+      "summary": "PR #244 commit b10993a40a47: test(ontology-snowflake): trace registered store identity",
+      "meta": {
+        "pr": 244,
+        "sha": "b10993a40a4750a28b90d2124eb9e7defbe3f04a",
+        "author": "cursoragent"
+      },
+      "id": "e051"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:45:24Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34635075380",
+      "summary": "workflow preview-plane started (success) PR #244",
+      "meta": {
+        "run_id": 34635075380,
+        "name": "preview-plane",
+        "headSha": "b10993a40a4750a28b90d2124eb9e7defbe3f04a",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 244
+      },
+      "id": "e052"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:45:44Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34634509265",
+      "summary": "workflow preview-plane ended (success) PR #245",
+      "meta": {
+        "run_id": 34634509265,
+        "name": "preview-plane",
+        "headSha": "d5d615feb46b1a51d4da07e4da5d8b809071dfc5",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e053"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T18:47:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245/commits/6c20527da73ab90a65719fb083a85bc63dac96d1",
+      "summary": "PR #245 commit 6c20527da73a: Merge remote-tracking branch 'origin/main' into cursor/onto-21-pg-clo\u2026",
+      "meta": {
+        "pr": 245,
+        "sha": "6c20527da73ab90a65719fb083a85bc63dac96d1",
+        "author": "cursoragent"
+      },
+      "id": "e054"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T18:47:50Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34635299982",
+      "summary": "workflow preview-plane started (success) PR #245",
+      "meta": {
+        "run_id": 34635299982,
+        "name": "preview-plane",
+        "headSha": "6c20527da73ab90a65719fb083a85bc63dac96d1",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e055"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:51:58Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34635075380",
+      "summary": "workflow preview-plane ended (success) PR #244",
+      "meta": {
+        "run_id": 34635075380,
+        "name": "preview-plane",
+        "headSha": "b10993a40a4750a28b90d2124eb9e7defbe3f04a",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 244
+      },
+      "id": "e056"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T18:52:21Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34635299982",
+      "summary": "workflow preview-plane ended (success) PR #245",
+      "meta": {
+        "run_id": 34635299982,
+        "name": "preview-plane",
+        "headSha": "6c20527da73ab90a65719fb083a85bc63dac96d1",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e057"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-11T18:53:34Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/244",
+      "summary": "PR #244 marked ready for review",
+      "meta": {
+        "number": 244,
+        "draft": false,
+        "from": "draft",
+        "to": "ready"
+      },
+      "id": "e058"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-11T18:55:31.948Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-9c1070c9-cb88-4195-bf9e-92ed3753c230#completed_at_ms=1789152931948",
+      "summary": "Cloud agent bc-9c1070c9-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-9c1070c9-cb88-4195-bf9e-92ed3753c230",
+        "pr": 244,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "C"
+      },
+      "id": "e059"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T19:00:08Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245/commits/bd1e6cae0b9bd77abc6563f4f019d04ccb8c3b12",
+      "summary": "PR #245 commit bd1e6cae0b9b: fix(ontology-postgres): infer CloudLink credentials from resolver",
+      "meta": {
+        "pr": 245,
+        "sha": "bd1e6cae0b9bd77abc6563f4f019d04ccb8c3b12",
+        "author": "cursoragent"
+      },
+      "id": "e060"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T19:00:14Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34636436815",
+      "summary": "workflow preview-plane started (success) PR #245",
+      "meta": {
+        "run_id": 34636436815,
+        "name": "preview-plane",
+        "headSha": "bd1e6cae0b9bd77abc6563f4f019d04ccb8c3b12",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e061"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T19:04:57Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34636436815",
+      "summary": "workflow preview-plane ended (success) PR #245",
+      "meta": {
+        "run_id": 34636436815,
+        "name": "preview-plane",
+        "headSha": "bd1e6cae0b9bd77abc6563f4f019d04ccb8c3b12",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 245
+      },
+      "id": "e062"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-11T19:07:26Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245",
+      "summary": "PR #245 marked ready for review",
+      "meta": {
+        "number": 245,
+        "draft": false,
+        "from": "draft",
+        "to": "ready"
+      },
+      "id": "e063"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-11T19:09:00.248Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e#completed_at_ms=1789153740248",
+      "summary": "Cloud agent bc-fa5e28d1-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e",
+        "pr": 245,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "B"
+      },
+      "id": "e064"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-11T19:25:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/245",
+      "summary": "PR #245 merged",
+      "meta": {
+        "number": 245,
+        "state": "MERGED",
+        "sha": "9ed8e5ae6d4ae6729d6568264dc9ec1c452f676e"
+      },
+      "id": "e065"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-11T19:25:58Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/244",
+      "summary": "PR #244 merged",
+      "meta": {
+        "number": 244,
+        "state": "MERGED",
+        "sha": "1ee4642425f212ed5950a1e275982e30fe8b49bb"
+      },
+      "id": "e066"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-11T19:26:32.796Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-52ce4d67-9f52-4870-80c8-2015d2389f44#started_at_ms=1789154792796",
+      "summary": "Cloud agent bc-52ce4d67-\u2026 first tool (PR-D runtime createOntology stores)",
+      "meta": {
+        "agent_id": "bc-52ce4d67-9f52-4870-80c8-2015d2389f44",
+        "pr": 248,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "D"
+      },
+      "id": "e067"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-11T19:26:32.796Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-52ce4d67-9f52-4870-80c8-2015d2389f44#launch",
+      "summary": "Launch prompt named pstack, poteto-mode",
+      "meta": {
+        "agent_id": "bc-52ce4d67-9f52-4870-80c8-2015d2389f44",
+        "commands": [
+          "pstack",
+          "poteto-mode"
+        ],
+        "on": "launch",
+        "pr": 248
+      },
+      "id": "e068"
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-11T19:28:11Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6400268368",
+      "summary": "Products Production deploy ready for merge SHA 9ed8e5ae (PR #245)",
+      "meta": {
+        "pr": 245,
+        "sha": "9ed8e5ae6d4ae6729d6568264dc9ec1c452f676e",
+        "environment": "Production",
+        "deployment_id": 6400268368
+      },
+      "id": "e069"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:02:32Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/dc13733914d969eb26181bf566643094e387e316",
+      "summary": "PR #248 commit dc13733914d9: feat(ontology-postgres): model CloudLink configurations",
+      "meta": {
+        "pr": 248,
+        "sha": "dc13733914d969eb26181bf566643094e387e316",
+        "author": "cursoragent"
+      },
+      "id": "e070"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:02:32Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/b30b95c44a6e3e692c994c0876ce44b96ca7d830",
+      "summary": "PR #248 commit b30b95c44a6e: feat(ontology-runtime): add createOntology store registry",
+      "meta": {
+        "pr": 248,
+        "sha": "b30b95c44a6e3e692c994c0876ce44b96ca7d830",
+        "author": "cursoragent"
+      },
+      "id": "e071"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-11T20:02:53Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248",
+      "summary": "PR #248 opened: feat(ontology-runtime): add createOntology store registry",
+      "meta": {
+        "number": 248,
+        "head": "cursor/onto-21-runtime-multistore-9f44",
+        "draft": true
+      },
+      "id": "e072"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:02:58Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642106909",
+      "summary": "workflow preview-plane started (failure) PR #248",
+      "meta": {
+        "run_id": 34642106909,
+        "name": "preview-plane",
+        "headSha": "b30b95c44a6e3e692c994c0876ce44b96ca7d830",
+        "conclusion": "failure",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e073"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:04:43Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642106909",
+      "summary": "workflow preview-plane ended (failure) PR #248",
+      "meta": {
+        "run_id": 34642106909,
+        "name": "preview-plane",
+        "headSha": "b30b95c44a6e3e692c994c0876ce44b96ca7d830",
+        "conclusion": "failure",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e074"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:05:12Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/1df06c04f7e5529da15c88e43228f1a51bd14f8f",
+      "summary": "PR #248 commit 1df06c04f7e5: test(ontology-postgres): align negative config probes",
+      "meta": {
+        "pr": 248,
+        "sha": "1df06c04f7e5529da15c88e43228f1a51bd14f8f",
+        "author": "cursoragent"
+      },
+      "id": "e075"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:05:17Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642323353",
+      "summary": "workflow preview-plane started (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642323353,
+        "name": "preview-plane",
+        "headSha": "1df06c04f7e5529da15c88e43228f1a51bd14f8f",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e076"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:05:54Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/dddb0c6ac813bca32ca189523a33a03d447e9833",
+      "summary": "PR #248 commit dddb0c6ac813: fix(ontology-runtime): narrow CloudLink config boundary",
+      "meta": {
+        "pr": 248,
+        "sha": "dddb0c6ac813bca32ca189523a33a03d447e9833",
+        "author": "cursoragent"
+      },
+      "id": "e077"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:06:00Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642391699",
+      "summary": "workflow preview-plane started (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642391699,
+        "name": "preview-plane",
+        "headSha": "dddb0c6ac813bca32ca189523a33a03d447e9833",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e078"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:06:31Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/2420f67b4a1859d6766d369300590f0f5111a79f",
+      "summary": "PR #248 commit 2420f67b4a18: test(ontology-runtime): assert store routing by table",
+      "meta": {
+        "pr": 248,
+        "sha": "2420f67b4a1859d6766d369300590f0f5111a79f",
+        "author": "cursoragent"
+      },
+      "id": "e079"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:06:37Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642451186",
+      "summary": "workflow preview-plane started (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642451186,
+        "name": "preview-plane",
+        "headSha": "2420f67b4a1859d6766d369300590f0f5111a79f",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e080"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:06:38Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642391699",
+      "summary": "workflow preview-plane ended (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642391699,
+        "name": "preview-plane",
+        "headSha": "dddb0c6ac813bca32ca189523a33a03d447e9833",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e081"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:06:59Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642323353",
+      "summary": "workflow preview-plane ended (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642323353,
+        "name": "preview-plane",
+        "headSha": "1df06c04f7e5529da15c88e43228f1a51bd14f8f",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e082"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:07:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/e2ca9000fea8a30b4185d4731a4571d6955ed86a",
+      "summary": "PR #248 commit e2ca9000fea8: test(ontology-runtime): pin mixed ontology inference",
+      "meta": {
+        "pr": 248,
+        "sha": "e2ca9000fea8a30b4185d4731a4571d6955ed86a",
+        "author": "cursoragent"
+      },
+      "id": "e083"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:07:31Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642534620",
+      "summary": "workflow preview-plane started (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642534620,
+        "name": "preview-plane",
+        "headSha": "e2ca9000fea8a30b4185d4731a4571d6955ed86a",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e084"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:07:55Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/a4163688d402be37babea51f79c3a7cd7d4ce096",
+      "summary": "PR #248 commit a4163688d402: test(ontology-runtime): preserve exact request tuples",
+      "meta": {
+        "pr": 248,
+        "sha": "a4163688d402be37babea51f79c3a7cd7d4ce096",
+        "author": "cursoragent"
+      },
+      "id": "e085"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:08:02Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642578351",
+      "summary": "workflow preview-plane started (success) PR #248",
+      "meta": {
+        "run_id": 34642578351,
+        "name": "preview-plane",
+        "headSha": "a4163688d402be37babea51f79c3a7cd7d4ce096",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e086"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:08:03Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642534620",
+      "summary": "workflow preview-plane ended (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642534620,
+        "name": "preview-plane",
+        "headSha": "e2ca9000fea8a30b4185d4731a4571d6955ed86a",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e087"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:08:44Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642451186",
+      "summary": "workflow preview-plane ended (cancelled) PR #248",
+      "meta": {
+        "run_id": 34642451186,
+        "name": "preview-plane",
+        "headSha": "2420f67b4a1859d6766d369300590f0f5111a79f",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e088"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:13:18Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34642578351",
+      "summary": "workflow preview-plane ended (success) PR #248",
+      "meta": {
+        "run_id": 34642578351,
+        "name": "preview-plane",
+        "headSha": "a4163688d402be37babea51f79c3a7cd7d4ce096",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e089"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:18:55Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/6f48a4d067c62902fd2903807be450b7527fb70e",
+      "summary": "PR #248 commit 6f48a4d067c6: fix(ontology-runtime): drop retained config state",
+      "meta": {
+        "pr": 248,
+        "sha": "6f48a4d067c62902fd2903807be450b7527fb70e",
+        "author": "cursoragent"
+      },
+      "id": "e090"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:19:01Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34643561157",
+      "summary": "workflow preview-plane started (cancelled) PR #248",
+      "meta": {
+        "run_id": 34643561157,
+        "name": "preview-plane",
+        "headSha": "6f48a4d067c62902fd2903807be450b7527fb70e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e091"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T20:21:34Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248/commits/38e88b748b9a79fa3417576aa9209274f751a827",
+      "summary": "PR #248 commit 38e88b748b9a: Merge remote-tracking branch 'origin/main' into cursor/onto-21-runtim\u2026",
+      "meta": {
+        "pr": 248,
+        "sha": "38e88b748b9a79fa3417576aa9209274f751a827",
+        "author": "cursoragent"
+      },
+      "id": "e092"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T20:21:40Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34643796985",
+      "summary": "workflow preview-plane started (success) PR #248",
+      "meta": {
+        "run_id": 34643796985,
+        "name": "preview-plane",
+        "headSha": "38e88b748b9a79fa3417576aa9209274f751a827",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e093"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:22:12Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34643561157",
+      "summary": "workflow preview-plane ended (cancelled) PR #248",
+      "meta": {
+        "run_id": 34643561157,
+        "name": "preview-plane",
+        "headSha": "6f48a4d067c62902fd2903807be450b7527fb70e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e094"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T20:27:03Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34643796985",
+      "summary": "workflow preview-plane ended (success) PR #248",
+      "meta": {
+        "run_id": 34643796985,
+        "name": "preview-plane",
+        "headSha": "38e88b748b9a79fa3417576aa9209274f751a827",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 248
+      },
+      "id": "e095"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-11T20:27:39Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248",
+      "summary": "PR #248 marked ready for review",
+      "meta": {
+        "number": 248,
+        "draft": false,
+        "from": "draft",
+        "to": "ready"
+      },
+      "id": "e096"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-11T20:30:05.882Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-52ce4d67-9f52-4870-80c8-2015d2389f44#completed_at_ms=1789158605882",
+      "summary": "Cloud agent bc-52ce4d67-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-52ce4d67-9f52-4870-80c8-2015d2389f44",
+        "pr": 248,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "D"
+      },
+      "id": "e097"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-11T20:47:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/248",
+      "summary": "PR #248 merged",
+      "meta": {
+        "number": 248,
+        "state": "MERGED",
+        "sha": "a777d7429a38e0dff8ffa489867c813c5c69ad81"
+      },
+      "id": "e098"
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-11T20:51:22Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6401519963",
+      "summary": "Products Production deploy ready for merge SHA a777d742 (PR #248)",
+      "meta": {
+        "pr": 248,
+        "sha": "a777d7429a38e0dff8ffa489867c813c5c69ad81",
+        "environment": "Production",
+        "deployment_id": 6401519963
+      },
+      "id": "e099"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-11T21:45:07.858Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1#started_at_ms=1789163107858",
+      "summary": "Cloud agent bc-2d6f5b4a-\u2026 first tool (PR-E Cloud Links Bindings UI)",
+      "meta": {
+        "agent_id": "bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1",
+        "pr": 257,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "E"
+      },
+      "id": "e100"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-11T21:45:07.858Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1#launch",
+      "summary": "Launch prompt named poteto-mode, pstack",
+      "meta": {
+        "agent_id": "bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1",
+        "commands": [
+          "poteto-mode",
+          "pstack"
+        ],
+        "on": "launch",
+        "pr": 257
+      },
+      "id": "e101"
+    },
+    {
+      "type": "note",
+      "t": "2026-09-11T23:25:28.728Z",
+      "source": "notion_comment",
+      "source_ref": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904?d=3d85dbddf0ea81a58477001c7d2923d9&pvs=42",
+      "summary": "Jony re-Fit PASS (PR-E REVISED\u00b2)",
+      "meta": {
+        "kind": "fit_comment"
+      },
+      "id": "e102"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T23:53:15Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+      "summary": "PR #257 commit 8d116d93e7bd: feat(connectors): add Cloud Links provider card",
+      "meta": {
+        "pr": 257,
+        "sha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "author": "cursoragent"
+      },
+      "id": "e103"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-11T23:53:28Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257",
+      "summary": "PR #257 opened: HOLD: feat(connectors): add Cloud Links provider card",
+      "meta": {
+        "number": 257,
+        "head": "cursor/onto-21-cloudlink-bindings-5da1",
+        "draft": true
+      },
+      "id": "e104"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T23:53:32Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659728911",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34659728911,
+        "name": "Approval engine",
+        "headSha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e105"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T23:53:32Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659728826",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34659728826,
+        "name": "preview-plane",
+        "headSha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e106"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T23:54:36Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/92d10a682e53b4164c4b2e5e022f894cc444a190",
+      "summary": "PR #257 commit 92d10a682e53: fix(connectors): harden Cloud Link browser boundary",
+      "meta": {
+        "pr": 257,
+        "sha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "author": "cursoragent"
+      },
+      "id": "e107"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T23:54:43Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659795687",
+      "summary": "workflow Approval engine started (success) PR #257",
+      "meta": {
+        "run_id": 34659795687,
+        "name": "Approval engine",
+        "headSha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e108"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T23:54:43Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659795689",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34659795689,
+        "name": "preview-plane",
+        "headSha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e109"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T23:55:02Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659728911",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34659728911,
+        "name": "Approval engine",
+        "headSha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e110"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T23:55:17Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659728826",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34659728826,
+        "name": "preview-plane",
+        "headSha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e111"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-11T23:58:15Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/640047d9d5fe889943b87d19516b2b134b7049b3",
+      "summary": "PR #257 commit 640047d9d5fe: test(connectors): use fixture DNS for Cloud Link proof",
+      "meta": {
+        "pr": 257,
+        "sha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "author": "cursoragent"
+      },
+      "id": "e112"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T23:58:20Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659795687",
+      "summary": "workflow Approval engine ended (success) PR #257",
+      "meta": {
+        "run_id": 34659795687,
+        "name": "Approval engine",
+        "headSha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e113"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T23:58:21Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660001465",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660001465,
+        "name": "Approval engine",
+        "headSha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e114"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-11T23:58:21Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660001480",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660001480,
+        "name": "preview-plane",
+        "headSha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e115"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-11T23:58:49Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34659795689",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34659795689,
+        "name": "preview-plane",
+        "headSha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e116"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T00:00:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+      "summary": "PR #257 commit f265e38d703b: test(connectors): capture Cloud Link actions before navigation",
+      "meta": {
+        "pr": 257,
+        "sha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "author": "cursoragent"
+      },
+      "id": "e117"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:00:07Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660096099",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660096099,
+        "name": "Approval engine",
+        "headSha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e118"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:00:07Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660096148",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660096148,
+        "name": "preview-plane",
+        "headSha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e119"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:00:23Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660001465",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660001465,
+        "name": "Approval engine",
+        "headSha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e120"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:00:36Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660001480",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660001480,
+        "name": "preview-plane",
+        "headSha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e121"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T00:01:29Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/9d6fc38e011bc1ef908890f47a9c1415fd223629",
+      "summary": "PR #257 commit 9d6fc38e011b: test(connectors): inspect streamed Cloud Link actions",
+      "meta": {
+        "pr": 257,
+        "sha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "author": "cursoragent"
+      },
+      "id": "e122"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:01:35Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660193677",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660193677,
+        "name": "Approval engine",
+        "headSha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e123"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:01:35Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660193675",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660193675,
+        "name": "preview-plane",
+        "headSha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e124"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:01:58Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660096099",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660096099,
+        "name": "Approval engine",
+        "headSha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e125"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:02:07Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660096148",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660096148,
+        "name": "preview-plane",
+        "headSha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e126"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T00:03:00Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/0daf39b197f2134e3dd10e4572f802158bd331d0",
+      "summary": "PR #257 commit 0daf39b197f2: test(connectors): verify Cloud Link redaction in browser",
+      "meta": {
+        "pr": 257,
+        "sha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "author": "cursoragent"
+      },
+      "id": "e127"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:03:05Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660285145",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660285145,
+        "name": "Approval engine",
+        "headSha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e128"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:03:05Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660285101",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660285101,
+        "name": "preview-plane",
+        "headSha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e129"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:03:24Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660193677",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660193677,
+        "name": "Approval engine",
+        "headSha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e130"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:03:34Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660193675",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660193675,
+        "name": "preview-plane",
+        "headSha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e131"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T00:04:18Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+      "summary": "PR #257 commit dab4ac74f7ef: test(connectors): scope Cloud Link isolation to rows",
+      "meta": {
+        "pr": 257,
+        "sha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "author": "cursoragent"
+      },
+      "id": "e132"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:04:24Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660366452",
+      "summary": "workflow Approval engine started (success) PR #257",
+      "meta": {
+        "run_id": 34660366452,
+        "name": "Approval engine",
+        "headSha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e133"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:04:24Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660366440",
+      "summary": "workflow preview-plane started (success) PR #257",
+      "meta": {
+        "run_id": 34660366440,
+        "name": "preview-plane",
+        "headSha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e134"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:04:37Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660285145",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660285145,
+        "name": "Approval engine",
+        "headSha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e135"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:04:53Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660285101",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34660285101,
+        "name": "preview-plane",
+        "headSha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e136"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:07:42Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660366452",
+      "summary": "workflow Approval engine ended (success) PR #257",
+      "meta": {
+        "run_id": 34660366452,
+        "name": "Approval engine",
+        "headSha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e137"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:09:19Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34660366440",
+      "summary": "workflow preview-plane ended (success) PR #257",
+      "meta": {
+        "run_id": 34660366440,
+        "name": "preview-plane",
+        "headSha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e138"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T00:21:59Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/3c378232f4af7cadd8ee3772efc5116a076143bd",
+      "summary": "PR #257 commit 3c378232f4af: fix(connectors): enforce Cloud Link boundaries",
+      "meta": {
+        "pr": 257,
+        "sha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "author": "cursoragent"
+      },
+      "id": "e139"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:22:06Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661389941",
+      "summary": "workflow Approval engine started (failure) PR #257",
+      "meta": {
+        "run_id": 34661389941,
+        "name": "Approval engine",
+        "headSha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "conclusion": "failure",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e140"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:22:06Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661389949",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34661389949,
+        "name": "preview-plane",
+        "headSha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e141"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:24:14Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661389941",
+      "summary": "workflow Approval engine ended (failure) PR #257",
+      "meta": {
+        "run_id": 34661389941,
+        "name": "Approval engine",
+        "headSha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "conclusion": "failure",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e142"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T00:25:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/be3d3bfad5dd069294387cff34c6396009fb9a21",
+      "summary": "PR #257 commit be3d3bfad5dd: test(ci): cover shared browser setup condition",
+      "meta": {
+        "pr": 257,
+        "sha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "author": "cursoragent"
+      },
+      "id": "e143"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:25:47Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661598992",
+      "summary": "workflow preview-plane started (success) PR #257",
+      "meta": {
+        "run_id": 34661598992,
+        "name": "preview-plane",
+        "headSha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e144"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T00:25:47Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661598981",
+      "summary": "workflow Approval engine started (success) PR #257",
+      "meta": {
+        "run_id": 34661598981,
+        "name": "Approval engine",
+        "headSha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e145"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:26:14Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661389949",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34661389949,
+        "name": "preview-plane",
+        "headSha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e146"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:28:59Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661598981",
+      "summary": "workflow Approval engine ended (success) PR #257",
+      "meta": {
+        "run_id": 34661598981,
+        "name": "Approval engine",
+        "headSha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e147"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T00:30:49Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34661598992",
+      "summary": "workflow preview-plane ended (success) PR #257",
+      "meta": {
+        "run_id": 34661598992,
+        "name": "preview-plane",
+        "headSha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e148"
+    },
+    {
+      "type": "pr.draft_changed",
+      "t": "2026-09-12T00:31:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257",
+      "summary": "PR #257 marked ready for review",
+      "meta": {
+        "number": 257,
+        "draft": false,
+        "from": "draft",
+        "to": "ready"
+      },
+      "id": "e149"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-12T00:33:23.064Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-8ffadbd5-affe-4a55-a91c-d28dd8ec3642#started_at_ms=1789173203064",
+      "summary": "Cloud agent bc-8ffadbd5-\u2026 first tool (PR-E UX live Fit-prove)",
+      "meta": {
+        "agent_id": "bc-8ffadbd5-affe-4a55-a91c-d28dd8ec3642",
+        "pr": 257,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e150"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-12T00:37:07.183Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-8ffadbd5-affe-4a55-a91c-d28dd8ec3642#completed_at_ms=1789173427183",
+      "summary": "Cloud agent bc-8ffadbd5-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-8ffadbd5-affe-4a55-a91c-d28dd8ec3642",
+        "pr": 257,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e151"
+    },
+    {
+      "type": "note",
+      "t": "2026-09-12T00:37:55.994Z",
+      "source": "notion_comment",
+      "source_ref": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904?d=3d95dbddf0ea8119902d001cd352aaa1&pvs=42",
+      "summary": "Jony live Fit PASS on #257 tip be3d3bf",
+      "meta": {
+        "kind": "fit_comment"
+      },
+      "id": "e152"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-12T02:16:36.520Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-d2513ffd-0459-4443-9cb2-6d7cdaee8cac#started_at_ms=1789179396520",
+      "summary": "Cloud agent bc-d2513ffd-\u2026 first tool (PR-E Fit-prove demo clip)",
+      "meta": {
+        "agent_id": "bc-d2513ffd-0459-4443-9cb2-6d7cdaee8cac",
+        "pr": 257,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e153"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-12T02:21:04.836Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-d2513ffd-0459-4443-9cb2-6d7cdaee8cac#completed_at_ms=1789179664836",
+      "summary": "Cloud agent bc-d2513ffd-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-d2513ffd-0459-4443-9cb2-6d7cdaee8cac",
+        "pr": 257,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e154"
+    },
+    {
+      "type": "note",
+      "t": "2026-09-12T02:33:00.148Z",
+      "source": "notion_comment",
+      "source_ref": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904?d=3d95dbddf0ea81f49ca9001c8d95772a&pvs=42",
+      "summary": "Jony live Fit FAIL (Sean polish reject on #257)",
+      "meta": {
+        "kind": "fit_comment"
+      },
+      "id": "e155"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T02:55:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/0793854c2dfb832a57a47082aa0d26890dbc4089",
+      "summary": "PR #257 commit 0793854c2dfb: fix(connectors): polish Cloud Link registration",
+      "meta": {
+        "pr": 257,
+        "sha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "author": "cursoragent"
+      },
+      "id": "e156"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T02:55:29Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34668978481",
+      "summary": "workflow Approval engine started (success) PR #257",
+      "meta": {
+        "run_id": 34668978481,
+        "name": "Approval engine",
+        "headSha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e157"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T02:55:29Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34668978499",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34668978499,
+        "name": "preview-plane",
+        "headSha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e158"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T02:59:01Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34668978481",
+      "summary": "workflow Approval engine ended (success) PR #257",
+      "meta": {
+        "run_id": 34668978481,
+        "name": "Approval engine",
+        "headSha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e159"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T03:00:47Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34668978499",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34668978499,
+        "name": "preview-plane",
+        "headSha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e160"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T03:03:28Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/c5d3f490363083e5fae9d5ada36915b62debc8bd",
+      "summary": "PR #257 commit c5d3f4903630: chore(ci): rerun timed-out cache download",
+      "meta": {
+        "pr": 257,
+        "sha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "author": "cursoragent"
+      },
+      "id": "e161"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T03:03:34Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34669339377",
+      "summary": "workflow Approval engine started (success) PR #257",
+      "meta": {
+        "run_id": 34669339377,
+        "name": "Approval engine",
+        "headSha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e162"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T03:03:34Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34669339397",
+      "summary": "workflow preview-plane started (success) PR #257",
+      "meta": {
+        "run_id": 34669339397,
+        "name": "preview-plane",
+        "headSha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e163"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T03:06:58Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34669339377",
+      "summary": "workflow Approval engine ended (success) PR #257",
+      "meta": {
+        "run_id": 34669339377,
+        "name": "Approval engine",
+        "headSha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e164"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T03:08:03Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34669339397",
+      "summary": "workflow preview-plane ended (success) PR #257",
+      "meta": {
+        "run_id": 34669339397,
+        "name": "preview-plane",
+        "headSha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e165"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-12T03:10:56.233Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-61bc7acd-8ab9-40d3-b1a4-6ff210af1121#started_at_ms=1789182656233",
+      "summary": "Cloud agent bc-61bc7acd-\u2026 first tool (PR-E polish re-Fit c5d3f49)",
+      "meta": {
+        "agent_id": "bc-61bc7acd-8ab9-40d3-b1a4-6ff210af1121",
+        "pr": 257,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e166"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-12T03:12:40.301Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-61bc7acd-8ab9-40d3-b1a4-6ff210af1121#completed_at_ms=1789182760301",
+      "summary": "Cloud agent bc-61bc7acd-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-61bc7acd-8ab9-40d3-b1a4-6ff210af1121",
+        "pr": 257,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e167"
+    },
+    {
+      "type": "note",
+      "t": "2026-09-12T03:13:59.759Z",
+      "source": "notion_comment",
+      "source_ref": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904?d=3d95dbddf0ea81228a89001ca29aa29f&pvs=42",
+      "summary": "Jony re-Fit PASS on #257 tip c5d3f49",
+      "meta": {
+        "kind": "fit_comment"
+      },
+      "id": "e168"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T05:17:47Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/660394995089da017bbb97a3cceaf51fed0eca6c",
+      "summary": "PR #257 commit 660394995089: feat(connectors): save Cloud Links in WorkOS Vault",
+      "meta": {
+        "pr": 257,
+        "sha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "author": "cursoragent"
+      },
+      "id": "e169"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:17:55Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675224414",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675224414,
+        "name": "Approval engine",
+        "headSha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e170"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:17:55Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675224411",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675224411,
+        "name": "preview-plane",
+        "headSha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e171"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T05:18:24Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+      "summary": "PR #257 commit cb820f604244: fix(connectors): clear registered secrets without rerender",
+      "meta": {
+        "pr": 257,
+        "sha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "author": "cursoragent"
+      },
+      "id": "e172"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:18:31Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675251035",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675251035,
+        "name": "Approval engine",
+        "headSha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e173"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:18:31Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675251040",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675251040,
+        "name": "preview-plane",
+        "headSha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e174"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:18:33Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675224414",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675224414,
+        "name": "Approval engine",
+        "headSha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e175"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:19:02Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675224411",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675224411,
+        "name": "preview-plane",
+        "headSha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e176"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T05:21:49Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+      "summary": "PR #257 commit c67ee26a75c2: fix(connectors): unmount Cloud Link secrets after register",
+      "meta": {
+        "pr": 257,
+        "sha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "author": "cursoragent"
+      },
+      "id": "e177"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:21:55Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675396323",
+      "summary": "workflow Approval engine started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675396323,
+        "name": "Approval engine",
+        "headSha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e178"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:21:55Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675396240",
+      "summary": "workflow preview-plane started (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675396240,
+        "name": "preview-plane",
+        "headSha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e179"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:22:00Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675251035",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675251035,
+        "name": "Approval engine",
+        "headSha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e180"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:22:22Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675251040",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675251040,
+        "name": "preview-plane",
+        "headSha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e181"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T05:24:13Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257/commits/bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+      "summary": "PR #257 commit bb2a10c94dc5: test(connectors): await registered row before reopening",
+      "meta": {
+        "pr": 257,
+        "sha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "author": "cursoragent"
+      },
+      "id": "e182"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:24:20Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675497655",
+      "summary": "workflow Approval engine started (success) PR #257",
+      "meta": {
+        "run_id": 34675497655,
+        "name": "Approval engine",
+        "headSha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e183"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T05:24:20Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675497663",
+      "summary": "workflow preview-plane started (success) PR #257",
+      "meta": {
+        "run_id": 34675497663,
+        "name": "preview-plane",
+        "headSha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e184"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:24:38Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675396323",
+      "summary": "workflow Approval engine ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675396323,
+        "name": "Approval engine",
+        "headSha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e185"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:24:49Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675396240",
+      "summary": "workflow preview-plane ended (cancelled) PR #257",
+      "meta": {
+        "run_id": 34675396240,
+        "name": "preview-plane",
+        "headSha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "conclusion": "cancelled",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e186"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:27:49Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675497655",
+      "summary": "workflow Approval engine ended (success) PR #257",
+      "meta": {
+        "run_id": 34675497655,
+        "name": "Approval engine",
+        "headSha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e187"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T05:30:21Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34675497663",
+      "summary": "workflow preview-plane ended (success) PR #257",
+      "meta": {
+        "run_id": 34675497663,
+        "name": "preview-plane",
+        "headSha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 257
+      },
+      "id": "e188"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-12T05:30:55.866Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1#completed_at_ms=1789191055866",
+      "summary": "Cloud agent bc-2d6f5b4a-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1",
+        "pr": 257,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "E"
+      },
+      "id": "e189"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-12T05:33:00.954Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-eeee554f-852a-4abe-90d5-402709c51fcb#started_at_ms=1789191180954",
+      "summary": "Cloud agent bc-eeee554f-\u2026 first tool (PR-E perceptual re-Fit bb2a10c)",
+      "meta": {
+        "agent_id": "bc-eeee554f-852a-4abe-90d5-402709c51fcb",
+        "pr": 257,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e190"
+    },
+    {
+      "type": "agent.ended",
+      "t": "2026-09-12T05:34:14.067Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-eeee554f-852a-4abe-90d5-402709c51fcb#completed_at_ms=1789191254067",
+      "summary": "Cloud agent bc-eeee554f-\u2026 last tool completion",
+      "meta": {
+        "agent_id": "bc-eeee554f-852a-4abe-90d5-402709c51fcb",
+        "pr": 257,
+        "evidence": "max completed_at_ms in transcript",
+        "slice": "E-fit"
+      },
+      "id": "e191"
+    },
+    {
+      "type": "note",
+      "t": "2026-09-12T05:35:21.174Z",
+      "source": "notion_comment",
+      "source_ref": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904?d=3d95dbddf0ea813ab103001ced349119&pvs=42",
+      "summary": "Jony re-Fit PASS on #257 tip bb2a10c",
+      "meta": {
+        "kind": "fit_comment"
+      },
+      "id": "e192"
+    },
+    {
+      "type": "pr.status_changed",
+      "t": "2026-09-12T05:38:44Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/257",
+      "summary": "PR #257 merged",
+      "meta": {
+        "number": 257,
+        "state": "MERGED",
+        "sha": "dd8c8ee101ddfd8224ccb41eb1a6dc19f5800794"
+      },
+      "id": "e193"
+    },
+    {
+      "type": "deploy.completed",
+      "t": "2026-09-12T05:41:40Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/deployments/6406427845",
+      "summary": "Products Production deploy ready for merge SHA dd8c8ee1 (PR #257)",
+      "meta": {
+        "pr": 257,
+        "sha": "dd8c8ee101ddfd8224ccb41eb1a6dc19f5800794",
+        "environment": "Production",
+        "deployment_id": 6406427845
+      },
+      "id": "e194"
+    },
+    {
+      "type": "note",
+      "t": "2026-09-12T15:10:38.985Z",
+      "source": "notion_comment",
+      "source_ref": "https://app.notion.com/p/3d85dbddf0ea810c92e7cddc2c7c5904?d=3d95dbddf0ea8191959c001c5f1f5262&pvs=42",
+      "summary": "Jony PR-F Fit PASS (boarding, perceptual)",
+      "meta": {
+        "kind": "fit_comment"
+      },
+      "id": "e195"
+    },
+    {
+      "type": "agent.started",
+      "t": "2026-09-12T15:11:15.464Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-b911aaeb-7d51-4780-83fd-5f0232399ce3#started_at_ms=1789225875464",
+      "summary": "Cloud agent bc-b911aaeb-\u2026 first tool (PR-F PG\u2192PG migrate wizard)",
+      "meta": {
+        "agent_id": "bc-b911aaeb-7d51-4780-83fd-5f0232399ce3",
+        "pr": 263,
+        "evidence": "min started_at_ms in transcript",
+        "slice": "F"
+      },
+      "id": "e196"
+    },
+    {
+      "type": "agent.slash_command",
+      "t": "2026-09-12T15:11:15.464Z",
+      "source": "cloud_agent_transcript",
+      "source_ref": "cursor://agent/bc-b911aaeb-7d51-4780-83fd-5f0232399ce3#launch",
+      "summary": "Launch prompt named poteto-mode, pstack",
+      "meta": {
+        "agent_id": "bc-b911aaeb-7d51-4780-83fd-5f0232399ce3",
+        "commands": [
+          "poteto-mode",
+          "pstack"
+        ],
+        "on": "launch",
+        "pr": 263
+      },
+      "id": "e197"
+    },
+    {
+      "type": "git.commit",
+      "t": "2026-09-12T20:24:23Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/263/commits/29b8c4c80e767f525198b28645345c48dab4803d",
+      "summary": "PR #263 commit 29b8c4c80e76: feat(ontology): add Postgres entity binding migration wizard",
+      "meta": {
+        "pr": 263,
+        "sha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "author": "cursoragent"
+      },
+      "id": "e198"
+    },
+    {
+      "type": "pr.created",
+      "t": "2026-09-12T20:24:37Z",
+      "source": "github",
+      "source_ref": "https://github.com/elementum-fde/products/pull/263",
+      "summary": "PR #263 opened: ONTO-21: add PG entity binding migration wizard",
+      "meta": {
+        "number": 263,
+        "head": "cursor/onto-21-pg-migrate-wizard-9ce3",
+        "draft": true
+      },
+      "id": "e199"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T20:24:40Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34717007480",
+      "summary": "workflow Agent platform started (success) PR #263",
+      "meta": {
+        "run_id": 34717007480,
+        "name": "Agent platform",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 263
+      },
+      "id": "e200"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T20:24:40Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34717007507",
+      "summary": "workflow Approval engine started (success) PR #263",
+      "meta": {
+        "run_id": 34717007507,
+        "name": "Approval engine",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 263
+      },
+      "id": "e201"
+    },
+    {
+      "type": "ci.started",
+      "t": "2026-09-12T20:24:40Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34717007421",
+      "summary": "workflow preview-plane started (failure) PR #263",
+      "meta": {
+        "run_id": 34717007421,
+        "name": "preview-plane",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "failure",
+        "kind": "workflow_run",
+        "pr": 263
+      },
+      "id": "e202"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T20:26:51Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34717007480",
+      "summary": "workflow Agent platform ended (success) PR #263",
+      "meta": {
+        "run_id": 34717007480,
+        "name": "Agent platform",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 263
+      },
+      "id": "e203"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T20:28:05Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34717007507",
+      "summary": "workflow Approval engine ended (success) PR #263",
+      "meta": {
+        "run_id": 34717007507,
+        "name": "Approval engine",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "success",
+        "kind": "workflow_run",
+        "pr": 263
+      },
+      "id": "e204"
+    },
+    {
+      "type": "ci.ended",
+      "t": "2026-09-12T20:29:14Z",
+      "source": "github_actions",
+      "source_ref": "https://github.com/elementum-fde/products/actions/runs/34717007421",
+      "summary": "workflow preview-plane ended (failure) PR #263",
+      "meta": {
+        "run_id": 34717007421,
+        "name": "preview-plane",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "failure",
+        "kind": "workflow_run",
+        "pr": 263
+      },
+      "id": "e205"
+    }
+  ],
+  "spans": [
+    {
+      "id": "span-wall",
+      "kind": "wall",
+      "start": "2026-09-11T17:13:58.130Z",
+      "end": "2026-09-12T21:11:02.536Z",
+      "seconds": 100624,
+      "meta": {
+        "start_proof": "first event agent.started (e001)",
+        "end_proof": "as_of (still running)"
+      }
+    },
+    {
+      "id": "span-agent-bc-84d5d938-5",
+      "kind": "agent",
+      "start": "2026-09-11T17:13:58.130Z",
+      "end": "2026-09-11T18:23:35.742Z",
+      "seconds": 4177,
+      "meta": {
+        "agent_id": "bc-84d5d938-55c4-4579-9db9-f74462f1c485",
+        "pr": 242,
+        "slice": "A",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-fa5e28d1-2",
+      "kind": "agent",
+      "start": "2026-09-11T18:12:01.440Z",
+      "end": "2026-09-11T19:09:00.248Z",
+      "seconds": 3418,
+      "meta": {
+        "agent_id": "bc-fa5e28d1-2365-48f4-bb8e-4156a13fd57e",
+        "pr": 245,
+        "slice": "B",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-9c1070c9-c",
+      "kind": "agent",
+      "start": "2026-09-11T18:12:04.141Z",
+      "end": "2026-09-11T18:55:31.948Z",
+      "seconds": 2607,
+      "meta": {
+        "agent_id": "bc-9c1070c9-cb88-4195-bf9e-92ed3753c230",
+        "pr": 244,
+        "slice": "C",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-52ce4d67-9",
+      "kind": "agent",
+      "start": "2026-09-11T19:26:32.796Z",
+      "end": "2026-09-11T20:30:05.882Z",
+      "seconds": 3813,
+      "meta": {
+        "agent_id": "bc-52ce4d67-9f52-4870-80c8-2015d2389f44",
+        "pr": 248,
+        "slice": "D",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-2d6f5b4a-b",
+      "kind": "agent",
+      "start": "2026-09-11T21:45:07.858Z",
+      "end": "2026-09-12T05:30:55.866Z",
+      "seconds": 27948,
+      "meta": {
+        "agent_id": "bc-2d6f5b4a-b821-4fe1-9034-ea0838085da1",
+        "pr": 257,
+        "slice": "E",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-8ffadbd5-a",
+      "kind": "agent",
+      "start": "2026-09-12T00:33:23.064Z",
+      "end": "2026-09-12T00:37:07.183Z",
+      "seconds": 224,
+      "meta": {
+        "agent_id": "bc-8ffadbd5-affe-4a55-a91c-d28dd8ec3642",
+        "pr": 257,
+        "slice": "E-fit",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-d2513ffd-0",
+      "kind": "agent",
+      "start": "2026-09-12T02:16:36.520Z",
+      "end": "2026-09-12T02:21:04.836Z",
+      "seconds": 268,
+      "meta": {
+        "agent_id": "bc-d2513ffd-0459-4443-9cb2-6d7cdaee8cac",
+        "pr": 257,
+        "slice": "E-fit",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-61bc7acd-8",
+      "kind": "agent",
+      "start": "2026-09-12T03:10:56.233Z",
+      "end": "2026-09-12T03:12:40.301Z",
+      "seconds": 104,
+      "meta": {
+        "agent_id": "bc-61bc7acd-8ab9-40d3-b1a4-6ff210af1121",
+        "pr": 257,
+        "slice": "E-fit",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-eeee554f-8",
+      "kind": "agent",
+      "start": "2026-09-12T05:33:00.954Z",
+      "end": "2026-09-12T05:34:14.067Z",
+      "seconds": 73,
+      "meta": {
+        "agent_id": "bc-eeee554f-852a-4abe-90d5-402709c51fcb",
+        "pr": 257,
+        "slice": "E-fit",
+        "open": false,
+        "start_proof": "min started_at_ms",
+        "end_proof": "max completed_at_ms"
+      }
+    },
+    {
+      "id": "span-agent-bc-b911aaeb-7",
+      "kind": "agent",
+      "start": "2026-09-12T15:11:15.464Z",
+      "end": "2026-09-12T21:11:02.536Z",
+      "seconds": 21587,
+      "meta": {
+        "agent_id": "bc-b911aaeb-7d51-4780-83fd-5f0232399ce3",
+        "pr": 263,
+        "slice": "F",
+        "open": true,
+        "start_proof": "min started_at_ms",
+        "end_proof": "as_of (open)"
+      }
+    },
+    {
+      "id": "span-ci-34628817080",
+      "kind": "ci",
+      "start": "2026-09-11T17:38:22Z",
+      "end": "2026-09-11T17:42:57Z",
+      "seconds": 275,
+      "meta": {
+        "run_id": 34628817080,
+        "name": "preview-plane",
+        "headSha": "91b7a813dce690532abab5a3c587e451c71c1784",
+        "conclusion": "success",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34629529958",
+      "kind": "ci",
+      "start": "2026-09-11T17:45:58Z",
+      "end": "2026-09-11T17:49:24Z",
+      "seconds": 206,
+      "meta": {
+        "run_id": 34629529958,
+        "name": "preview-plane",
+        "headSha": "282cd779bd644298c450413da13758f5054c12a0",
+        "conclusion": "cancelled",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34629798103",
+      "kind": "ci",
+      "start": "2026-09-11T17:48:53Z",
+      "end": "2026-09-11T17:51:19Z",
+      "seconds": 146,
+      "meta": {
+        "run_id": 34629798103,
+        "name": "preview-plane",
+        "headSha": "c09f7747631d5ed9478ab69913fb67596f62a6df",
+        "conclusion": "cancelled",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34630280104",
+      "kind": "ci",
+      "start": "2026-09-11T17:54:08Z",
+      "end": "2026-09-11T17:54:48Z",
+      "seconds": 40,
+      "meta": {
+        "run_id": 34630280104,
+        "name": "preview-plane",
+        "headSha": "8f83b4ca6161d1cb0f07f414ed6bd41c420cb5a0",
+        "conclusion": "cancelled",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34629900550",
+      "kind": "ci",
+      "start": "2026-09-11T17:50:02Z",
+      "end": "2026-09-11T17:55:22Z",
+      "seconds": 320,
+      "meta": {
+        "run_id": 34629900550,
+        "name": "preview-plane",
+        "headSha": "c433cc95996da08ab0ee2c0301142257dd441d0c",
+        "conclusion": "cancelled",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34630335746",
+      "kind": "ci",
+      "start": "2026-09-11T17:54:47Z",
+      "end": "2026-09-11T17:59:46Z",
+      "seconds": 299,
+      "meta": {
+        "run_id": 34630335746,
+        "name": "preview-plane",
+        "headSha": "82586b72788e49b03dfbced7d006e09a923b0bac",
+        "conclusion": "cancelled",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34630749546",
+      "kind": "ci",
+      "start": "2026-09-11T17:59:22Z",
+      "end": "2026-09-11T18:03:58Z",
+      "seconds": 276,
+      "meta": {
+        "run_id": 34630749546,
+        "name": "preview-plane",
+        "headSha": "dddfb621cc5ff467831d8040f22faa839b357926",
+        "conclusion": "success",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34631199966",
+      "kind": "ci",
+      "start": "2026-09-11T18:04:07Z",
+      "end": "2026-09-11T18:05:56Z",
+      "seconds": 109,
+      "meta": {
+        "run_id": 34631199966,
+        "name": "preview-plane",
+        "headSha": "6f409f886a8dbf257dc1cef6c7e23a1dfccf43cd",
+        "conclusion": "cancelled",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34631256630",
+      "kind": "ci",
+      "start": "2026-09-11T18:04:42Z",
+      "end": "2026-09-11T18:10:22Z",
+      "seconds": 340,
+      "meta": {
+        "run_id": 34631256630,
+        "name": "preview-plane",
+        "headSha": "09ca7ab6d713e61084a42aa33c23fd96964ae01e",
+        "conclusion": "success",
+        "pr": 242
+      }
+    },
+    {
+      "id": "span-ci-34633804638",
+      "kind": "ci",
+      "start": "2026-09-11T18:32:06Z",
+      "end": "2026-09-11T18:35:09Z",
+      "seconds": 183,
+      "meta": {
+        "run_id": 34633804638,
+        "name": "preview-plane",
+        "headSha": "ecf3ac35085d34bfc5d7d1515482c083b1849a44",
+        "conclusion": "cancelled",
+        "pr": 244
+      }
+    },
+    {
+      "id": "span-ci-34633954524",
+      "kind": "ci",
+      "start": "2026-09-11T18:33:41Z",
+      "end": "2026-09-11T18:39:47Z",
+      "seconds": 366,
+      "meta": {
+        "run_id": 34633954524,
+        "name": "preview-plane",
+        "headSha": "b7e947e64ecd33c64134f508f672fbe3b2e66912",
+        "conclusion": "success",
+        "pr": 244
+      }
+    },
+    {
+      "id": "span-ci-34634435437",
+      "kind": "ci",
+      "start": "2026-09-11T18:38:40Z",
+      "end": "2026-09-11T18:40:29Z",
+      "seconds": 109,
+      "meta": {
+        "run_id": 34634435437,
+        "name": "preview-plane",
+        "headSha": "8237d6c12eaf0dfbfb4b3324b0de5e74ade4014e",
+        "conclusion": "cancelled",
+        "pr": 245
+      }
+    },
+    {
+      "id": "span-ci-34634509265",
+      "kind": "ci",
+      "start": "2026-09-11T18:39:27Z",
+      "end": "2026-09-11T18:45:44Z",
+      "seconds": 377,
+      "meta": {
+        "run_id": 34634509265,
+        "name": "preview-plane",
+        "headSha": "d5d615feb46b1a51d4da07e4da5d8b809071dfc5",
+        "conclusion": "success",
+        "pr": 245
+      }
+    },
+    {
+      "id": "span-ci-34635075380",
+      "kind": "ci",
+      "start": "2026-09-11T18:45:24Z",
+      "end": "2026-09-11T18:51:58Z",
+      "seconds": 394,
+      "meta": {
+        "run_id": 34635075380,
+        "name": "preview-plane",
+        "headSha": "b10993a40a4750a28b90d2124eb9e7defbe3f04a",
+        "conclusion": "success",
+        "pr": 244
+      }
+    },
+    {
+      "id": "span-ci-34635299982",
+      "kind": "ci",
+      "start": "2026-09-11T18:47:50Z",
+      "end": "2026-09-11T18:52:21Z",
+      "seconds": 271,
+      "meta": {
+        "run_id": 34635299982,
+        "name": "preview-plane",
+        "headSha": "6c20527da73ab90a65719fb083a85bc63dac96d1",
+        "conclusion": "success",
+        "pr": 245
+      }
+    },
+    {
+      "id": "span-ci-34636436815",
+      "kind": "ci",
+      "start": "2026-09-11T19:00:14Z",
+      "end": "2026-09-11T19:04:57Z",
+      "seconds": 283,
+      "meta": {
+        "run_id": 34636436815,
+        "name": "preview-plane",
+        "headSha": "bd1e6cae0b9bd77abc6563f4f019d04ccb8c3b12",
+        "conclusion": "success",
+        "pr": 245
+      }
+    },
+    {
+      "id": "span-ci-34642106909",
+      "kind": "ci",
+      "start": "2026-09-11T20:02:58Z",
+      "end": "2026-09-11T20:04:43Z",
+      "seconds": 105,
+      "meta": {
+        "run_id": 34642106909,
+        "name": "preview-plane",
+        "headSha": "b30b95c44a6e3e692c994c0876ce44b96ca7d830",
+        "conclusion": "failure",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34642391699",
+      "kind": "ci",
+      "start": "2026-09-11T20:06:00Z",
+      "end": "2026-09-11T20:06:38Z",
+      "seconds": 38,
+      "meta": {
+        "run_id": 34642391699,
+        "name": "preview-plane",
+        "headSha": "dddb0c6ac813bca32ca189523a33a03d447e9833",
+        "conclusion": "cancelled",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34642323353",
+      "kind": "ci",
+      "start": "2026-09-11T20:05:17Z",
+      "end": "2026-09-11T20:06:59Z",
+      "seconds": 102,
+      "meta": {
+        "run_id": 34642323353,
+        "name": "preview-plane",
+        "headSha": "1df06c04f7e5529da15c88e43228f1a51bd14f8f",
+        "conclusion": "cancelled",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34642534620",
+      "kind": "ci",
+      "start": "2026-09-11T20:07:31Z",
+      "end": "2026-09-11T20:08:03Z",
+      "seconds": 32,
+      "meta": {
+        "run_id": 34642534620,
+        "name": "preview-plane",
+        "headSha": "e2ca9000fea8a30b4185d4731a4571d6955ed86a",
+        "conclusion": "cancelled",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34642451186",
+      "kind": "ci",
+      "start": "2026-09-11T20:06:37Z",
+      "end": "2026-09-11T20:08:44Z",
+      "seconds": 127,
+      "meta": {
+        "run_id": 34642451186,
+        "name": "preview-plane",
+        "headSha": "2420f67b4a1859d6766d369300590f0f5111a79f",
+        "conclusion": "cancelled",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34642578351",
+      "kind": "ci",
+      "start": "2026-09-11T20:08:02Z",
+      "end": "2026-09-11T20:13:18Z",
+      "seconds": 316,
+      "meta": {
+        "run_id": 34642578351,
+        "name": "preview-plane",
+        "headSha": "a4163688d402be37babea51f79c3a7cd7d4ce096",
+        "conclusion": "success",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34643561157",
+      "kind": "ci",
+      "start": "2026-09-11T20:19:01Z",
+      "end": "2026-09-11T20:22:12Z",
+      "seconds": 191,
+      "meta": {
+        "run_id": 34643561157,
+        "name": "preview-plane",
+        "headSha": "6f48a4d067c62902fd2903807be450b7527fb70e",
+        "conclusion": "cancelled",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34643796985",
+      "kind": "ci",
+      "start": "2026-09-11T20:21:40Z",
+      "end": "2026-09-11T20:27:03Z",
+      "seconds": 323,
+      "meta": {
+        "run_id": 34643796985,
+        "name": "preview-plane",
+        "headSha": "38e88b748b9a79fa3417576aa9209274f751a827",
+        "conclusion": "success",
+        "pr": 248
+      }
+    },
+    {
+      "id": "span-ci-34659728911",
+      "kind": "ci",
+      "start": "2026-09-11T23:53:32Z",
+      "end": "2026-09-11T23:55:02Z",
+      "seconds": 90,
+      "meta": {
+        "run_id": 34659728911,
+        "name": "Approval engine",
+        "headSha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34659728826",
+      "kind": "ci",
+      "start": "2026-09-11T23:53:32Z",
+      "end": "2026-09-11T23:55:17Z",
+      "seconds": 105,
+      "meta": {
+        "run_id": 34659728826,
+        "name": "preview-plane",
+        "headSha": "8d116d93e7bdf5b3b121c49ab0ee8006165abed0",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34659795687",
+      "kind": "ci",
+      "start": "2026-09-11T23:54:43Z",
+      "end": "2026-09-11T23:58:20Z",
+      "seconds": 217,
+      "meta": {
+        "run_id": 34659795687,
+        "name": "Approval engine",
+        "headSha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34659795689",
+      "kind": "ci",
+      "start": "2026-09-11T23:54:43Z",
+      "end": "2026-09-11T23:58:49Z",
+      "seconds": 246,
+      "meta": {
+        "run_id": 34659795689,
+        "name": "preview-plane",
+        "headSha": "92d10a682e53b4164c4b2e5e022f894cc444a190",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660001465",
+      "kind": "ci",
+      "start": "2026-09-11T23:58:21Z",
+      "end": "2026-09-12T00:00:23Z",
+      "seconds": 122,
+      "meta": {
+        "run_id": 34660001465,
+        "name": "Approval engine",
+        "headSha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660001480",
+      "kind": "ci",
+      "start": "2026-09-11T23:58:21Z",
+      "end": "2026-09-12T00:00:36Z",
+      "seconds": 135,
+      "meta": {
+        "run_id": 34660001480,
+        "name": "preview-plane",
+        "headSha": "640047d9d5fe889943b87d19516b2b134b7049b3",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660096099",
+      "kind": "ci",
+      "start": "2026-09-12T00:00:07Z",
+      "end": "2026-09-12T00:01:58Z",
+      "seconds": 111,
+      "meta": {
+        "run_id": 34660096099,
+        "name": "Approval engine",
+        "headSha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660096148",
+      "kind": "ci",
+      "start": "2026-09-12T00:00:07Z",
+      "end": "2026-09-12T00:02:07Z",
+      "seconds": 120,
+      "meta": {
+        "run_id": 34660096148,
+        "name": "preview-plane",
+        "headSha": "f265e38d703b4d77c43a675c487ca5b9fee13f0e",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660193677",
+      "kind": "ci",
+      "start": "2026-09-12T00:01:35Z",
+      "end": "2026-09-12T00:03:24Z",
+      "seconds": 109,
+      "meta": {
+        "run_id": 34660193677,
+        "name": "Approval engine",
+        "headSha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660193675",
+      "kind": "ci",
+      "start": "2026-09-12T00:01:35Z",
+      "end": "2026-09-12T00:03:34Z",
+      "seconds": 119,
+      "meta": {
+        "run_id": 34660193675,
+        "name": "preview-plane",
+        "headSha": "9d6fc38e011bc1ef908890f47a9c1415fd223629",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660285145",
+      "kind": "ci",
+      "start": "2026-09-12T00:03:05Z",
+      "end": "2026-09-12T00:04:37Z",
+      "seconds": 92,
+      "meta": {
+        "run_id": 34660285145,
+        "name": "Approval engine",
+        "headSha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660285101",
+      "kind": "ci",
+      "start": "2026-09-12T00:03:05Z",
+      "end": "2026-09-12T00:04:53Z",
+      "seconds": 108,
+      "meta": {
+        "run_id": 34660285101,
+        "name": "preview-plane",
+        "headSha": "0daf39b197f2134e3dd10e4572f802158bd331d0",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660366452",
+      "kind": "ci",
+      "start": "2026-09-12T00:04:24Z",
+      "end": "2026-09-12T00:07:42Z",
+      "seconds": 198,
+      "meta": {
+        "run_id": 34660366452,
+        "name": "Approval engine",
+        "headSha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34660366440",
+      "kind": "ci",
+      "start": "2026-09-12T00:04:24Z",
+      "end": "2026-09-12T00:09:19Z",
+      "seconds": 295,
+      "meta": {
+        "run_id": 34660366440,
+        "name": "preview-plane",
+        "headSha": "dab4ac74f7efaabd763c00955184c1a0f28cc7a8",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34661389941",
+      "kind": "ci",
+      "start": "2026-09-12T00:22:06Z",
+      "end": "2026-09-12T00:24:14Z",
+      "seconds": 128,
+      "meta": {
+        "run_id": 34661389941,
+        "name": "Approval engine",
+        "headSha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "conclusion": "failure",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34661389949",
+      "kind": "ci",
+      "start": "2026-09-12T00:22:06Z",
+      "end": "2026-09-12T00:26:14Z",
+      "seconds": 248,
+      "meta": {
+        "run_id": 34661389949,
+        "name": "preview-plane",
+        "headSha": "3c378232f4af7cadd8ee3772efc5116a076143bd",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34661598981",
+      "kind": "ci",
+      "start": "2026-09-12T00:25:47Z",
+      "end": "2026-09-12T00:28:59Z",
+      "seconds": 192,
+      "meta": {
+        "run_id": 34661598981,
+        "name": "Approval engine",
+        "headSha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34661598992",
+      "kind": "ci",
+      "start": "2026-09-12T00:25:47Z",
+      "end": "2026-09-12T00:30:49Z",
+      "seconds": 302,
+      "meta": {
+        "run_id": 34661598992,
+        "name": "preview-plane",
+        "headSha": "be3d3bfad5dd069294387cff34c6396009fb9a21",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34668978481",
+      "kind": "ci",
+      "start": "2026-09-12T02:55:29Z",
+      "end": "2026-09-12T02:59:01Z",
+      "seconds": 212,
+      "meta": {
+        "run_id": 34668978481,
+        "name": "Approval engine",
+        "headSha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34668978499",
+      "kind": "ci",
+      "start": "2026-09-12T02:55:29Z",
+      "end": "2026-09-12T03:00:47Z",
+      "seconds": 318,
+      "meta": {
+        "run_id": 34668978499,
+        "name": "preview-plane",
+        "headSha": "0793854c2dfb832a57a47082aa0d26890dbc4089",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34669339377",
+      "kind": "ci",
+      "start": "2026-09-12T03:03:34Z",
+      "end": "2026-09-12T03:06:58Z",
+      "seconds": 204,
+      "meta": {
+        "run_id": 34669339377,
+        "name": "Approval engine",
+        "headSha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34669339397",
+      "kind": "ci",
+      "start": "2026-09-12T03:03:34Z",
+      "end": "2026-09-12T03:08:03Z",
+      "seconds": 269,
+      "meta": {
+        "run_id": 34669339397,
+        "name": "preview-plane",
+        "headSha": "c5d3f490363083e5fae9d5ada36915b62debc8bd",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675224414",
+      "kind": "ci",
+      "start": "2026-09-12T05:17:55Z",
+      "end": "2026-09-12T05:18:33Z",
+      "seconds": 38,
+      "meta": {
+        "run_id": 34675224414,
+        "name": "Approval engine",
+        "headSha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675224411",
+      "kind": "ci",
+      "start": "2026-09-12T05:17:55Z",
+      "end": "2026-09-12T05:19:02Z",
+      "seconds": 67,
+      "meta": {
+        "run_id": 34675224411,
+        "name": "preview-plane",
+        "headSha": "660394995089da017bbb97a3cceaf51fed0eca6c",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675251035",
+      "kind": "ci",
+      "start": "2026-09-12T05:18:31Z",
+      "end": "2026-09-12T05:22:00Z",
+      "seconds": 209,
+      "meta": {
+        "run_id": 34675251035,
+        "name": "Approval engine",
+        "headSha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675251040",
+      "kind": "ci",
+      "start": "2026-09-12T05:18:31Z",
+      "end": "2026-09-12T05:22:22Z",
+      "seconds": 231,
+      "meta": {
+        "run_id": 34675251040,
+        "name": "preview-plane",
+        "headSha": "cb820f6042447a269d95eb25e2ebdb8eff3aba9b",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675396323",
+      "kind": "ci",
+      "start": "2026-09-12T05:21:55Z",
+      "end": "2026-09-12T05:24:38Z",
+      "seconds": 163,
+      "meta": {
+        "run_id": 34675396323,
+        "name": "Approval engine",
+        "headSha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675396240",
+      "kind": "ci",
+      "start": "2026-09-12T05:21:55Z",
+      "end": "2026-09-12T05:24:49Z",
+      "seconds": 174,
+      "meta": {
+        "run_id": 34675396240,
+        "name": "preview-plane",
+        "headSha": "c67ee26a75c26fd58c028d7eaaac9f93cf4c0117",
+        "conclusion": "cancelled",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675497655",
+      "kind": "ci",
+      "start": "2026-09-12T05:24:20Z",
+      "end": "2026-09-12T05:27:49Z",
+      "seconds": 209,
+      "meta": {
+        "run_id": 34675497655,
+        "name": "Approval engine",
+        "headSha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34675497663",
+      "kind": "ci",
+      "start": "2026-09-12T05:24:20Z",
+      "end": "2026-09-12T05:30:21Z",
+      "seconds": 361,
+      "meta": {
+        "run_id": 34675497663,
+        "name": "preview-plane",
+        "headSha": "bb2a10c94dc5349cc730e364d7dc0cb78618ff5b",
+        "conclusion": "success",
+        "pr": 257
+      }
+    },
+    {
+      "id": "span-ci-34717007480",
+      "kind": "ci",
+      "start": "2026-09-12T20:24:40Z",
+      "end": "2026-09-12T20:26:51Z",
+      "seconds": 131,
+      "meta": {
+        "run_id": 34717007480,
+        "name": "Agent platform",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "success",
+        "pr": 263
+      }
+    },
+    {
+      "id": "span-ci-34717007507",
+      "kind": "ci",
+      "start": "2026-09-12T20:24:40Z",
+      "end": "2026-09-12T20:28:05Z",
+      "seconds": 205,
+      "meta": {
+        "run_id": 34717007507,
+        "name": "Approval engine",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "success",
+        "pr": 263
+      }
+    },
+    {
+      "id": "span-ci-34717007421",
+      "kind": "ci",
+      "start": "2026-09-12T20:24:40Z",
+      "end": "2026-09-12T20:29:14Z",
+      "seconds": 274,
+      "meta": {
+        "run_id": 34717007421,
+        "name": "preview-plane",
+        "headSha": "29b8c4c80e767f525198b28645345c48dab4803d",
+        "conclusion": "failure",
+        "pr": 263
+      }
+    },
+    {
+      "id": "span-idle-1",
+      "kind": "idle",
+      "start": "2026-09-11T19:09:00.248Z",
+      "end": "2026-09-11T19:26:32.796Z",
+      "seconds": 1052,
+      "meta": {
+        "reason": "after agent coverage until next agent.started",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-2",
+      "kind": "idle",
+      "start": "2026-09-11T20:30:05.882Z",
+      "end": "2026-09-11T21:45:07.858Z",
+      "seconds": 4501,
+      "meta": {
+        "reason": "after agent coverage until next agent.started",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-3",
+      "kind": "idle",
+      "start": "2026-09-12T05:30:55.866Z",
+      "end": "2026-09-12T05:33:00.954Z",
+      "seconds": 125,
+      "meta": {
+        "reason": "after agent coverage until next agent.started",
+        "status_assumed": "In progress"
+      }
+    },
+    {
+      "id": "span-idle-4",
+      "kind": "idle",
+      "start": "2026-09-12T05:34:14.067Z",
+      "end": "2026-09-12T15:11:15.464Z",
+      "seconds": 34621,
+      "meta": {
+        "reason": "after agent coverage until next agent.started",
+        "status_assumed": "In progress"
+      }
+    }
+  ],
+  "totals": {
+    "wall_seconds": 100624,
+    "waiting_human_seconds": 0,
+    "idle_seconds": 40299,
+    "stuck_seconds": 0,
+    "ci_seconds": 11230,
+    "agent_seconds": 64219
+  },
+  "omissions": [
+    {
+      "wanted": "task.created",
+      "reason": "Notion created_time not exposed by fetch; query_data_sources plan-gated"
+    },
+    {
+      "wanted": "task.status_changed / task.bot_changed",
+      "reason": "No proven property-history timestamps for Status/Bot transitions (current: In progress / Solon (EM))"
+    },
+    {
+      "wanted": "board.stage_changed",
+      "reason": "Eng PRs Stage history not recoverable; only current Stage + page_last_edited_at (Done/Working) without transition proofs"
+    },
+    {
+      "wanted": "deploy.completed for PR #244",
+      "reason": "No GitHub deployments record for merge SHA 1ee46424"
+    },
+    {
+      "wanted": "human.approval_* / waiting_human",
+      "reason": "No explicit merge-ask / approval widget timestamps; Fit notes recorded as note events only"
+    },
+    {
+      "wanted": "todo.*",
+      "reason": "Cursor todos not recoverable as timed events from transcripts"
+    },
+    {
+      "wanted": "subagent.*",
+      "reason": "system_notification subagent tasks lack paired ended events with stable ids usable as timed spans"
+    },
+    {
+      "wanted": "agent.slash_command for PR-A bc-84d5d938",
+      "reason": "Launch prompt did not explicitly invoke Use poteto-mode / pstack"
+    },
+    {
+      "wanted": "usage enrichment",
+      "reason": "CURSOR_API_KEY not available in Mac env/keychain at enrich time; will retry if key present"
+    }
+  ]
+}
