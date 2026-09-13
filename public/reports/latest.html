@@ -13,7 +13,7 @@
   .wrap { max-width: 960px; margin: 0 auto; }
   h1 { font-size: 1.55rem; margin: 0 0 4px; }
   .meta { color: var(--muted); margin: 0 0 20px; }
-  .pulse { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
+  .pulse { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-bottom: 28px; }
   .pulse .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
   .pulse .n { font-size: 1.6rem; font-weight: 700; }
   .pulse .l { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
@@ -41,37 +41,56 @@
   .actions a { margin-right: 10px; white-space: nowrap; }
   code { font-size: 0.86em; background: #f1f5f9; padding: 1px 5px; border-radius: 4px; }
   footer { margin-top: 32px; color: var(--muted); font-size: 0.8rem; }
+  details.waiting { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px; }
+  details.waiting summary { cursor: pointer; font-weight: 600; color: var(--muted); }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>ITSM progress report</h1>
-  <p class="meta">Daily window · Fri 11 Sep 17:00 → Sat 12 Sep 17:00 2026 (America/Denver) · Notion Tasks + Eng PRs · Eng Done confirmed MERGED via <code>gh</code></p>
+  <p class="meta">Daily window · Fri 11 Sep 17:00 → Sat 12 Sep 17:00 2026 (America/Denver) · Notion Tasks + Eng PRs · Eng Done confirmed MERGED via <code>gh</code> · layout rebuild (Needs-you squash-first; no Ready/Hard-gates sections)</p>
 
   <div class="pulse">
-    <div class="card"><div class="n">6</div><div class="l">Needs you</div></div>
-    <div class="card"><div class="n">2</div><div class="l">Hard gates</div></div>
-    <div class="card"><div class="n">1</div><div class="l">Done in window</div></div>
-    <div class="card"><div class="n">3</div><div class="l">In progress</div></div>
+    <div class="card"><div class="n">5</div><div class="l">Needs you</div></div>
+    <div class="card"><div class="n">0</div><div class="l">In progress</div></div>
+    <div class="card"><div class="n">4</div><div class="l">Not started</div></div>
+    <div class="card"><div class="n">5</div><div class="l">Waiting deps</div></div>
+    <div class="card"><div class="n">2</div><div class="l">Merged</div></div>
   </div>
 
   <h2>1. Needs you</h2>
-  <p class="note">One row per human action — open the Action link to review or do it.</p>
+  <p class="note">Squash-merge tickets first (ticket parent + nested Eng PR), then sign-off / blocked, then lock / attention. No separate Ready-for-squash or Hard-gates sections. Tickets here are not repeated in In progress.</p>
   <table>
-    <thead><tr><th>Item</th><th>Action</th><th>Links</th></tr></thead>
+    <thead><tr><th>Ticket / PR</th><th>Action</th><th>Links</th></tr></thead>
     <tbody>
       <tr>
-        <td><span class="badge b-action">Sign-off</span><br>
+        <td><span class="badge b-ready">Squash merge</span><br>
+          <a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">ONTO-25 — Operations | Entities sub-nav</a></td>
+        <td class="note">Kill combined Ontology view; nested Operations|Entities only when Ontology selected. Product PASS + Jony Fit PASS (prior tip). Squash via Geronimo when CI green on tip <code>4978825</code>.</td>
+        <td class="actions">
+          <a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">Notion →</a>
+          <a href="https://github.com/elementum-fde/products/pull/253">PR #253 →</a>
+        </td>
+      </tr>
+      <tr class="nest">
+        <td>↳ Eng <a href="https://github.com/elementum-fde/products/pull/253">#253</a> — split Operations and Entities views</td>
+        <td><span class="badge b-ready">Ready for review</span> · OPEN (gh) · tip <code>4978825</code> · Notion Eng still notes prior tip <code>21a1e30</code></td>
+        <td class="actions"><a href="https://app.notion.com/3d85dbddf0ea811ea219c4fd8eb32dc9">Eng PR →</a></td>
+      </tr>
+
+      <tr>
+        <td><span class="badge b-action">Sign-off</span> <span class="badge b-blocked">Blocked</span><br>
           <a href="https://app.notion.com/3d65dbddf0ea8156b03be5dc94368e9b">INC-0 — SIGN-OFF Incident Product Design</a></td>
-        <td class="note">Approve Incident product design before any INC-* / Incident ontology work. Gates INC-1…6 + ONTO-8.</td>
+        <td class="note">Approve Incident product design before any INC-* / Incident ontology work. Gates INC-1…6 + ONTO-8. Branch cue: <code>cursor/incident-product-design-1598</code>.</td>
         <td class="actions"><a href="https://app.notion.com/3d65dbddf0ea8156b03be5dc94368e9b">Notion →</a></td>
       </tr>
       <tr>
-        <td><span class="badge b-action">Sign-off</span><br>
+        <td><span class="badge b-action">Sign-off</span> <span class="badge b-blocked">Blocked</span><br>
           <a href="https://app.notion.com/3d65dbddf0ea8152acc7f0bcdcf5c3bc">CMDB-0 — SIGN-OFF CMDB Product Design</a></td>
-        <td class="note">Approve CMDB product design before any CMDB-* / CMDB ontology work. Gates CMDB-1…6 + ONTO-9.</td>
+        <td class="note">Approve CMDB product design before any CMDB-* / CMDB ontology work. Gates CMDB-1…6 + ONTO-9. Branch cue: <code>cursor/cmdb-product-design-3f3f</code>.</td>
         <td class="actions"><a href="https://app.notion.com/3d65dbddf0ea8152acc7f0bcdcf5c3bc">Notion →</a></td>
       </tr>
+
       <tr>
         <td><span class="badge b-action">Variant pick</span><br>
           <a href="https://app.notion.com/3d95dbddf0ea81a0a90ad64c55459e92">ONTO-26 — Investigate ontology variants</a></td>
@@ -79,135 +98,35 @@
         <td class="actions"><a href="https://app.notion.com/3d95dbddf0ea81a0a90ad64c55459e92">Notion →</a></td>
       </tr>
       <tr>
-        <td><span class="badge b-ready">Squash merge</span><br>
-          <a href="https://app.notion.com/3d85dbddf0ea811a871bd9dc7eb53314">ONTO-20</a> · Eng <a href="https://github.com/elementum-fde/products/pull/251">#251</a></td>
-        <td class="note">Extract Knowledge named-ops + <code>compileKnowledge</code> out of ontology. Tip <code>ba31ac5</code> · Product PASS — squash via Geronimo.</td>
-        <td class="actions">
-          <a href="https://github.com/elementum-fde/products/pull/251">PR #251 →</a>
-          <a href="https://app.notion.com/3d85dbddf0ea811a871bd9dc7eb53314">Notion →</a>
-        </td>
-      </tr>
-      <tr>
-        <td><span class="badge b-ready">Squash merge</span><br>
-          <a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">ONTO-25</a> · Eng <a href="https://github.com/elementum-fde/products/pull/253">#253</a></td>
-        <td class="note">Operations | Entities sub-nav. Tip <code>21a1e30</code> · Product PASS + Jony Fit PASS — squash via Geronimo.</td>
-        <td class="actions">
-          <a href="https://github.com/elementum-fde/products/pull/253">PR #253 →</a>
-          <a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">Notion →</a>
-        </td>
-      </tr>
-      <tr>
         <td><span class="badge b-action">Lock / attention</span><br>
-          <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">ONTO-21</a> · PR-F <a href="https://github.com/elementum-fde/products/pull/263">#263</a></td>
-        <td class="note">Sean LOCK: eligibility = no ontology joins/relations; write-freeze standard for all eligible; first smoke <code>KnowledgeSetupProposal</code>; generic migrate path. Tip <code>fa73915</code> (widen landed). <strong>HOLD</strong> squash until demo VIDEO + pre-merge Knowledge smoke. Prior PASS tip <code>61fea00</code> stale.</td>
+          <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">ONTO-21 — CloudLink management</a></td>
+        <td class="note">Sean LOCK: eligibility = no ontology joins/relations; write-freeze standard for all eligible; first smoke <code>KnowledgeSetupProposal</code>; generic migrate path. Tip <code>7cadee5</code> (demo video attached on PR). <strong>HOLD</strong> squash until demo VIDEO + pre-merge Knowledge smoke. Prior PASS tip <code>61fea00</code> stale.</td>
         <td class="actions">
           <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">Notion ticket →</a>
           <a href="https://github.com/elementum-fde/products/pull/263">PR #263 →</a>
           <a href="https://app.notion.com/3d95dbddf0ea81abb16cc6c6b045d240">Eng PR-F →</a>
         </td>
       </tr>
-    </tbody>
-  </table>
-
-  <h2>2. Hard gates (Blocked)</h2>
-  <table>
-    <thead><tr><th>Item</th><th>Project</th><th>Why</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><span class="badge b-blocked">Blocked</span><br>
-          <a href="https://app.notion.com/3d65dbddf0ea8156b03be5dc94368e9b">INC-0 — SIGN-OFF Incident Product Design</a></td>
-        <td>Resolv — Incident</td>
-        <td class="note">Your product-design approval before any INC-* / Incident ontology. Gates INC-1…6 + ONTO-8. Branch cue: <code>cursor/incident-product-design-1598</code>.</td>
-      </tr>
-      <tr>
-        <td><span class="badge b-blocked">Blocked</span><br>
-          <a href="https://app.notion.com/3d65dbddf0ea8152acc7f0bcdcf5c3bc">CMDB-0 — SIGN-OFF CMDB Product Design</a></td>
-        <td>Resolv — CMDB</td>
-        <td class="note">Your product-design approval before any CMDB-* / CMDB ontology. Gates CMDB-1…6 + ONTO-9. Branch cue: <code>cursor/cmdb-product-design-3f3f</code>.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>3. Ready for squash merge</h2>
-  <table>
-    <thead><tr><th>Eng PR</th><th>Ticket</th><th>Tip</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><a href="https://github.com/elementum-fde/products/pull/251">#251</a> — ONTO-20 extract Knowledge named-ops / <code>compileKnowledge*</code></td>
-        <td><a href="https://app.notion.com/3d85dbddf0ea811a871bd9dc7eb53314">ONTO-20</a></td>
-        <td><code>ba31ac5</code></td>
-        <td><span class="badge b-ready">Ready for review</span> · Product PASS · OPEN (gh)</td>
-      </tr>
-      <tr>
-        <td><a href="https://github.com/elementum-fde/products/pull/253">#253</a> — ONTO-25 Operations | Entities sub-nav</td>
-        <td><a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">ONTO-25</a></td>
-        <td><code>21a1e30</code></td>
-        <td><span class="badge b-ready">Ready for review</span> · Product PASS · Jony Fit PASS · OPEN (gh)</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>4. Waiting on deps (collapsed)</h2>
-  <table>
-    <thead><tr><th>Chain</th><th>Count</th><th>Blocked by</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>INC-1 … INC-6</td>
-        <td>6</td>
-        <td class="note">INC-0 sign-off</td>
-      </tr>
-      <tr>
-        <td>CMDB-1 … CMDB-6</td>
-        <td>6</td>
-        <td class="note">CMDB-0 sign-off</td>
-      </tr>
-      <tr>
-        <td>ONTO-8 / ONTO-9</td>
-        <td>2</td>
-        <td class="note">INC-0 / CMDB-0 (+ ONTO-4)</td>
-      </tr>
-      <tr>
-        <td>ONTO-4 → 6 → 7 → 10 → 11</td>
-        <td>5</td>
-        <td class="note">SR path + bakeoffs; ONTO-4 still marked Waiting though ONTO-1 is Done (board hygiene)</td>
-      </tr>
-      <tr>
-        <td><a href="https://app.notion.com/3d85dbddf0ea8168b443ce2336ed69b2">ONTO-18</a> (PG↔SF migrate UI)</td>
-        <td>1</td>
-        <td class="note">ONTO-21 PG→PG first; SF hard-gated</td>
-      </tr>
-      <tr>
-        <td><a href="https://app.notion.com/3d95dbddf0ea81a0a90ad64c55459e92">ONTO-26</a> variants</td>
-        <td>1</td>
-        <td class="note">Awaiting Sean variant pick (also in Needs you)</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>5. Got done — Merged (squash-merged) in window</h2>
-  <p class="note">Window = Fri 17:00 → Sat 17:00 America/Denver (Fri 23:00 → Sat 23:00 UTC). Parent = Notion ticket. Nested = Eng PRs confirmed <strong>MERGED</strong> on GitHub with merge tip. Fit PASS alone is not merge status. Earlier Friday daytime merges (ONTO-1/15–17/19/22, PR-A…D, PJM-10–12) are outside this daily window.</p>
-
-  <h3>Ontology</h3>
-  <table>
-    <thead><tr><th>Ticket / PR</th><th>Merge status</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><span class="badge b-prog">Partial</span>
-          <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">ONTO-21 — CloudLink management</a>
-          <span class="note">(ticket still In progress; PR-E landed in-window)</span></td>
-        <td class="note">PR-A…D merged earlier Fri (pre-window). PR-F Working #263 tip <code>fa73915</code>.</td>
-      </tr>
       <tr class="nest">
-        <td>↳ <a href="https://github.com/elementum-fde/products/pull/257">#257</a> PR-E — Cloud Links provider card (register/list/health)</td>
-        <td><span class="badge b-done">Merged</span> tip <code>dd8c8ee</code> (pre-merge tip <code>bb2a10c</code>) · 2026-09-12 05:38 UTC · 11:38 PM Fri MT</td>
+        <td>↳ Eng <a href="https://github.com/elementum-fde/products/pull/263">#263</a> PR-F — PG→PG migrate wizard</td>
+        <td><span class="badge b-prog">Working</span> · OPEN (gh) · tip <code>7cadee5</code> · agent <a href="https://cursor.com/agents/bc-b911aaeb-7d51-4780-83fd-5f0232399ce3">bc-b911aaeb</a></td>
+        <td class="actions"><a href="https://app.notion.com/3d95dbddf0ea81abb16cc6c6b045d240">Eng PR-F →</a></td>
       </tr>
     </tbody>
   </table>
 
-  <h3>Project Management / Incident / CMDB</h3>
-  <p class="note">No squash-merges in this daily window (PJM-10/11/12 landed earlier Friday, before 17:00 MT).</p>
+  <h2>2. In progress</h2>
+  <p class="note">Only tickets actively worked that are <strong>not</strong> already in Needs you. ONTO-25 and ONTO-21 live under Needs you (squash / HOLD). ONTO-20’s Eng PR merged — see Got done (board Status still In progress).</p>
+  <table>
+    <thead><tr><th>Ticket</th><th>Eng / status</th><th>Links</th></tr></thead>
+    <tbody>
+      <tr>
+        <td colspan="3" class="note">None this window — every In-progress Ontology ticket is Needs-you or already has a Merged PR in Got done.</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <h2>6. Outstanding — not started</h2>
+  <h2>3. Outstanding — not started</h2>
   <table>
     <thead><tr><th>Item</th><th>Project</th><th>Note</th></tr></thead>
     <tbody>
@@ -238,46 +157,78 @@
     </tbody>
   </table>
 
-  <h2>7. In progress (Ontology)</h2>
-  <p class="note">Notion ticket + Eng PR links. No separate Also-in-flight footer.</p>
+  <h2>4. Waiting on deps</h2>
+  <details class="waiting" open>
+    <summary>Collapsed chains (one row per gate) — not Needs-you</summary>
+    <table style="margin-top:10px;border:none">
+      <thead><tr><th>Chain</th><th>Count</th><th>Blocked by</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>INC-1 … INC-6</td>
+          <td>6</td>
+          <td class="note">INC-0 sign-off</td>
+        </tr>
+        <tr>
+          <td>CMDB-1 … CMDB-6</td>
+          <td>6</td>
+          <td class="note">CMDB-0 sign-off</td>
+        </tr>
+        <tr>
+          <td>ONTO-8 / ONTO-9</td>
+          <td>2</td>
+          <td class="note">INC-0 / CMDB-0 (+ ONTO-4)</td>
+        </tr>
+        <tr>
+          <td>ONTO-4 → 6 → 7 → 10 → 11</td>
+          <td>5</td>
+          <td class="note">SR path + bakeoffs; ONTO-4 still marked Waiting though ONTO-1 is Done (board hygiene)</td>
+        </tr>
+        <tr>
+          <td><a href="https://app.notion.com/3d85dbddf0ea8168b443ce2336ed69b2">ONTO-18</a> (PG↔SF migrate UI)</td>
+          <td>1</td>
+          <td class="note">ONTO-21 PG→PG first; SF hard-gated</td>
+        </tr>
+      </tbody>
+    </table>
+  </details>
+
+  <h2>5. Got done — Merged (squash-merged)</h2>
+  <p class="note">Window = Fri 17:00 → Sat 17:00 America/Denver (Fri 23:00 → Sat 23:00 UTC). Parent = Notion ticket. Nested = Eng PRs confirmed <strong>MERGED</strong> on GitHub with merge tip. Fit PASS alone is not merge status. #251 merged shortly after the 17:00 MT cut (live refresh) — included so it is not left as Needs-you squash.</p>
+
+  <h3>Ontology</h3>
   <table>
-    <thead><tr><th>Ticket</th><th>Eng / status</th><th>Links</th></tr></thead>
+    <thead><tr><th>Ticket / PR</th><th>Merge status</th></tr></thead>
     <tbody>
       <tr>
-        <td><span class="badge b-prog">In progress</span>
-          <a href="https://app.notion.com/3d85dbddf0ea811a871bd9dc7eb53314">ONTO-20 — Extract Knowledge named-ops</a></td>
-        <td class="note"><span class="badge b-ready">Ready for review</span> <a href="https://github.com/elementum-fde/products/pull/251">#251</a> tip <code>ba31ac5</code> — awaiting Sean squash</td>
-        <td class="actions">
-          <a href="https://app.notion.com/3d85dbddf0ea811a871bd9dc7eb53314">Notion →</a>
-          <a href="https://github.com/elementum-fde/products/pull/251">PR →</a>
-        </td>
+        <td><span class="badge b-done">Merged PR</span>
+          <a href="https://app.notion.com/3d85dbddf0ea811a871bd9dc7eb53314">ONTO-20 — Extract Knowledge named-ops</a>
+          <span class="note">(Notion Status still In progress — flip when board catches up)</span></td>
+        <td class="note">#251 was Ready-for-review / Product PASS tip <code>ba31ac5</code> pre-merge.</td>
+      </tr>
+      <tr class="nest">
+        <td>↳ <a href="https://github.com/elementum-fde/products/pull/251">#251</a> — register Knowledge from product</td>
+        <td><span class="badge b-done">Merged</span> tip <code>df8e133</code> (pre-merge tip <code>ba31ac5</code>) · 2026-09-13 00:10 UTC · <strong>6:10 PM Sat MT</strong> (after 5pm cut)</td>
       </tr>
       <tr>
-        <td><span class="badge b-prog">In progress</span>
-          <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">ONTO-21 — CloudLink management</a></td>
-        <td class="note">PR-A…E <span class="badge b-done">Merged</span>. PR-F <span class="badge b-prog">Working</span> <a href="https://github.com/elementum-fde/products/pull/263">#263</a> tip <code>fa73915</code> — widen eligibility landed; HOLD for video + Knowledge smoke · agent <code>bc-b911aaeb</code></td>
-        <td class="actions">
-          <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">Notion →</a>
-          <a href="https://github.com/elementum-fde/products/pull/263">PR #263 →</a>
-          <a href="https://app.notion.com/3d95dbddf0ea81abb16cc6c6b045d240">Eng PR-F →</a>
-          <a href="https://cursor.com/agents/bc-b911aaeb-7d51-4780-83fd-5f0232399ce3">Agent →</a>
-        </td>
+        <td><span class="badge b-prog">Partial</span>
+          <a href="https://app.notion.com/3d85dbddf0ea810c92e7cddc2c7c5904">ONTO-21 — CloudLink management</a>
+          <span class="note">(ticket still In progress / PR-F HOLD in Needs you; PR-E landed in-window)</span></td>
+        <td class="note">PR-A…D merged earlier Fri (pre-window). PR-F Working #263 tip <code>7cadee5</code>.</td>
       </tr>
-      <tr>
-        <td><span class="badge b-prog">In progress</span>
-          <a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">ONTO-25 — Operations | Entities sub-nav</a></td>
-        <td class="note"><span class="badge b-ready">Ready for review</span> <a href="https://github.com/elementum-fde/products/pull/253">#253</a> tip <code>21a1e30</code> — Jony Fit PASS; awaiting Sean squash</td>
-        <td class="actions">
-          <a href="https://app.notion.com/3d85dbddf0ea816487f7f5e9fd7e3077">Notion →</a>
-          <a href="https://github.com/elementum-fde/products/pull/253">PR →</a>
-        </td>
+      <tr class="nest">
+        <td>↳ <a href="https://github.com/elementum-fde/products/pull/257">#257</a> PR-E — Cloud Links provider card (register/list/health)</td>
+        <td><span class="badge b-done">Merged</span> tip <code>dd8c8ee</code> (pre-merge tip <code>bb2a10c</code>) · 2026-09-12 05:38 UTC · 11:38 PM Fri MT</td>
       </tr>
     </tbody>
   </table>
 
+  <h3>Project Management / Incident / CMDB</h3>
+  <p class="note">No squash-merges in this daily window (PJM-10/11/12 landed earlier Friday, before 17:00 MT).</p>
+
   <footer>
-    Sources: Grok Bot Workbench Tasks + Eng PRs · generated 2026-09-12 ~17:30 MT by Leslie Groves (PjM).<br/>
-    Window: 2026-09-11 17:00 → 2026-09-12 17:00 America/Denver. Eng Done verified MERGED via <code>gh pr view</code> on elementum-fde/products (#257). SQL query quota exhausted this run — refreshed key pages via Notion fetch + search; standing board state cross-checked against prior catch-up JSON.
+    Sources: Grok Bot Workbench Tasks + Eng PRs · regenerated 2026-09-12 ~18:20 MT by Leslie Groves (PjM) under Sean’s new layout.<br/>
+    Window: 2026-09-11 17:00 → 2026-09-12 17:00 America/Denver. Eng verified via <code>gh pr view</code> on elementum-fde/products (#251 MERGED, #253 OPEN tip 4978825, #257 MERGED, #263 OPEN tip 7cadee5).<br/>
+    Sections: Needs you → In progress → Outstanding — not started → Waiting on deps → Got done — Merged. Ready-for-squash and Hard-gates sections removed; squash tickets only under Needs you.
   </footer>
 </div>
 </body>
