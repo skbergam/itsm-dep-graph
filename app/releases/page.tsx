@@ -12,6 +12,7 @@ interface Feature {
   id: string;
   name: string;
   project: string;
+  project_type: 'App' | 'Engine' | 'Platform' | null;
   milestone: 'Alpha' | 'Beta' | 'GA' | null;
   open_tasks: number;
   total_tasks: number;
@@ -113,15 +114,18 @@ export default function ReleaseProgressPage() {
   function calculateMetrics(features: Feature[]): SectionData[] {
     const sectionMap = new Map<string, SectionData>();
     
-    // Map component names to sections
-    const componentToSection: Record<string, 'Product' | 'Engines' | 'Platform'> = {
+    // Map project type to section name
+    const typeToSection: Record<string, 'Product' | 'Engines' | 'Platform'> = {
       'App': 'Product',
       'Engine': 'Engines',
       'Platform': 'Platform',
     };
     
     features.forEach(feature => {
-      const section = componentToSection[feature.project] || 'Platform';
+      // Use project_type if available, fall back to project name mapping
+      const section = feature.project_type 
+        ? typeToSection[feature.project_type] || 'Platform'
+        : 'Platform';
       const componentName = feature.project;
       
       if (!sectionMap.has(section)) {
@@ -242,7 +246,9 @@ export default function ReleaseProgressPage() {
                 disabled={releases.length === 0}
               >
                 <option value="">
-                  {releases.length === 0 ? 'No releases available' : 'Choose a release...'}
+                  {releases.length === 0 
+                    ? 'Set NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID to load releases' 
+                    : 'Choose a release...'}
                 </option>
                 {releases.map((release) => (
                   <option key={release.id} value={release.id}>

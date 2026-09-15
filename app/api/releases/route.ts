@@ -7,7 +7,7 @@ export async function GET() {
     return NextResponse.json(
       { 
         error: 'Notion not configured',
-        message: 'Set NOTION_TOKEN and NOTION_DATABASE_ID environment variables'
+        message: 'Set NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID environment variables'
       },
       { status: 503 }
     );

@@ -1,5 +1,5 @@
 // Notion API helpers for fetching releases and features
-// Requires NOTION_TOKEN and NOTION_DATABASE_ID environment variables
+// Requires NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID environment variables
 
 interface NotionPage {
   id: string;
@@ -24,6 +24,7 @@ export interface Feature {
   name: string;
   release_id: string;
   project: string; // component name
+  project_type: 'App' | 'Engine' | 'Platform' | null;
   milestone: 'Alpha' | 'Beta' | 'GA' | null;
   open_tasks: number;
   total_tasks: number;
@@ -31,7 +32,11 @@ export interface Feature {
 }
 
 export function isNotionConfigured(): boolean {
-  return !!(process.env.NOTION_TOKEN && process.env.NOTION_DATABASE_ID);
+  return !!(
+    process.env.NOTION_TOKEN &&
+    process.env.NOTION_RELEASES_DATABASE_ID &&
+    process.env.NOTION_FEATURES_DATABASE_ID
+  );
 }
 
 async function notionRequest(endpoint: string, options: RequestInit = {}) {
@@ -51,7 +56,8 @@ async function notionRequest(endpoint: string, options: RequestInit = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`Notion API error: ${response.statusText}`);
+    const errorText = await response.text();
+    throw new Error(`Notion API error (${response.status}): ${errorText}`);
   }
 
   return response.json();
@@ -63,17 +69,12 @@ export async function fetchReleases(): Promise<Release[]> {
   }
 
   try {
-    const databaseId = process.env.NOTION_DATABASE_ID;
+    // Default to the known Releases DB if not set
+    const databaseId = process.env.NOTION_RELEASES_DATABASE_ID || '5f9550febb5044d19b752dfba180b5d7';
+    
     const data = await notionRequest(`/databases/${databaseId}/query`, {
       method: 'POST',
-      body: JSON.stringify({
-        filter: {
-          property: 'Type',
-          select: {
-            equals: 'Release',
-          },
-        },
-      }),
+      body: JSON.stringify({}), // No filter needed - this is the Releases DB
     }) as NotionDatabaseQuery;
 
     return data.results.map((page) => ({
@@ -93,43 +94,82 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
   }
 
   try {
-    const databaseId = process.env.NOTION_DATABASE_ID;
-    const data = await notionRequest(`/databases/${databaseId}/query`, {
+    // Default to the known Features DB if not set
+    const featuresDatabaseId = process.env.NOTION_FEATURES_DATABASE_ID || 'd007a63f4108487483e20771fa2f593a';
+    
+    // Query Features DB filtered by Releases relation
+    const data = await notionRequest(`/databases/${featuresDatabaseId}/query`, {
       method: 'POST',
       body: JSON.stringify({
         filter: {
-          and: [
-            {
-              property: 'Type',
-              select: {
-                equals: 'Feature',
-              },
-            },
-            {
-              property: 'Release',
-              relation: {
-                contains: releaseId,
-              },
-            },
-          ],
+          property: 'Releases',
+          relation: {
+            contains: releaseId,
+          },
         },
       }),
     }) as NotionDatabaseQuery;
 
-    return data.results.map((page) => {
+    // Fetch full feature data including project info and tasks
+    const features: Feature[] = [];
+    
+    for (const page of data.results) {
       const properties = page.properties;
       
-      return {
+      // Get project relation to resolve project name and type
+      const projectRelation = properties.Project?.relation || [];
+      let projectName = 'Unknown';
+      let projectType: 'App' | 'Engine' | 'Platform' | null = null;
+      
+      if (projectRelation.length > 0) {
+        const projectId = projectRelation[0].id;
+        try {
+          const projectPage = await notionRequest(`/pages/${projectId}`, {
+            method: 'GET',
+          });
+          projectName = extractText(projectPage.properties.Name || projectPage.properties.Title);
+          projectType = extractSelect(projectPage.properties.Type) as 'App' | 'Engine' | 'Platform' | null;
+        } catch (error) {
+          console.error(`Error fetching project ${projectId}:`, error);
+        }
+      }
+      
+      // Get tasks relation to count open/total
+      const tasksRelation = properties.Tasks?.relation || [];
+      let openTasks = 0;
+      let totalTasks = tasksRelation.length;
+      
+      // Query tasks to count open vs total
+      if (tasksRelation.length > 0) {
+        for (const taskRef of tasksRelation) {
+          try {
+            const taskPage = await notionRequest(`/pages/${taskRef.id}`, {
+              method: 'GET',
+            });
+            const status = extractSelect(taskPage.properties.Status);
+            if (status && status !== 'Done' && status !== 'Archived') {
+              openTasks++;
+            }
+          } catch (error) {
+            console.error(`Error fetching task ${taskRef.id}:`, error);
+          }
+        }
+      }
+      
+      features.push({
         id: page.id,
         name: extractText(properties.Name || properties.Title),
         release_id: releaseId,
-        project: extractText(properties.Project) || 'Unknown',
+        project: projectName,
+        project_type: projectType,
         milestone: extractSelect(properties.Milestone) as 'Alpha' | 'Beta' | 'GA' | null,
-        open_tasks: extractNumber(properties['Open Tasks']) || 0,
-        total_tasks: extractNumber(properties['Total Tasks']) || 0,
+        open_tasks: openTasks,
+        total_tasks: totalTasks,
         notion_url: page.url || `https://notion.so/${page.id.replace(/-/g, '')}`,
-      };
-    });
+      });
+    }
+
+    return features;
   } catch (error) {
     console.error('Error fetching features from Notion:', error);
     return [];
@@ -159,4 +199,9 @@ function extractSelect(property: any): string | null {
 function extractNumber(property: any): number | null {
   if (!property || typeof property.number !== 'number') return null;
   return property.number;
+}
+
+function extractRelation(property: any): string[] {
+  if (!property || !Array.isArray(property.relation)) return [];
+  return property.relation.map((r: any) => r.id);
 }
