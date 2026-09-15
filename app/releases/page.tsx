@@ -212,20 +212,57 @@ export default function ReleaseProgressPage() {
   }
   
   function calculateReleaseMilestone(sections: SectionData[]): 'Alpha' | 'Beta' | 'GA' | 'None' {
-    let totalGa = 0;
-    let totalBeta = 0;
-    let totalAlpha = 0;
+    // Collect all feature milestones across all sections/components
+    const allMilestones: (string | null)[] = [];
     
     sections.forEach(section => {
-      totalGa += section.ga_n;
-      totalBeta += section.beta_n;
-      totalAlpha += section.alpha_n;
+      section.components.forEach(component => {
+        component.features.forEach(feature => {
+          allMilestones.push(feature.milestone);
+        });
+      });
     });
     
-    if (totalGa > 0) return 'GA';
-    if (totalBeta > 0) return 'Beta';
-    if (totalAlpha > 0) return 'Alpha';
+    if (allMilestones.length === 0) {
+      return 'None';
+    }
+    
+    // If any feature has null/missing milestone, floor is None
+    if (allMilestones.some(m => m === null || m === undefined)) {
+      return 'None';
+    }
+    
+    // Calculate floor: minimum maturity across all features
+    // Release is at maturity M only when EVERY feature is >= M
+    const hasAlpha = allMilestones.some(m => m === 'Alpha');
+    const hasBeta = allMilestones.some(m => m === 'Beta');
+    const hasGa = allMilestones.some(m => m === 'GA');
+    
+    // If any feature is Alpha, floor is Alpha
+    if (hasAlpha) return 'Alpha';
+    
+    // If any feature is Beta (and none are Alpha), floor is Beta
+    if (hasBeta) return 'Beta';
+    
+    // If all features are GA, floor is GA
+    if (hasGa) return 'GA';
+    
     return 'None';
+  }
+  
+  function stripComponentPrefix(name: string): string {
+    return name
+      .replace(/^Resolv\s*[—-]\s*/i, '')
+      .replace(/^Platform\s*[—-]\s*/i, '');
+  }
+  
+  function getSectionBackgroundColor(sectionName: string): string {
+    switch (sectionName) {
+      case 'Product': return 'bg-blue-50';
+      case 'Engines': return 'bg-purple-50';
+      case 'Platform': return 'bg-green-50';
+      default: return 'bg-gray-50';
+    }
   }
   
   const [drilldownComponent, setDrilldownComponent] = useState<ComponentData | null>(null);
@@ -264,16 +301,16 @@ export default function ReleaseProgressPage() {
               <select
                 value={selectedRelease}
                 onChange={(e) => setSelectedRelease(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
                 disabled={releases.length === 0}
               >
-                <option value="">
+                <option value="" className="text-gray-900">
                   {releases.length === 0 
                     ? 'Set NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID to load releases' 
                     : 'Choose a release...'}
                 </option>
                 {releases.map((release) => (
-                  <option key={release.id} value={release.id}>
+                  <option key={release.id} value={release.id} className="text-gray-900">
                     {release.name}
                   </option>
                 ))}
@@ -332,7 +369,7 @@ export default function ReleaseProgressPage() {
             {/* Release Rollup */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
-                Release Milestone: {calculateReleaseMilestone(sections)}
+                {releases.find(r => r.id === selectedRelease)?.name || 'Release'} · Derived maturity: {calculateReleaseMilestone(sections)}
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                 <div>
@@ -359,49 +396,30 @@ export default function ReleaseProgressPage() {
             {/* Sections */}
             {sections.map((section) => (
               <div key={section.name} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
-                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">{section.name}</h2>
-                
-                {/* Section Rollup */}
-                <div className="mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
-                    <div>
-                      <span className="text-gray-700 font-medium">Alpha: </span>
-                      <span className="font-bold text-gray-900">{section.alpha_n}/{section.alpha_d}</span>
-                      <span className="ml-2 text-gray-600">({section.alpha_d - section.alpha_n} remaining)</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-700 font-medium">Beta: </span>
-                      <span className="font-bold text-gray-900">{section.beta_n}/{section.beta_d}</span>
-                      <span className="ml-2 text-gray-600">({section.beta_d - section.beta_n} remaining)</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-700 font-medium">GA: </span>
-                      <span className="font-bold text-gray-900">{section.ga_n}/{section.ga_d}</span>
-                      <span className="ml-2 text-gray-600">({section.ga_d - section.ga_n} remaining)</span>
-                    </div>
-                  </div>
-                </div>
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
+                  {section.name} · Alpha: {section.alpha_n}/{section.alpha_d} · Beta: {section.beta_n}/{section.beta_d} · GA: {section.ga_n}/{section.ga_d}
+                </h2>
                 
                 {/* Components */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                   {section.components.map((component) => (
                     <button
                       key={component.name}
                       onClick={() => setDrilldownComponent(component)}
-                      className="border border-gray-300 rounded-lg p-4 hover:border-blue-500 hover:shadow-md transition-all text-left"
+                      className={`border border-gray-300 rounded-lg p-4 hover:border-blue-500 hover:shadow-md transition-all text-left ${getSectionBackgroundColor(section.name)}`}
                     >
-                      <div className="font-semibold text-gray-900 mb-3">{component.name}</div>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-gray-700 font-medium">Alpha:</span>
+                      <div className="font-semibold text-gray-900 mb-3 text-sm">{stripComponentPrefix(component.name)}</div>
+                      <div className="space-y-2 text-xs">
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-700 font-medium">Alpha</span>
                           <span className="font-bold text-gray-900">{component.alpha_n}/{component.alpha_d}</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-700 font-medium">Beta:</span>
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-700 font-medium">Beta</span>
                           <span className="font-bold text-gray-900">{component.beta_n}/{component.beta_d}</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-700 font-medium">GA:</span>
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-700 font-medium">GA</span>
                           <span className="font-bold text-gray-900">{component.ga_n}/{component.ga_d}</span>
                         </div>
                       </div>
@@ -433,7 +451,7 @@ export default function ReleaseProgressPage() {
             <div className="sticky top-0 bg-white border-b border-gray-200 p-6">
               <div className="flex justify-between items-start">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">{drilldownComponent.name}</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">{stripComponentPrefix(drilldownComponent.name)}</h2>
                   <p className="text-sm text-gray-600 mt-1">
                     {drilldownComponent.features.length} features
                   </p>
