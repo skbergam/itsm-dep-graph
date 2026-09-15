@@ -212,19 +212,41 @@ export default function ReleaseProgressPage() {
   }
   
   function calculateReleaseMilestone(sections: SectionData[]): 'Alpha' | 'Beta' | 'GA' | 'None' {
-    let totalGa = 0;
-    let totalBeta = 0;
-    let totalAlpha = 0;
+    // Collect all feature milestones across all sections/components
+    const allMilestones: (string | null)[] = [];
     
     sections.forEach(section => {
-      totalGa += section.ga_n;
-      totalBeta += section.beta_n;
-      totalAlpha += section.alpha_n;
+      section.components.forEach(component => {
+        component.features.forEach(feature => {
+          allMilestones.push(feature.milestone);
+        });
+      });
     });
     
-    if (totalGa > 0) return 'GA';
-    if (totalBeta > 0) return 'Beta';
-    if (totalAlpha > 0) return 'Alpha';
+    if (allMilestones.length === 0) {
+      return 'None';
+    }
+    
+    // If any feature has null/missing milestone, floor is None
+    if (allMilestones.some(m => m === null || m === undefined)) {
+      return 'None';
+    }
+    
+    // Calculate floor: minimum maturity across all features
+    // Release is at maturity M only when EVERY feature is >= M
+    const hasAlpha = allMilestones.some(m => m === 'Alpha');
+    const hasBeta = allMilestones.some(m => m === 'Beta');
+    const hasGa = allMilestones.some(m => m === 'GA');
+    
+    // If any feature is Alpha, floor is Alpha
+    if (hasAlpha) return 'Alpha';
+    
+    // If any feature is Beta (and none are Alpha), floor is Beta
+    if (hasBeta) return 'Beta';
+    
+    // If all features are GA, floor is GA
+    if (hasGa) return 'GA';
+    
     return 'None';
   }
   
@@ -347,7 +369,7 @@ export default function ReleaseProgressPage() {
             {/* Release Rollup */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
               <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
-                {releases.find(r => r.id === selectedRelease)?.name || 'Release'} · Milestone: {calculateReleaseMilestone(sections)}
+                {releases.find(r => r.id === selectedRelease)?.name || 'Release'} · Derived maturity: {calculateReleaseMilestone(sections)}
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                 <div>
