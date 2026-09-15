@@ -43,6 +43,12 @@ export interface Task {
   pr_url?: string;
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  type: 'App' | 'Engine' | 'Platform' | null;
+}
+
 export function isNotionConfigured(): boolean {
   return !!(
     process.env.NOTION_TOKEN &&
@@ -112,12 +118,12 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
     // Default to the known Features DB if not set
     const featuresDatabaseId = process.env.NOTION_FEATURES_DATABASE_ID || 'd007a63f4108487483e20771fa2f593a';
     
-    // Query Features DB filtered by Releases relation
+    // Query Features DB filtered by Trains relation (renamed from Releases)
     const data = await notionRequest(`/databases/${featuresDatabaseId}/query`, {
       method: 'POST',
       body: JSON.stringify({
         filter: {
-          property: 'Releases',
+          property: 'Trains',
           relation: {
             contains: releaseId,
           },
@@ -201,6 +207,37 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
     return features;
   } catch (error) {
     console.error('Error fetching features from Notion:', error);
+    return [];
+  }
+}
+
+export async function fetchProjects(): Promise<Project[]> {
+  if (!isNotionConfigured()) {
+    return [];
+  }
+
+  try {
+    // Use the Projects database ID if provided, or discover it from a feature's Project relation
+    const projectsDatabaseId = process.env.NOTION_PROJECTS_DATABASE_ID;
+    
+    if (!projectsDatabaseId) {
+      // If no Projects DB ID is configured, we can't fetch the projects list
+      // Return empty array - the UI will fall back to showing only projects with features
+      return [];
+    }
+    
+    const data = await notionRequest(`/databases/${projectsDatabaseId}/query`, {
+      method: 'POST',
+      body: JSON.stringify({}),
+    }) as NotionDatabaseQuery;
+
+    return data.results.map((page) => ({
+      id: page.id,
+      name: extractText(page.properties['Project name'] || page.properties.Name || page.properties.Title),
+      type: extractSelect(page.properties.Type) as 'App' | 'Engine' | 'Platform' | null,
+    }));
+  } catch (error) {
+    console.error('Error fetching projects from Notion:', error);
     return [];
   }
 }

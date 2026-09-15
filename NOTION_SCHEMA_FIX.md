@@ -23,7 +23,7 @@ The original Notion integration was designed for a hypothetical single-database 
      - `Name` (title)
      - `Project` (relation → Projects DB)
      - `Milestone` (select: Alpha, Beta, GA)
-     - `Releases` (relation ← bidirectional)
+     - `Trains` (relation ← bidirectional, renamed from `Releases`)
      - `Tasks` (relation → Tasks DB)
      - `Note` (rich text)
 
@@ -99,9 +99,9 @@ total_tasks: extractNumber(properties['Total Tasks']) || 0,
 
 **After:**
 ```typescript
-// Query Features DB with Releases relation filter
+// Query Features DB with Trains relation filter
 filter: {
-  property: 'Releases',
+  property: 'Trains',
   relation: { contains: releaseId }
 }
 
@@ -192,7 +192,7 @@ const section = feature.project_type
 With the correct environment variables set:
 
 1. `/api/releases` returns all rows from Releases DB
-2. `/api/releases/[id]/features` returns features filtered by `Releases` relation
+2. `/api/releases/[id]/features` returns features filtered by `Trains` relation
 3. Each feature has accurate:
    - Project name (from Project relation)
    - Project type (from Project.Type)
@@ -208,15 +208,25 @@ With the correct environment variables set:
    Remove: NOTION_DATABASE_ID
    Add: NOTION_RELEASES_DATABASE_ID=5f9550febb5044d19b752dfba180b5d7
    Add: NOTION_FEATURES_DATABASE_ID=d007a63f4108487483e20771fa2f593a
+   Optional: NOTION_PROJECTS_DATABASE_ID=<your-projects-db-id>
    ```
 
 2. Ensure Notion integration has access to:
    - Releases database
    - Features database
-   - Projects database (for relation resolution)
+   - Projects database (for relation resolution and all-projects view)
    - Tasks database (for counting)
 
 3. Redeploy with the updated code
+
+### Always-Show Project Boxes Feature
+
+The `/releases` page now displays all projects (App/Engine/Platform) when a train is selected, even if they have no features for that train:
+
+- **Active boxes** (with features): Normal styling with hover effects and clickable drilldown
+- **Grayed boxes** (no features): `opacity-50`, gray colors, disabled, shows `0/0` metrics
+
+To enable this feature, set `NOTION_PROJECTS_DATABASE_ID` environment variable. If not set, the page falls back to showing only projects with features (previous behavior).
 
 ### Testing
 
