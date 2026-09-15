@@ -6,6 +6,9 @@ interface Release {
   id: string;
   name: string;
   notion_url: string;
+  alpha_target_date?: string | null;
+  beta_target_date?: string | null;
+  ga_target_date?: string | null;
 }
 
 interface Task {
@@ -283,15 +286,15 @@ export default function ReleaseProgressPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Release Progress</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Train Progress</h1>
         
         {/* Controls */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Release Picker */}
+            {/* Train Picker */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Select Release
+                Select Train
               </label>
               {error && (
                 <div className="mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded text-sm text-yellow-800">
@@ -306,8 +309,8 @@ export default function ReleaseProgressPage() {
               >
                 <option value="" className="text-gray-900">
                   {releases.length === 0 
-                    ? 'Set NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID to load releases' 
-                    : 'Choose a release...'}
+                    ? 'Set NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID to load trains' 
+                    : 'Choose a train...'}
                 </option>
                 {releases.map((release) => (
                   <option key={release.id} value={release.id} className="text-gray-900">
@@ -366,11 +369,45 @@ export default function ReleaseProgressPage() {
         
         {!loading && selectedRelease && sections.length > 0 && (
           <>
-            {/* Release Rollup */}
+            {/* Train Rollup */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
-              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
-                {releases.find(r => r.id === selectedRelease)?.name || 'Release'} · Derived maturity: {calculateReleaseMilestone(sections)}
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                {releases.find(r => r.id === selectedRelease)?.name || 'Train'} · Derived maturity: {calculateReleaseMilestone(sections)}
               </h2>
+              
+              {/* Target Dates */}
+              {(() => {
+                const currentRelease = releases.find(r => r.id === selectedRelease);
+                const hasTargetDates = currentRelease?.alpha_target_date || currentRelease?.beta_target_date || currentRelease?.ga_target_date;
+                
+                if (hasTargetDates) {
+                  const formatDate = (dateStr: string | null | undefined) => {
+                    if (!dateStr) return null;
+                    try {
+                      const date = new Date(dateStr);
+                      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    } catch {
+                      return dateStr;
+                    }
+                  };
+                  
+                  return (
+                    <div className="text-sm text-gray-500 mb-4 flex flex-wrap gap-x-4 gap-y-1">
+                      {currentRelease.alpha_target_date && (
+                        <span>Alpha target · {formatDate(currentRelease.alpha_target_date)}</span>
+                      )}
+                      {currentRelease.beta_target_date && (
+                        <span>Beta target · {formatDate(currentRelease.beta_target_date)}</span>
+                      )}
+                      {currentRelease.ga_target_date && (
+                        <span>GA target · {formatDate(currentRelease.ga_target_date)}</span>
+                      )}
+                    </div>
+                  );
+                }
+                return null;
+              })()}
+              
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                 <div>
                   <div className="text-sm font-medium text-gray-700 mb-1">To Alpha</div>
@@ -397,7 +434,7 @@ export default function ReleaseProgressPage() {
             {sections.map((section) => (
               <div key={section.name} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
                 <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
-                  {section.name} · Alpha: {section.alpha_n}/{section.alpha_d} · Beta: {section.beta_n}/{section.beta_d} · GA: {section.ga_n}/{section.ga_d}
+                  {section.name} <span className="text-sm font-normal text-gray-500">· Alpha: {section.alpha_n}/{section.alpha_d} · Beta: {section.beta_n}/{section.beta_d} · GA: {section.ga_n}/{section.ga_d}</span>
                 </h2>
                 
                 {/* Components */}
@@ -433,7 +470,7 @@ export default function ReleaseProgressPage() {
         
         {!loading && selectedRelease && sections.length === 0 && (
           <div className="text-center py-8">
-            <p className="text-gray-600">No features found for this release</p>
+            <p className="text-gray-600">No features found for this train</p>
           </div>
         )}
       </div>
