@@ -11,6 +11,12 @@ interface Release {
   ga_target_date?: string | null;
 }
 
+interface Project {
+  id: string;
+  name: string;
+  type: 'App' | 'Engine' | 'Platform' | null;
+}
+
 interface Task {
   id: string;
   name: string;
@@ -54,6 +60,7 @@ type DriftMode = 'off' | 'day' | 'week';
 
 export default function ReleaseProgressPage() {
   const [releases, setReleases] = useState<Release[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [selectedRelease, setSelectedRelease] = useState<string>("");
   const [driftMode, setDriftMode] = useState<DriftMode>("off");
   const [loading, setLoading] = useState(false);
@@ -61,7 +68,7 @@ export default function ReleaseProgressPage() {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [sections, setSections] = useState<SectionData[]>([]);
   
-  // Load releases on mount
+  // Load releases and projects on mount
   useEffect(() => {
     async function loadReleases() {
       try {
@@ -83,7 +90,21 @@ export default function ReleaseProgressPage() {
       }
     }
     
+    async function loadProjects() {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        
+        if (response.ok) {
+          setProjects(data.projects || []);
+        }
+      } catch (err) {
+        console.error('Error loading projects:', err);
+      }
+    }
+    
     loadReleases();
+    loadProjects();
   }, []);
   
   // Load features when release is selected
@@ -107,8 +128,8 @@ export default function ReleaseProgressPage() {
         const loadedFeatures = data.features || [];
         setFeatures(loadedFeatures);
         
-        // Calculate metrics by section and component
-        const sectionsData = calculateMetrics(loadedFeatures);
+        // Calculate metrics by section and component, including all projects
+        const sectionsData = calculateMetrics(loadedFeatures, projects);
         setSections(sectionsData);
         
         setError(null);
@@ -121,9 +142,9 @@ export default function ReleaseProgressPage() {
     }
     
     loadFeatures();
-  }, [selectedRelease]);
+  }, [selectedRelease, projects]);
   
-  function calculateMetrics(features: Feature[]): SectionData[] {
+  function calculateMetrics(features: Feature[], allProjects: Project[]): SectionData[] {
     const sectionMap = new Map<string, SectionData>();
     
     // Map project type to section name
@@ -133,17 +154,30 @@ export default function ReleaseProgressPage() {
       'Platform': 'Platform',
     };
     
-    features.forEach(feature => {
-      // Use project_type if available, fall back to project name mapping
-      const section = feature.project_type 
-        ? typeToSection[feature.project_type] || 'Platform'
-        : 'Platform';
-      const componentName = feature.project;
-      
-      if (!sectionMap.has(section)) {
-        sectionMap.set(section, {
-          name: section,
-          components: [],
+    // Initialize sections
+    const sectionNames: ('Product' | 'Engines' | 'Platform')[] = ['Product', 'Engines', 'Platform'];
+    sectionNames.forEach(name => {
+      sectionMap.set(name, {
+        name,
+        components: [],
+        alpha_n: 0,
+        alpha_d: 0,
+        beta_n: 0,
+        beta_d: 0,
+        ga_n: 0,
+        ga_d: 0,
+      });
+    });
+    
+    // Create component data for all projects (even with no features)
+    const componentMap = new Map<string, ComponentData>();
+    
+    allProjects.forEach(project => {
+      if (project.type) {
+        const section = typeToSection[project.type] || 'Platform';
+        componentMap.set(project.name, {
+          name: project.name,
+          features: [],
           alpha_n: 0,
           alpha_d: 0,
           beta_n: 0,
@@ -152,11 +186,16 @@ export default function ReleaseProgressPage() {
           ga_d: 0,
         });
       }
+    });
+    
+    // Add features to their respective components
+    features.forEach(feature => {
+      const componentName = feature.project;
       
-      const sectionData = sectionMap.get(section)!;
-      let componentData = sectionData.components.find(c => c.name === componentName);
+      let componentData = componentMap.get(componentName);
       
       if (!componentData) {
+        // If project wasn't in the all projects list, create it dynamically
         componentData = {
           name: componentName,
           features: [],
@@ -167,7 +206,7 @@ export default function ReleaseProgressPage() {
           ga_n: 0,
           ga_d: 0,
         };
-        sectionData.components.push(componentData);
+        componentMap.set(componentName, componentData);
       }
       
       componentData.features.push(feature);
@@ -188,28 +227,56 @@ export default function ReleaseProgressPage() {
       if (feature.milestone === 'GA') {
         componentData.ga_n++;
       }
-      
-      // Roll up to section
-      sectionData.alpha_d++;
-      sectionData.beta_d++;
-      sectionData.ga_d++;
-      
-      if (feature.milestone === 'Alpha' || feature.milestone === 'Beta' || feature.milestone === 'GA') {
-        sectionData.alpha_n++;
+    });
+    
+    // Group components by section and roll up metrics
+    allProjects.forEach(project => {
+      if (project.type) {
+        const section = typeToSection[project.type] || 'Platform';
+        const sectionData = sectionMap.get(section)!;
+        const componentData = componentMap.get(project.name);
+        
+        if (componentData) {
+          sectionData.components.push(componentData);
+          
+          // Roll up to section
+          sectionData.alpha_d += componentData.alpha_d;
+          sectionData.beta_d += componentData.beta_d;
+          sectionData.ga_d += componentData.ga_d;
+          sectionData.alpha_n += componentData.alpha_n;
+          sectionData.beta_n += componentData.beta_n;
+          sectionData.ga_n += componentData.ga_n;
+        }
       }
+    });
+    
+    // Also add any components not in the projects list (fallback)
+    features.forEach(feature => {
+      const componentName = feature.project;
+      const section = feature.project_type 
+        ? typeToSection[feature.project_type] || 'Platform'
+        : 'Platform';
+      const sectionData = sectionMap.get(section)!;
       
-      if (feature.milestone === 'Beta' || feature.milestone === 'GA') {
-        sectionData.beta_n++;
-      }
-      
-      if (feature.milestone === 'GA') {
-        sectionData.ga_n++;
+      // Check if this component is already in the section
+      if (!sectionData.components.find(c => c.name === componentName)) {
+        const componentData = componentMap.get(componentName);
+        if (componentData) {
+          sectionData.components.push(componentData);
+          
+          // Roll up to section
+          sectionData.alpha_d += componentData.alpha_d;
+          sectionData.beta_d += componentData.beta_d;
+          sectionData.ga_d += componentData.ga_d;
+          sectionData.alpha_n += componentData.alpha_n;
+          sectionData.beta_n += componentData.beta_n;
+          sectionData.ga_n += componentData.ga_n;
+        }
       }
     });
     
     // Sort sections: Product, Engines, Platform
-    const orderedSections = ['Product', 'Engines', 'Platform'] as const;
-    return orderedSections
+    return sectionNames
       .map(name => sectionMap.get(name))
       .filter((s): s is SectionData => s !== undefined);
   }
@@ -439,29 +506,45 @@ export default function ReleaseProgressPage() {
                 
                 {/* Components */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                  {section.components.map((component) => (
-                    <button
-                      key={component.name}
-                      onClick={() => setDrilldownComponent(component)}
-                      className={`border border-gray-300 rounded-lg p-4 hover:border-blue-500 hover:shadow-md transition-all text-left ${getSectionBackgroundColor(section.name)}`}
-                    >
-                      <div className="font-semibold text-gray-900 mb-3 text-sm">{stripComponentPrefix(component.name)}</div>
-                      <div className="space-y-2 text-xs">
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-700 font-medium">Alpha</span>
-                          <span className="font-bold text-gray-900">{component.alpha_n}/{component.alpha_d}</span>
+                  {section.components.map((component) => {
+                    const hasFeatures = component.features.length > 0;
+                    return (
+                      <button
+                        key={component.name}
+                        onClick={() => hasFeatures && setDrilldownComponent(component)}
+                        disabled={!hasFeatures}
+                        className={`border rounded-lg p-4 transition-all text-left ${
+                          hasFeatures
+                            ? `border-gray-300 hover:border-blue-500 hover:shadow-md ${getSectionBackgroundColor(section.name)}`
+                            : 'border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed'
+                        }`}
+                      >
+                        <div className={`font-semibold mb-3 text-sm ${hasFeatures ? 'text-gray-900' : 'text-gray-400'}`}>
+                          {stripComponentPrefix(component.name)}
                         </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-700 font-medium">Beta</span>
-                          <span className="font-bold text-gray-900">{component.beta_n}/{component.beta_d}</span>
+                        <div className="space-y-2 text-xs">
+                          <div className="flex justify-between items-center">
+                            <span className={`font-medium ${hasFeatures ? 'text-gray-700' : 'text-gray-400'}`}>Alpha</span>
+                            <span className={`font-bold ${hasFeatures ? 'text-gray-900' : 'text-gray-400'}`}>
+                              {hasFeatures ? `${component.alpha_n}/${component.alpha_d}` : '0/0'}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={`font-medium ${hasFeatures ? 'text-gray-700' : 'text-gray-400'}`}>Beta</span>
+                            <span className={`font-bold ${hasFeatures ? 'text-gray-900' : 'text-gray-400'}`}>
+                              {hasFeatures ? `${component.beta_n}/${component.beta_d}` : '0/0'}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={`font-medium ${hasFeatures ? 'text-gray-700' : 'text-gray-400'}`}>GA</span>
+                            <span className={`font-bold ${hasFeatures ? 'text-gray-900' : 'text-gray-400'}`}>
+                              {hasFeatures ? `${component.ga_n}/${component.ga_d}` : '0/0'}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-700 font-medium">GA</span>
-                          <span className="font-bold text-gray-900">{component.ga_n}/{component.ga_d}</span>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             ))}
