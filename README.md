@@ -26,7 +26,8 @@ DATABASE_URL=postgresql://user:pass@host/db
 
 # Notion API (for release tracking)
 NOTION_TOKEN=ntn_your_integration_token
-NOTION_DATABASE_ID=your_database_id
+NOTION_RELEASES_DATABASE_ID=5f9550febb5044d19b752dfba180b5d7
+NOTION_FEATURES_DATABASE_ID=d007a63f4108487483e20771fa2f593a
 ```
 
 3. Start the local server:
