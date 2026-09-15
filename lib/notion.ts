@@ -1,5 +1,5 @@
-// Notion API helpers for fetching releases and features
-// Requires NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID, and NOTION_FEATURES_DATABASE_ID environment variables
+// Notion API helpers for fetching releases (now called "Trains" in product language) and features
+// Requires NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID (Notion entity is now Train), and NOTION_FEATURES_DATABASE_ID environment variables
 
 interface NotionPage {
   id: string;
@@ -17,6 +17,9 @@ export interface Release {
   id: string;
   name: string;
   notion_url: string;
+  alpha_target_date?: string | null;
+  beta_target_date?: string | null;
+  ga_target_date?: string | null;
 }
 
 export interface Feature {
@@ -90,6 +93,9 @@ export async function fetchReleases(): Promise<Release[]> {
       id: page.id,
       name: extractText(page.properties.Name || page.properties.Title),
       notion_url: page.url || `https://notion.so/${page.id.replace(/-/g, '')}`,
+      alpha_target_date: extractDate(page.properties.AlphaTargetDate),
+      beta_target_date: extractDate(page.properties.BetaTargetDate),
+      ga_target_date: extractDate(page.properties.GATargetDate),
     }));
   } catch (error) {
     console.error('Error fetching releases from Notion:', error);
@@ -245,4 +251,11 @@ function extractUrl(property: any): string | null {
   }
   
   return null;
+}
+
+function extractDate(property: any): string | null {
+  if (!property || !property.date) return null;
+  // Notion date property has a "start" field (and optionally "end")
+  // Return the start date in ISO format (YYYY-MM-DD)
+  return property.date.start || null;
 }

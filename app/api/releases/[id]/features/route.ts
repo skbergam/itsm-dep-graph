@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchFeaturesForRelease, isNotionConfigured } from '@/lib/notion';
 
-// GET /api/releases/[id]/features - Get features for a release
+// GET /api/releases/[id]/features - Get features for a train
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
