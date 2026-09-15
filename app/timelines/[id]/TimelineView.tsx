@@ -982,11 +982,11 @@ export default function TimelineView({ isArchive = false, archiveTimestamp }: Ti
       try {
         let url: string;
         if (isArchive && archiveTimestamp) {
-          // Load archived version
-          url = `/timelines/${id}/archive/${archiveTimestamp}.json`;
+          // Load archived version via API
+          url = `/api/timelines/${id}/archive/${archiveTimestamp}`;
         } else {
-          // Load current version
-          url = `/timelines/${id}.json`;
+          // Load current version via API with file fallback
+          url = `/api/timelines/${id}`;
         }
         
         const response = await fetch(url);
