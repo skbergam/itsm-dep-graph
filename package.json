@@ -10,20 +10,22 @@
     "prebuild": "mkdir -p public/out && cp out/itsm-graph.json public/out/"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "^15.3.0",
+    "@neondatabase/serverless": "^1.1.0",
+    "@types/pg": "^8.23.1",
     "@xyflow/react": "^12.3.4",
-    "dagre": "^0.8.5"
+    "dagre": "^0.8.5",
+    "next": "^15.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/dagre": "^0.7.52",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.3",
-    "typescript": "~5.7.2",
-    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
-    "autoprefixer": "^10.4.17"
+    "tailwindcss": "^3.4.1",
+    "typescript": "~5.7.2"
   }
 }
