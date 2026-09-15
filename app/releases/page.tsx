@@ -218,13 +218,13 @@ export default function ReleaseProgressPage() {
   const [drilldownComponent, setDrilldownComponent] = useState<ComponentData | null>(null);
   
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Release Progress</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Release Progress</h1>
         
         {/* Controls */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="grid grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Release Picker */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -257,10 +257,10 @@ export default function ReleaseProgressPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Drift Comparison
               </label>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setDriftMode('off')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`flex-1 sm:flex-none px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     driftMode === 'off'
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -270,7 +270,7 @@ export default function ReleaseProgressPage() {
                 </button>
                 <button
                   onClick={() => setDriftMode('day')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`flex-1 sm:flex-none px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                     driftMode === 'day'
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -280,7 +280,7 @@ export default function ReleaseProgressPage() {
                 </button>
                 <button
                   onClick={() => setDriftMode('week')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`flex-1 sm:flex-none px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                     driftMode === 'week'
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -302,26 +302,26 @@ export default function ReleaseProgressPage() {
         {!loading && selectedRelease && sections.length > 0 && (
           <>
             {/* Release Rollup */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
                 Release Milestone: {calculateReleaseMilestone(sections)}
               </h2>
-              <div className="flex gap-8">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                 <div>
                   <div className="text-sm text-gray-600 mb-1">To Alpha</div>
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className="text-xl sm:text-2xl font-bold text-gray-900">
                     {sections.reduce((sum, s) => sum + (s.alpha_d - s.alpha_n), 0)} remaining
                   </div>
                 </div>
                 <div>
                   <div className="text-sm text-gray-600 mb-1">To Beta</div>
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className="text-xl sm:text-2xl font-bold text-gray-900">
                     {sections.reduce((sum, s) => sum + (s.beta_d - s.beta_n), 0)} remaining
                   </div>
                 </div>
                 <div>
                   <div className="text-sm text-gray-600 mb-1">To GA</div>
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className="text-xl sm:text-2xl font-bold text-gray-900">
                     {sections.reduce((sum, s) => sum + (s.ga_d - s.ga_n), 0)} remaining
                   </div>
                 </div>
@@ -330,12 +330,12 @@ export default function ReleaseProgressPage() {
             
             {/* Sections */}
             {sections.map((section) => (
-              <div key={section.name} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">{section.name}</h2>
+              <div key={section.name} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">{section.name}</h2>
                 
                 {/* Section Rollup */}
-                <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-                  <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
                     <div>
                       <span className="text-gray-600">Alpha: </span>
                       <span className="font-semibold">{section.alpha_n}/{section.alpha_d}</span>
@@ -355,7 +355,7 @@ export default function ReleaseProgressPage() {
                 </div>
                 
                 {/* Components */}
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {section.components.map((component) => (
                     <button
                       key={component.name}
