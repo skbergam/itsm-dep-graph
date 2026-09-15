@@ -29,6 +29,15 @@ export interface Feature {
   open_tasks: number;
   total_tasks: number;
   notion_url: string;
+  tasks: Task[]; // Array of linked tasks
+}
+
+export interface Task {
+  id: string;
+  name: string;
+  status: string;
+  notion_url: string;
+  pr_url?: string;
 }
 
 export function isNotionConfigured(): boolean {
@@ -127,26 +136,39 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
           const projectPage = await notionRequest(`/pages/${projectId}`, {
             method: 'GET',
           });
-          projectName = extractText(projectPage.properties.Name || projectPage.properties.Title);
+          // Projects DB uses "Project name" as the title property
+          projectName = extractText(projectPage.properties['Project name'] || projectPage.properties.Name || projectPage.properties.Title);
           projectType = extractSelect(projectPage.properties.Type) as 'App' | 'Engine' | 'Platform' | null;
         } catch (error) {
           console.error(`Error fetching project ${projectId}:`, error);
         }
       }
       
-      // Get tasks relation to count open/total
+      // Get tasks relation to count open/total and build tasks array
       const tasksRelation = properties.Tasks?.relation || [];
       let openTasks = 0;
       let totalTasks = tasksRelation.length;
+      const tasks: Task[] = [];
       
-      // Query tasks to count open vs total
+      // Query tasks to count open vs total and collect task data
       if (tasksRelation.length > 0) {
         for (const taskRef of tasksRelation) {
           try {
             const taskPage = await notionRequest(`/pages/${taskRef.id}`, {
               method: 'GET',
             });
-            const status = extractSelect(taskPage.properties.Status);
+            const status = extractSelect(taskPage.properties.Status) || 'Unknown';
+            const taskName = extractText(taskPage.properties.Name || taskPage.properties.Title);
+            const prUrl = extractUrl(taskPage.properties['PR URL'] || taskPage.properties.PR);
+            
+            tasks.push({
+              id: taskRef.id,
+              name: taskName,
+              status: status,
+              notion_url: taskPage.url || `https://notion.so/${taskRef.id.replace(/-/g, '')}`,
+              pr_url: prUrl || undefined,
+            });
+            
             if (status && status !== 'Done' && status !== 'Archived') {
               openTasks++;
             }
@@ -166,6 +188,7 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
         open_tasks: openTasks,
         total_tasks: totalTasks,
         notion_url: page.url || `https://notion.so/${page.id.replace(/-/g, '')}`,
+        tasks: tasks,
       });
     }
 
@@ -204,4 +227,22 @@ function extractNumber(property: any): number | null {
 function extractRelation(property: any): string[] {
   if (!property || !Array.isArray(property.relation)) return [];
   return property.relation.map((r: any) => r.id);
+}
+
+function extractUrl(property: any): string | null {
+  if (!property) return null;
+  
+  // URL property type
+  if (property.url && typeof property.url === 'string') {
+    return property.url;
+  }
+  
+  // Rich text with link
+  if (property.rich_text && Array.isArray(property.rich_text)) {
+    for (const text of property.rich_text) {
+      if (text.href) return text.href;
+    }
+  }
+  
+  return null;
 }

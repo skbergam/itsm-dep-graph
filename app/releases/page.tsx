@@ -8,6 +8,14 @@ interface Release {
   notion_url: string;
 }
 
+interface Task {
+  id: string;
+  name: string;
+  status: string;
+  notion_url: string;
+  pr_url?: string;
+}
+
 interface Feature {
   id: string;
   name: string;
@@ -17,6 +25,7 @@ interface Feature {
   open_tasks: number;
   total_tasks: number;
   notion_url: string;
+  tasks: Task[];
 }
 
 interface ComponentMetrics {
@@ -220,6 +229,19 @@ export default function ReleaseProgressPage() {
   }
   
   const [drilldownComponent, setDrilldownComponent] = useState<ComponentData | null>(null);
+  const [expandedFeatures, setExpandedFeatures] = useState<Set<string>>(new Set());
+  
+  const toggleFeature = (featureId: string) => {
+    setExpandedFeatures(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(featureId)) {
+        newSet.delete(featureId);
+      } else {
+        newSet.add(featureId);
+      }
+      return newSet;
+    });
+  };
   
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-8">
@@ -309,24 +331,24 @@ export default function ReleaseProgressPage() {
           <>
             {/* Release Rollup */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-6">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
                 Release Milestone: {calculateReleaseMilestone(sections)}
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">To Alpha</div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">To Alpha</div>
                   <div className="text-xl sm:text-2xl font-bold text-gray-900">
                     {sections.reduce((sum, s) => sum + (s.alpha_d - s.alpha_n), 0)} remaining
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">To Beta</div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">To Beta</div>
                   <div className="text-xl sm:text-2xl font-bold text-gray-900">
                     {sections.reduce((sum, s) => sum + (s.beta_d - s.beta_n), 0)} remaining
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">To GA</div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">To GA</div>
                   <div className="text-xl sm:text-2xl font-bold text-gray-900">
                     {sections.reduce((sum, s) => sum + (s.ga_d - s.ga_n), 0)} remaining
                   </div>
@@ -343,19 +365,19 @@ export default function ReleaseProgressPage() {
                 <div className="mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-sm">
                     <div>
-                      <span className="text-gray-600">Alpha: </span>
-                      <span className="font-semibold">{section.alpha_n}/{section.alpha_d}</span>
-                      <span className="ml-2 text-gray-500">({section.alpha_d - section.alpha_n} remaining)</span>
+                      <span className="text-gray-700 font-medium">Alpha: </span>
+                      <span className="font-bold text-gray-900">{section.alpha_n}/{section.alpha_d}</span>
+                      <span className="ml-2 text-gray-600">({section.alpha_d - section.alpha_n} remaining)</span>
                     </div>
                     <div>
-                      <span className="text-gray-600">Beta: </span>
-                      <span className="font-semibold">{section.beta_n}/{section.beta_d}</span>
-                      <span className="ml-2 text-gray-500">({section.beta_d - section.beta_n} remaining)</span>
+                      <span className="text-gray-700 font-medium">Beta: </span>
+                      <span className="font-bold text-gray-900">{section.beta_n}/{section.beta_d}</span>
+                      <span className="ml-2 text-gray-600">({section.beta_d - section.beta_n} remaining)</span>
                     </div>
                     <div>
-                      <span className="text-gray-600">GA: </span>
-                      <span className="font-semibold">{section.ga_n}/{section.ga_d}</span>
-                      <span className="ml-2 text-gray-500">({section.ga_d - section.ga_n} remaining)</span>
+                      <span className="text-gray-700 font-medium">GA: </span>
+                      <span className="font-bold text-gray-900">{section.ga_n}/{section.ga_d}</span>
+                      <span className="ml-2 text-gray-600">({section.ga_d - section.ga_n} remaining)</span>
                     </div>
                   </div>
                 </div>
@@ -368,19 +390,19 @@ export default function ReleaseProgressPage() {
                       onClick={() => setDrilldownComponent(component)}
                       className="border border-gray-300 rounded-lg p-4 hover:border-blue-500 hover:shadow-md transition-all text-left"
                     >
-                      <div className="font-medium text-gray-900 mb-3">{component.name}</div>
+                      <div className="font-semibold text-gray-900 mb-3">{component.name}</div>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Alpha:</span>
-                          <span className="font-semibold">{component.alpha_n}/{component.alpha_d}</span>
+                          <span className="text-gray-700 font-medium">Alpha:</span>
+                          <span className="font-bold text-gray-900">{component.alpha_n}/{component.alpha_d}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Beta:</span>
-                          <span className="font-semibold">{component.beta_n}/{component.beta_d}</span>
+                          <span className="text-gray-700 font-medium">Beta:</span>
+                          <span className="font-bold text-gray-900">{component.beta_n}/{component.beta_d}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">GA:</span>
-                          <span className="font-semibold">{component.ga_n}/{component.ga_d}</span>
+                          <span className="text-gray-700 font-medium">GA:</span>
+                          <span className="font-bold text-gray-900">{component.ga_n}/{component.ga_d}</span>
                         </div>
                       </div>
                     </button>
@@ -427,37 +449,112 @@ export default function ReleaseProgressPage() {
               </div>
             </div>
             
-            <div className="p-6 space-y-4">
-              {drilldownComponent.features.map((feature) => (
-                <div key={feature.id} className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <a
-                      href={feature.notion_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-blue-600 hover:text-blue-800"
-                    >
-                      {feature.name}
-                    </a>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        feature.milestone === 'GA'
-                          ? 'bg-green-100 text-green-800'
-                          : feature.milestone === 'Beta'
-                          ? 'bg-blue-100 text-blue-800'
-                          : feature.milestone === 'Alpha'
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}
-                    >
-                      {feature.milestone || 'None'}
-                    </span>
+            <div className="p-6 space-y-3">
+              {drilldownComponent.features.map((feature) => {
+                const isExpanded = expandedFeatures.has(feature.id);
+                return (
+                  <div key={feature.id} className="border border-gray-200 rounded-lg overflow-hidden">
+                    <div className="p-4 bg-white hover:bg-gray-50 transition-colors">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 mb-2">
+                            <a
+                              href={feature.notion_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-blue-600 hover:text-blue-800 hover:underline"
+                            >
+                              {feature.name}
+                            </a>
+                            <span
+                              className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
+                                feature.milestone === 'GA'
+                                  ? 'bg-green-100 text-green-800'
+                                  : feature.milestone === 'Beta'
+                                  ? 'bg-blue-100 text-blue-800'
+                                  : feature.milestone === 'Alpha'
+                                  ? 'bg-yellow-100 text-yellow-800'
+                                  : 'bg-gray-100 text-gray-800'
+                              }`}
+                            >
+                              {feature.milestone || 'None'}
+                            </span>
+                          </div>
+                          <div className="text-sm text-gray-700">
+                            <span className="font-medium">{feature.open_tasks} open</span> / {feature.total_tasks} total tasks
+                          </div>
+                        </div>
+                        
+                        {feature.tasks.length > 0 && (
+                          <button
+                            onClick={() => toggleFeature(feature.id)}
+                            className="flex-shrink-0 p-2 hover:bg-gray-100 rounded-md transition-colors"
+                            aria-label={isExpanded ? 'Collapse tasks' : 'Expand tasks'}
+                          >
+                            <svg 
+                              className={`w-5 h-5 text-gray-600 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                    
+                    {isExpanded && feature.tasks.length > 0 && (
+                      <div className="border-t border-gray-200 bg-gray-50">
+                        <div className="p-4 space-y-2">
+                          {feature.tasks.map((task) => (
+                            <div key={task.id} className="flex items-start justify-between gap-3 p-3 bg-white rounded-md border border-gray-200">
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <a
+                                    href={task.notion_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                                  >
+                                    {task.name}
+                                  </a>
+                                </div>
+                                <div className="flex items-center gap-3 text-xs">
+                                  <span className={`px-2 py-1 rounded-md font-medium ${
+                                    task.status === 'Done' 
+                                      ? 'bg-green-100 text-green-800'
+                                      : task.status === 'In Progress'
+                                      ? 'bg-blue-100 text-blue-800'
+                                      : task.status === 'Blocked'
+                                      ? 'bg-red-100 text-red-800'
+                                      : 'bg-gray-100 text-gray-800'
+                                  }`}>
+                                    {task.status}
+                                  </span>
+                                  {task.pr_url && (
+                                    <a
+                                      href={task.pr_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-purple-600 hover:text-purple-800 hover:underline flex items-center gap-1"
+                                    >
+                                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                      </svg>
+                                      PR
+                                    </a>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="text-sm text-gray-600">
-                    {feature.open_tasks} open / {feature.total_tasks} total tasks
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
