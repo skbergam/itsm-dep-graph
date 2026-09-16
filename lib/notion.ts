@@ -1,6 +1,15 @@
 // Notion API helpers for fetching releases (now called "Trains" in product language) and features
 // Requires NOTION_TOKEN, NOTION_RELEASES_DATABASE_ID (Notion entity is now Train), and NOTION_FEATURES_DATABASE_ID environment variables
 
+// Projects to exclude from the releases UI
+const EXCLUDED_PROJECT_IDS = new Set([
+  '3dc5dbdd-f0ea-8135-a250-f2d4ce1aebf0', // Resolv prototype
+]);
+
+const EXCLUDED_PROJECT_NAMES = new Set([
+  'resolv prototype', // Case-insensitive match
+]);
+
 interface NotionPage {
   id: string;
   properties: Record<string, any>;
@@ -144,6 +153,14 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
       
       if (projectRelation.length > 0) {
         const projectId = projectRelation[0].id;
+        
+        // Skip features belonging to excluded projects
+        const normalizedProjectId = projectId.replace(/-/g, '');
+        const normalizedExcludedIds = Array.from(EXCLUDED_PROJECT_IDS).map(id => id.replace(/-/g, ''));
+        if (normalizedExcludedIds.includes(normalizedProjectId)) {
+          continue;
+        }
+        
         try {
           const projectPage = await notionRequest(`/pages/${projectId}`, {
             method: 'GET',
@@ -151,6 +168,11 @@ export async function fetchFeaturesForRelease(releaseId: string): Promise<Featur
           // Projects DB uses "Project name" as the title property
           projectName = extractText(projectPage.properties['Project name'] || projectPage.properties.Name || projectPage.properties.Title);
           projectType = extractSelect(projectPage.properties.Type) as 'App' | 'Engine' | 'Platform' | null;
+          
+          // Also check name-based exclusion
+          if (EXCLUDED_PROJECT_NAMES.has(projectName.toLowerCase())) {
+            continue;
+          }
         } catch (error) {
           console.error(`Error fetching project ${projectId}:`, error);
         }
@@ -231,11 +253,30 @@ export async function fetchProjects(): Promise<Project[]> {
       body: JSON.stringify({}),
     }) as NotionDatabaseQuery;
 
-    return data.results.map((page) => ({
+    const allProjects = data.results.map((page) => ({
       id: page.id,
       name: extractText(page.properties['Project name'] || page.properties.Name || page.properties.Title),
       type: extractSelect(page.properties.Type) as 'App' | 'Engine' | 'Platform' | null,
     }));
+
+    // Filter out excluded projects by ID and name (case-insensitive)
+    return allProjects.filter((project) => {
+      // Normalize the project ID (remove hyphens for comparison)
+      const normalizedId = project.id.replace(/-/g, '');
+      const normalizedExcludedIds = Array.from(EXCLUDED_PROJECT_IDS).map(id => id.replace(/-/g, ''));
+      
+      if (normalizedExcludedIds.includes(normalizedId)) {
+        return false;
+      }
+      
+      // Check name match (case-insensitive)
+      const normalizedName = project.name.toLowerCase();
+      if (EXCLUDED_PROJECT_NAMES.has(normalizedName)) {
+        return false;
+      }
+      
+      return true;
+    });
   } catch (error) {
     console.error('Error fetching projects from Notion:', error);
     return [];
