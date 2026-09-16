@@ -50,8 +50,9 @@ NOTION_DATABASE_ID=...  # Single database ID
 **After:**
 ```env
 NOTION_TOKEN=...
-NOTION_RELEASES_DATABASE_ID=5f9550febb5044d19b752dfba180b5d7
-NOTION_FEATURES_DATABASE_ID=d007a63f4108487483e20771fa2f593a
+NOTION_RELEASES_DATABASE_ID=5f9550febb5044d19b752dfba180b5d7  # Has default fallback
+NOTION_FEATURES_DATABASE_ID=d007a63f4108487483e20771fa2f593a  # Has default fallback
+NOTION_PROJECTS_DATABASE_ID=18786fc7-9aff-4fac-9bfa-2e7a521c821f  # Has default fallback
 ```
 
 ### API Implementation Changes
@@ -208,8 +209,11 @@ With the correct environment variables set:
    Remove: NOTION_DATABASE_ID
    Add: NOTION_RELEASES_DATABASE_ID=5f9550febb5044d19b752dfba180b5d7
    Add: NOTION_FEATURES_DATABASE_ID=d007a63f4108487483e20771fa2f593a
-   Optional: NOTION_PROJECTS_DATABASE_ID=<your-projects-db-id>
+   Add: NOTION_PROJECTS_DATABASE_ID=18786fc7-9aff-4fac-9bfa-2e7a521c821f
    ```
+   
+   Note: All three database IDs now have hardcoded defaults in the code. Setting these environment
+   variables is optional and only needed to override the defaults.
 
 2. Ensure Notion integration has access to:
    - Releases database
@@ -221,12 +225,12 @@ With the correct environment variables set:
 
 ### Always-Show Project Boxes Feature
 
-The `/releases` page now displays all projects (App/Engine/Platform) when a train is selected, even if they have no features for that train:
+The `/releases` page displays all projects (App/Engine/Platform) when a train is selected, even if they have no features for that train:
 
 - **Active boxes** (with features): Normal styling with hover effects and clickable drilldown
 - **Grayed boxes** (no features): `opacity-50`, gray colors, disabled, shows `0/0` metrics
 
-To enable this feature, set `NOTION_PROJECTS_DATABASE_ID` environment variable. If not set, the page falls back to showing only projects with features (previous behavior).
+The Projects database ID has a hardcoded default (`18786fc7-9aff-4fac-9bfa-2e7a521c821f`), so this feature works out of the box. To override with a different Projects database, set the `NOTION_PROJECTS_DATABASE_ID` environment variable.
 
 ### Testing
 

@@ -239,14 +239,8 @@ export async function fetchProjects(): Promise<Project[]> {
   }
 
   try {
-    // Use the Projects database ID if provided, or discover it from a feature's Project relation
-    const projectsDatabaseId = process.env.NOTION_PROJECTS_DATABASE_ID;
-    
-    if (!projectsDatabaseId) {
-      // If no Projects DB ID is configured, we can't fetch the projects list
-      // Return empty array - the UI will fall back to showing only projects with features
-      return [];
-    }
+    // Default to the known Projects DB if not set
+    const projectsDatabaseId = process.env.NOTION_PROJECTS_DATABASE_ID || '18786fc7-9aff-4fac-9bfa-2e7a521c821f';
     
     const data = await notionRequest(`/databases/${projectsDatabaseId}/query`, {
       method: 'POST',
